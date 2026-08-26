@@ -10,7 +10,6 @@
             --card-bg: #fffdf9;
             --text-main: #3a3835;
             --text-sub: #7a756f;
-            --accent: #5c6b73;
             --accent-warm: #d4836f;
             --border-color: #e3ded6;
             --shadow: 0 10px 30px rgba(58, 56, 53, 0.05);
@@ -36,7 +35,6 @@
             justify-content: space-between;
         }
 
-        /* 共通レイアウト・コンテナ */
         .container {
             width: 100%;
             max-width: 680px;
@@ -67,7 +65,7 @@
             transform: translateY(0);
         }
 
-        /* --- 1. 世界観に入る (Top) --- */
+        /* --- 1. トップ画面 (図書館の入り口・小さな気配) --- */
         .top-message {
             font-size: 1.1rem;
             color: var(--text-sub);
@@ -122,7 +120,7 @@
             50% { opacity: 1; }
         }
 
-        /* --- 2 & 3. 札を引く・見る (Card) --- */
+        /* --- 2 & 3. 札を選ぶ・引く・見る --- */
         .card-container {
             perspective: 1000px;
             width: 240px;
@@ -199,7 +197,7 @@
             text-align: right;
         }
 
-        /* --- 4 & 5. 考える・歩く (Reflection & Walk) --- */
+        /* --- 4 & 5. 考える・物語の中を歩く --- */
         .reflection-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -225,7 +223,7 @@
             padding-left: 12px;
         }
 
-        /* --- 6. 現実へ戻る (Actions & Return) --- */
+        /* --- 6. 現実へ戻るアクション --- */
         .action-area {
             display: flex;
             gap: 16px;
@@ -261,7 +259,7 @@
             color: var(--text-main);
         }
 
-        /* フッターのささやき */
+        /* フッター */
         footer {
             padding: 24px;
             text-align: center;
@@ -270,7 +268,6 @@
             letter-spacing: 0.1em;
         }
 
-        /* レスポンシブ微調整 */
         @media (max-width: 480px) {
             .container {
                 padding: 24px 16px;
@@ -289,7 +286,7 @@
 
     <div class="container">
 
-        <!-- ①・② 世界観に入る ＆ 札を引く前の導入 -->
+        <!-- ① 世界観に入る ＆ 導入 -->
         <div id="screen-top" class="screen active">
             <p class="top-message">今日は、どんな札かな。</p>
             <div class="ticket-box" id="start-btn">
@@ -299,7 +296,7 @@
             </div>
         </div>
 
-        <!-- ③・④ カードを見る ＆ 考える -->
+        <!-- ② ③ ④ ⑤ カードを見る・考える・物語を歩く -->
         <div id="screen-card" class="screen">
             <p class="top-message" id="prompt-text">このカード、なんか気になる。</p>
             
@@ -335,6 +332,7 @@
                 <p id="c-thought">急がなくても、大丈夫。</p>
             </div>
 
+            <!-- ⑥ 現実へ戻る -->
             <div class="action-area" id="action-after-open" style="display: none;">
                 <button class="btn" id="return-btn">じゃあ、そろそろ帰ろう。</button>
             </div>
@@ -347,7 +345,6 @@
     </footer>
 
     <script>
-        // 物語の札データ（少し文学的で、日常とファンタジーのあいだ）
         const cardsData = [
             {
                 num: "No. 03",
@@ -408,7 +405,6 @@
         let currentCard = null;
         let isFlipped = false;
 
-        // ランダムにカードを選んでセットする
         function setupRandomCard() {
             const randomIndex = Math.floor(Math.random() * cardsData.length);
             currentCard = cardsData[randomIndex];
@@ -419,7 +415,6 @@
             cReflection.textContent = currentCard.reflection;
             cThought.textContent = currentCard.thought;
 
-            // 状態をリセット
             cardElement.classList.remove('flipped');
             isFlipped = false;
             reflectionBox.style.display = 'none';
@@ -428,7 +423,6 @@
             promptText.textContent = "このカード、なんか気になる。";
         }
 
-        // ① -> ②・③へ進む
         startBtn.addEventListener('click', () => {
             setupRandomCard();
             screenTop.classList.remove('active');
@@ -441,14 +435,12 @@
             }, 600);
         });
 
-        // カードをめくるアクション
         function flipCard() {
             if (isFlipped) return;
             cardElement.classList.add('flipped');
             isFlipped = true;
             promptText.textContent = "物語の中へ、少しだけ入ってみる。";
 
-            // 少し遅れて考え事と言葉を表示
             setTimeout(() => {
                 reflectionBox.style.display = 'block';
                 actionBeforeOpen.style.display = 'none';
@@ -461,7 +453,6 @@
             if (!isFlipped) flipCard();
         });
 
-        // やめる・日常へ戻る
         function goHome() {
             screenCard.classList.remove('active');
             setTimeout(() => {
