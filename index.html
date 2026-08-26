@@ -10,18 +10,18 @@
    ========================================================= */
 :root {
   /* カラーパレットの調整 (より温かく、優しいトーンへ) */
-  --navy: #2c3e50; /* 少し暗めに */
+  --navy: #2c3e50;
   --navy-deep: #1a252f;
   --navy-soft: #4a637d;
 
-  --paper: #fffaf0; /* 真っ白からクリーム系へ */
+  --paper: #fffaf0;
   --paper-light: #fffef5;
-  --paper-dark: #f5eeda; /* 少し濃いクリーム */
+  --paper-dark: #f5eeda;
 
-  --ink: #423930; /* 墨色を少し茶系に */
+  --ink: #423930;
   --muted: #8a7b6e;
 
-  --gold: #b89438; /* ゴールドを少し渋く */
+  --gold: #b89438;
   --gold-light: #e8dcc8;
   --gold-accent: #d4c091;
 
@@ -30,7 +30,7 @@
 
   --line: #e0d6c2;
 
-  --shadow: 0 10px 30px rgba(74, 99, 125, 0.1); /* 影を柔らかく */
+  --shadow: 0 10px 30px rgba(74, 99, 125, 0.08);
   --shadow-deep: 0 20px 50px rgba(74, 99, 125, 0.15);
 
   /* フォント設定の調整 */
@@ -50,8 +50,8 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--serif); /* 基本をセリフ体に */
-  line-height: 2.0; /* 行間を少し広めに */
+  font-family: var(--serif);
+  line-height: 2.0;
   letter-spacing: .05em;
 }
 
@@ -74,12 +74,12 @@ img {
 }
 
 .container {
-  width: min(980px, calc(100% - 40px)); /* 横幅を少しコンパクトに */
+  width: min(980px, calc(100% - 40px));
   margin: 0 auto;
 }
 
 .fade {
-  animation: fadeIn 1.2s ease both; /* フェードインをゆっくりに */
+  animation: fadeIn 1.2s ease both;
 }
 
 @keyframes fadeIn {
@@ -217,7 +217,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 250, 240, 0.92); /* 背景色を半透明に */
+  background: rgba(255, 250, 240, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
@@ -386,7 +386,7 @@ img {
 
 .bookshelf-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* カードサイズを大きく */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 30px;
   max-width: 800px;
   margin: 0 auto;
@@ -397,7 +397,7 @@ img {
   border: 1px solid var(--line);
   padding: 35px 25px;
   text-align: center;
-  border-radius: 12px; /* 角を丸く */
+  border-radius: 12px;
   transition: all .5s ease;
   cursor: pointer;
   box-shadow: var(--shadow);
@@ -415,7 +415,7 @@ img {
 }
 
 .shelf-card:hover {
-  transform: translateY(-8px) scale(1.02); /* 浮遊感を強調 */
+  transform: translateY(-8px) scale(1.02);
   border-color: var(--gold-accent);
   box-shadow: var(--shadow-deep);
 }
@@ -424,11 +424,57 @@ img {
 }
 
 .shelf-card-icon {
-  font-size: 40px; /* アイコンを大きく */
+  font-size: 40px;
   margin-bottom: 15px;
   line-height: 1;
   filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
 }
 
 .shelf-card-title {
-  color
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: 16px;
+  letter-spacing: .1em;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.shelf-card-desc {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* =========================================================
+   ROOM RESULT (小部屋専用の結果表示エリア)
+   ========================================================= */
+.result-section {
+  background: var(--paper);
+}
+
+/* =========================================================
+   DRAW SECTION (円環構造のタロット札ひき)
+   ========================================================= */
+.draw-section {
+  background: var(--paper-dark);
+  text-align: center;
+}
+
+.draw-intro {
+  max-width: 500px;
+  margin: 0 auto 40px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 2.0;
+  font-weight: 300;
+}
+
+.circle-draw-stage {
+  position: relative;
+  width: min(320px, 80vw);
+  height: min(320px, 80vw);
+  margin: 40px auto;
+  border-radius: 50%;
+  border: 2px dashed var(--gold-accent);
+  background: radial-gradient(
