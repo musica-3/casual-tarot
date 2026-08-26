@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>結の札｜タロット×物語体験</title>
+<style>
+
+/* ==================================================
+   BASE
+================================================== */
+
+:root {
+  --paper: #fffdf7;
+  --paper-deep: #f7f2ea;
+  --paper-light: #fffaf5;
+
+  --ink: #38302c;
+  --sub: #7a6e65;
+
+  --brown: #7a5c4d;
+  --brown-dark: #47362e;
+
+  --red: #c26971;
+  --red-light: #f7e6e5;
+
+  --blue: #c4dedf;
+  --yellow: #f0de8c;
+  --green: #c7d9c1;
+
+  --line: #e3d7cb;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    "Noto Sans JP",
+    sans-serif;
+  line-height: 1.9;
+  letter-spacing: .03em;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,253,247,.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  width: min(960px, 92%);
+  height: 64px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: 20px;
+  letter-spacing: .15em;
+}
+
+.bookmark-mini {
+  width: 14px;
+  height: 22px;
+  background: var(--red);
+  position: relative;
+  border-radius: 1px 1px 0 0;
+}
+
+.bookmark-mini::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 5px solid var(--paper);
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--sub);
+  font-size: 13px;
+  transition: color .2s;
+}
+
+.nav a:hover {
+  color: var(--red);
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 680px;
+  padding: 90px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 30%, #fff7ed 0%, #fffdf7 70%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(900px, 100%);
+  text-align: center;
+}
+
+.book-label {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--brown);
+  font-size: 11px;
+  letter-spacing: .18em;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 6px rgba(100,80,70,.04);
+}
+
+.bookshelf {
+  width: min(580px, 92%);
+  height: 170px;
+  margin: 0 auto 35px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+
+.bookshelf::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: var(--brown);
+  border-radius: 3px;
+}
+
+.book {
+  width: 58px;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  box-shadow: 2px 2px 6px rgba(70,50,40,.08);
+}
+
+.book:nth-child(1) { height: 120px; background: var(--blue); }
+.book:nth-child(2) { height: 150px; background: var(--red); }
+.book:nth-child(3) { height: 135px; background: var(--yellow); }
+.book:nth-child(4) { height: 160px; background: var(--green); }
+.book:nth-child(5) { height: 125px; background: #dfc4b6; }
+.book:nth-child(6) { height: 145px; background: #b8d1db; }
+
+.book::after {
+  content: "";
+  position: absolute;
+  top: 15px; bottom: 15px;
+  left: 10px; right: 10px;
+  border-top: 1px solid rgba(255,255,255,.6);
+  border-bottom: 1px solid rgba(255,255,255,.6);
+}
+
+.bookmark {
+  position: absolute;
+  z-index: 5;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 115px;
+  background: var(--red);
+  box-shadow: 2px 4px 8px rgba(50,40,30,.15);
+  border-radius: 2px 2px 0 0;
+}
+
+.bookmark::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 12px solid var(--paper-light);
+}
+
+.bookmark-text {
+  writing-mode: vertical-rl;
+  color: white;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: 13px;
+  letter-spacing: .15em;
+  padding-top: 12px;
+}
+
+.hero-title {
+  margin: 0;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-weight: 400;
+  font-size: clamp(48px, 12vw, 90px);
+  letter-spacing: .18em;
+}
+
+.hero-subtitle {
+  margin: 14px 0 16px;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: clamp(19px, 4vw, 26px);
+  color: var(--brown-dark);
+}
+
+.hero-text {
+  color: var(--sub);
+  font-size: 14px;
+  margin: 0 auto 32px;
+}
+
+.main-button {
+  display: inline-block;
+  padding: 14px 36px;
+  background: var(--red);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 14px;
+  letter-spacing: .08em;
+  box-shadow: 0 4px 15px rgba(194,105,113,.3);
+  transition: all .25s ease;
+}
+
+.main-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(194,105,113,.4);
+  background: #b55d65;
+}
+
+
+/* ==================================================
+   COMMON
+================================================== */
+
+section {
+  padding: 90px 20px;
+}
+
+.inner {
+  width: min(900px, 100%);
+  margin: auto;
+}
+
+.heading {
+  margin-bottom: 45px;
+  text-align: center;
+}
+
+.heading small {
+  display: block;
+  color: var(--brown);
+  font-size: 10px;
+  letter-spacing: .22em;
+  margin-bottom: 8px;
+}
+
+.heading h2 {
+  margin: 0;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 400;
+  letter-spacing: .08em;
+}
+
+
+/* ==================================================
+   CONCEPT
+================================================== */
+
+.concept {
+  background: var(--paper-deep);
+}
+
+.concept-inner {
+  width: min(680px, 100%);
+  margin: auto;
+  text-align: center;
+}
+
+.concept-lead {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: clamp(20px, 3.5vw, 26px);
+  line-height: 2;
+  margin-bottom: 35px;
+}
+
+.concept p {
+  color: var(--sub);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+
+/* ==================================================
+   CARD SECTION
+================================================== */
+
+.card-section {
+  background: var(--paper-light);
+  text-align: center;
+}
+
+.card-intro {
+  width: min(620px, 100%);
+  margin: 0 auto 35px;
+}
+
+.card-intro p {
+  color: var(--sub);
+  font-size: 14px;
+}
+
+.card-question {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: clamp(20px, 4vw, 26px);
+  margin-bottom: 10px;
+}
+
+.draw-button {
+  border: none;
+  background: var(--brown-dark);
+  color: white;
+  padding: 15px 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: .08em;
+  box-shadow: 0 4px 15px rgba(71,54,46,.2);
+  transition: all .25s ease;
+}
+
+.draw-button:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(194,105,113,.3);
+}
+
+.draw-button:disabled {
+  opacity: .6;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+
+/* ==================================================
+   RESULT & TAROT CARD (生成画像反映)
+================================================== */
+
+.card-result {
+  display: none;
+  width: min(650px, 100%);
+  margin: 55px auto 0;
+  animation: pageOpen .7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pageOpen {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.result-label {
+  color: var(--brown);
+  font-size: 10px;
+  letter-spacing: .2em;
+  margin-bottom: 20px;
+}
+
+.tarot-card {
+  width: 220px;
+  height: 330px;
+  margin: 0 auto 25px;
+  
+  /* ==========================================
+     【画像反映設定】
+     'generated-card.png' の部分を
+     実際の画像ファイル名に書き換えてください。
+     ========================================== */
+  background: 
+    linear-gradient(145deg, rgba(194,105,113,0.82), rgba(135,74,83,0.88)),
+    url('generated-card.png') center/cover no-repeat;
+
+  border: 6px solid white;
+  outline: 1px solid #d4a5ab;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(70,45,35,0.2);
+}
+
+.tarot-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.card-number {
+  font-size: 12px;
+  margin-bottom: 15px;
+  letter-spacing: .1em;
+}
+
+.card-symbol {
+  font-family: serif;
+  font-size: 58px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.card-name {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: 22px;
+  letter-spacing: .15em;
+}
+
+.orientation {
+  color: var(--brown);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: .1em;
+}
+
+.card-message {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 28px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 2.1;
+  white-space: pre-line;
+  box-shadow: 0 4px 15px rgba(60,45,35,.04);
+}
+
+.card-info {
+  margin-top: 35px;
+  padding: 25px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(60,45,35,.04);
+}
+
+.card-info::before {
+  content: "";
+  position: absolute;
+  left: 20px; top: -10px;
+  width: 45px; height: 16px;
+  background: var(--yellow);
+  opacity: .8;
+  transform: rotate(-2deg);
+  border-radius: 2px;
+}
+
+.card-info-title {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.card-info p {
+  margin: 0;
+  color: var(--sub);
+  font-size: 13px;
+}
+
+
+/* ==================================================
+   STORY FLOW
+================================================== */
+
+.story-flow {
+  background: white;
+}
+
+.flow {
+  width: min(760px, 100%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  position: relative;
+}
+
+.flow-item {
+  text-align: center;
+  background: var(--paper-light);
+  padding: 30px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+.flow-icon {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: 20px;
+  color: var(--brown);
+}
+
+.flow-item h3 {
+  margin: 0 0 8px;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.flow-item p {
+  margin: 0;
+  color: var(--sub);
+  font-size: 12px;
+}
+
+
+/* ==================================================
+   STORY & BOOKMARK
+================================================== */
+
+.story {
+  background: var(--paper-deep);
+}
+
+.story-content {
+  width: min(700px, 100%);
+  margin: auto;
+}
+
+.story-page {
+  padding: 40px 35px;
+  background: #fffdf8;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(60,45,35,.05);
+  position: relative;
+}
+
+.story-page p {
+  margin: 0 0 24px;
+  color: var(--sub);
+  font-size: 14px;
+}
+
+.story-highlight {
+  padding: 24px 28px;
+  margin: 30px 0;
+  background: var(--paper-light);
+  border-left: 3px solid var(--red);
+  border-radius: 0 6px 6px 0;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: clamp(18px, 3.5vw, 22px);
+  line-height: 2;
+}
+
+.bookmark-section {
+  background: white;
+  text-align: center;
+}
+
+.bookmark-card {
+  width: min(480px, 100%);
+  margin: auto;
+  padding: 35px;
+  background: var(--paper-light);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 6px 20px rgba(60,45,35,.05);
+}
+
+.bookmark-card::before {
+  content: "";
+  position: absolute;
+  top: -10px; left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  width: 60px; height: 20px;
+  background: var(--yellow);
+  opacity: .8;
+  border-radius: 2px;
+}
+
+.bookmark-symbol {
+  width: 38px;
+  height: 70px;
+  margin: 0 auto 18px;
+  background: var(--red);
+  position: relative;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: 17px;
+  border-radius: 2px 2px 0 0;
+}
+
+.bookmark-symbol::after {
+  content: "";
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 0; height: 0;
+  border-left: 19px solid transparent;
+  border-right: 19px solid transparent;
+  border-bottom: 13px solid var(--paper-light);
+}
+
+.bookmark-card h3 {
+  margin: 0 0 10px;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.bookmark-card p {
+  margin: 0;
+  color: var(--sub);
+  font-size: 13px;
+}
+
+.last {
+  background: var(--paper);
+  text-align: center;
+}
+
+.last-copy {
+  color: var(--sub);
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+footer {
+  background: var(--brown-dark);
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.footer-logo {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+  font-size: 24px;
+  letter-spacing: .15em;
+  margin-bottom: 8px;
+}
+
+.footer-text {
+  font-size: 12px;
+  opacity: .7;
+  line-height: 2;
+  margin-top: 10px;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 700px) {
+  .header-inner { height: 58px; }
+  .nav { gap: 14px; }
+  .nav a { font-size: 11px; }
+  section { padding: 70px 20px; }
+  .hero { min-height: 580px; padding: 60px 20px 70px; }
+  .bookshelf { height: 140px; gap: 6px; }
+  .book { width: 42px; }
+  .book:nth-child(1) { height: 95px; }
+  .book:nth-child(2) { height: 120px; }
+  .book:nth-child(3) { height: 105px; }
+  .book:nth-child(4) { height: 130px; }
+  .book:nth-child(5) { height: 100px; }
+  .book:nth-child(6) { height: 115px; }
+  .bookmark { width: 26px; height: 95px; }
+  .bookmark::after { border-left-width: 13px; border-right-width: 13px; border-bottom-width: 10px; }
+  .bookmark-text { font-size: 10px; }
+  .flow { grid-template-columns: 1fr; gap: 15px; }
+  .story-page { padding: 30px 22px; }
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 4px;
+}
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#top" class="site-logo">
+      <span class="bookmark-mini"></span>
+      結の札
+    </a>
+    <nav class="nav">
+      <a href="#concept">ここについて</a>
+      <a href="#card">一枚ひく</a>
+      <a href="#story">物語</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="book-label">CARD & STORY</div>
+    
+    <div class="bookshelf">
+      <div class="book"></div>
+      <div class="book">
+        <div class="bookmark">
+          <div class="bookmark-text">結の札</div>
+        </div>
+      </div>
+      <div class="book"></div>
+      <div class="book"></div>
+      <div class="book"></div>
+      <div class="book"></div>
+    </div>
+
+    <h1 class="hero-title">結の札</h1>
+    <div class="hero-subtitle">今日は、どんな物語？</div>
+    <p class="hero-text">
+      一枚の札をひらいて、<br>
+      少しだけ物語の中へ。
+    </p>
+    <a href="#card" class="main-button">札をひらく</a>
+  </div>
+</section>
+
+<section class="concept" id="concept">
+  <div class="inner">
+    <div class="heading">
+      <small>ABOUT</small>
+      <h2>ここでは、少し遊びます。</h2>
+    </div>
+    <div class="concept-inner">
+      <div class="concept-lead">
+        本をひらくように、<br>
+        一枚の札をひらいてみる。
+      </div>
+      <p>結の札は、タロットと物語を組み合わせて遊ぶ場所です。</p>
+      <p>カードを一枚選んで、そこから小さな物語へ。</p>
+      <p>ちょっと寄り道して、少し考えて、またこちらへ戻ってきます。</p>
+      <p>
+        難しいことはありません。<br><br>
+        本を読むときみたいに、気になったところからどうぞ。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="card-section" id="card">
+  <div class="inner">
+    <div class="heading">
+      <small>OPEN A CARD</small>
+      <h2>まず、一枚。</h2>
+    </div>
+    
+    <div class="card-intro">
+      <div class="card-question">今日の入口を選びます。</div>
+      <p>深く考えなくて大丈夫。<br>なんとなく、でどうぞ。</p>
+    </div>
+
+    <button id="drawButton" class="draw-button" type="button">札をひらく</button>
+
+    <div id="cardResult" class="card-result">
+      <div class="result-label">YOUR CARD</div>
+      
+      <div class="tarot-card">
+        <div id="cardNumber" class="card-number"></div>
+        <div id="cardSymbol" class="card-symbol"></div>
+        <div id="cardName" class="card-name"></div>
+      </div>
+
+      <div id="orientation" class="orientation"></div>
+      <div id="cardMessage" class="card-message"></div>
+
+      <div class="card-info">
+        <div class="card-info-title">この札から、少しだけ。</div>
+        <p>カードの意味を答えにしなくても大丈夫です。気になったところを、ひとつ拾ってみてください。</p>
+      </div>
+
+      <button id="againButton" class="draw-button" type="button" style="margin-top:25px;">もう一度ひらく</button>
+    </div>
+  </div>
+</section>
+
+<section class="story-flow">
+  <div class="inner">
+    <div class="heading">
+      <small>THE JOURNEY</small>
+      <h2>行って、帰ってくる。</h2>
+    </div>
+    <div class="flow">
+      <div class="flow-item">
+        <div class="flow-icon">札</div>
+        <h3>ひらく</h3>
+        <p>一枚のカードが、<br>今日の入口。</p>
+      </div>
+      <div class="flow-item">
+        <div class="flow-icon">本</div>
+        <h3>行く</h3>
+        <p>カードから、<br>小さな物語へ。</p>
+      </div>
+      <div class="flow-item">
+        <div class="flow-icon">戻</div>
+        <h3>帰る</h3>
+        <p>本を閉じて、<br>いつもの場所へ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="inner">
+    <div class="heading">
+      <small>YOUR STORY</small>
+      <h2>物語の中で、少しだけ。</h2>
+    </div>
+    <div class="story-content">
+      <div class="story-page">
+        <p>カードを一枚ひらきます。</p>
+        <div class="story-highlight">「さて、今日は<br>どんな話にしよう？」</div>
+        <p>出てきたカードを眺めて、絵を見たり、意味を読んだり。</p>
+        <p>そこから、ひとつの物語を歩いてみます。</p>
+        <p>もしかしたら、自分のことを思い出すかもしれない。<br><br>何も思いつかないかもしれない。</p>
+        <p>それでも大丈夫。</p>
+        <p>しばらくしたら、本を閉じます。</p>
+        <p>そして、またいつもの場所へ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bookmark-section">
+  <div class="inner">
+    <div class="heading">
+      <small>YUI NO FUDA</small>
+      <h2>結の札。</h2>
+    </div>
+    <div class="bookmark-card">
+      <div class="bookmark-symbol">結</div>
+      <h3>本にはさむ、一枚の札。</h3>
+      <p>今日読んだところを覚えておく栞。<br>また戻ってくる場所を知らせる札。</p>
+    </div>
+  </div>
+</section>
+
+<section class="last">
+  <div class="inner">
+    <div class="heading">
+      <small>THE END?</small>
+      <h2>本を閉じます。</h2>
+    </div>
+    <div class="last-copy">
+      今日はここまで。<br>また読みたくなったら、どうぞ。
+    </div>
+    <a href="#card" class="main-button">もう一度ひらく</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-logo">結の札</div>
+  <div>タロット × 物語</div>
+  <div class="footer-text">
+    一枚の札から、少しだけ遠くへ。<br>
+    そして、また帰ってくる。
+  </div>
+</footer>
+
+<script>
+const tarotCards = [
+  {
+    number: "0", name: "愚者", symbol: "0",
+    message: "まだ名前のついていない旅です。\n\nどこへ行くか決めてから歩く必要はないのかもしれません。\n\n今日は、ちょっとだけ先へ。"
+  },
+  {
+    number: "Ⅰ", name: "魔術師", symbol: "Ⅰ",
+    message: "机の上には、思ったよりいろいろあります。\n\n道具も、材料も、きっかけも。\n\n物語を始めるなら、もう十分なのかもしれません。"
+  },
+  {
+    number: "Ⅱ", name: "女教皇", symbol: "Ⅱ",
+    message: "静かな部屋に入ります。\n\nすぐに答えを出さず、少し眺めてみましょう。\n\n言葉になる前の何かが、見つかるかもしれません。"
+  },
+  {
+    number: "Ⅲ", name: "女帝", symbol: "Ⅲ",
+    message: "小さなものを育てています。\n\nまだ途中だからこそ、面白いのかもしれません。\n\n今日は、急がずに眺めてみましょう。"
+  },
+  {
+    number: "Ⅳ", name: "皇帝", symbol: "Ⅳ",
+    message: "ここには、動かしたくないものがあります。\n\n自分にとって大事なものを、ひとつ思い出してみましょう。\n\n物語の柱になるかもしれません。"
+  },
+  {
+    number: "Ⅴ", name: "教皇", symbol: "Ⅴ",
+    message: "古い本を開きます。\n\n誰かから受け取った言葉や知恵が、ページの中に残っています。\n\n読むことと、そのまま信じることは別の話です。"
+  },
+  {
+    number: "Ⅵ", name: "恋人たち", symbol: "Ⅵ",
+    message: "道が二つに分かれています。\n\nどちらが正しいかではなく、どちらへ行ってみたいか。\n\n今日はそんな選び方もありそうです。"
+  },
+  {
+    number: "Ⅶ", name: "戦車", symbol: "Ⅶ",
+    message: "車輪が回り始めました。\n\n準備が全部終わるのを待たずに、出発してみてもよさそうです。\n\n行き先は途中で変わっても構いません。"
+  },
+  {
+    number: "Ⅷ", name: "力", symbol: "Ⅷ",
+    message: "大きなものを、静かに扱っています。\n\n力いっぱい動かすだけが方法ではありません。\n\n丁寧に向き合うことも、ひとつの強さです。"
+  },
+  {
+    number: "Ⅸ", name: "隠者", symbol: "Ⅸ",
+    message: "少し暗い道を、一人で歩きます。\n\n遠くまで行く必要はありません。\n\n自分の足元が見えるくらいの明かりがあれば十分です。"
+  },
+  {
+    number: "Ⅹ", name: "運命の輪", symbol: "Ⅹ",
+    message: "ページをめくったら、場面が変わっていました。\n\n物語には、そういうことがあります。\n\n今日は流れが変わる瞬間を楽しんでみましょう。"
+  },
+  {
+    number: "Ⅺ", name: "正義", symbol: "Ⅺ",
+    message: "二つのものを、机の上に並べます。\n\nどちらが正しいかだけではなく、自分が納得できる場所を探してみましょう。"
+  },
+  {
+    number: "Ⅻ", name: "吊るされた男", symbol: "Ⅻ",
+    message: "物語の途中で、立ち止まります。\n\n動かないことで見えてくるものもあります。\n\nいつもと違う向きから、ページを眺めてみましょう。"
+  },
+  {
+    number: "ⅩⅢ", name: "死神", symbol: "ⅩⅢ",
+    message: "ひとつの章が終わります。\n\n少し寂しいかもしれません。\n\nでも、本を閉じるからこそ、次の本を開くことができます。"
+  },
+  {
+    number: "ⅩⅣ", name: "節制", symbol: "ⅩⅣ",
+    message: "二つのものを、少しずつ混ぜています。\n\n急いで答えを決めなくても大丈夫。\n\nちょうどいいところは、途中で見つかるかもしれません。"
+  },
+  {
+    number: "ⅩⅤ", name: "悪魔", symbol: "ⅩⅤ",
+    message: "どうしても気になる本があります。\n\nつい手に取ってしまう。\n\nそんな自分を、少し面白가って眺めてみてもよさそうです。"
+  },
+  {
+    number: "ⅩⅥ", name: "塔", symbol: "ⅩⅥ",
+    message: "積み上げていたものが、突然崩れます。\n\nびっくりする場面です。\n\nでも、何もなくなった場所には、新しいページを置くことができます。"
+  },
+  {
+    number: "ⅩⅦ", name: "星", symbol: "ⅩⅦ",
+    message: "遠くに小さな明かりがあります。\n\nまだ近くにはありません。\n\nそれでも、次に進む方向くらいは教えてくれそうです。"
+  },
+  {
+    number: "ⅩⅧ", name: "月", symbol: "ⅩⅧ",
+    message: "夜のページです。\n\n見えるものが少なくて、少し不安かもしれません。\n\n分からないものを、今日はそのままにしておくのもありです。"
+  },
+  {
+    number: "ⅩⅨ", name: "太陽", symbol: "ⅩⅨ",
+    message: "カーテンを開けます。\n\n明るい場所では、今まで気づかなかったものも見えてきます。\n\n今日は好きなものを、素直に楽しんでみましょう。"
+  },
+  {
+    number: "ⅩⅩ", name: "審判", symbol: "ⅩⅩ",
+    message: "前に読んだページを、もう一度開きます。\n\n同じ文章なのに、今読むと違って見えるかもしれません。\n\nもう一度見てみる価値がありそうです。"
+  },
+  {
+    number: "ⅩⅩⅠ", name: "世界", symbol: "ⅩⅩⅠ",
+    message: "物語が一冊ぶん終わりました。\n\n本を閉じる前に、少しだけ振り返ってみましょう。\n\nそして、いつもの場所へ戻ります。"
+  }
+];
+
+function drawCard() {
+  const button = document.getElementById("drawButton");
+  const result = document.getElementById("cardResult");
+
+  button.disabled = true;
+  button.textContent = "ページをめくっています…";
+
+  setTimeout(() => {
+    const index = Math.floor(Math.random() * tarotCards.length);
+    const card = tarotCards[index];
+    const reversed = Math.random() < 0.5;
+
+    document.getElementById("cardNumber").textContent = card.number;
+    document.getElementById("cardSymbol").textContent = card.symbol;
+    document.getElementById("cardName").textContent = card.name;
+    document.getElementById("orientation").textContent = reversed ? "逆位置" : "正位置";
+
+    let message = card.message;
+    if (reversed) {
+      message = "今日は、少し違うページから。\n\n" + message;
+    }
+
+    document.getElementById("cardMessage").textContent = message;
+    result.style.display = "block";
+
+    button.disabled = false;
+    button.textContent = "もう一度ひらく";
+
+    result.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }, 500);
+}
+
+document.getElementById("drawButton").addEventListener("click", drawCard);
+document.getElementById("againButton").addEventListener("click", drawCard);
+</script>
+</body>
+</html>
