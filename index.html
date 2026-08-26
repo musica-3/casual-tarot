@@ -6,30 +6,30 @@
 <title>結の札｜きょうは、どんな物語かな</title>
 <style>
 /* =========================================================
-   YUI NO FUDA - STORY LIBRARY
+   YUI NO FUDA - STORY LIBRARY (GRAND EDITION)
    ========================================================= */
 :root {
-  --navy: #2c4a6f;
-  --navy-deep: #192a3e;
-  --navy-soft: #3b5c84;
+  --navy: #253d5e;
+  --navy-deep: #142233;
+  --navy-soft: #38557a;
 
   --paper: #fcf9f2;
   --paper-light: #fffdf9;
-  --paper-dark: #f2ede1;
+  --paper-dark: #f0eadb;
 
   --ink: #3a322c;
-  --muted: #7a6e65;
+  --muted: #786c62;
 
-  --gold: #d4af37;
-  --gold-light: #f7eed3;
+  --gold: #c5a03e;
+  --gold-light: #f5eedc;
 
-  --rose: #c2696d;
-  --rose-light: #f2e2e1;
+  --rose: #b85c60;
+  --rose-light: #f4e3e2;
 
-  --line: #e3dbc9;
+  --line: #dfd4be;
 
-  --shadow: 0 15px 40px rgba(44, 74, 111, 0.08);
-  --shadow-deep: 0 25px 60px rgba(25, 42, 62, 0.16);
+  --shadow: 0 15px 40px rgba(37, 61, 94, 0.08);
+  --shadow-deep: 0 25px 60px rgba(20, 34, 51, 0.16);
 }
 
 * {
@@ -45,7 +45,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
-  line-height: 1.9;
+  line-height: 1.95;
   letter-spacing: .045em;
 }
 
@@ -91,15 +91,15 @@ img {
   justify-content: center;
   overflow: hidden;
   color: white;
-  background: radial-gradient(circle at 50% 20%, rgba(212,175,55,.1), transparent 40%), linear-gradient(145deg, var(--navy) 0%, var(--navy-deep) 100%);
+  background: radial-gradient(circle at 50% 20%, rgba(197,160,62,.15), transparent 45%), linear-gradient(145deg, var(--navy) 0%, var(--navy-deep) 100%);
 }
 
 #entrance::before {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: .18;
-  background-image: radial-gradient(rgba(255,255,255,.2) .8px, transparent .8px);
+  opacity: .15;
+  background-image: radial-gradient(rgba(255,255,255,.25) .8px, transparent .8px);
   background-size: 24px 24px;
   pointer-events: none;
 }
@@ -107,14 +107,14 @@ img {
 #entrance::after {
   content: "";
   position: absolute;
-  width: 540px;
-  height: 540px;
-  border: 1px solid rgba(212,175,55,.2);
+  width: 560px;
+  height: 560px;
+  border: 1px solid rgba(197,160,62,.25);
   border-radius: 50%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 50px rgba(212,175,55,.03);
+  box-shadow: 0 0 0 60px rgba(197,160,62,.02);
   pointer-events: none;
 }
 
@@ -139,7 +139,7 @@ img {
   content: "";
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(212,175,55,.6);
+  border: 1px solid rgba(197,160,62,.6);
   pointer-events: none;
   z-index: 2;
 }
@@ -151,7 +151,7 @@ img {
 }
 
 .entrance-kicker {
-  color: #e7cf91;
+  color: #dfc37a;
   font-size: 11px;
   letter-spacing: .35em;
   margin-bottom: 16px;
@@ -186,7 +186,7 @@ img {
   color: var(--navy-deep);
   font-weight: bold;
   letter-spacing: .15em;
-  box-shadow: 0 5px 20px rgba(212,175,55,0.25);
+  box-shadow: 0 5px 20px rgba(197,160,62,0.3);
   transition: all .3s;
 }
 
@@ -219,7 +219,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(252, 249, 242, 0.9);
+  background: rgba(252, 249, 242, 0.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -271,7 +271,7 @@ img {
 /* HERO */
 .library-hero {
   position: relative;
-  min-height: 520px;
+  min-height: 480px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -299,7 +299,7 @@ img {
   margin: 0;
   color: var(--navy);
   font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: clamp(40px, 9vw, 75px);
+  font-size: clamp(36px, 8vw, 68px);
   font-weight: 400;
   letter-spacing: .16em;
 }
@@ -321,7 +321,7 @@ img {
 
 /* SECTION */
 .section {
-  padding: 100px 20px;
+  padding: 90px 20px;
 }
 
 .section-heading {
@@ -342,133 +342,75 @@ img {
   margin: 0;
   color: var(--navy);
   font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: clamp(26px, 5vw, 38px);
+  font-size: clamp(26px, 5vw, 36px);
   font-weight: 400;
   letter-spacing: .12em;
 }
 
-/* CONCEPT */
-.concept-section {
+/* BOOKSHELF EXPLORATION */
+.shelf-section {
   background: var(--paper-light);
 }
 
-.concept-layout {
+.shelf-intro {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 40px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 2;
+}
+
+.bookshelf-container {
   display: grid;
-  grid-template-columns: minmax(200px, .7fr) minmax(0, 1.3fr);
-  gap: 60px;
-  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
-.book-decoration {
-  position: relative;
-  width: 200px;
-  height: 260px;
-  margin: auto;
-  background: linear-gradient(135deg, var(--navy-soft), var(--navy-deep));
-  box-shadow: var(--shadow-deep);
+.shelf-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 24px 16px;
+  text-align: center;
   border-radius: 4px;
-  transform: rotate(-2deg);
+  transition: all .3s;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(37,61,94,0.03);
 }
 
-.book-decoration::before {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border: 1px solid rgba(216,190,126,.7);
+.shelf-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  box-shadow: var(--shadow);
+  background: white;
 }
 
-.book-decoration::after {
-  content: "結";
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #dfc58a;
-  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: 54px;
+.shelf-card-icon {
+  font-size: 26px;
+  margin-bottom: 12px;
 }
 
-.concept-text .concept-lead {
-  margin: 0 0 24px;
+.shelf-card-title {
   color: var(--navy);
   font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: 20px;
-  line-height: 1.8;
-}
-
-.concept-text p {
-  color: var(--muted);
   font-size: 14px;
-  margin: 0 0 16px;
+  letter-spacing: .1em;
+  margin-bottom: 6px;
 }
 
-/* BOOKSHELF */
-.shelf-section {
-  background: var(--paper-dark);
-}
-
-.shelf {
-  position: relative;
-  padding: 40px 20px 0;
-  background: linear-gradient(90deg, rgba(255,255,255,.4), transparent 20%, transparent 80%, rgba(255,255,255,.2));
-  border-bottom: 8px solid #b49b72;
-  box-shadow: inset 0 -2px rgba(70,50,30,.15);
-  max-width: 800px;
-  margin: 0 auto;
-  border-radius: 4px 4px 0 0;
-}
-
-.books {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 10px;
-  min-height: 230px;
-}
-
-.book {
-  position: relative;
-  width: 52px;
-  border-radius: 3px 4px 0 0;
-  box-shadow: 4px 0 8px rgba(0,0,0,.08);
-  transition: transform .3s, filter .3s;
-}
-
-.book:hover {
-  transform: translateY(-10px) rotate(-1deg);
-  filter: brightness(1.05);
-}
-
-.book:nth-child(odd) { background: #39536f; }
-.book:nth-child(even) { background: #8c625e; }
-.book:nth-child(3) { background: #716954; }
-.book:nth-child(5) { background: #52637b; }
-
-.book span {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(90deg);
-  color: rgba(255,255,255,.8);
-  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: 11px;
-  white-space: nowrap;
-}
-
-.shelf-caption {
-  text-align: center;
-  margin-top: 30px;
+.shelf-card-desc {
   color: var(--muted);
-  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: 13px;
+  font-size: 11px;
+  line-height: 1.6;
 }
 
 /* =========================================================
-   DRAW SECTION (円環構造のカードひき)
+   DRAW SECTION (円環構造の札ひき)
    ========================================================= */
 .draw-section {
-  background: var(--paper-light);
+  background: var(--paper-dark);
   text-align: center;
 }
 
@@ -488,14 +430,13 @@ img {
   margin: 20px auto;
   border-radius: 50%;
   border: 2px dashed var(--gold);
-  background: radial-gradient(circle, var(--gold-light) 0%, rgba(255,253,249,0.9) 75%);
+  background: radial-gradient(circle, var(--gold-light) 0%, rgba(252,249,242,0.95) 75%);
   box-shadow: var(--shadow);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* 円環の周りに配置するオービット（モチーフ） */
 .orbit-item {
   position: absolute;
   font-size: 22px;
@@ -508,10 +449,9 @@ img {
 
 @keyframes floatOrbit {
   from { transform: translate(0, 0); }
-  to { transform: translate(0, -5px); }
+  to { transform: translate(0, -6px); }
 }
 
-/* 中央のボタン（本を模したサークル） */
 .circle-draw-btn {
   width: 150px;
   height: 150px;
@@ -527,7 +467,7 @@ img {
   align-items: center;
   justify-content: center;
   gap: 4px;
-  box-shadow: 0 10px 25px rgba(44,74,111,0.25);
+  box-shadow: 0 10px 25px rgba(37,61,94,0.25);
   transition: all .3s;
 }
 
@@ -574,7 +514,7 @@ img {
   border: 4px solid var(--paper-light);
   outline: 1px solid var(--gold);
   border-radius: 4px;
-  box-shadow: 0 15px 30px rgba(25,42,62,0.15);
+  box-shadow: 0 15px 30px rgba(20,34,51,0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -586,7 +526,7 @@ img {
   content: "";
   position: absolute;
   inset: 8px;
-  border: 1px solid rgba(221,194,133,.55);
+  border: 1px solid rgba(223,212,190,.55);
 }
 
 .tarot-number {
@@ -600,7 +540,6 @@ img {
 .tarot-symbol {
   position: relative;
   z-index: 2;
-  color: #dec27d;
   font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
   font-size: 44px;
   margin-bottom: 15px;
@@ -653,41 +592,50 @@ img {
 }
 
 /* =========================================================
-   FOOTNOTE & FOOTER
+   ABOUT OVERVIEW (一番下へ配置)
    ========================================================= */
-.return-note {
-  max-width: 600px;
-  margin: 50px auto 0;
-  padding: 24px;
-  text-align: center;
+.about-section {
+  background: var(--paper-light);
   border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.about-content {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.about-content p {
   color: var(--muted);
-  font-size: 12px;
-}
-
-.return-note strong {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--navy);
   font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 14px;
+  line-height: 2.3;
+  margin: 0 0 20px;
 }
 
+.about-lead {
+  color: var(--navy);
+  font-size: 16px;
+  margin-bottom: 28px !important;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
 .footer {
-  padding: 50px 20px;
+  padding: 40px 20px;
   background: var(--navy-deep);
-  color: rgba(255,255,255,.65);
+  color: rgba(255,255,255,.6);
   text-align: center;
   font-size: 10px;
   letter-spacing: .08em;
 }
 
 .footer-title {
-  margin-bottom: 8px;
-  color: #dfc589;
+  margin-bottom: 6px;
+  color: #dfc37a;
   font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: 17px;
+  font-size: 16px;
   letter-spacing: .18em;
 }
 
@@ -699,10 +647,7 @@ img {
   .nav { gap: 14px; }
   .nav button { font-size: 10px; }
   .section { padding: 75px 15px; }
-  .concept-layout { grid-template-columns: 1fr; gap: 40px; }
-  .book-decoration { width: 150px; height: 200px; }
-  .books { gap: 6px; }
-  .book { width: 38px; height: 160px !important; }
+  .bookshelf-container { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
@@ -715,7 +660,7 @@ img {
 <section id="entrance" class="screen">
   <div class="entrance-inner">
     <div class="entrance-image">
-      <img src="image.jpg" alt="結の札の物語をイメージした本と栞">
+      <img src="image.jpg" alt="結の札の世界観をイメージしたアンティークなビジュアル">
     </div>
     <div class="entrance-kicker">YUI NO FUDA</div>
     <h1 class="entrance-title">きょうは、<br>どんな物語かな</h1>
@@ -738,8 +683,9 @@ img {
         <small>YUI NO FUDA</small>
       </button>
       <nav class="nav">
-        <button data-scroll="concept">この場所について</button>
+        <button data-scroll="shelf">物語の小部屋</button>
         <button data-scroll="draw">円環の札ひき</button>
+        <button data-scroll="about">この場所について</button>
       </nav>
     </div>
   </header>
@@ -747,56 +693,50 @@ img {
   <!-- HERO -->
   <section class="library-hero">
     <div class="hero-content fade">
-      <div class="hero-label">TALE & TAROT</div>
+      <div class="hero-label">TALE & TAROT LIBRARY</div>
       <h1 class="hero-title">結の札</h1>
       <div class="hero-rule"></div>
-      <p class="hero-copy">ここには、いくつかの物語があります。<br>今日はその中から、一枚だけ。</p>
+      <p class="hero-copy">静かな図書館の奥、あなたのためのページがひらく。</p>
     </div>
   </section>
 
-  <!-- CONCEPT -->
-  <section class="section concept-section" id="concept">
+  <!-- BOOKSHELF EXPLORATION (探検できるボリューム感) -->
+  <section class="section shelf-section" id="shelf">
     <div class="container">
       <div class="section-heading">
-        <small>ABOUT THE LIBRARY</small>
-        <h2>物語の棚</h2>
+        <small>STORY SHELF</small>
+        <h2>物語の小部屋</h2>
       </div>
-      <div class="concept-layout">
-        <div class="book-decoration"></div>
-        <div class="concept-text">
-          <p class="concept-lead">一枚の札から、<br>小さな物語へ。</p>
-          <p>結の札は、タロットを入口にして、自分の中にある物語を少しだけ眺めてみる場所です。</p>
-          <p>答えを決めるためのものではありません。カードに描かれたものを眺めたり、言葉を読んだり、「今日はこれが気になるな」と思ってみたり。</p>
-          <p>本屋で偶然手に取った一冊のように。あるいは、ずっと忘れていた栞を本の中から見つけるように。</p>
-          <p>少しだけ遊んで、少しだけ遠くへ行って、またここへ戻ってきてください。</p>
+      <p class="shelf-intro">
+        気になるテーマの小部屋を覗いてみてください。<br>それぞれの棚に、ちいさなヒントが眠っています。
+      </p>
+      
+      <div class="bookshelf-container">
+        <div class="shelf-card" onclick="document.getElementById('draw').scrollIntoView({behavior: 'smooth'})">
+          <div class="shelf-card-icon">🗝️</div>
+          <div class="shelf-card-title">はじまりの扉</div>
+          <div class="shelf-card-desc">新しい一歩を踏み出すためのカードをひく</div>
+        </div>
+        <div class="shelf-card" onclick="document.getElementById('draw').scrollIntoView({behavior: 'smooth'})">
+          <div class="shelf-card-icon">🌙</div>
+          <div class="shelf-card-title">夜のしじま</div>
+          <div class="shelf-card-desc">心を静めて、自分をいたわるメッセージ</div>
+        </div>
+        <div class="shelf-card" onclick="document.getElementById('draw').scrollIntoView({behavior: 'smooth'})">
+          <div class="shelf-card-icon">⭐</div>
+          <div class="shelf-card-title">めぐる旅</div>
+          <div class="shelf-card-desc">予期せぬ変化や流れを楽しむヒント</div>
+        </div>
+        <div class="shelf-card" onclick="document.getElementById('draw').scrollIntoView({behavior: 'smooth'})">
+          <div class="shelf-card-icon">✉️</div>
+          <div class="shelf-card-title">小さなしるし</div>
+          <div class="shelf-card-desc">日常のなかの小さな気付きを受け取る</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- BOOKSHELF -->
-  <section class="section shelf-section">
-    <div class="container">
-      <div class="section-heading">
-        <small>THE SHELF</small>
-        <h2>物語の本棚</h2>
-      </div>
-      <div class="shelf">
-        <div class="books">
-          <div class="book" style="height: 180px;"><span>はじまり</span></div>
-          <div class="book" style="height: 215px;"><span>旅の途中</span></div>
-          <div class="book" style="height: 195px;"><span>ひみつ</span></div>
-          <div class="book" style="height: 230px;"><span>昼と夜</span></div>
-          <div class="book" style="height: 185px;"><span>遠い記憶</span></div>
-          <div class="book" style="height: 210px;"><span>小さな光</span></div>
-          <div class="book" style="height: 175px;"><span>つづき</span></div>
-        </div>
-      </div>
-      <p class="shelf-caption">どの本を選んでも、きっと違う景色が見えてきます。</p>
-    </div>
-  </section>
-
-  <!-- DRAW (円環構造エリア) -->
+  <!-- DRAW SECTION (円環構造の札ひき - 22枚正逆対応) -->
   <section class="section draw-section" id="draw">
     <div class="container">
       <div class="section-heading">
@@ -805,11 +745,10 @@ img {
       </div>
 
       <p class="draw-intro">
-        円を描く運命の札から、今日の1枚を選びます。<br>
-        中央の本をひらいて、ページの間に残されたカードをそっと拾ってみましょう。
+        大アルカナ22枚の運命の札から、今日の1枚を選びます。<br>
+        中央のボタンをひらいて、正位置・逆位置のメッセージを受け取ってみましょう。
       </p>
 
-      <!-- 円環構造ステージ -->
       <div class="circle-draw-stage">
         <div class="orbit-item">🗝️</div>
         <div class="orbit-item">⭐</div>
@@ -834,10 +773,21 @@ img {
         <div class="message" id="cardMessage"></div>
         <button class="again-button" id="againButton">もう一枚、ひらく</button>
       </div>
+    </div>
+  </section>
 
-      <div class="return-note">
-        <strong>本は、いつでも閉じて大丈夫。</strong>
-        今日の一枚を持って帰るもよし。<br>何も持たずに、本棚へ戻るもよし。
+  <!-- ABOUT SECTION (ご要望の通り、概要を一番下に配置) -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="section-heading">
+        <small>ABOUT THIS PLACE</small>
+        <h2>この場所について</h2>
+      </div>
+      <div class="about-content">
+        <p class="about-lead">一枚の札から、小さな物語へ。</p>
+        <p>「結の札」は、タロットカードの持つ美しい象徴を入口にして、日々の忙しさから少しだけ離れ、ご自身の中にある物語を静かに眺めるための場所です。</p>
+        <p>未来を決めつけたり、正解を導くためのものではありません。カードの絵柄を眺めたり、メッセージを読んで「今日はこういう気分だな」とご自身を労るための、ちいさな隠れ家です。</p>
+        <p>本屋さんで偶然お気に入りの一冊に出会うように、どうぞ心ゆくまでお楽しみください。</p>
       </div>
     </div>
   </section>
@@ -845,51 +795,38 @@ img {
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-title">結の札</div>
-    <div>一枚の札から、少しだけ遠くへ。<br>そして、また帰ってくる。</div>
+    <div>一枚の札から、少しだけ遠くへ。そして、また帰ってくる。</div>
   </footer>
 
 </section>
 
 <script>
 /* =========================================================
-   TAROT DATA
+   TAROT DATA (大アルカナ 22枚 正逆完備)
    ========================================================= */
 const tarotCards = [
-  {
-    number: "0",
-    name: "愚者",
-    symbol: "🎴",
-    upright: "まだ名前のついていない旅です。\n\nどこへ行くか決めてから歩く必要はないのかもしれません。\n\n今日は、ちょっとだけ先へ。",
-    reversed: "行き先を決める前に、少し立ち止まってみる日です。\n\n急いでページをめくらなくても、物語は逃げません。\n\n今日は、余白も一緒に楽しんで。"
-  },
-  {
-    number: "Ⅰ",
-    name: "魔術師",
-    symbol: "🗝️",
-    upright: "机の上には、思ったよりいろいろあります。\n\n道具も、材料も、きっかけも。\n\n物語を始めるなら、もう十分なのかもしれません。",
-    reversed: "材料は揃っているのに、まだページを開いていないようです。\n\n完璧な準備を待つより、小さく始めてみるのもよ사そうです。"
-  },
-  {
-    number: "Ⅹ",
-    name: "運命の輪",
-    symbol: "⭐",
-    upright: "ページをめくったら、場面が変わっていました。\n\n物語には、そういうことがあります。\n\n今日は流れが変わる瞬間を楽しんでみましょう。",
-    reversed: "同じページを何度か読み返しているようです。\n\nまだ見落としている一文があるのかもしれません。\n\n少し角度を変えて眺めてみてください。"
-  },
-  {
-    number: "ⅩⅨ",
-    name: "太陽",
-    symbol: "☀️",
-    upright: "明るい光がページを照らします。\n\n理由もなく、なんだか少し嬉しくなる時間です。\n\n今日はそのままで、十分に楽しめそうです。",
-    reversed: "カーテンの向こうには、ちゃんと光があります。\n\n今日は少し眩しく感じるだけなのかもしれません。\n\n無理に明るくしなくても大丈夫です。"
-  },
-  {
-    number: "ⅩⅩⅠ",
-    name: "世界",
-    symbol: "🌍",
-    upright: "ひとつの物語が、きれいに丸くなりました。\n\nどこから読んでもよくて、どこで閉じてもいい。\n\n今日は一度、ここまでで十分です。",
-    reversed: "物語はまだ最後のページまで届いていません。\n\nでも、未完成だからこそ残っているページがあります。\n\n続きを急がなくても大丈夫です。"
-  }
+  { number: "0", name: "愚者", symbol: "🃏", upright: "まだ名前のついていない、まっさらな旅の始まりです。\n\nどこへ行くか決めてから歩く必要はありません。\n\n今日は、心の向くままに少しだけ先へ。", reversed: "行き先を決める前に、一度立ち止まってみる日です。\n\n急いでページをめくらなくても物語は逃げません。\n\n今日は、足元の余白も一緒に楽しんで。" },
+  { number: "Ⅰ", name: "魔術師", symbol: "🗝️", upright: "机の上には、思った以上にいろいろな道具が揃っています。\n\n材料も、きっかけも、もう十分です。\n\n物語を始める準備は整っています。", reversed: "材料はあるのに、まだページを開くのをためらっているようです。\n\n完璧なタイミングを待つより、まずは小さく始めてみて。" },
+  { number: "Ⅱ", name: "女教皇", symbol: "📜", upright: "静寂の中にこそ、大切な答えが隠されています。\n\n外の音を少し遠ざけて、ご自身の声に耳を澄ませてみましょう。", reversed: "考えすぎて頭の中が少しおしゃべりになりすぎています。\n\n今日は難しい理屈を手放して、ゆっくり深呼吸を。" },
+  { number: "Ⅲ", name: "女帝", symbol: "🌸", upright: "豊かさと優しさに包まれる穏やかな時間です。\n\nあなたが心地よいと感じるものを、今日は存分に味わってあげてください。", reversed: "誰かのために頑張りすぎて、ご自身のケアを忘れていませんか？\n\nまずはをご自身の心を満たしてあげましょう。" },
+  { number: "Ⅳ", name: "皇帝", symbol: "🏛️", upright: "しっかりと地に足をつけて、物事を形にしていくタイミングです。\n\nご自身の選択に自信を持って進んで大丈夫です。", reversed: "少し肩に力が入りすぎて、ルールに縛られすぎているかも。\n\nたまには肩の力を抜いて、柔軟にいってみましょう。" },
+  { number: "Ⅴ", name: "法王", symbol: "🔔", upright: "信頼できる教えや、心強いアドバイスに出会えるときです。\n\n誰かの温かい言葉に、そっと心を預けてみてください。", reversed: "まわりの意見に合わせすぎて、自分の本音が見えなくなっていませんか？\n\nあなたの基準を大切にしていいのです。" },
+  { number: "Ⅵ", name: "恋人たち", symbol: "🍎", upright: "心がときめく選択や、嬉しい調和の訪れです。\n\nあなたが「好き」と感じる直感を大切に選んでみましょう。", reversed: "選択肢の前で少し迷子になっているようです。\n\n頭で損得を考えるより、心が温かくなる方を選んでみて。" },
+  { number: "Ⅶ", name: "戦車", symbol: "🛡️", upright: "勢いよく、まっすぐに進んでいけるエネルギーに満ちています。\n\n迷いを振り切って、風を切るように前へ進みましょう。", reversed: "あちこちにエネルギーが分散して、少しお疲れのようです。\n\nアクセルを緩めて、メンテナンスの時間を取ってあげて。" },
+  { number: "Ⅷ", name: "力", symbol: "🦁", upright: "優しさと粘り強さが、最大の強さになる日です。\n\n無理やり変えようとするのではなく、包み込むように向き合って。", reversed: "自分の中に少し厳しさを向けすぎていませんか？\n\n今日はもっと自分に優しく、甘やかしてあげて大丈夫です。" },
+  { number: "Ⅸ", name: "隠者", symbol: "🏮", upright: "あえて一人の時間を作り、自分の内面を深く見つめる日です。\n\nあなたの中にある灯火は、ちゃんと足元を照らしています。", reversed: "自分の殻に閉じこもりすぎて、外の世界が遠く感じていませんか？\n\nたまには外の空気を吸いに出かけてみましょう。" },
+  { number: "Ⅹ", name: "運命の輪", symbol: "⭐", upright: "ページをめくったら、ふと場面が変わるような展開の早さ。\n\n訪れる流れに乗って、面白がってみるのが吉です。", reversed: "同じ場所をぐるぐると巡っているような感覚の日。\n\n焦らなくても、また自然と流れが動き出す時が来ます。" },
+  { number: "Ⅺ", name: "正義", symbol: "⚖️", upright: "物事が公平に、すっきりと整うタイミングです。\n\n冷静な視点で状況を見渡し、クリアな選択ができそう。", reversed: "白黒をはっきりつけようとして、少し心が疲れていませんか？\n\nグレーな時間や曖昧さも、たまには優しく受け入れて。" },
+  { number: "Ⅻ", name: "吊るされた男", symbol: "⏳", upright: "視点を変えてみると、思わぬ発見があるとき。\n\n今はあえて「動かないこと」の中に、大きな学びがあります。", reversed: "無駄な我慢や、必要のない犠牲を続けていませんか？\n\nそろそろご自身の気持ちを一番に解放してあげて。" },
+  { number: "ⅩⅢ", name: "死神", symbol: "🦋", upright: "一つの物語が美しく完結し、新しいチャプターへ移行するとき。\n\n手放すことで、より軽やかな風が入ってきます。", reversed: "古い習慣や終わったことに、まだ少し未練があるようです。\n\n手放すことを恐れなくても、ちゃんと新しい扉は開きます。" },
+  { number: "ⅩⅣ", name: "節制", symbol: "🏺", upright: "異なる要素が心地よく混ざり合い、美しいバランスを保つ日。\n\n穏やかな調和の中で、リラックスして過ごせます。", reversed: "バランスが少し崩れて、何事も極端になりがちかも。\n\n深呼吸をして、真ん中の心地よさを思い出して。" },
+  { number: "ⅩⅤ", name: "悪魔", symbol: "🍇", upright: "ついつい囚われてしまうこだわりや、甘い誘惑に気づく日。\n\nそれに気づくだけで、もういつでも手放せます。", reversed: "重かった鎖からふっと解放されるような、自由を取り戻す日。\n\n肩の荷を下ろして、軽やかに行きましょう。" },
+  { number: "ⅩⅥ", name: "塔", symbol: "⚡", upright: "予期せぬひらめきや、固定観念がパッと崩れるような瞬間。\n\nそれは古くなった殻を脱ぎ捨てるための、優しい雷です。", reversed: "変化に対する恐れや、不安が少し大きくなっているかも。\n\n起きたことはすべて、より良い方へ向かうための通過点です。" },
+  { number: "ⅩⅦ", name: "星", symbol: "✨", upright: "遠くの空に希望の星がまたたく、希望に満ちた時間。\n\n未来の夢を描きながら、静かなロマンに浸ってみて。", reversed: "少し自信をなくして、夜空の星が見えづらくなっている日。\n\nあなたの内側にも、ちゃんと光る星はあります。" },
+  { number: "ⅩⅧ", name: "月", symbol: "🌙", upright: "霧のかかった夜道のように、ロマンチックで少しミステリアスな日。\n\n直感を信じて、自分の内なる想像力を楽しんでみましょう。", reversed: "不安やモヤモヤした霧が、少しずつ晴れていく兆し。\n\n見えなかった輪郭が、ゆっくりと見えてきます。" },
+  { number: "ⅩⅨ", name: "太陽", symbol: "☀️", upright: "まぶしいほどの陽光が、あなたのページを温かく照らします。\n\n理由もなく純粋に楽しく、笑顔になれる一日です。", reversed: "少しエネルギーが曇りがちで、元気がが出にくいかも。\n\n無理して笑わなくて大丈夫。今日はゆっくり休んで。" },
+  { number: "ⅩⅩ", name: "審判", symbol: "🎺", upright: "ずっと忘れていた大切な気持ちや、答えがよみがえる日。\n\n過去の経験が、美しい宝物として結実します。", reversed: "過去の選択にこだわりすぎて、前に進めなくなっていませんか？\n\n過去は過去として、今のあなたを認めあげて。" },
+  { number: "ⅩⅩⅠ", name: "世界", symbol: "🌍", upright: "ひとつの物語が美しく完結し、完全な調和を迎えるとき。\n\nすべてが上手くいっている感覚を、ただ味わって。", sequels: "", reversed: "あともう一歩のところで、最後の仕上げを迎えている途中。\n\n焦らず、今あるプロセスそのものを愛してあげて。" }
 ];
 
 /* =========================================================
@@ -907,7 +844,7 @@ function showLibrary() {
 }
 
 /* =========================================================
-   CARD DRAW
+   CARD DRAW (正逆対応)
    ========================================================= */
 function drawTarotCard() {
   const card = tarotCards[Math.floor(Math.random() * tarotCards.length)];
@@ -928,7 +865,7 @@ function drawTarotCard() {
 }
 
 /* =========================================================
-   NAVIGATION LISTENERS
+   LISTENERS
    ========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
   const enter = document.getElementById("enterLibrary");
