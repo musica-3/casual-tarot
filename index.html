@@ -65,7 +65,7 @@
             transform: translateY(0);
         }
 
-        /* --- 1. トップ画面 (図書館の入り口・小さな気配) --- */
+        /* --- ① トップ画面（入口 / 帰還後の日常） --- */
         .top-message {
             font-size: 1.1rem;
             color: var(--text-sub);
@@ -120,7 +120,7 @@
             50% { opacity: 1; }
         }
 
-        /* --- 2 & 3. 札を選ぶ・引く・見る --- */
+        /* --- ② ③ ④ ⑤ 札・旅の空間 --- */
         .card-container {
             perspective: 1000px;
             width: 240px;
@@ -197,7 +197,6 @@
             text-align: right;
         }
 
-        /* --- 4 & 5. 考える・物語の中を歩く --- */
         .reflection-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -223,7 +222,31 @@
             padding-left: 12px;
         }
 
-        /* --- 6. 現実へ戻るアクション --- */
+        /* --- ⑥ 帰還フェーズ（「じゃあ、そろそろ帰ろう。」の画面） --- */
+        .return-message-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 48px 32px;
+            border-radius: 12px;
+            width: 100%;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .return-message-box p {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-weight: 300;
+        }
+
+        .return-message-sub {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        /* アクションボタン */
         .action-area {
             display: flex;
             gap: 16px;
@@ -276,7 +299,7 @@
                 width: 210px;
                 height: 320px;
             }
-            .ticket-box {
+            .ticket-box, .return-message-box {
                 padding: 36px 20px;
             }
         }
@@ -286,17 +309,17 @@
 
     <div class="container">
 
-        <!-- ① 世界観に入る ＆ 導入 -->
+        <!-- ① 入口（トップページ：通常時 or 帰還後変化版） -->
         <div id="screen-top" class="screen active">
-            <p class="top-message">今日は、どんな札かな。</p>
+            <p class="top-message" id="top-greeting">今日は、どんな札かな。</p>
             <div class="ticket-box" id="start-btn">
-                <h1>結の札</h1>
-                <p>ちょっと見ていく？</p>
-                <div class="hint-badge">一枚引いてみる</div>
+                <h1 id="top-title">結の札</h1>
+                <p id="top-subtitle">ちょっと見ていく？</p>
+                <div class="hint-badge" id="top-badge">一枚引いてみる</div>
             </div>
         </div>
 
-        <!-- ② ③ ④ ⑤ カードを見る・考える・物語を歩く -->
+        <!-- ② ③ ④ ⑤ 札を引く・見る・物語を歩く -->
         <div id="screen-card" class="screen">
             <p class="top-message" id="prompt-text">このカード、なんか気になる。</p>
             
@@ -332,9 +355,20 @@
                 <p id="c-thought">急がなくても、大丈夫。</p>
             </div>
 
-            <!-- ⑥ 現実へ戻る -->
+            <!-- 開いたあとの次への案内（すぐ帰還画面には行かず、物語を味わうステップ） -->
             <div class="action-area" id="action-after-open" style="display: none;">
-                <button class="btn" id="return-btn">じゃあ、そろそろ帰ろう。</button>
+                <button class="btn" id="to-return-btn">じゃあ、そろそろ帰ろう。</button>
+            </div>
+        </div>
+
+        <!-- ⑥ 帰還（「じゃあ、そろそろ帰ろう。」の独立した区切り体験） -->
+        <div id="screen-return" class="screen">
+            <div class="return-message-box">
+                <p>「じゃあ、そろそろ帰ろう。」</p>
+                <p class="return-message-sub">あ、もうこんな時間か。</p>
+            </div>
+            <div class="action-area">
+                <button class="btn" id="go-home-btn">結の札へ</button>
             </div>
         </div>
 
@@ -386,10 +420,13 @@
         const startBtn = document.getElementById('start-btn');
         const screenTop = document.getElementById('screen-top');
         const screenCard = document.getElementById('screen-card');
+        const screenReturn = document.getElementById('screen-return');
+        
         const cardElement = document.getElementById('card-element');
         const openBtn = document.getElementById('open-btn');
         const backHome1 = document.getElementById('back-home-1');
-        const returnBtn = document.getElementById('return-btn');
+        const toReturnBtn = document.getElementById('to-return-btn');
+        const goHomeBtn = document.getElementById('go-home-btn');
         
         const actionBeforeOpen = document.getElementById('action-before-open');
         const actionAfterOpen = document.getElementById('action-after-open');
@@ -402,8 +439,13 @@
         const cReflection = document.getElementById('c-reflection');
         const cThought = document.getElementById('c-thought');
 
+        const topGreeting = document.getElementById('top-greeting');
+        const topSubtitle = document.getElementById('top-subtitle');
+        const topBadge = document.getElementById('top-badge');
+
         let currentCard = null;
         let isFlipped = false;
+        let hasVisitedBefore = false; // 旅を終えて帰ってきたかどうかのフラグ
 
         function setupRandomCard() {
             const randomIndex = Math.floor(Math.random() * cardsData.length);
@@ -423,16 +465,22 @@
             promptText.textContent = "このカード、なんか気になる。";
         }
 
-        startBtn.addEventListener('click', () => {
-            setupRandomCard();
-            screenTop.classList.remove('active');
+        // 画面遷移のヘルパー
+        function switchScreen(fromScreen, toScreen) {
+            fromScreen.classList.remove('active');
             setTimeout(() => {
-                screenTop.style.display = 'none';
-                screenCard.style.display = 'flex';
+                fromScreen.style.display = 'none';
+                toScreen.style.display = 'flex';
                 setTimeout(() => {
-                    screenCard.classList.add('active');
+                    toScreen.classList.add('active');
                 }, 50);
             }, 600);
+        }
+
+        // トップから札を引く画面へ
+        startBtn.addEventListener('click', () => {
+            setupRandomCard();
+            switchScreen(screenTop, screenCard);
         });
 
         function flipCard() {
@@ -453,19 +501,26 @@
             if (!isFlipped) flipCard();
         });
 
-        function goHome() {
-            screenCard.classList.remove('active');
-            setTimeout(() => {
-                screenCard.style.display = 'none';
-                screenTop.style.display = 'flex';
-                setTimeout(() => {
-                    screenTop.classList.add('active');
-                }, 50);
-            }, 600);
-        }
+        // 途中でやめる場合
+        backHome1.addEventListener('click', () => {
+            switchScreen(screenCard, screenTop);
+        });
 
-        backHome1.addEventListener('click', goHome);
-        returnBtn.addEventListener('click', goHome);
+        // 「じゃあ、そろそろ帰ろう。」の帰還画面へ進む
+        toReturnBtn.addEventListener('click', () => {
+            switchScreen(screenCard, screenReturn);
+        });
+
+        // 帰還画面から日常（トップ）へ戻る（ここで少しだけ変化をつける）
+        goHomeBtn.addEventListener('click', () => {
+            hasVisitedBefore = true;
+            // 帰ってきた後の日常の微小な変化
+            topGreeting.textContent = "おかえりなさい。";
+            topSubtitle.textCont = "またいつでも、どうぞ。";
+            topBadge.textContent = "もう一度引いてみる";
+            
+            switchScreen(screenReturn, screenTop);
+        });
     </script>
 </body>
 </html>
