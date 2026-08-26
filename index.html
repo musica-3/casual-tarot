@@ -5,47 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>結の札｜静かな図書館の奥、あなたの物語がひらく</title>
 <style>
-/* =========================================================
-   YUI NO FUDA - GENTLE LIBRARY EDITION (Design Refresh)
-   ========================================================= */
 :root {
-  /* カラーパレットの調整 (より温かく、優しいトーンへ) */
   --navy: #2c3e50;
   --navy-deep: #1a252f;
   --navy-soft: #4a637d;
-
   --paper: #fffaf0;
   --paper-light: #fffef5;
   --paper-dark: #f5eeda;
-
   --ink: #423930;
   --muted: #8a7b6e;
-
   --gold: #b89438;
   --gold-light: #e8dcc8;
   --gold-accent: #d4c091;
-
   --rose: #c97378;
   --rose-light: #f0e1df;
-
   --line: #e0d6c2;
-
   --shadow: 0 10px 30px rgba(74, 99, 125, 0.08);
   --shadow-deep: 0 20px 50px rgba(74, 99, 125, 0.15);
-
-  /* フォント設定の調整 */
   --serif: "游明朝", YuMincho, "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
   --sans-serif: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
 }
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--paper);
@@ -54,42 +35,15 @@ body {
   line-height: 2.0;
   letter-spacing: .05em;
 }
-
-button, a {
-  font: inherit;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-/* =========================================================
-   COMMON
-   ========================================================= */
-.screen {
-  min-height: 100vh;
-}
-
-.container {
-  width: min(980px, calc(100% - 40px));
-  margin: 0 auto;
-}
-
-.fade {
-  animation: fadeIn 1.2s ease both;
-}
-
+button, a { font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+img { max-width: 100%; display: block; }
+.screen { min-height: 100vh; }
+.container { width: min(980px, calc(100% - 40px)); margin: 0 auto; }
+.fade { animation: fadeIn 1.2s ease both; }
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-/* =========================================================
-   ENTRANCE (ロマンチックに)
-   ========================================================= */
 #entrance {
   position: relative;
   min-height: 100svh;
@@ -100,7 +54,6 @@ img {
   color: white;
   background: radial-gradient(circle at 50% 40%, rgba(212,192,145,0.15), transparent 70%), linear-gradient(165deg, #354a5e 0%, #213242 100%);
 }
-
 #entrance::before {
   content: "";
   position: absolute;
@@ -110,7 +63,6 @@ img {
   background-size: 30px 30px;
   pointer-events: none;
 }
-
 .entrance-inner {
   position: relative;
   z-index: 2;
@@ -118,14 +70,12 @@ img {
   text-align: center;
   padding: 40px 0;
 }
-
 .entrance-image {
   width: min(220px, 60vw);
   margin: 0 auto 40px;
   position: relative;
   filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
 }
-
 .entrance-image::before {
   content: "";
   position: absolute;
@@ -133,7 +83,6 @@ img {
   border: 1px solid rgba(212,192,145,0.4);
   border-radius: 50%;
 }
-
 .entrance-image img {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -141,33 +90,9 @@ img {
   border-radius: 50%;
   border: 4px solid white;
 }
-
-.entrance-kicker {
-  color: #e0c98a;
-  font-size: 12px;
-  letter-spacing: .4em;
-  margin-bottom: 12px;
-  font-family: var(--sans-serif);
-}
-
-.entrance-title {
-  margin: 0;
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(28px, 6vw, 40px);
-  line-height: 1.5;
-  letter-spacing: .1em;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-.entrance-subtitle {
-  margin: 25px 0 40px;
-  color: rgba(255,255,255,0.85);
-  font-size: 15px;
-  line-height: 2.1;
-  font-weight: 300;
-}
-
+.entrance-kicker { color: #e0c98a; font-size: 12px; letter-spacing: .4em; margin-bottom: 12px; font-family: var(--sans-serif); }
+.entrance-title { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(28px, 6vw, 40px); line-height: 1.5; letter-spacing: .1em; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.entrance-subtitle { margin: 25px 0 40px; color: rgba(255,255,255,0.85); font-size: 15px; line-height: 2.1; font-weight: 300; }
 .enter-button {
   position: relative;
   display: inline-flex;
@@ -185,296 +110,424 @@ img {
   box-shadow: 0 10px 25px rgba(212,192,145,0.25);
   transition: all .4s ease;
 }
-
-.enter-button:hover {
-  background: rgba(212,192,145,0.15);
-  color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(212,192,145,0.35);
-}
-
-.entrance-note {
-  margin-top: 30px;
-  color: rgba(255,255,255,0.4);
-  font-size: 11px;
-  letter-spacing: .1em;
-  font-family: var(--sans-serif);
-}
-
-/* =========================================================
-   LIBRARY
-   ========================================================= */
-#library {
-  display: none;
-  background: var(--paper);
-}
-#library.active {
-  display: block;
-}
-
-/* HEADER (落ち着いた上品さ) */
-.library-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(255, 250, 240, 0.92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
-}
-
-.header-inner {
-  width: min(980px, calc(100% - 40px));
-  height: 65px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  border: 0;
-  background: none;
-  color: var(--navy);
-  font-family: var(--serif);
-  font-size: 18px;
-  letter-spacing: .15em;
-  text-align: left;
-  line-height: 1.2;
-  padding: 0;
-  transition: opacity .3s;
-}
+.enter-button:hover { background: rgba(212,192,145,0.15); color: white; transform: translateY(-3px); box-shadow: 0 15px 35px rgba(212,192,145,0.35); }
+.entrance-note { margin-top: 30px; color: rgba(255,255,255,0.4); font-size: 11px; letter-spacing: .1em; font-family: var(--sans-serif); }
+#library { display: none; background: var(--paper); }
+#library.active { display: block; }
+.library-header { position: sticky; top: 0; z-index: 100; background: rgba(255, 250, 240, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.header-inner { width: min(980px, calc(100% - 40px)); height: 65px; margin: auto; display: flex; align-items: center; justify-content: space-between; }
+.logo { border: 0; background: none; color: var(--navy); font-family: var(--serif); font-size: 18px; letter-spacing: .15em; text-align: left; line-height: 1.2; padding: 0; transition: opacity .3s; }
 .logo:hover { opacity: 0.7; }
-
-.logo small {
-  display: block;
-  font-family: var(--sans-serif);
-  color: var(--gold);
-  font-size: 8px;
-  letter-spacing: .25em;
-}
-
-.nav {
-  display: flex;
-  gap: 25px;
-}
-
-.nav button {
-  border: 0;
-  background: none;
-  color: var(--muted);
-  font-size: 13px;
-  letter-spacing: .05em;
-  font-family: var(--sans-serif);
-  transition: color .3s, transform .3s;
-  padding: 0;
-}
-.nav button:hover {
-  color: var(--gold);
-}
-
-/* HERO (静寂な雰囲気) */
-.library-hero {
-  position: relative;
-  min-height: 420px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  background: linear-gradient(180deg, var(--paper-dark) 0%, var(--paper) 100%);
-  text-align: center;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  width: min(650px, 100%);
-  margin: auto;
-  padding: 40px 0;
-}
-
-.hero-label {
-  color: var(--gold);
-  font-size: 11px;
-  letter-spacing: .35em;
-  margin-bottom: 15px;
-  font-weight: 500;
-  font-family: var(--sans-serif);
-}
-
-.hero-title {
-  margin: 0;
-  color: var(--navy);
-  font-family: var(--serif);
-  font-size: clamp(32px, 7vw, 54px);
-  font-weight: 300;
-  letter-spacing: .2em;
-}
-
-.hero-rule {
-  width: 50px;
-  height: 1px;
-  background: var(--gold);
-  margin: 25px auto;
-}
-
-.hero-copy {
-  margin: 0;
-  color: var(--muted);
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 2.3;
-  font-weight: 300;
-}
-
-/* SECTION (見出しをオシャレに) */
-.section {
-  padding: 80px 20px;
-}
-
-.section-heading {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.section-heading small {
-  display: block;
-  color: var(--gold);
-  font-size: 10px;
-  letter-spacing: .35em;
-  margin-bottom: 15px;
-  font-weight: 500;
-  font-family: var(--sans-serif);
-  text-transform: uppercase;
-}
-
-.section-heading h2 {
-  margin: 0;
-  color: var(--navy);
-  font-family: var(--serif);
-  font-size: clamp(24px, 4vw, 32px);
-  font-weight: 300;
-  letter-spacing: .15em;
-  position: relative;
-  display: inline-block;
-}
-
-.section-heading h2::before,
-.section-heading h2::after {
-  content: "✧";
-  color: var(--gold-accent);
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
+.logo small { display: block; font-family: var(--sans-serif); color: var(--gold); font-size: 8px; letter-spacing: .25em; }
+.nav { display: flex; gap: 25px; }
+.nav button { border: 0; background: none; color: var(--muted); font-size: 13px; letter-spacing: .05em; font-family: var(--sans-serif); transition: color .3s; padding: 0; }
+.nav button:hover { color: var(--gold); }
+.library-hero { position: relative; min-height: 420px; display: flex; align-items: center; overflow: hidden; background: linear-gradient(180deg, var(--paper-dark) 0%, var(--paper) 100%); text-align: center; }
+.hero-content { position: relative; z-index: 2; width: min(650px, 100%); margin: auto; padding: 40px 0; }
+.hero-label { color: var(--gold); font-size: 11px; letter-spacing: .35em; margin-bottom: 15px; font-weight: 500; font-family: var(--sans-serif); }
+.hero-title { margin: 0; color: var(--navy); font-family: var(--serif); font-size: clamp(32px, 7vw, 54px); font-weight: 300; letter-spacing: .2em; }
+.hero-rule { width: 50px; height: 1px; background: var(--gold); margin: 25px auto; }
+.hero-copy { margin: 0; color: var(--muted); font-family: var(--serif); font-size: 15px; line-height: 2.3; font-weight: 300; }
+.section { padding: 80px 20px; }
+.section-heading { text-align: center; margin-bottom: 60px; }
+.section-heading small { display: block; color: var(--gold); font-size: 10px; letter-spacing: .35em; margin-bottom: 15px; font-weight: 500; font-family: var(--sans-serif); text-transform: uppercase; }
+.section-heading h2 { margin: 0; color: var(--navy); font-family: var(--serif); font-size: clamp(24px, 4vw, 32px); font-weight: 300; letter-spacing: .15em; position: relative; display: inline-block; }
+.section-heading h2::before, .section-heading h2::after { content: "✧"; color: var(--gold-accent); font-size: 20px; position: absolute; top: 50%; transform: translateY(-50%); }
 .section-heading h2::before { left: -35px; }
 .section-heading h2::after { right: -35px; }
+.shelf-section { background: var(--paper-light); }
+.shelf-intro { text-align: center; max-width: 500px; margin: 0 auto 40px; color: var(--muted); font-size: 14px; line-height: 2.0; font-weight: 300; }
+.bookshelf-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 800px; margin: 0 auto; }
+.shelf-card { background: white; border: 1px solid var(--line); padding: 35px 25px; text-align: center; border-radius: 12px; transition: all .5s ease; cursor: pointer; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.shelf-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(212,192,145,0.15) 0%, transparent 50%); opacity: 0; transition: opacity .5s; }
+.shelf-card:hover { transform: translateY(-8px) scale(1.02); border-color: var(--gold-accent); box-shadow: var(--shadow-deep); }
+.shelf-card:hover::after { opacity: 1; }
+.shelf-card-icon { font-size: 40px; margin-bottom: 15px; line-height: 1; }
+.shelf-card-title { color: var(--navy); font-family: var(--serif); font-size: 16px; letter-spacing: .1em; margin-bottom: 10px; font-weight: 400; }
+.shelf-card-desc { color: var(--muted); font-size: 12px; line-height: 1.8; font-weight: 300; }
+#room-result { display: none; background: var(--paper); }
+.result-card { background: white; border: 1px solid var(--line); border-radius: 16px; padding: 40px; max-width: 700px; margin: 0 auto; box-shadow: var(--shadow-deep); text-align: center; }
+.result-tag { display: inline-block; color: var(--gold); font-size: 11px; letter-spacing: .25em; margin-bottom: 15px; font-family: var(--sans-serif); background: var(--paper-dark); padding: 4px 15px; border-radius: 20px; }
+.result-tarot-name { font-family: var(--serif); font-size: 26px; color: var(--navy); margin: 0 0 20px; letter-spacing: .1em; }
+.result-story-text { font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 2.3; text-align: left; background: var(--paper-light); padding: 30px; border-radius: 10px; border: 1px dashed var(--line); margin-top: 20px; }
+.draw-section { background: var(--paper-dark); text-align: center; }
+.draw-intro { max-width: 500px; margin: 0 auto 40px; color: var(--muted); font-size: 14px; line-height: 2.0; font-weight: 300; }
+.circle-draw-stage { position: relative; width: min(320px, 80vw); height: min(320px, 80vw); margin: 40px auto; border-radius: 50%; border: 2px dashed var(--gold-accent); background: radial-gradient(circle, var(--gold-light) 0%, rgba(255, 250, 240, 0.95) 75%); box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; }
+.orbit-item { position: absolute; font-size: 24px; animation: floatOrbit 4s ease-in-out infinite; }
+@keyframes floatOrbit { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.draw-center-btn { background: var(--navy); color: white; border: none; width: 130px; height: 130px; border-radius: 50%; font-family: var(--serif); font-size: 14px; letter-spacing: .15em; box-shadow: 0 8px 20px rgba(44, 62, 80, 0.3); transition: all .4s ease; z-index: 5; }
+.draw-center-btn:hover { background: var(--gold); transform: scale(1.05); }
+#draw-result-container { display: none; margin-top: 50px; }
+.library-footer { background: var(--navy-deep); color: rgba(255,255,255,0.6); text-align: center; padding: 40px 20px; font-size: 12px; font-family: var(--sans-serif); letter-spacing: .1em; }
+</style>
+</head>
 
-/* BOOKSHELF EXPLORATION (可愛く) */
-.shelf-section {
-  background: var(--paper-light);
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>結の札｜静かな図書館の奥、あなたの物語がひらく</title>
+<style>
+:root {
+  --navy: #2c3e50;
+  --navy-deep: #1a252f;
+  --navy-soft: #4a637d;
+  --paper: #fffaf0;
+  --paper-light: #fffef5;
+  --paper-dark: #f5eeda;
+  --ink: #423930;
+  --muted: #8a7b6e;
+  --gold: #b89438;
+  --gold-light: #e8dcc8;
+  --gold-accent: #d4c091;
+  --rose: #c97378;
+  --rose-light: #f0e1df;
+  --line: #e0d6c2;
+  --shadow: 0 10px 30px rgba(74, 99, 125, 0.08);
+  --shadow-deep: 0 20px 50px rgba(74, 99, 125, 0.15);
+  --serif: "游明朝", YuMincho, "Hiragino Mincho ProN", "Yu Mincho", "MS Mincho", serif;
+  --sans-serif: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
 }
-
-.shelf-intro {
-  text-align: center;
-  max-width: 500px;
-  margin: 0 auto 40px;
-  color: var(--muted);
-  font-size: 14px;
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
   line-height: 2.0;
-  font-weight: 300;
+  letter-spacing: .05em;
 }
-
-.bookshelf-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
-  max-width: 800px;
-  margin: 0 auto;
+button, a { font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+img { max-width: 100%; display: block; }
+.screen { min-height: 100vh; }
+.container { width: min(980px, calc(100% - 40px)); margin: 0 auto; }
+.fade { animation: fadeIn 1.2s ease both; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-.shelf-card {
-  background: white;
-  border: 1px solid var(--line);
-  padding: 35px 25px;
-  text-align: center;
-  border-radius: 12px;
-  transition: all .5s ease;
-  cursor: pointer;
-  box-shadow: var(--shadow);
+#entrance {
   position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  color: white;
+  background: radial-gradient(circle at 50% 40%, rgba(212,192,145,0.15), transparent 70%), linear-gradient(165deg, #354a5e 0%, #213242 100%);
 }
-
-.shelf-card::after {
+#entrance::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(212,192,145,0.15) 0%, transparent 50%);
-  opacity: 0;
-  transition: opacity .5s;
+  opacity: .07;
+  background-image: radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
 }
-
-.shelf-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: var(--gold-accent);
-  box-shadow: var(--shadow-deep);
-}
-.shelf-card:hover::after {
-  opacity: 1;
-}
-
-.shelf-card-icon {
-  font-size: 40px;
-  margin-bottom: 15px;
-  line-height: 1;
-  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
-}
-
-.shelf-card-title {
-  color: var(--navy);
-  font-family: var(--serif);
-  font-size: 16px;
-  letter-spacing: .1em;
-  margin-bottom: 10px;
-  font-weight: 400;
-}
-
-.shelf-card-desc {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.8;
-  font-weight: 300;
-}
-
-/* =========================================================
-   ROOM RESULT (小部屋専用の結果表示エリア)
-   ========================================================= */
-.result-section {
-  background: var(--paper);
-}
-
-/* =========================================================
-   DRAW SECTION (円環構造のタロット札ひき)
-   ========================================================= */
-.draw-section {
-  background: var(--paper-dark);
-  text-align: center;
-}
-
-.draw-intro {
-  max-width: 500px;
-  margin: 0 auto 40px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 2.0;
-  font-weight: 300;
-}
-
-.circle-draw-stage {
+.entrance-inner {
   position: relative;
-  width: min(320px, 80vw);
-  height: min(320px, 80vw);
-  margin: 40px auto;
+  z-index: 2;
+  width: min(600px, calc(100% - 40px));
+  text-align: center;
+  padding: 40px 0;
+}
+.entrance-image {
+  width: min(220px, 60vw);
+  margin: 0 auto 40px;
+  position: relative;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
+}
+.entrance-image::before {
+  content: "";
+  position: absolute;
+  inset: -15px;
+  border: 1px solid rgba(212,192,145,0.4);
   border-radius: 50%;
-  border: 2px dashed var(--gold-accent);
-  background: radial-gradient(
+}
+.entrance-image img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid white;
+}
+.entrance-kicker { color: #e0c98a; font-size: 12px; letter-spacing: .4em; margin-bottom: 12px; font-family: var(--sans-serif); }
+.entrance-title { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(28px, 6vw, 40px); line-height: 1.5; letter-spacing: .1em; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.entrance-subtitle { margin: 25px 0 40px; color: rgba(255,255,255,0.85); font-size: 15px; line-height: 2.1; font-weight: 300; }
+.enter-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  padding: 16px 30px;
+  border: 1px solid var(--gold-accent);
+  border-radius: 50px;
+  background: var(--gold-accent);
+  color: var(--navy-deep);
+  font-weight: 500;
+  letter-spacing: .15em;
+  font-family: var(--sans-serif);
+  box-shadow: 0 10px 25px rgba(212,192,145,0.25);
+  transition: all .4s ease;
+}
+.enter-button:hover { background: rgba(212,192,145,0.15); color: white; transform: translateY(-3px); box-shadow: 0 15px 35px rgba(212,192,145,0.35); }
+.entrance-note { margin-top: 30px; color: rgba(255,255,255,0.4); font-size: 11px; letter-spacing: .1em; font-family: var(--sans-serif); }
+#library { display: none; background: var(--paper); }
+#library.active { display: block; }
+.library-header { position: sticky; top: 0; z-index: 100; background: rgba(255, 250, 240, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.header-inner { width: min(980px, calc(100% - 40px)); height: 65px; margin: auto; display: flex; align-items: center; justify-content: space-between; }
+.logo { border: 0; background: none; color: var(--navy); font-family: var(--serif); font-size: 18px; letter-spacing: .15em; text-align: left; line-height: 1.2; padding: 0; transition: opacity .3s; }
+.logo:hover { opacity: 0.7; }
+.logo small { display: block; font-family: var(--sans-serif); color: var(--gold); font-size: 8px; letter-spacing: .25em; }
+.nav { display: flex; gap: 25px; }
+.nav button { border: 0; background: none; color: var(--muted); font-size: 13px; letter-spacing: .05em; font-family: var(--sans-serif); transition: color .3s; padding: 0; }
+.nav button:hover { color: var(--gold); }
+.library-hero { position: relative; min-height: 420px; display: flex; align-items: center; overflow: hidden; background: linear-gradient(180deg, var(--paper-dark) 0%, var(--paper) 100%); text-align: center; }
+.hero-content { position: relative; z-index: 2; width: min(650px, 100%); margin: auto; padding: 40px 0; }
+.hero-label { color: var(--gold); font-size: 11px; letter-spacing: .35em; margin-bottom: 15px; font-weight: 500; font-family: var(--sans-serif); }
+.hero-title { margin: 0; color: var(--navy); font-family: var(--serif); font-size: clamp(32px, 7vw, 54px); font-weight: 300; letter-spacing: .2em; }
+.hero-rule { width: 50px; height: 1px; background: var(--gold); margin: 25px auto; }
+.hero-copy { margin: 0; color: var(--muted); font-family: var(--serif); font-size: 15px; line-height: 2.3; font-weight: 300; }
+.section { padding: 80px 20px; }
+.section-heading { text-align: center; margin-bottom: 60px; }
+.section-heading small { display: block; color: var(--gold); font-size: 10px; letter-spacing: .35em; margin-bottom: 15px; font-weight: 500; font-family: var(--sans-serif); text-transform: uppercase; }
+.section-heading h2 { margin: 0; color: var(--navy); font-family: var(--serif); font-size: clamp(24px, 4vw, 32px); font-weight: 300; letter-spacing: .15em; position: relative; display: inline-block; }
+.section-heading h2::before, .section-heading h2::after { content: "✧"; color: var(--gold-accent); font-size: 20px; position: absolute; top: 50%; transform: translateY(-50%); }
+.section-heading h2::before { left: -35px; }
+.section-heading h2::after { right: -35px; }
+.shelf-section { background: var(--paper-light); }
+.shelf-intro { text-align: center; max-width: 500px; margin: 0 auto 40px; color: var(--muted); font-size: 14px; line-height: 2.0; font-weight: 300; }
+.bookshelf-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 800px; margin: 0 auto; }
+.shelf-card { background: white; border: 1px solid var(--line); padding: 35px 25px; text-align: center; border-radius: 12px; transition: all .5s ease; cursor: pointer; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.shelf-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(212,192,145,0.15) 0%, transparent 50%); opacity: 0; transition: opacity .5s; }
+.shelf-card:hover { transform: translateY(-8px) scale(1.02); border-color: var(--gold-accent); box-shadow: var(--shadow-deep); }
+.shelf-card:hover::after { opacity: 1; }
+.shelf-card-icon { font-size: 40px; margin-bottom: 15px; line-height: 1; }
+.shelf-card-title { color: var(--navy); font-family: var(--serif); font-size: 16px; letter-spacing: .1em; margin-bottom: 10px; font-weight: 400; }
+.shelf-card-desc { color: var(--muted); font-size: 12px; line-height: 1.8; font-weight: 300; }
+#room-result { display: none; background: var(--paper); }
+.result-card { background: white; border: 1px solid var(--line); border-radius: 16px; padding: 40px; max-width: 700px; margin: 0 auto; box-shadow: var(--shadow-deep); text-align: center; }
+.result-tag { display: inline-block; color: var(--gold); font-size: 11px; letter-spacing: .25em; margin-bottom: 15px; font-family: var(--sans-serif); background: var(--paper-dark); padding: 4px 15px; border-radius: 20px; }
+.result-tarot-name { font-family: var(--serif); font-size: 26px; color: var(--navy); margin: 0 0 20px; letter-spacing: .1em; }
+.result-story-text { font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 2.3; text-align: left; background: var(--paper-light); padding: 30px; border-radius: 10px; border: 1px dashed var(--line); margin-top: 20px; }
+.draw-section { background: var(--paper-dark); text-align: center; }
+.draw-intro { max-width: 500px; margin: 0 auto 40px; color: var(--muted); font-size: 14px; line-height: 2.0; font-weight: 300; }
+.circle-draw-stage { position: relative; width: min(320px, 80vw); height: min(320px, 80vw); margin: 40px auto; border-radius: 50%; border: 2px dashed var(--gold-accent); background: radial-gradient(circle, var(--gold-light) 0%, rgba(255, 250, 240, 0.95) 75%); box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; }
+.orbit-item { position: absolute; font-size: 24px; animation: floatOrbit 4s ease-in-out infinite; }
+@keyframes floatOrbit { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.draw-center-btn { background: var(--navy); color: white; border: none; width: 130px; height: 130px; border-radius: 50%; font-family: var(--serif); font-size: 14px; letter-spacing: .15em; box-shadow: 0 8px 20px rgba(44, 62, 80, 0.3); transition: all .4s ease; z-index: 5; }
+.draw-center-btn:hover { background: var(--gold); transform: scale(1.05); }
+#draw-result-container { display: none; margin-top: 50px; }
+.library-footer { background: var(--navy-deep); color: rgba(255,255,255,0.6); text-align: center; padding: 40px 20px; font-size: 12px; font-family: var(--sans-serif); letter-spacing: .1em; }
+</style>
+</head>
+【後半部】（<body> から最後まで）
+<body>
+  <section id="entrance" class="screen">
+    <div class="entrance-inner fade">
+      <div class="entrance-image">
+        <img src="image.jpg" alt="結の札アイコン" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\'><circle cx=\'100\' cy=\'100\' r=\'100\' fill=\'%23b89438\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'24\' font-family=\'serif\'>結</text></svg>'">
+      </div>
+      <div class="entrance-kicker">GENTLE LIBRARY</div>
+      <h1 class="entrance-title">結の札</h1>
+      <p class="entrance-subtitle">静かな図書館の奥へようこそ。<br>あなたの心にそっと寄り添う、物語と札のひかり。</p>
+      <button class="enter-button" onclick="enterLibrary()">扉をひらく</button>
+      <div class="entrance-note">静寂と余白の空間</div>
+    </div>
+  </section>
+
+  <div id="library" class="screen">
+    <header class="library-header">
+      <div class="header-inner">
+        <button class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+          結の札
+          <small>YUI NO FUDA</small>
+        </button>
+        <nav class="nav">
+          <button onclick="scrollToSection('shelf-section')">小部屋</button>
+          <button onclick="scrollToSection('draw-section')">札をひく</button>
+        </nav>
+      </div>
+    </header>
+
+    <section class="library-hero">
+      <div class="hero-content fade">
+        <div class="hero-label">WELCOME TO THE LIBRARY</div>
+        <h2 class="hero-title">物語のめぐり</h2>
+        <div class="hero-rule"></div>
+        <p class="hero-copy">ここでは時間に追われることなく、<br>ただ自分自身の心と静かに対話するための場所です。</p>
+      </div>
+    </section>
+
+    <section id="shelf-section" class="section shelf-section">
+      <div class="container">
+        <div class="section-heading">
+          <small>Bookshelf</small>
+          <h2>物語の小部屋</h2>
+        </div>
+        <p class="shelf-intro">気になる小部屋の扉をノックしてください。<br>その部屋だけに隠された物語と札が、あなたを待っています。</p>
+        
+        <div class="bookshelf-container">
+          <div class="shelf-card" onclick="openRoom('quiet')">
+            <div class="shelf-card-icon">☕</div>
+            <div class="shelf-card-title">静寂の部屋</div>
+            <div class="shelf-card-desc">心が少し疲れたとき、温かいお茶とともに深呼吸する場所。</div>
+          </div>
+          <div class="shelf-card" onclick="openRoom('star')">
+            <div class="shelf-card-icon">✨</div>
+            <div class="shelf-card-title">星影の部屋</div>
+            <div class="shelf-card-desc">夜空を眺めるように、未来への小さな願いを思い出す場所。</div>
+          </div>
+          <div class="shelf-card" onclick="openRoom('wind')">
+            <div class="shelf-card-icon">🍃</div>
+            <div class="shelf-card-title">微風の部屋</div>
+            <div class="shelf-card-desc">新しい一歩を踏み出す背中に、優しい風を送る場所。</div>
+          </div>
+          <div class="shelf-card" onclick="openRoom('memory')">
+            <div class="shelf-card-icon">🗝️</div>
+            <div class="shelf-card-title">記憶の小箱</div>
+            <div class="shelf-card-desc">忘れていた大切な宝物や、懐かしい温もりに触れる場所。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="room-result" class="section result-section">
+      <div class="container">
+        <div class="result-card fade">
+          <span class="result-tag" id="res-tag">小部屋の記録</span>
+          <h3 class="result-tarot-name" id="res-tarot">タロット札の名称</h3>
+          <div class="result-story-text" id="res-story">ここに物語が紡がれます。</div>
+          <div style="margin-top: 30px;">
+            <button class="enter-button" style="min-width: 140px; padding: 10px 20px; font-size: 13px;" onclick="scrollToSection('shelf-section')">ほかの部屋を覗く</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="draw-section" class="section draw-section">
+      <div class="container">
+        <div class="section-heading">
+          <small>Oracle Card</small>
+          <h2>今日の札をひく</h2>
+        </div>
+        <p class="draw-intro">中央のボタンに触れると、今のあなたへ贈る一葉の札が現れます。</p>
+        
+        <div class="circle-draw-stage">
+          <div class="orbit-item" style="top: 15px; left: 50%; transform: translateX(-50%);">✨</div>
+          <div class="orbit-item" style="bottom: 15px; left: 50%; transform: translateX(-50%);">🌙</div>
+          <div class="orbit-item" style="left: 15px; top: 50%; transform: translateY(-50%);">🍃</div>
+          <div class="orbit-item" style="right: 15px; top: 50%; transform: translateY(-50%);">🗝️</div>
+          <button class="draw-center-btn" onclick="drawCard()">札をひく</button>
+        </div>
+
+        <div id="draw-result-container">
+          <div class="result-card fade" style="background: var(--paper-light);">
+            <span class="result-tag">導きの札</span>
+            <h3 class="result-tarot-name" id="draw-tarot-name">札の名称</h3>
+            <div class="result-story-text" id="draw-story-text">解説テキスト</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="library-footer">
+      <p>&copy; 結の札 - 静かな図書館</p>
+    </footer>
+  </div>
+
+  <script>
+    const roomData = {
+      quiet: {
+        tag: "静寂の部屋 ── ティータイムの魔法",
+        tarot: "隠者 (The Hermit) - 逆位置の灯火",
+        story: "ざわめく外の世界から一歩引いて、自分のためだけに淹れた温かい紅茶のカップを見つめてみてください。湯気がふわりと揺れ、今日一日頑張り続けたあなたの肩の力を優しく解きほぐしていきます。何も考えなくていい、ただ静けさに身を委ねる時間こそが、明日への一番の栄養です。"
+      },
+      star: {
+        tag: "星影の部屋 ── 夜空のノート",
+        tarot: "星 (The Star) - 静かなる希望",
+        story: "夜空にぽつんと浮かぶ星のように、あなたの胸の中にも消えない小さな光があります。大きな夢じゃなくても構いません。「明日、美味しいコーヒーを飲もう」「早く寝よう」そんな些細な願いこそが、確かな未来を照らす道しるべ。焦らなくても、星はいつでもあなたの上空で静かに見守っています。"
+      },
+      wind: {
+        tag: "微風の部屋 ── 木漏れ日の小道",
+        tarot: "愚者 (The Fool) - 新たな足取り",
+        story: "窓を開けると、初夏の心地よい風がそっと頬を撫でていきました。どこへ向かうべきか迷ったときは、風の吹くほうへ少しだけ歩いてみませんか？ 計画通りにいかないことの中にこそ、思いがけない素敵な出会いは隠されています。"
+      },
+      memory: {
+        tag: "記憶の小箱 ── 本棚のしおり",
+        tarot: "運命の輪 (Wheel of Fortune) - めぐり逢い",
+        story: "古い本のページをめくったら、昔お気に入りで挟んでいた押し花が出てきた――そんな懐かしい記憶がふと蘇る瞬間があります。過去のあなたが大切にしてくれた思い出や優しさは、今のあなたを形作る温かい土台となっています。"
+      }
+    };
+
+    const randomDraws = [
+      {
+        name: "女帝 (The Empress) - 豊かさのめぐみ",
+        story: "いま、あなたのまわりには気づいていないだけでたくさんの優しさや温かさが満ち溢れています。自分を厳しく律する手を少しだけ緩めて、美味しいものを食べ、五感で感じる喜びを自分に許してあげましょう。"
+      },
+      {
+        name: "魔術師 (The Magician) - 始まりの道具",
+        story: "あなたの手元には、すでに何かを始めるための道具や才能がすべて揃っています。特別な準備ができているか不安になる必要はありません。「やってみよう」と思ったその瞬間から、新しい物語の歯車が動き始めます。"
+      },
+      {
+        name: "月 (The Moon) - 幻想のまどろみ",
+        story: "物事が少しぼんやりと感じられたり、先の見えない不安に包まれたりしていませんか？ 無理に答えを出そうと焦る必要はありません。霧が晴れるのを待つように、今日はただ静かに自分の内面の声に耳を傾けてみてください。"
+      },
+      {
+        name: "世界 (The World) - 調和と完成",
+        story: "一つの区切りがつき、穏やかな調和と満ち足りた時間が訪れようとしています。あなたがこれまで歩んできた道のりは、すべて尊く、あなたをこの美しい場所へと連れてきてくれました。"
+      }
+    ];
+
+    function enterLibrary() {
+      const entrance = document.getElementById('entrance');
+      const library = document.getElementById('library');
+      entrance.style.transition = 'opacity 0.8s ease';
+      entrance.style.opacity = '0';
+      setTimeout(() => {
+        entrance.style.display = 'none';
+        library.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }, 800);
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if(el) { el.scrollIntoView({ behavior: 'smooth' }); }
+    }
+
+    function openRoom(type) {
+      const data = roomData[type];
+      if(!data) return;
+      document.getElementById('res-tag').innerText = data.tag;
+      document.getElementById('res-tarot').innerText = data.tarot;
+      document.getElementById('res-story').innerText = data.story;
+      const resultArea = document.getElementById('room-result');
+      resultArea.style.display = 'block';
+      const card = resultArea.querySelector('.result-card');
+      card.classList.remove('fade');
+      void card.offsetWidth;
+      card.classList.add('fade');
+      scrollToSection('room-result');
+    }
+
+    function drawCard() {
+      const randomIndex = Math.floor(Math.random() * randomDraws.length);
+      const chosen = randomDraws[randomIndex];
+      document.getElementById('draw-tarot-name').innerText = chosen.name;
+      document.getElementById('draw-story-text').innerText = chosen.story;
+      const container = document.getElementById('draw-result-container');
+      container.style.display = 'block';
+      const card = container.querySelector('.result-card');
+      card.classList.remove('fade');
+      void card.offsetWidth;
+      card.classList.add('fade');
+      scrollToSection('draw-result-container');
+    }
+  </script>
+</body>
+</html>
