@@ -6,16 +6,15 @@
     <title>結の札</title>
     <style>
         :root {
-            --bg-color: #f4f1ea;
-            --card-bg: #ffffff;
-            --text-main: #2c2a29;
-            --text-sub: #8c857b;
-            --accent-warm: #b86b53;
-            --accent-gold: #c2a66e;
-            --border-color: #dfdbd0;
-            --shadow: 0 20px 40px rgba(44, 42, 41, 0.04);
-            --shadow-hover: 0 25px 50px rgba(44, 42, 41, 0.08);
-            --transition-smooth: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            --bg-color: #f7f5f0;
+            --card-bg: #fffdf9;
+            --text-main: #3a3835;
+            --text-sub: #7a756f;
+            --accent-warm: #d4836f;
+            --accent-wood: #8c7355;
+            --border-color: #e3ded6;
+            --shadow: 0 10px 30px rgba(58, 56, 53, 0.05);
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -27,9 +26,9 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: "游明朝", YuMincho, "Hiragino Mincho ProN", "Yu Mincho", serif;
-            line-height: 2;
-            letter-spacing: 0.08em;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+            letter-spacing: 0.05em;
             overflow-x: hidden;
             min-height: 100vh;
             display: flex;
@@ -41,7 +40,7 @@
             width: 100%;
             max-width: 680px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 40px 24px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -54,7 +53,7 @@
             display: none;
             width: 100%;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(15px);
             transition: var(--transition-smooth);
             text-align: center;
         }
@@ -70,17 +69,17 @@
         /* --- ① トップ画面 --- */
 
         .top-message {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--text-sub);
-            margin-bottom: 36px;
+            margin-bottom: 32px;
             font-weight: 300;
         }
 
         .ticket-box {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 56px 32px;
-            border-radius: 4px;
+            border: 1px dashed var(--border-color);
+            padding: 48px 32px;
+            border-radius: 12px;
             width: 100%;
             box-shadow: var(--shadow);
             position: relative;
@@ -89,47 +88,51 @@
         }
 
         .ticket-box:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(58, 56, 53, 0.08);
+            border-color: var(--accent-warm);
         }
 
         .ticket-box h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 400;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.1em;
             margin-bottom: 16px;
             color: var(--text-main);
         }
 
         .ticket-box p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-sub);
         }
 
         .hint-badge {
             display: inline-block;
-            margin-top: 36px;
-            font-size: 0.8rem;
+            margin-top: 32px;
+            font-size: 0.85rem;
             color: var(--accent-warm);
-            background: rgba(184, 107, 83, 0.06);
-            padding: 8px 20px;
-            border-radius: 30px;
-            letter-spacing: 0.1em;
-            animation: pulse 2.5s infinite ease-in-out;
+            background: rgba(212, 131, 111, 0.08);
+            padding: 6px 16px;
+            border-radius: 20px;
+            animation: pulse 2s infinite ease-in-out;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+            0%, 100% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
         /* --- 図書館の気配 --- */
 
         .library-shelf {
             display: flex;
-            gap: 12px;
-            margin-top: 32px;
+            gap: 16px;
+            margin-top: 24px;
             width: 100%;
             justify-content: center;
             align-items: center;
@@ -137,12 +140,12 @@
         }
 
         .shelf-item {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-sub);
-            background: rgba(223, 219, 208, 0.4);
-            padding: 6px 16px;
-            border-radius: 2px;
-            letter-spacing: 0.05em;
+            background: #eeeae2;
+            padding: 6px 14px;
+            border-radius: 4px;
+            border-bottom: 2px solid var(--accent-wood);
         }
 
         /* --- 趣旨ページリンク --- */
@@ -150,15 +153,14 @@
         .about-link-btn {
             background: none;
             border: none;
-            font-family: inherit;
             font-size: 0.85rem;
             color: var(--text-sub);
             cursor: pointer;
-            margin-top: 24px;
+            margin-top: 20px;
             text-decoration: underline;
-            text-underline-offset: 6px;
-            letter-spacing: 0.1em;
-            transition: color 0.4s ease;
+            text-underline-offset: 4px;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
         }
 
         .about-link-btn:hover {
@@ -168,10 +170,10 @@
         /* --- ② ③ ④ ⑤ 札・旅の空間 --- */
 
         .card-container {
-            perspective: 1200px;
-            width: 260px;
-            height: 380px;
-            margin: 0 auto 36px auto;
+            perspective: 1000px;
+            width: 240px;
+            height: 360px;
+            margin: 0 auto 32px auto;
             cursor: pointer;
         }
 
@@ -180,10 +182,10 @@
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-style: preserve-3d;
             box-shadow: var(--shadow);
-            border-radius: 4px;
+            border-radius: 8px;
         }
 
         .card-container.flipped .card-inner {
@@ -198,43 +200,42 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 32px 24px;
-            border-radius: 4px;
+            padding: 24px;
+            border-radius: 8px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
         }
 
         .card-back {
-            background: #e9e5dc;
+            background: #e8e4dc;
             color: var(--text-sub);
             justify-content: center;
             align-items: center;
-            border: 1px solid var(--border-color);
+            border: 1px dashed var(--border-color);
         }
 
         .card-front {
             transform: rotateY(180deg);
             text-align: left;
-            border-top: 3px solid var(--accent-warm);
+            border-top: 4px solid var(--accent-warm);
         }
 
         .card-number {
             font-size: 0.75rem;
             color: var(--text-sub);
-            letter-spacing: 0.25em;
+            letter-spacing: 0.2em;
         }
 
         .card-title {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 500;
-            margin-bottom: 16px;
-            letter-spacing: 0.1em;
+            margin-bottom: 12px;
         }
 
         .card-scene {
             font-size: 0.9rem;
             color: var(--text-main);
-            line-height: 1.9;
+            line-height: 1.7;
             font-weight: 300;
         }
 
@@ -242,15 +243,14 @@
             font-size: 0.75rem;
             color: var(--text-sub);
             text-align: right;
-            letter-spacing: 0.05em;
         }
 
         .reflection-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 36px 32px;
-            border-radius: 4px;
-            margin-bottom: 36px;
+            padding: 32px;
+            border-radius: 8px;
+            margin-bottom: 32px;
             width: 100%;
             text-align: left;
             box-shadow: var(--shadow);
@@ -259,15 +259,15 @@
         .reflection-box p {
             font-size: 0.95rem;
             color: var(--text-main);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .reflection-box p:last-child {
             margin-bottom: 0;
             color: var(--text-sub);
             font-size: 0.9rem;
-            border-left: 2px solid var(--accent-gold);
-            padding-left: 16px;
+            border-left: 2px solid var(--accent-warm);
+            padding-left: 12px;
         }
 
         /* --- ⑥ 帰還フェーズ --- */
@@ -275,18 +275,18 @@
         .return-message-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 56px 32px;
-            border-radius: 4px;
+            padding: 48px 32px;
+            border-radius: 12px;
             width: 100%;
             box-shadow: var(--shadow);
             text-align: center;
-            margin-bottom: 36px;
+            margin-bottom: 32px;
         }
 
         .return-message-box p {
             font-size: 1.1rem;
             color: var(--text-main);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             font-weight: 300;
         }
 
@@ -300,30 +300,30 @@
         .about-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 48px 36px;
-            border-radius: 4px;
+            padding: 40px 32px;
+            border-radius: 12px;
             width: 100%;
             box-shadow: var(--shadow);
             text-align: left;
-            margin-bottom: 36px;
+            margin-bottom: 32px;
         }
 
         .about-box h2 {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 400;
-            margin-bottom: 28px;
-            letter-spacing: 0.2em;
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
             text-align: center;
             color: var(--text-main);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 16px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 12px;
         }
 
         .about-box p {
             font-size: 0.9rem;
             color: var(--text-main);
-            margin-bottom: 20px;
-            line-height: 2.1;
+            margin-bottom: 16px;
+            line-height: 1.9;
             font-weight: 300;
         }
 
@@ -334,33 +334,33 @@
         /* --- 元の結の札サイトへの導線 --- */
 
         .about-original-link {
-            margin-top: 40px;
-            padding-top: 32px;
-            border-top: 1px solid var(--border-color);
+            margin-top: 32px;
+            padding-top: 28px;
+            border-top: 1px dashed var(--border-color);
             text-align: center;
         }
 
         .about-link-lead {
             color: var(--text-sub) !important;
             font-size: 0.85rem !important;
-            margin-bottom: 20px !important;
+            margin-bottom: 16px !important;
         }
 
         .original-site-btn {
             display: inline-block;
-            padding: 12px 28px;
-            border: 1px solid var(--accent-gold);
+            padding: 11px 24px;
+            border: 1px solid var(--accent-warm);
             border-radius: 30px;
-            color: var(--accent-gold);
+            color: var(--accent-warm);
             background: transparent;
             text-decoration: none;
             font-size: 0.85rem;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             transition: var(--transition-smooth);
         }
 
         .original-site-btn:hover {
-            background: var(--accent-gold);
+            background: var(--accent-warm);
             color: white;
             transform: translateY(-2px);
         }
@@ -379,19 +379,17 @@
             background: transparent;
             border: 1px solid var(--text-main);
             color: var(--text-main);
-            padding: 12px 32px;
+            padding: 12px 28px;
             border-radius: 30px;
-            font-family: inherit;
             font-size: 0.9rem;
             cursor: pointer;
             transition: var(--transition-smooth);
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
         }
 
         .btn:hover {
             background: var(--text-main);
             color: var(--card-bg);
-            transform: translateY(-2px);
         }
 
         .btn-sub {
@@ -407,26 +405,30 @@
 
         /* --- フッター --- */
 
-        <footer>
-            <p>結の札</p>
-        </footer>
+        footer {
+            padding: 24px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            letter-spacing: 0.1em;
+        }
 
         /* --- スマホ --- */
 
         @media (max-width: 480px) {
             .container {
-                padding: 40px 16px;
+                padding: 24px 16px;
             }
 
             .card-container {
-                width: 220px;
-                height: 330px;
+                width: 210px;
+                height: 320px;
             }
 
             .ticket-box,
             .return-message-box,
             .about-box {
-                padding: 40px 20px;
+                padding: 36px 20px;
             }
         }
     </style>
@@ -503,13 +505,13 @@
 
                     <div class="card-face card-back">
 
-                        <span style="color: var(--accent-gold);">✦</span>
+                        <span>✦</span>
 
-                        <p style="font-size: 0.85rem; letter-spacing: 0.3em;">
+                        <p style="font-size: 0.85rem; letter-spacing: 0.2em;">
                             結
                         </p>
 
-                        <span style="color: var(--accent-gold);">✦</span>
+                        <span>✦</span>
 
                     </div>
 
@@ -645,26 +647,26 @@
                 </h2>
 
                 <p>
-                    ここは、未来を占ったり、<br>
+                    ここは、未来を占ったり、
                     大きな答えを見つけたりするための場所ではありません。
                 </p>
 
                 <p>
-                    日常のすき間に、<br>
-                    ふと手にとった一枚の小さな紙片。<br>
-                    そこに描かれた情景や言葉をきっかけにして、<br>
+                    日常のすき間に、
+                    ふと手にとった一枚の小さな紙片。
+                    そこに描かれた情景や言葉をきっかけにして、
                     自分の物語の中へほんの少しだけ足を踏み入れてみる。
                 </p>
 
                 <p>
-                    少し寄り道をしたり、<br>
-                    何も見つからずに通り過ぎたり。<br>
-                    そして最後には、<br>
+                    少し寄り道をしたり、
+                    何も見つからずに通り過ぎたり。
+                    そして最後には、
                     ちゃんと自分の日常へと帰っていく。
                 </p>
 
                 <p>
-                    そんな、静かな往復の時間を楽しむための<br>
+                    そんな、静かな往復の時間を楽しむための
                     小さな停留所です。
                 </p>
 
@@ -706,14 +708,14 @@
 
 
     <footer>
-        <p style="font-size: 0.75rem; color: var(--text-sub); letter-spacing: 0.15em;">結の札</p>
+        結の札
     </footer>
 
 
     <script>
 
         /* ==========================================
-            カードデータ
+           カードデータ
         ========================================== */
 
         const cardsData = [
@@ -777,170 +779,347 @@
 
 
         /* ==========================================
-            DOM
+           DOM
         ========================================== */
 
-        const startBtn = document.getElementById('start-btn');
-        const screenTop = document.getElementById('screen-top');
-        const screenCard = document.getElementById('screen-card');
-        const screenReturn = document.getElementById('screen-return');
-        const screenAbout = document.getElementById('screen-about');
+        const startBtn =
+            document.getElementById('start-btn');
 
-        const cardElement = document.getElementById('card-element');
-        const openBtn = document.getElementById('open-btn');
-        const backHome1 = document.getElementById('back-home-1');
-        const toReturnBtn = document.getElementById('to-return-btn');
-        const goHomeBtn = document.getElementById('go-home-btn');
-        const toAboutBtn = document.getElementById('to-about-btn');
-        const backFromAboutBtn = document.getElementById('back-from-about-btn');
+        const screenTop =
+            document.getElementById('screen-top');
 
-        const actionBeforeOpen = document.getElementById('action-before-open');
-        const actionAfterOpen = document.getElementById('action-after-open');
-        const reflectionBox = document.getElementById('reflection-box');
-        const promptText = document.getElementById('prompt-text');
+        const screenCard =
+            document.getElementById('screen-card');
 
-        const cNum = document.getElementById('c-num');
-        const cTitle = document.getElementById('c-title');
-        const cScene = document.getElementById('c-scene');
-        const cReflection = document.getElementById('c-reflection');
-        const cThought = document.getElementById('c-thought');
+        const screenReturn =
+            document.getElementById('screen-return');
 
-        const topGreeting = document.getElementById('top-greeting');
-        const topSubtitle = document.getElementById('top-subtitle');
-        const topBadge = document.getElementById('top-badge');
+        const screenAbout =
+            document.getElementById('screen-about');
+
+
+        const cardElement =
+            document.getElementById('card-element');
+
+        const openBtn =
+            document.getElementById('open-btn');
+
+        const backHome1 =
+            document.getElementById('back-home-1');
+
+        const toReturnBtn =
+            document.getElementById('to-return-btn');
+
+        const goHomeBtn =
+            document.getElementById('go-home-btn');
+
+        const toAboutBtn =
+            document.getElementById('to-about-btn');
+
+        const backFromAboutBtn =
+            document.getElementById('back-from-about-btn');
+
+
+        const actionBeforeOpen =
+            document.getElementById('action-before-open');
+
+        const actionAfterOpen =
+            document.getElementById('action-after-open');
+
+        const reflectionBox =
+            document.getElementById('reflection-box');
+
+        const promptText =
+            document.getElementById('prompt-text');
+
+
+        const cNum =
+            document.getElementById('c-num');
+
+        const cTitle =
+            document.getElementById('c-title');
+
+        const cScene =
+            document.getElementById('c-scene');
+
+        const cReflection =
+            document.getElementById('c-reflection');
+
+        const cThought =
+            document.getElementById('c-thought');
+
+
+        const topGreeting =
+            document.getElementById('top-greeting');
+
+        const topSubtitle =
+            document.getElementById('top-subtitle');
+
+        const topBadge =
+            document.getElementById('top-badge');
+
 
         let currentCard = null;
+
         let isFlipped = false;
 
 
         /* ==========================================
-            ランダムカード
+           ランダムカード
         ========================================== */
 
         function setupRandomCard() {
-            const randomIndex = Math.floor(Math.random() * cardsData.length);
-            currentCard = cardsData[randomIndex];
 
-            cNum.textContent = currentCard.num;
-            cTitle.textContent = currentCard.title;
-            cScene.textContent = currentCard.scene;
-            cReflection.textContent = currentCard.reflection;
-            cThought.textContent = currentCard.thought;
+            const randomIndex =
+                Math.floor(
+                    Math.random() *
+                    cardsData.length
+                );
 
-            cardElement.classList.remove('flipped');
+            currentCard =
+                cardsData[randomIndex];
+
+
+            cNum.textContent =
+                currentCard.num;
+
+            cTitle.textContent =
+                currentCard.title;
+
+            cScene.textContent =
+                currentCard.scene;
+
+            cReflection.textContent =
+                currentCard.reflection;
+
+            cThought.textContent =
+                currentCard.thought;
+
+
+            cardElement.classList.remove(
+                'flipped'
+            );
+
             isFlipped = false;
 
-            reflectionBox.style.display = 'none';
-            actionBeforeOpen.style.display = 'flex';
-            actionAfterOpen.style.display = 'none';
 
-            promptText.textContent = "このカード、なんか気になる。";
+            reflectionBox.style.display =
+                'none';
+
+            actionBeforeOpen.style.display =
+                'flex';
+
+            actionAfterOpen.style.display =
+                'none';
+
+
+            promptText.textContent =
+                "このカード、なんか気になる。";
         }
 
 
         /* ==========================================
-            画面切り替え
+           画面切り替え
         ========================================== */
 
-        function switchScreen(fromScreen, toScreen) {
-            fromScreen.classList.remove('active');
+        function switchScreen(
+            fromScreen,
+            toScreen
+        ) {
+
+            fromScreen.classList.remove(
+                'active'
+            );
+
 
             setTimeout(() => {
-                fromScreen.style.display = 'none';
-                toScreen.style.display = 'flex';
+
+                fromScreen.style.display =
+                    'none';
+
+                toScreen.style.display =
+                    'flex';
+
 
                 setTimeout(() => {
-                    toScreen.classList.add('active');
+
+                    toScreen.classList.add(
+                        'active'
+                    );
+
                 }, 50);
+
             }, 600);
+
         }
 
 
         /* ==========================================
-            スタート
+           スタート
         ========================================== */
 
-        startBtn.addEventListener('click', () => {
-            setupRandomCard();
-            switchScreen(screenTop, screenCard);
-        });
+        startBtn.addEventListener(
+            'click',
+            () => {
+
+                setupRandomCard();
+
+                switchScreen(
+                    screenTop,
+                    screenCard
+                );
+
+            }
+        );
 
 
         /* ==========================================
-            カードをめくる
+           カードをめくる
         ========================================== */
 
         function flipCard() {
+
             if (isFlipped) return;
 
-            cardElement.classList.add('flipped');
+
+            cardElement.classList.add(
+                'flipped'
+            );
+
             isFlipped = true;
 
-            promptText.textContent = "物語の中へ、少しだけ入ってみる。";
+
+            promptText.textContent =
+                "物語の中へ、少しだけ入ってみる。";
+
 
             setTimeout(() => {
-                reflectionBox.style.display = 'block';
-                actionBeforeOpen.style.display = 'none';
-                actionAfterOpen.style.display = 'flex';
+
+                reflectionBox.style.display =
+                    'block';
+
+                actionBeforeOpen.style.display =
+                    'none';
+
+                actionAfterOpen.style.display =
+                    'flex';
+
             }, 600);
+
         }
 
-        openBtn.addEventListener('click', flipCard);
 
-        cardElement.addEventListener('click', () => {
-            if (!isFlipped) {
-                flipCard();
+        openBtn.addEventListener(
+            'click',
+            flipCard
+        );
+
+
+        cardElement.addEventListener(
+            'click',
+            () => {
+
+                if (!isFlipped) {
+                    flipCard();
+                }
+
             }
-        });
+        );
 
 
         /* ==========================================
-            やめる
+           やめる
         ========================================== */
 
-        backHome1.addEventListener('click', () => {
-            switchScreen(screenCard, screenTop);
-        });
+        backHome1.addEventListener(
+            'click',
+            () => {
+
+                switchScreen(
+                    screenCard,
+                    screenTop
+                );
+
+            }
+        );
 
 
         /* ==========================================
-            帰還
+           帰還
         ========================================== */
 
-        toReturnBtn.addEventListener('click', () => {
-            switchScreen(screenCard, screenReturn);
-        });
+        toReturnBtn.addEventListener(
+            'click',
+            () => {
+
+                switchScreen(
+                    screenCard,
+                    screenReturn
+                );
+
+            }
+        );
 
 
         /* ==========================================
-            帰還後、トップへ
+           帰還後、トップへ
         ========================================== */
 
-        goHomeBtn.addEventListener('click', () => {
-            topGreeting.textContent = "おかえりなさい。";
-            topSubtitle.textContent = "またいつでも、どうぞ。";
-            topBadge.textContent = "もう一度引いてみる";
+        goHomeBtn.addEventListener(
+            'click',
+            () => {
 
-            switchScreen(screenReturn, screenTop);
-        });
+                topGreeting.textContent =
+                    "おかえりなさい。";
+
+                topSubtitle.textContent =
+                    "またいつでも、どうぞ。";
+
+                topBadge.textContent =
+                    "もう一度引いてみる";
+
+
+                switchScreen(
+                    screenReturn,
+                    screenTop
+                );
+
+            }
+        );
 
 
         /* ==========================================
-            この場所について
+           この場所について
         ========================================== */
 
-        toAboutBtn.addEventListener('click', () => {
-            switchScreen(screenTop, screenAbout);
-        });
+        toAboutBtn.addEventListener(
+            'click',
+            () => {
+
+                switchScreen(
+                    screenTop,
+                    screenAbout
+                );
+
+            }
+        );
 
 
         /* ==========================================
-            説明ページから戻る
+           説明ページから戻る
         ========================================== */
 
-        backFromAboutBtn.addEventListener('click', () => {
-            switchScreen(screenAbout, screenTop);
-        });
+        backFromAboutBtn.addEventListener(
+            'click',
+            () => {
+
+                switchScreen(
+                    screenAbout,
+                    screenTop
+                );
+
+            }
+        );
 
     </script>
 
