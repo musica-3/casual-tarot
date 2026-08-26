@@ -1,34 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>結の札｜小さなタロット屋</title>
-
-<meta
-  name="description"
-  content="結の札。タロットを一枚引いて、ちょっと考えてみる。そんな時間を楽しむ小さなタロット屋です。"
->
-
+<meta name="description" content="結の札。タロットを一枚引いて、ちょっと眺めてみる小さなタロット屋です。">
 <style>
 
-/* ==================================================
-   BASE
-================================================== */
-
 :root {
-  --paper: #fffdf8;
-  --paper-dark: #f3eee5;
-  --ink: #302b28;
-  --gray: #756e68;
-  --red: #c96f73;
-  --red-dark: #9e4e55;
-  --yellow: #f1d77a;
-  --blue: #9ecbd0;
-  --line: #ded6cc;
+  --bg: #fffdf9;
   --white: #ffffff;
+  --ink: #292725;
+  --sub: #77716c;
+  --line: #e8e1d9;
+  --accent: #b85d68;
+  --accent-light: #f7e8e8;
+  --yellow: #f5df91;
+  --blue: #dceff0;
 }
 
 * {
@@ -42,14 +30,16 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background: var(--paper);
+  background: var(--bg);
   font-family:
+    -apple-system,
+    BlinkMacSystemFont,
     "Hiragino Kaku Gothic ProN",
     "Yu Gothic",
     "Noto Sans JP",
     sans-serif;
-  line-height: 1.85;
-  letter-spacing: .035em;
+  line-height: 1.8;
+  letter-spacing: .02em;
 }
 
 a {
@@ -57,25 +47,26 @@ a {
 }
 
 button {
-  font-family: inherit;
+  font: inherit;
 }
 
 
-/* ==================================================
+/* =========================
    HEADER
-================================================== */
+========================= */
 
-.site-header {
-  border-bottom: 1px solid var(--line);
-  background: rgba(255,253,248,.96);
+header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 10;
+
+  background: rgba(255,253,249,.94);
+  border-bottom: 1px solid var(--line);
 }
 
 .header-inner {
-  width: min(1000px, 92%);
-  height: 62px;
+  width: min(940px, 92%);
+  height: 60px;
   margin: auto;
 
   display: flex;
@@ -83,62 +74,70 @@ button {
   justify-content: space-between;
 }
 
-.site-logo {
+.logo {
   text-decoration: none;
-
-  font-family:
-    "Hiragino Mincho ProN",
-    "Yu Mincho",
-    serif;
-
-  font-size: 21px;
-  letter-spacing: .16em;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: .12em;
 }
 
-.site-logo span {
-  color: var(--red);
+.logo span {
+  color: var(--accent);
 }
 
-.nav {
+nav {
   display: flex;
-  gap: 22px;
+  gap: 20px;
 }
 
-.nav a {
+nav a {
   text-decoration: none;
-  color: var(--gray);
+  color: var(--sub);
   font-size: 12px;
 }
 
-.nav a:hover {
-  color: var(--red-dark);
+nav a:hover {
+  color: var(--accent);
 }
 
 
-/* ==================================================
+/* =========================
    HERO
-================================================== */
+========================= */
 
 .hero {
   position: relative;
   overflow: hidden;
 
-  min-height: 610px;
+  min-height: 570px;
+  padding: 80px 20px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   text-align: center;
-
-  padding: 80px 20px;
-
-  background: var(--paper);
 }
 
-/* 手描きっぽい丸 */
+.hero::before {
+  content: "";
+  position: absolute;
 
-.hero-decoration-one {
+  width: 230px;
+  height: 230px;
+
+  border-radius: 50%;
+
+  background: var(--yellow);
+
+  opacity: .42;
+
+  top: 35px;
+  left: -95px;
+}
+
+.hero::after {
+  content: "";
   position: absolute;
 
   width: 180px;
@@ -146,225 +145,184 @@ button {
 
   border-radius: 50%;
 
-  background: var(--yellow);
-
-  opacity: .35;
-
-  top: 60px;
-  left: -70px;
-}
-
-.hero-decoration-two {
-  position: absolute;
-
-  width: 120px;
-  height: 120px;
-
-  border-radius: 50%;
-
   background: var(--blue);
 
-  opacity: .35;
+  opacity: .5;
 
-  right: -35px;
-  bottom: 70px;
-}
-
-.hero-decoration-three {
-  position: absolute;
-
-  width: 25px;
-  height: 25px;
-
-  background: var(--red);
-
-  transform: rotate(45deg);
-
-  opacity: .55;
-
-  top: 100px;
-  right: 20%;
+  right: -70px;
+  bottom: 25px;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
 
-  width: min(700px,100%);
+  width: min(650px, 100%);
 }
 
-.store-sign {
+.shop-label {
   display: inline-block;
+
+  padding: 5px 12px;
 
   border: 1px solid var(--ink);
 
-  padding: 5px 13px;
+  background: var(--white);
 
   font-size: 11px;
-
-  letter-spacing: .15em;
-
-  margin-bottom: 22px;
-
-  background: white;
-}
-
-.logo-large {
-  font-family:
-    "Hiragino Mincho ProN",
-    "Yu Mincho",
-    serif;
-
-  font-weight: normal;
-
-  font-size:
-    clamp(65px,16vw,115px);
-
   letter-spacing: .12em;
 
-  margin-left: .12em;
-
-  line-height: 1.15;
+  margin-bottom: 22px;
 }
 
-.hero-subtitle {
+.hero-title {
+  margin: 0;
+
+  font-size: clamp(58px, 15vw, 105px);
+
   font-family:
     "Hiragino Mincho ProN",
     "Yu Mincho",
     serif;
 
-  font-size:
-    clamp(19px,4vw,27px);
+  font-weight: 400;
 
-  margin: 20px 0 12px;
+  letter-spacing: .14em;
 }
 
-.hero-text {
-  color: var(--gray);
+.hero-copy {
+  margin: 18px 0 10px;
+
+  font-size: clamp(19px, 4vw, 26px);
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+}
+
+.hero-description {
+  margin: 0 auto 30px;
+
+  color: var(--sub);
 
   font-size: 14px;
-
-  line-height: 2;
-
-  margin-bottom: 32px;
 }
 
-.hero-button {
+.main-button {
   display: inline-block;
-
-  text-decoration: none;
-
-  background: var(--red);
-
-  color: white;
 
   padding: 13px 28px;
 
-  font-size: 14px;
+  background: var(--accent);
 
-  border-radius: 4px;
+  color: white;
+
+  text-decoration: none;
+
+  border-radius: 6px;
+
+  font-size: 14px;
 
   transition: .2s;
 }
 
-.hero-button:hover {
-  background: var(--red-dark);
-
+.main-button:hover {
   transform: translateY(-2px);
+  opacity: .9;
 }
 
 
-/* ==================================================
+/* =========================
    COMMON
-================================================== */
+========================= */
 
 section {
-  padding: 85px 20px;
+  padding: 78px 20px;
 }
 
 .inner {
-  width: min(900px,100%);
+  width: min(880px, 100%);
   margin: auto;
 }
 
-.section-heading {
-  margin-bottom: 45px;
+.heading {
+  margin-bottom: 42px;
 }
 
-.section-heading .label {
-  color: var(--red-dark);
+.heading small {
+  display: block;
 
-  font-size: 11px;
+  color: var(--accent);
 
-  letter-spacing: .2em;
+  font-size: 10px;
 
-  margin-bottom: 7px;
+  letter-spacing: .18em;
+
+  margin-bottom: 5px;
 }
 
-.section-heading h2 {
+.heading h2 {
+  margin: 0;
+
   font-family:
     "Hiragino Mincho ProN",
     "Yu Mincho",
     serif;
 
-  font-weight: normal;
+  font-size: clamp(28px, 6vw, 40px);
 
-  font-size:
-    clamp(28px,6vw,42px);
-
-  margin: 0;
+  font-weight: 400;
 }
 
 
-/* ==================================================
+/* =========================
    ABOUT
-================================================== */
+========================= */
 
 .about {
-  background: var(--paper-dark);
+  background: var(--accent-light);
 }
 
-.about-content {
-  max-width: 720px;
+.about-text {
+  width: min(680px, 100%);
   margin: auto;
 }
 
 .about-lead {
+  font-size: clamp(20px, 4vw, 25px);
+
   font-family:
     "Hiragino Mincho ProN",
     "Yu Mincho",
     serif;
 
-  font-size:
-    clamp(19px,4vw,25px);
-
-  line-height: 2;
+  line-height: 1.9;
 
   margin-bottom: 30px;
 }
 
-.about-content p {
-  color: var(--gray);
+.about-text p {
+  color: var(--sub);
+  font-size: 14px;
 }
 
 
-/* ==================================================
+/* =========================
    DRAW
-================================================== */
+========================= */
 
 .draw {
-  background: white;
-
+  background: var(--white);
   text-align: center;
 }
 
-.draw-intro {
-  max-width: 600px;
-  margin: 0 auto 35px;
+.draw-copy {
+  margin-bottom: 28px;
 }
 
-.draw-intro p {
-  color: var(--gray);
+.draw-copy p {
+  color: var(--sub);
   font-size: 14px;
 }
 
@@ -374,119 +332,104 @@ section {
     "Yu Mincho",
     serif;
 
-  font-size:
-    clamp(20px,4vw,27px);
-
-  margin-bottom: 8px;
+  font-size: clamp(20px, 4vw, 26px);
 }
 
 .draw-button {
-  appearance: none;
-
   border: none;
+
+  padding: 14px 34px;
+
+  border-radius: 6px;
 
   background: var(--ink);
 
   color: white;
 
-  padding: 15px 36px;
-
-  font-size: 14px;
-
   cursor: pointer;
 
-  border-radius: 4px;
+  font-size: 14px;
 
   transition: .2s;
 }
 
 .draw-button:hover {
-  background: var(--red-dark);
-
+  background: var(--accent);
   transform: translateY(-2px);
 }
 
 .draw-button:disabled {
-  opacity: .65;
+  opacity: .6;
   cursor: default;
   transform: none;
 }
 
 
-/* ==================================================
-   TAROT CARD
-================================================== */
+/* =========================
+   RESULT
+========================= */
 
 .card-result {
   display: none;
 
-  max-width: 650px;
+  width: min(620px, 100%);
 
-  margin: 55px auto 0;
+  margin: 50px auto 0;
 
-  animation: showCard .6s ease;
+  animation: appear .5s ease;
 }
 
-@keyframes showCard {
-
+@keyframes appear {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(12px);
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
   }
-
 }
 
 .result-label {
-  color: var(--red-dark);
+  color: var(--accent);
 
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: .2em;
+  letter-spacing: .18em;
 
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
-
-/* カード */
-
 .tarot-card {
-  width: 215px;
-  height: 325px;
+  width: 210px;
+  height: 315px;
 
-  margin: 0 auto 22px;
+  margin: 0 auto 20px;
+
+  border: 7px solid white;
+  outline: 1px solid #c98a90;
+
+  border-radius: 8px;
 
   background:
     linear-gradient(
       145deg,
-      #c9767c,
-      #b55f69
+      #c8747d,
+      #ae5964
     );
-
-  border: 8px solid white;
-
-  outline: 1px solid #b66b72;
-
-  border-radius: 7px;
 
   color: white;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
 
   position: relative;
 
   box-shadow:
-    0 10px 25px rgba(50,40,35,.15);
+    0 12px 28px rgba(40,30,25,.14);
 }
 
 .tarot-card::before {
@@ -494,8 +437,8 @@ section {
 
   position: absolute;
 
-  top: 14px;
-  left: 17px;
+  top: 13px;
+  left: 15px;
 
   opacity: .65;
 }
@@ -505,8 +448,8 @@ section {
 
   position: absolute;
 
-  bottom: 14px;
-  right: 17px;
+  right: 15px;
+  bottom: 13px;
 
   opacity: .65;
 }
@@ -518,12 +461,9 @@ section {
 
 .card-symbol {
   font-family: serif;
-
-  font-size: 62px;
-
+  font-size: 60px;
   line-height: 1;
-
-  margin-bottom: 23px;
+  margin-bottom: 22px;
 }
 
 .card-name {
@@ -532,29 +472,29 @@ section {
     "Yu Mincho",
     serif;
 
-  font-size: 23px;
+  font-size: 22px;
 
   letter-spacing: .1em;
 }
 
 .orientation {
-  color: var(--red-dark);
+  color: var(--accent);
 
   font-size: 12px;
 
-  font-weight: bold;
+  font-weight: 700;
 
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
 .card-message {
-  text-align: left;
-
-  background: var(--paper-dark);
-
   padding: 22px;
 
-  border-left: 3px solid var(--red);
+  background: #faf6ef;
+
+  border: 1px solid var(--line);
+
+  text-align: left;
 
   font-size: 14px;
 
@@ -564,48 +504,44 @@ section {
 }
 
 
-/* ==================================================
+/* =========================
    SHOP
-================================================== */
+========================= */
 
 .shop {
-  background: var(--paper);
+  background: var(--bg);
 }
 
 .shop-grid {
   display: grid;
 
   grid-template-columns:
-    repeat(3,1fr);
+    repeat(3, 1fr);
 
-  gap: 20px;
+  gap: 18px;
 }
 
 .shop-item {
+  padding: 28px 22px;
+
   background: white;
 
   border: 1px solid var(--line);
 
-  padding: 27px 22px;
-
-  text-align: center;
+  border-radius: 8px;
 }
 
 .shop-number {
-  font-size: 11px;
+  color: var(--accent);
 
-  color: var(--red-dark);
+  font-size: 10px;
 
-  margin-bottom: 8px;
-}
-
-.shop-icon {
-  font-size: 30px;
-
-  margin-bottom: 8px;
+  letter-spacing: .12em;
 }
 
 .shop-item h3 {
+  margin: 10px 0;
+
   font-family:
     "Hiragino Mincho ProN",
     "Yu Mincho",
@@ -613,141 +549,42 @@ section {
 
   font-size: 21px;
 
-  font-weight: normal;
-
-  margin: 5px 0 15px;
+  font-weight: 400;
 }
 
 .shop-item p {
-  color: var(--gray);
+  margin: 0;
+
+  color: var(--sub);
 
   font-size: 13px;
-
-  margin: 0;
 }
 
 
-/* ==================================================
+/* =========================
    STORY
-================================================== */
+========================= */
 
 .story {
   background: white;
 }
 
 .story-content {
-  max-width: 720px;
+  width: min(680px, 100%);
   margin: auto;
 }
 
 .story-content p {
-  color: var(--gray);
+  color: var(--sub);
+  font-size: 14px;
 }
 
 .story-box {
-  margin: 35px 0;
+  margin: 30px 0;
 
   padding: 25px;
-
-  border:
-    1px dashed var(--line);
 
   background: #fffaf0;
-
-  font-family:
-    "Hiragino Mincho ProN",
-    "Yu Mincho",
-    serif;
-
-  font-size:
-    clamp(18px,4vw,23px);
-
-  line-height: 2;
-}
-
-
-/* ==================================================
-   HOW TO
-================================================== */
-
-.howto {
-  background: var(--paper-dark);
-}
-
-.howto-list {
-  max-width: 700px;
-  margin: auto;
-}
-
-.howto-item {
-  display: grid;
-
-  grid-template-columns: 48px 1fr;
-
-  gap: 18px;
-
-  padding: 22px 0;
-
-  border-bottom: 1px solid var(--line);
-}
-
-.howto-item:last-child {
-  border-bottom: none;
-}
-
-.howto-number {
-  width: 38px;
-  height: 38px;
-
-  border-radius: 50%;
-
-  background: white;
-
-  border: 1px solid var(--red);
-
-  color: var(--red-dark);
-
-  display: grid;
-
-  place-items: center;
-
-  font-size: 13px;
-}
-
-.howto-item h3 {
-  font-size: 17px;
-
-  margin: 0 0 4px;
-}
-
-.howto-item p {
-  color: var(--gray);
-
-  font-size: 13px;
-
-  margin: 0;
-}
-
-
-/* ==================================================
-   GUIDE
-================================================== */
-
-.guide {
-  background: white;
-}
-
-.guide-content {
-  max-width: 700px;
-  margin: auto;
-}
-
-.guide-note {
-  background: var(--paper-dark);
-
-  padding: 25px;
-
-  margin-bottom: 30px;
 
   border-left: 3px solid var(--yellow);
 
@@ -756,27 +593,142 @@ section {
     "Yu Mincho",
     serif;
 
-  font-size:
-    clamp(18px,4vw,24px);
+  font-size: clamp(18px, 4vw, 23px);
+
+  line-height: 2;
+}
+
+
+/* =========================
+   HOW TO
+========================= */
+
+.howto {
+  background: var(--accent-light);
+}
+
+.steps {
+  width: min(680px, 100%);
+  margin: auto;
+}
+
+.step {
+  display: grid;
+
+  grid-template-columns: 42px 1fr;
+
+  gap: 18px;
+
+  padding: 20px 0;
+
+  border-bottom: 1px solid rgba(80,60,50,.12);
+}
+
+.step:last-child {
+  border-bottom: none;
+}
+
+.step-number {
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: white;
+
+  border: 1px solid var(--accent);
+
+  color: var(--accent);
+
+  font-size: 12px;
+}
+
+.step h3 {
+  margin: 0 0 3px;
+
+  font-size: 16px;
+}
+
+.step p {
+  margin: 0;
+
+  color: var(--sub);
+
+  font-size: 13px;
+}
+
+
+/* =========================
+   GUIDE
+========================= */
+
+.guide {
+  background: white;
+}
+
+.guide-content {
+  width: min(680px, 100%);
+  margin: auto;
+}
+
+.guide-note {
+  padding: 22px;
+
+  background: var(--bg);
+
+  border: 1px solid var(--line);
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: clamp(18px, 4vw, 23px);
+
+  margin-bottom: 28px;
 }
 
 .guide-content p {
-  color: var(--gray);
+  color: var(--sub);
+
+  font-size: 14px;
 }
 
 
-/* ==================================================
+/* =========================
+   LAST
+========================= */
+
+.last {
+  background: var(--bg);
+
+  text-align: center;
+}
+
+.last-copy {
+  color: var(--sub);
+
+  font-size: 14px;
+
+  margin-bottom: 28px;
+}
+
+
+/* =========================
    FOOTER
-================================================== */
+========================= */
 
 footer {
+  padding: 42px 20px;
+
   background: var(--ink);
 
   color: white;
 
   text-align: center;
-
-  padding: 45px 20px;
 }
 
 .footer-logo {
@@ -785,43 +737,46 @@ footer {
     "Yu Mincho",
     serif;
 
-  font-size: 25px;
+  font-size: 24px;
 
-  letter-spacing: .15em;
+  letter-spacing: .12em;
 
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
-.footer-text {
-  font-size: 11px;
+.footer-shop {
+  font-size: 12px;
+}
 
-  opacity: .65;
+.footer-note {
+  margin-top: 15px;
+
+  font-size: 10px;
+
+  opacity: .55;
 }
 
 
-/* ==================================================
+/* =========================
    MOBILE
-================================================== */
+========================= */
 
-@media(max-width:700px) {
+@media (max-width: 700px) {
 
-  .nav {
-    justify-content: center;
+  nav {
+    gap: 12px;
   }
 
-  .nav-links {
-    display: none;
+  nav a {
+    font-size: 11px;
   }
 
   section {
-    padding: 65px 20px;
+    padding: 64px 20px;
   }
 
   .hero {
-    min-height: 560px;
-
-    padding:
-      65px 20px 80px;
+    min-height: 540px;
   }
 
   .shop-grid {
@@ -829,797 +784,425 @@ footer {
   }
 
   .tarot-card {
-    width: 205px;
-    height: 310px;
+    width: 200px;
+    height: 300px;
   }
 
 }
 
 </style>
-
 </head>
-
-
 <body>
-
-
-<!-- ==================================================
-     HEADER
-================================================== -->
-
-<header class="site-header">
-
+<header>
   <div class="header-inner">
+<a href="#top" class="logo">
+  <span>結</span>の札
+</a>
 
-    <a
-      href="#top"
-      class="site-logo">
-
-      <span>結</span>の札
-
-    </a>
-
-
-    <nav class="nav">
-
-      <a href="#draw">
-        札を引く
-      </a>
-
-      <a href="#about">
-        この店について
-      </a>
-
-      <a href="#howto">
-        楽しみ方
-      </a>
-
-    </nav>
-
+<nav>
+  <a href="#draw">札を引く</a>
+  <a href="#about">この店</a>
+  <a href="#howto">遊び方</a>
+</nav>
   </div>
-
 </header>
-
-
-
 <main id="top">
-
-
-<!-- ==================================================
-     HERO
-================================================== -->
-
+<!-- HERO -->
 <section class="hero">
-
-  <div class="hero-decoration-one"></div>
-
-  <div class="hero-decoration-two"></div>
-
-  <div class="hero-decoration-three"></div>
-
-
   <div class="hero-content">
+<div class="shop-label">
+  小さなタロット屋
+</div>
 
+<h1 class="hero-title">
+  結の札
+</h1>
 
-    <div class="store-sign">
+<div class="hero-copy">
+  今日は、何が出るかな。
+</div>
 
-      小さなタロット屋
+<p class="hero-description">
+  タロットを一枚引いて、<br>
+  ちょっと眺めてみる。<br>
+  それだけでも、けっこう面白いです。
+</p>
 
-    </div>
+<a href="#draw" class="main-button">
+  一枚引いてみる
+</a>
+  </div>
+</section>
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="inner">
+<div class="heading">
 
+  <small>ABOUT</small>
 
-    <div class="logo-large">
+  <h2>ここは、こんな店です。</h2>
 
-      結の札
+</div>
 
-    </div>
+<div class="about-text">
 
-
-    <div class="hero-subtitle">
-
-      今日は、どんな札かな？
-
-    </div>
-
-
-    <p class="hero-text">
-
-      タロットを一枚引いて、<br>
-      ちょっと考えてみる。<br>
-      そんな時間を楽しむ店です。
-
-    </p>
-
-
-    <a
-      href="#draw"
-      class="hero-button">
-
-      札を引いてみる
-
-    </a>
-
-
+  <div class="about-lead">
+    ふらっと来て、<br>
+    一枚引いて、<br>
+    「へえ」と思って帰る。
   </div>
 
+  <p>
+    結の札は、タロットを使って<br>
+    ちょっと遊んでみる場所です。
+  </p>
+
+  <p>
+    カードの意味を知らなくても大丈夫。<br>
+    当たるかどうかも、とりあえず置いておきましょう。
+  </p>
+
+  <p>
+    「この絵、好き」<br>
+    「なんか今の自分っぽい」<br>
+    「これはよく分からないな」
+  </p>
+
+  <p>
+    そういう話をしながら、<br>
+    一枚のカードを眺めています。
+  </p>
+
+</div>
+  </div>
 </section>
-
-
-
-<!-- ==================================================
-     ABOUT
-================================================== -->
-
-<section
-  id="about"
-  class="about">
-
+<!-- DRAW -->
+<section class="draw" id="draw">
   <div class="inner">
+<div class="heading">
 
+  <small>ONE CARD</small>
 
-    <div class="section-heading">
+  <h2>とりあえず、一枚。</h2>
 
-      <div class="label">
-        ABOUT THE SHOP
-      </div>
+</div>
 
-      <h2>
-        結の札は、こんな店。
-      </h2>
+<div class="draw-copy">
 
-    </div>
-
-
-    <div class="about-content">
-
-
-      <p class="about-lead">
-
-        ふらっと入って、<br>
-        一枚引いて、<br>
-        少し話して、<br>
-        それから帰る。
-
-      </p>
-
-
-      <p>
-
-        結の札は、
-        タロットを使って
-        自分のことを少し眺めてみる
-        小さな店です。
-
-      </p>
-
-
-      <p>
-
-        大げさなことはしません。
-
-        <br><br>
-
-        「このカード、なんか好き」<br>
-        「今日の自分っぽい」<br>
-        「これはよく分からないな」
-
-        <br><br>
-
-        そんな話をしながら、
-        一枚の札を楽しんでもらえたらと思っています。
-
-      </p>
-
-    </div>
-
+  <div class="draw-question">
+    今日のカードは何かな？
   </div>
 
-</section>
+  <p>
+    深く考えなくてOKです。<br>
+    気が向いたらどうぞ。
+  </p>
+
+</div>
+
+<button
+  id="drawButton"
+  class="draw-button"
+  type="button">
+
+  札を引く
+
+</button>
 
 
+<div
+  id="cardResult"
+  class="card-result">
 
-<!-- ==================================================
-     DRAW
-================================================== -->
+  <div class="result-label">
+    TODAY'S CARD
+  </div>
 
-<section
-  id="draw"
-  class="draw">
-
-  <div class="inner">
-
-
-    <div class="section-heading">
-
-      <div class="label">
-        ONE CARD
-      </div>
-
-      <h2>
-        まずは一枚、どうぞ。
-      </h2>
-
-    </div>
-
-
-    <div class="draw-intro">
-
-      <div class="draw-question">
-
-        今日のあなたは、どんな札？
-
-      </div>
-
-
-      <p>
-
-        深く考えなくて大丈夫。<br>
-        気が向いたら、ぽちっとどうぞ。
-
-      </p>
-
-    </div>
-
-
-    <button
-      id="drawButton"
-      class="draw-button"
-      type="button">
-
-      札を引く
-
-    </button>
-
-
-
-    <!-- RESULT -->
+  <div class="tarot-card">
 
     <div
-      id="cardResult"
-      class="card-result">
+      id="cardNumber"
+      class="card-number">
+    </div>
 
+    <div
+      id="cardSymbol"
+      class="card-symbol">
+    </div>
 
-      <div class="result-label">
-        TODAY'S CARD
-      </div>
-
-
-      <div class="tarot-card">
-
-        <div
-          id="cardNumber"
-          class="card-number">
-        </div>
-
-        <div
-          id="cardSymbol"
-          class="card-symbol">
-        </div>
-
-        <div
-          id="cardName"
-          class="card-name">
-        </div>
-
-      </div>
-
-
-      <div
-        id="orientation"
-        class="orientation">
-      </div>
-
-
-      <div
-        id="cardMessage"
-        class="card-message">
-      </div>
-
-
-      <button
-        id="againButton"
-        class="draw-button"
-        type="button"
-        style="margin-top:24px;">
-
-        もう一枚引く
-
-      </button>
-
-
+    <div
+      id="cardName"
+      class="card-name">
     </div>
 
   </div>
 
+  <div
+    id="orientation"
+    class="orientation">
+  </div>
+
+  <div
+    id="cardMessage"
+    class="card-message">
+  </div>
+
+  <button
+    id="againButton"
+    class="draw-button"
+    type="button"
+    style="margin-top:24px;">
+
+    もう一枚
+
+  </button>
+
+</div>
+  </div>
 </section>
-
-
-
-<!-- ==================================================
-     THREE CHARACTERS
-================================================== -->
-
+<!-- SHOP -->
 <section class="shop">
-
   <div class="inner">
+<div class="heading">
 
+  <small>THE SHOP</small>
 
-    <div class="section-heading">
+  <h2>ここにいる人。</h2>
 
-      <div class="label">
-        THE SHOP
-      </div>
+</div>
 
-      <h2>
-        この店にいる人。
-      </h2>
+<div class="shop-grid">
 
-    </div>
+  <article class="shop-item">
 
+    <div class="shop-number">01</div>
 
-    <div class="shop-grid">
+    <h3>札を並べる人</h3>
 
+    <p>
+      タロットが好きで、<br>
+      あれこれ考えている人です。
+    </p>
 
-      <article class="shop-item">
+  </article>
 
-        <div class="shop-number">
-          01
-        </div>
+  <article class="shop-item">
 
-        <div class="shop-icon">
-          🃏
-        </div>
+    <div class="shop-number">02</div>
 
-        <h3>
-          結の札
-        </h3>
+    <h3>一緒に見る人</h3>
 
-        <p>
+    <p>
+      カードの意味を話したり、<br>
+      「これって何だろう」と考えたりします。
+    </p>
 
-          札を並べて、
-          店を開けている人。
+  </article>
 
-          <br><br>
+  <article class="shop-item">
 
-          タロットのことを
-          あれこれ考えるのが好きです。
+    <div class="shop-number">03</div>
 
-        </p>
+    <h3>来てくれる人</h3>
 
-      </article>
+    <p>
+      もちろん、あなたです。<br>
+      カードをどう思うかは自由です。
+    </p>
 
+  </article>
 
-
-      <article class="shop-item">
-
-        <div class="shop-number">
-          02
-        </div>
-
-        <div class="shop-icon">
-          📖
-        </div>
-
-        <h3>
-          案内人
-        </h3>
-
-        <p>
-
-          カードの意味を説明したり、
-          話を聞いたりする人。
-
-          <br><br>
-
-          「こういう見方もあるよ」
-          と札を眺めるお手伝いをします。
-
-        </p>
-
-      </article>
-
-
-
-      <article class="shop-item">
-
-        <div class="shop-number">
-          03
-        </div>
-
-        <div class="shop-icon">
-          ☕
-        </div>
-
-        <h3>
-          お客さん
-        </h3>
-
-        <p>
-
-          店に来てくれたあなた。
-
-          <br><br>
-
-          札をどう思うかは、
-          あなたの自由です。
-
-        </p>
-
-      </article>
-
-
-    </div>
-
+</div>
   </div>
-
 </section>
-
-
-
-<!-- ==================================================
-     STORY
-================================================== -->
-
+<!-- STORY -->
 <section class="story">
-
   <div class="inner">
+<div class="heading">
 
+  <small>CARDS</small>
 
-    <div class="section-heading">
+  <h2>カードを見てみる。</h2>
 
-      <div class="label">
-        YOUR STORY
-      </div>
+</div>
 
-      <h2>
-        札を見て、何を思う？
-      </h2>
+<div class="story-content">
 
-    </div>
+  <p>
+    タロットには、いろんな絵があります。
+  </p>
 
+  <div class="story-box">
 
-    <div class="story-content">
+    「これ、なんか気になる」<br>
+    「今日の自分っぽい」<br>
+    「……どういうこと？」
+  </div>
 
+  <p>
+    それで十分です。
+  </p>
 
+  <p>
+    カードの意味を完璧に覚える必要もありません。
+  </p>
+
+  <p>
+    一枚のカードをきっかけに、<br>
+    少しだけ自分のことを考えてみる。
+  </p>
+
+  <p>
+    結の札では、そんな感じで遊んでいます。
+  </p>
+
+</div>
+  </div>
+</section>
+<!-- HOW TO -->
+<section class="howto" id="howto">
+  <div class="inner">
+<div class="heading">
+
+  <small>HOW TO</small>
+
+  <h2>遊び方。</h2>
+
+</div>
+
+<div class="steps">
+
+  <div class="step">
+
+    <div class="step-number">1</div>
+
+    <div>
+      <h3>来る</h3>
       <p>
-
-        タロットのカードには、
-        いろいろな絵が描かれています。
-
+        なんとなく気になった。それでOK。
       </p>
-
-
-      <div class="story-box">
-
-        「なんか、今の自分っぽい」
-
-        <br>
-
-        「この絵が気になる」
-
-        <br>
-
-        「これは全然ピンとこない」
-
-      </div>
-
-
-      <p>
-
-        どれも立派な感想です。
-
-        <br><br>
-
-        カードの意味を覚えていなくても、
-        正しい答えを出さなくても大丈夫。
-
-        <br><br>
-
-        一枚の札をきっかけに、
-        自分のことを少し考えてみる。
-
-        <br><br>
-
-        結の札では、
-        そんな時間を大切にしています。
-
-      </p>
-
     </div>
 
   </div>
 
-</section>
+  <div class="step">
 
+    <div class="step-number">2</div>
 
-
-<!-- ==================================================
-     HOW TO
-================================================== -->
-
-<section
-  id="howto"
-  class="howto">
-
-  <div class="inner">
-
-
-    <div class="section-heading">
-
-      <div class="label">
-        HOW TO
-      </div>
-
-      <h2>
-        楽しみ方は簡単。
-      </h2>
-
-    </div>
-
-
-    <div class="howto-list">
-
-
-      <div class="howto-item">
-
-        <div class="howto-number">
-          1
-        </div>
-
-        <div>
-
-          <h3>
-            店に入る
-          </h3>
-
-          <p>
-            ちょっと気になったので来てみた。
-            それで十分です。
-          </p>
-
-        </div>
-
-      </div>
-
-
-
-      <div class="howto-item">
-
-        <div class="howto-number">
-          2
-        </div>
-
-        <div>
-
-          <h3>
-            一枚引く
-          </h3>
-
-          <p>
-            目の前の札から、
-            気になった一枚を選びます。
-          </p>
-
-        </div>
-
-      </div>
-
-
-
-      <div class="howto-item">
-
-        <div class="howto-number">
-          3
-        </div>
-
-        <div>
-
-          <h3>
-            眺める
-          </h3>
-
-          <p>
-            絵を見たり、
-            意味を調べたり、
-            いろいろ話したり。
-          </p>
-
-        </div>
-
-      </div>
-
-
-
-      <div class="howto-item">
-
-        <div class="howto-number">
-          4
-        </div>
-
-        <div>
-
-          <h3>
-            帰る
-          </h3>
-
-          <p>
-            面白かったな、と思ったら
-            それを持って帰ってください。
-          </p>
-
-        </div>
-
-      </div>
-
-
+    <div>
+      <h3>引く</h3>
+      <p>
+        一枚、カードを引いてみます。
+      </p>
     </div>
 
   </div>
 
+  <div class="step">
+
+    <div class="step-number">3</div>
+
+    <div>
+      <h3>見る</h3>
+      <p>
+        絵を見たり、意味を読んだり、話したり。
+      </p>
+    </div>
+
+  </div>
+
+  <div class="step">
+
+    <div class="step-number">4</div>
+
+    <div>
+      <h3>帰る</h3>
+      <p>
+        「面白かったな」で終わって大丈夫です。
+      </p>
+    </div>
+
+  </div>
+
+</div>
+  </div>
 </section>
-
-
-
-<!-- ==================================================
-     GUIDE
-================================================== -->
-
+<!-- GUIDE -->
 <section class="guide">
-
   <div class="inner">
+<div class="heading">
 
+  <small>FROM THE SHOP</small>
 
-    <div class="section-heading">
+  <h2>ちょっとだけ。</h2>
 
-      <div class="label">
-        FROM THE GUIDE
-      </div>
+</div>
 
-      <h2>
-        案内人より。
-      </h2>
+<div class="guide-content">
 
-    </div>
-
-
-    <div class="guide-content">
-
-
-      <div class="guide-note">
-
-        「この札、今日は何を言ってるんでしょうね。」
-
-      </div>
-
-
-      <p>
-
-        タロットは、
-        答えを押しつけるためのものではありません。
-
-        <br><br>
-
-        一緒に札を眺めて、
-        「これってどういうことだろう」
-        と考えてみる。
-
-        <br><br>
-
-        その時間そのものを、
-        楽しんでもらえたらと思っています。
-
-      </p>
-
-
-      <p>
-
-        もちろん、
-
-        <br><br>
-
-        「今日は特に何も思わなかった！」
-
-        <br><br>
-
-        でも大丈夫。
-
-        <br><br>
-
-        そういう日もあります。
-
-      </p>
-
-    </div>
-
+  <div class="guide-note">
+    「このカード、今日は何に見えます？」
   </div>
 
-</section>
+  <p>
+    タロットには、いろんな読み方があります。
+  </p>
 
+  <p>
+    「こういう意味ですよ」と決めつけるより、<br>
+    一緒に見てみるほうが面白いと思っています。
+  </p>
 
+  <p>
+    もちろん、
+  </p>
 
-<!-- ==================================================
-     LAST
-================================================== -->
+  <p>
+    「今日は何も思いつかない」
+  </p>
 
-<section class="draw">
+  <p>
+    それも全然ありです。
+  </p>
 
-  <div class="inner">
-
-    <div class="section-heading">
-
-      <div class="label">
-        SEE YOU
-      </div>
-
-      <h2>
-        また、ふらっとどうぞ。
-      </h2>
-
-    </div>
-
-
-    <div class="draw-intro">
-
-      <p>
-
-        一枚引いて、<br>
-        ちょっと考えて、<br>
-        「じゃ、またね」。
-
-      </p>
-
-    </div>
-
-
-    <a
-      href="#draw"
-      class="hero-button">
-
-      もう一枚引く
-
-    </a>
-
+</div>
   </div>
-
 </section>
+<!-- LAST -->
+<section class="last">
+  <div class="inner">
+<div class="heading">
 
+  <small>SEE YOU</small>
 
+  <h2>また、どうぞ。</h2>
+
+</div>
+
+<div class="last-copy">
+  一枚引いて、ちょっと眺めて。<br>
+  それでは、また。
+</div>
+
+<a href="#draw" class="main-button">
+  もう一枚引く
+</a>
+  </div>
+</section>
 </main>
-
-
-
-<!-- ==================================================
-     FOOTER
-================================================== -->
-
 <footer>
-
   <div class="footer-logo">
     結の札
   </div>
-
-  <div>
+  <div class="footer-shop">
     小さなタロット屋
   </div>
-
-  <div class="footer-text">
-    一枚の札から、ちょっとだけ自分の物語を眺める。
+  <div class="footer-note">
+    カードを一枚、ちょっと眺める。
   </div>
-
 </footer>
-
-
-
-<!-- ==================================================
-     JAVASCRIPT
-================================================== -->
-
 <script>
 
-
-/* ==================================================
-   TAROT DATA
-================================================== */
 
 const tarotCards = [
 
@@ -1628,7 +1211,7 @@ const tarotCards = [
     name: "愚者",
     symbol: "0",
     message:
-      "まだ名前のついていない旅が、あなたの前にあります。\n\n正解を知ってから歩くのではなく、歩きながら物語を見つけていく時です。"
+      "さて、旅のはじまりです。\n\nまだ決まっていないことが、けっこうあります。\n\n今日は「とりあえずやってみる」くらいでいいのかもしれません。"
   },
 
   {
@@ -1636,7 +1219,7 @@ const tarotCards = [
     name: "魔術師",
     symbol: "Ⅰ",
     message:
-      "あなたの手元には、すでに物語を動かす道具があります。\n\n足りないものを探す前に、今持っているものを見つめてみてください。"
+      "意外と、もう材料は揃っているかもしれません。\n\n足りないものを探す前に、手元にあるものをちょっと見てみましょう。"
   },
 
   {
@@ -1644,7 +1227,7 @@ const tarotCards = [
     name: "女教皇",
     symbol: "Ⅱ",
     message:
-      "言葉にならない感覚に、静かに耳を澄ませる時です。\n\n答えは外から来るとは限りません。"
+      "今日は少し静かめ。\n\nすぐ答えを出さずに、「自分はどう思ってるんだろう」と考えてみるのもよさそうです。"
   },
 
   {
@@ -1652,7 +1235,7 @@ const tarotCards = [
     name: "女帝",
     symbol: "Ⅲ",
     message:
-      "育てているものがあります。\n\nすぐに結果を求めず、今あるものに水を与えるような時間を大切にしてください。"
+      "育てているものがありそうです。\n\n急いで結果を出さなくても大丈夫。\n\nちゃんと育っている途中かもしれません。"
   },
 
   {
@@ -1660,7 +1243,7 @@ const tarotCards = [
     name: "皇帝",
     symbol: "Ⅳ",
     message:
-      "あなたの物語に、一本の柱を立てる時です。\n\n守りたいもの、譲れないものを知ることで、足元が定まります。"
+      "ここは譲らない、という場所があるのかもしれません。\n\n自分にとって大事なものを、ちょっと確認してみましょう。"
   },
 
   {
@@ -1668,7 +1251,7 @@ const tarotCards = [
     name: "教皇",
     symbol: "Ⅴ",
     message:
-      "誰かから受け取った言葉や知恵が、今のあなたを支えるかもしれません。\n\n受け継ぐことと、そのまま従うことは同じではありません。"
+      "誰かから教わったことが、役に立つ日かもしれません。\n\nでも、そのまま使う必要はありません。\n\n自分に合う形にしてもよさそうです。"
   },
 
   {
@@ -1676,7 +1259,7 @@ const tarotCards = [
     name: "恋人たち",
     symbol: "Ⅵ",
     message:
-      "あなたは何を選びたいのでしょう。\n\n誰かに選ばれることだけではなく、自分自身が選ぶことにも目を向けてください。"
+      "さて、どうしましょう。\n\n今日は「自分はどっちがいい？」を少し大事にしてみてもよさそうです。"
   },
 
   {
@@ -1684,7 +1267,7 @@ const tarotCards = [
     name: "戦車",
     symbol: "Ⅶ",
     message:
-      "物語を前へ進める力があります。\n\nすべてを完璧に整えるより、まず自分の行きたい方向を見定めてください。"
+      "前へ進みたい気分。\n\n全部完璧にしてからではなく、まず動いてみるのもありです。"
   },
 
   {
@@ -1692,7 +1275,7 @@ const tarotCards = [
     name: "力",
     symbol: "Ⅷ",
     message:
-      "強さとは、押し切ることだけではありません。\n\n自分の中にあるものを、乱暴に扱わず導いていく強さがあります。"
+      "強く押すだけが強さではありません。\n\n落ち着いて扱うことや、待つことも立派な力です。"
   },
 
   {
@@ -1700,7 +1283,7 @@ const tarotCards = [
     name: "隠者",
     symbol: "Ⅸ",
     message:
-      "少し静かな場所へ。\n\n人の答えから離れることで、自分にしか聞こえない声が見えてくるかもしれません。"
+      "今日はちょっと一人の時間。\n\n人の意見から少し離れて、自分ではどう思うのか考えてみてもよさそうです。"
   },
 
   {
@@ -1708,7 +1291,7 @@ const tarotCards = [
     name: "運命の輪",
     symbol: "Ⅹ",
     message:
-      "物語は止まったままではありません。\n\n思いがけない巡り合わせが、景色を変えることがあります。"
+      "流れが変わることがあります。\n\n思いがけないことが起きても、「そういう日か」と眺めてみるのも面白そうです。"
   },
 
   {
@@ -1716,7 +1299,7 @@ const tarotCards = [
     name: "正義",
     symbol: "Ⅺ",
     message:
-      "今のあなたにとって、本当に大切なものは何でしょう。\n\n感情だけでも理屈だけでもない、自分なりの釣り合いを探してください。"
+      "ちょっと整理してみましょう。\n\n自分にとって納得できることは何なのか、落ち着いて考える時間です。"
   },
 
   {
@@ -1724,7 +1307,7 @@ const tarotCards = [
     name: "吊るされた男",
     symbol: "Ⅻ",
     message:
-      "動かない時間にも意味があります。\n\n視点を逆さまにしてみると、今まで見えなかったものが見えてくるかもしれません。"
+      "今日は動かない日でもいいのかもしれません。\n\nいつもと違う角度から見てみると、意外な発見があるかも。"
   },
 
   {
@@ -1732,7 +1315,7 @@ const tarotCards = [
     name: "死神",
     symbol: "ⅩⅢ",
     message:
-      "終わりは、物語が消えることではありません。\n\n古い形を手放すことで、次の章が始まることがあります。"
+      "何かを終わらせるタイミングかもしれません。\n\n終わることは、次が始まるための空き場所でもあります。"
   },
 
   {
@@ -1740,7 +1323,7 @@ const tarotCards = [
     name: "節制",
     symbol: "ⅩⅣ",
     message:
-      "異なるものを混ぜ合わせることで、新しい調和が生まれます。\n\n急がず、少しずつ自分の中のものを馴染ませていきましょう。"
+      "ちょうどいいところを探す日。\n\n無理に白黒つけず、少しずつ混ぜてみるのもよさそうです。"
   },
 
   {
@@ -1748,7 +1331,7 @@ const tarotCards = [
     name: "悪魔",
     symbol: "ⅩⅤ",
     message:
-      "あなたを縛っているものは、本当に外から与えられた鎖でしょうか。\n\n自分が握っているものに気づくことから、物語は変わり始めます。"
+      "ついつい気になってしまうものがありますか？\n\n「自分、これ好きなんだな」と気づくだけでも、ちょっと面白いです。"
   },
 
   {
@@ -1756,7 +1339,7 @@ const tarotCards = [
     name: "塔",
     symbol: "ⅩⅥ",
     message:
-      "崩れることでしか見えない景色があります。\n\n失ったものだけではなく、その後に現れる空間にも目を向けてみてください。"
+      "予定どおりにいかないこともあります。\n\nでも、崩れたあとにしか見えないものもあります。\n\n今日は少し柔軟に。"
   },
 
   {
@@ -1764,7 +1347,7 @@ const tarotCards = [
     name: "星",
     symbol: "ⅩⅦ",
     message:
-      "まだ遠くに見えるものを、心の中で灯しておきましょう。\n\n小さな希望でも、暗い道では十分に目印になります。"
+      "小さくても、楽しみにしていることはありますか？\n\n今すぐ大きな答えがなくても、そういうものを大事にしてよさそうです。"
   },
 
   {
@@ -1772,7 +1355,7 @@ const tarotCards = [
     name: "月",
     symbol: "ⅩⅧ",
     message:
-      "見えているものがすべてとは限りません。\n\n不安や想像の中にも、自分の心が伝えようとしているものがあります。"
+      "なんとなくモヤモヤする日もあります。\n\n分からないものを、無理に分かったことにしなくても大丈夫です。"
   },
 
   {
@@ -1780,7 +1363,7 @@ const tarotCards = [
     name: "太陽",
     symbol: "ⅩⅨ",
     message:
-      "あなたの物語には、光の当たる場所があります。\n\n隠していたものを少しだけ外へ出してみることで、世界との距離が変わるかもしれません。"
+      "今日はちょっと明るめ。\n\n好きなものや楽しいことを、素直に楽しんでみてもよさそうです。"
   },
 
   {
@@ -1788,7 +1371,7 @@ const tarotCards = [
     name: "審判",
     symbol: "ⅩⅩ",
     message:
-      "過去から届く呼び声があります。\n\nそれは後悔だけではなく、まだ終わっていない物語からの合図かもしれません。"
+      "前に気になっていたことが、もう一度出てくるかもしれません。\n\n「今ならどう思う？」と、もう一回見てみるのもありです。"
   },
 
   {
@@ -1796,15 +1379,11 @@ const tarotCards = [
     name: "世界",
     symbol: "ⅩⅩⅠ",
     message:
-      "ひとつの物語が、ひとまず結ばれようとしています。\n\nここまで歩いてきた自分自身を、静かに振り返ってみてください。"
+      "ひとまず、ここまで。\n\nできたこと、終わったことを少し眺めてみましょう。\n\nちゃんと一周してきたのかもしれません。"
   }
 
 ];
 
-
-/* ==================================================
-   DRAW
-================================================== */
 
 function drawCard() {
 
@@ -1814,26 +1393,19 @@ function drawCard() {
   const result =
     document.getElementById("cardResult");
 
-
   button.disabled = true;
-
-  button.textContent =
-    "札を選んでいます…";
+  button.textContent = "選んでいます…";
 
 
-  setTimeout(function() {
-
+  setTimeout(() => {
 
     const index =
       Math.floor(
-        Math.random() *
-        tarotCards.length
+        Math.random() * tarotCards.length
       );
-
 
     const card =
       tarotCards[index];
-
 
     const reversed =
       Math.random() < 0.5;
@@ -1841,77 +1413,59 @@ function drawCard() {
 
     document.getElementById(
       "cardNumber"
-    ).textContent =
-      card.number;
+    ).textContent = card.number;
 
 
     document.getElementById(
       "cardSymbol"
-    ).textContent =
-      card.symbol;
+    ).textContent = card.symbol;
 
 
     document.getElementById(
       "cardName"
-    ).textContent =
-      card.name;
+    ).textContent = card.name;
 
 
     document.getElementById(
       "orientation"
     ).textContent =
-      reversed
-        ? "逆位置"
-        : "正位置";
+      reversed ? "逆位置" : "正位置";
 
 
-    let message =
-      card.message;
+    let message = card.message;
 
 
     if (reversed) {
 
       message =
-        "今日は、少しだけ反対側から眺めてみましょう。\n\n"
-        +
-        message;
+        "今日は、ちょっと反対側から。\n\n"
+        + message;
 
     }
 
 
     document.getElementById(
       "cardMessage"
-    ).textContent =
-      message;
+    ).textContent = message;
 
 
-    result.style.display =
-      "block";
+    result.style.display = "block";
 
 
     button.disabled = false;
 
-    button.textContent =
-      "札を引き直す";
+    button.textContent = "もう一度引く";
 
 
     result.scrollIntoView({
-
       behavior: "smooth",
-
       block: "center"
-
     });
 
-
-  }, 500);
+  }, 450);
 
 }
 
-
-/* ==================================================
-   EVENTS
-================================================== */
 
 document
   .getElementById("drawButton")
@@ -1930,7 +1484,5 @@ document
 
 
 </script>
-
-
 </body>
 </html>
