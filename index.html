@@ -5,26 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>結の札｜きょうは、どんな物語かな</title>
 <style>
-
-/* ==================================================
-   DESIGN TOKENS (大人可愛い世界観カラー)
-================================================== */
+/* =========================================================
+   YUI NO FUDA - STORY LIBRARY
+   ========================================================= */
 :root {
-  --book-blue: #2c4a6f;        /* 表紙の深みのあるブルー */
-  --book-blue-dark: #1e334d;   
-  --paper: #fcf9f2;            /* 温かみのある本文用紙色 */
-  --paper-deep: #f2ede1;
+  --navy: #2c4a6f;
+  --navy-deep: #192a3e;
+  --navy-soft: #3b5c84;
+
+  --paper: #fcf9f2;
   --paper-light: #fffdf9;
-  
+  --paper-dark: #f2ede1;
+
   --ink: #3a322c;
-  --sub: #7a6e65;
-  
-  --gold: #d4af37;             /* 鍵や星のゴールド感 */
+  --muted: #7a6e65;
+
+  --gold: #d4af37;
   --gold-light: #f7eed3;
-  --accent-red: #c2696d;       /* リボンやカードの赤み */
+
+  --rose: #c2696d;
+  --rose-light: #f2e2e1;
+
   --line: #e3dbc9;
-  
-  --shadow: 0 10px 30px rgba(44, 74, 111, 0.12);
+
+  --shadow: 0 15px 40px rgba(44, 74, 111, 0.08);
+  --shadow-deep: 0 25px 60px rgba(25, 42, 62, 0.16);
 }
 
 * {
@@ -37,11 +42,11 @@ html {
 
 body {
   margin: 0;
-  color: var(--ink);
   background: var(--paper);
+  color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
-  line-height: 1.8;
-  letter-spacing: .04em;
+  line-height: 1.9;
+  letter-spacing: .045em;
 }
 
 button, a {
@@ -49,632 +54,910 @@ button, a {
   cursor: pointer;
 }
 
-/* ==================================================
-   SCREEN SYSTEM
-================================================== */
-.screen {
-  display: none;
-  min-height: 100vh;
-  padding: 60px 20px;
-  animation: fadeIn .6s cubic-bezier(0.16, 1, 0.3, 1);
+img {
+  max-width: 100%;
+  display: block;
 }
 
-.screen.active {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* =========================================================
+   COMMON
+   ========================================================= */
+.screen {
+  min-height: 100vh;
+}
+
+.container {
+  width: min(1040px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.fade {
+  animation: fadeIn .8s ease both;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(18px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.inner {
-  width: min(900px, 100%);
-  margin: auto;
-}
-
-/* ==================================================
-   ① TOP ENTRANCE (表紙の世界観)
-================================================== */
+/* =========================================================
+   ENTRANCE
+   ========================================================= */
 #entrance {
-  justify-content: center;
-  background: linear-gradient(135deg, #2c4a6f 0%, #1e334d 100%);
-  color: #fffdf9;
-  text-align: center;
   position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  color: white;
+  background: radial-gradient(circle at 50% 20%, rgba(212,175,55,.1), transparent 40%), linear-gradient(145deg, var(--navy) 0%, var(--navy-deep) 100%);
 }
 
 #entrance::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1px, transparent 1px);
-  background-size: 32px 32px;
+  opacity: .18;
+  background-image: radial-gradient(rgba(255,255,255,.2) .8px, transparent .8px);
+  background-size: 24px 24px;
   pointer-events: none;
 }
 
-.entrance-content {
-  width: min(580px, 100%);
+#entrance::after {
+  content: "";
+  position: absolute;
+  width: 540px;
+  height: 540px;
+  border: 1px solid rgba(212,175,55,.2);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 50px rgba(212,175,55,.03);
+  pointer-events: none;
+}
+
+.entrance-inner {
   position: relative;
+  z-index: 2;
+  width: min(620px, calc(100% - 40px));
+  text-align: center;
+  padding: 60px 0;
+}
+
+.entrance-image {
+  width: min(270px, 72vw);
+  margin: 0 auto 30px;
+  position: relative;
+  box-shadow: var(--shadow-deep);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.entrance-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(212,175,55,.6);
+  pointer-events: none;
   z-index: 2;
 }
 
-.entrance-image-wrap {
+.entrance-image img {
   width: 100%;
-  max-width: 280px;
-  margin: 0 auto 24px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-  border: 2px solid var(--gold);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
 }
 
-.entrance-image-wrap img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.entrance-small {
-  color: var(--gold);
-  font-size: 12px;
-  letter-spacing: .2em;
-  margin-bottom: 10px;
+.entrance-kicker {
+  color: #e7cf91;
+  font-size: 11px;
+  letter-spacing: .35em;
+  margin-bottom: 16px;
 }
 
 .entrance-title {
   margin: 0;
   font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: clamp(32px, 8vw, 56px);
   font-weight: 400;
+  font-size: clamp(32px, 7.5vw, 54px);
+  line-height: 1.4;
   letter-spacing: .15em;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 .entrance-subtitle {
-  margin: 16px 0 30px;
-  color: #d8e2ed;
+  margin: 20px 0 32px;
+  color: rgba(255,255,255,.75);
   font-size: 14px;
+  line-height: 2;
 }
 
-.entrance-button {
-  display: inline-block;
-  padding: 15px 40px;
+.enter-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  padding: 15px 32px;
   border: 1px solid var(--gold);
   border-radius: 30px;
   background: var(--gold);
-  color: #1e334d;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: .1em;
+  color: var(--navy-deep);
+  font-weight: bold;
+  letter-spacing: .15em;
+  box-shadow: 0 5px 20px rgba(212,175,55,0.25);
   transition: all .3s;
-  box-shadow: 0 5px 20px rgba(212,175,55,0.3);
 }
 
-.entrance-button:hover {
+.enter-button:hover {
   background: transparent;
-  color: #fff;
+  color: white;
   transform: translateY(-2px);
 }
 
 .entrance-note {
-  margin-top: 30px;
-  color: rgba(255,255,255,0.6);
+  margin-top: 25px;
+  color: rgba(255,255,255,.45);
   font-size: 11px;
+  letter-spacing: .08em;
 }
 
-/* ==================================================
-   ② LIBRARY WORLD (図書館イメージ)
-================================================== */
+/* =========================================================
+   LIBRARY
+   ========================================================= */
 #library {
   display: none;
-  padding: 0;
   background: var(--paper);
-  animation: none;
 }
 #library.active {
   display: block;
 }
 
+/* HEADER */
 .library-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(252, 249, 242, 0.92);
-  backdrop-filter: blur(8px);
+  background: rgba(252, 249, 242, 0.9);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
 
-.library-header-inner {
-  width: min(960px, 92%);
-  height: 64px;
+.header-inner {
+  width: min(1040px, calc(100% - 40px));
+  height: 70px;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.library-logo {
-  border: none;
+.logo {
+  border: 0;
   background: none;
-  color: var(--book-blue);
+  color: var(--navy);
   font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
   font-size: 18px;
-  letter-spacing: .15em;
+  letter-spacing: .18em;
+  text-align: left;
+}
+
+.logo small {
+  display: block;
+  font-family: -apple-system, sans-serif;
+  color: var(--gold);
+  font-size: 7px;
+  letter-spacing: .22em;
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+}
+
+.nav button {
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .08em;
+  transition: color .2s;
+}
+.nav button:hover {
+  color: var(--navy);
+}
+
+/* HERO */
+.library-hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--paper-dark) 0%, var(--paper) 100%);
+  text-align: center;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(700px, 100%);
+  margin: auto;
+  padding: 40px 0;
+}
+
+.hero-label {
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: .35em;
+  margin-bottom: 14px;
   font-weight: bold;
 }
 
-.library-nav {
-  display: flex;
-  gap: 20px;
-}
-
-.library-nav button {
-  border: none;
-  background: none;
-  color: var(--sub);
-  font-size: 12px;
-  transition: color .2s;
-}
-.library-nav button:hover {
-  color: var(--book-blue);
-}
-
-.library-hero {
-  min-height: 560px;
-  padding: 60px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: linear-gradient(180deg, #f2ede1 0%, var(--paper) 100%);
-}
-
-.library-hero h1 {
+.hero-title {
+  margin: 0;
+  color: var(--navy);
   font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: clamp(40px, 10vw, 75px);
+  font-size: clamp(40px, 9vw, 75px);
   font-weight: 400;
-  color: var(--book-blue);
-  margin: 10px 0;
+  letter-spacing: .16em;
+}
+
+.hero-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 22px auto;
+}
+
+.hero-copy {
+  margin: 0;
+  color: var(--muted);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 15px;
+  line-height: 2.2;
+}
+
+/* SECTION */
+.section {
+  padding: 100px 20px;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-heading small {
+  display: block;
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: .32em;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: var(--navy);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 400;
   letter-spacing: .12em;
 }
 
-.library-section {
-  padding: 80px 20px;
+/* CONCEPT */
+.concept-section {
+  background: var(--paper-light);
 }
 
-.heading {
-  text-align: center;
-  margin-bottom: 45px;
+.concept-layout {
+  display: grid;
+  grid-template-columns: minmax(200px, .7fr) minmax(0, 1.3fr);
+  gap: 60px;
+  align-items: center;
 }
-.heading small {
-  display: block;
-  color: var(--gold);
-  font-size: 11px;
-  letter-spacing: .2em;
-  margin-bottom: 6px;
-  font-weight: bold;
+
+.book-decoration {
+  position: relative;
+  width: 200px;
+  height: 260px;
+  margin: auto;
+  background: linear-gradient(135deg, var(--navy-soft), var(--navy-deep));
+  box-shadow: var(--shadow-deep);
+  border-radius: 4px;
+  transform: rotate(-2deg);
 }
-.heading h2 {
-  margin: 0;
+
+.book-decoration::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(216,190,126,.7);
+}
+
+.book-decoration::after {
+  content: "結";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dfc58a;
   font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: clamp(26px, 5vw, 36px);
-  color: var(--book-blue);
-  font-weight: 400;
+  font-size: 54px;
 }
 
-/* ==================================================
-   ③ CIRCULAR CARD DRAW (円環構造のカード選択エリア)
-================================================== */
-.card-section {
+.concept-text .concept-lead {
+  margin: 0 0 24px;
+  color: var(--navy);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 20px;
+  line-height: 1.8;
+}
+
+.concept-text p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 16px;
+}
+
+/* BOOKSHELF */
+.shelf-section {
+  background: var(--paper-dark);
+}
+
+.shelf {
+  position: relative;
+  padding: 40px 20px 0;
+  background: linear-gradient(90deg, rgba(255,255,255,.4), transparent 20%, transparent 80%, rgba(255,255,255,.2));
+  border-bottom: 8px solid #b49b72;
+  box-shadow: inset 0 -2px rgba(70,50,30,.15);
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 4px 4px 0 0;
+}
+
+.books {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  min-height: 230px;
+}
+
+.book {
+  position: relative;
+  width: 52px;
+  border-radius: 3px 4px 0 0;
+  box-shadow: 4px 0 8px rgba(0,0,0,.08);
+  transition: transform .3s, filter .3s;
+}
+
+.book:hover {
+  transform: translateY(-10px) rotate(-1deg);
+  filter: brightness(1.05);
+}
+
+.book:nth-child(odd) { background: #39536f; }
+.book:nth-child(even) { background: #8c625e; }
+.book:nth-child(3) { background: #716954; }
+.book:nth-child(5) { background: #52637b; }
+
+.book span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  color: rgba(255,255,255,.8);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.shelf-caption {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 13px;
+}
+
+/* =========================================================
+   DRAW SECTION (円環構造のカードひき)
+   ========================================================= */
+.draw-section {
   background: var(--paper-light);
   text-align: center;
 }
 
-.circle-draw-container {
+.draw-intro {
+  max-width: 560px;
+  margin: 0 auto 40px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 2;
+}
+
+/* 円環構造レイアウト */
+.circle-draw-stage {
   position: relative;
-  width: min(340px, 90vw);
-  height: min(340px, 90vw);
-  margin: 20px auto 40px;
+  width: min(360px, 90vw);
+  height: min(360px, 90vw);
+  margin: 20px auto;
   border-radius: 50%;
   border: 2px dashed var(--gold);
+  background: radial-gradient(circle, var(--gold-light) 0%, rgba(255,253,249,0.9) 75%);
+  box-shadow: var(--shadow);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle, var(--gold-light) 0%, rgba(255,253,249,0.8) 70%);
-  box-shadow: var(--shadow);
 }
 
-.circle-center-btn {
-  width: 140px;
-  height: 140px;
+/* 円環の周りに配置するオービット（モチーフ） */
+.orbit-item {
+  position: absolute;
+  font-size: 22px;
+  animation: floatOrbit 4s ease-in-out infinite alternate;
+}
+.orbit-item:nth-child(1) { top: 18px; left: 50%; transform: translateX(-50%); color: var(--rose); }
+.orbit-item:nth-child(2) { bottom: 22px; left: 50%; transform: translateX(-50%); color: var(--gold); }
+.orbit-item:nth-child(3) { left: 18px; top: 50%; transform: translateY(-50%); color: var(--navy); }
+.orbit-item:nth-child(4) { right: 18px; top: 50%; transform: translateY(-50%); color: var(--gold); }
+
+@keyframes floatOrbit {
+  from { transform: translate(0, 0); }
+  to { transform: translate(0, -5px); }
+}
+
+/* 中央のボタン（本を模したサークル） */
+.circle-draw-btn {
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  background: var(--book-blue);
+  background: var(--navy);
   color: white;
   border: 3px solid var(--gold);
   font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: 15px;
-  letter-spacing: .1em;
+  font-size: 14px;
+  letter-spacing: .15em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  box-shadow: 0 8px 20px rgba(44,74,111,0.3);
+  box-shadow: 0 10px 25px rgba(44,74,111,0.25);
   transition: all .3s;
 }
 
-.circle-center-btn:hover {
-  transform: scale(1.05);
-  background: var(--book-blue-dark);
+.circle-draw-btn:hover {
+  background: var(--navy-deep);
+  transform: scale(1.06);
 }
 
-.orbit-item {
-  position: absolute;
-  font-size: 20px;
-  animation: floatOrb 4s ease-in-out infinite alternate;
-}
-.orbit-item:nth-child(1) { top: 15px; left: 50%; transform: translateX(-50%); color: var(--accent-red); }
-.orbit-item:nth-child(2) { bottom: 25px; left: 50%; transform: translateX(-50%); color: var(--gold); }
-.orbit-item:nth-child(3) { left: 15px; top: 50%; transform: translateY(-50%); color: var(--book-blue); }
-.orbit-item:nth-child(4) { right: 15px; top: 50%; transform: translateY(-50%); color: var(--gold); }
-
-@keyframes floatOrb {
-  from { transform: translate(0, 0); }
-  to { transform: translate(0, -6px); }
-}
-
-/* 説明文から図書館へのリンクカード・スタイル */
-.guide-to-library-box {
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 24px;
-  max-width: 600px;
-  margin: 30px auto 0;
-  text-align: left;
-  box-shadow: var(--shadow);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.guide-to-library-box p {
-  margin: 0;
-  font-size: 13px;
-  color: var(--sub);
-}
-.guide-to-library-box strong {
-  color: var(--book-blue);
-  display: block;
-  margin-bottom: 4px;
-  font-size: 15px;
-  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-}
-
-.jump-link-btn {
-  white-space: nowrap;
-  background: var(--paper-deep);
-  border: 1px solid var(--gold);
-  color: var(--book-blue);
-  padding: 10px 18px;
-  border-radius: 20px;
-  font-size: 12px;
-  transition: all .2s;
-}
-.jump-link-btn:hover {
-  background: var(--book-blue);
-  color: white;
-}
-
-/* RESULT AREA */
-.card-result {
+/* =========================================================
+   RESULT
+   ========================================================= */
+.result {
   display: none;
   width: min(600px, 100%);
-  margin: 40px auto 0;
-  background: white;
+  margin: 50px auto 0;
+  padding: 45px 30px;
+  background: var(--paper);
   border: 1px solid var(--line);
-  padding: 30px;
-  border-radius: 8px;
   box-shadow: var(--shadow);
-  animation: pageOpen .5s ease;
+  animation: resultOpen .6s ease both;
+  border-radius: 6px;
 }
 
-@keyframes pageOpen {
-  from { opacity: 0; transform: translateY(10px); }
+@keyframes resultOpen {
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.tarot-card {
+.result-label {
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: .3em;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.tarot {
+  position: relative;
   width: 180px;
   height: 270px;
-  margin: 0 auto 20px;
-  background: linear-gradient(135deg, var(--book-blue), var(--book-blue-dark));
-  border: 5px solid white;
-  outline: 2px solid var(--gold);
-  border-radius: 6px;
-  color: white;
+  margin: 0 auto 25px;
+  padding: 10px;
+  background: linear-gradient(145deg, var(--navy-soft), var(--navy-deep));
+  border: 4px solid var(--paper-light);
+  outline: 1px solid var(--gold);
+  border-radius: 4px;
+  box-shadow: 0 15px 30px rgba(25,42,62,0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  color: white;
 }
 
-.card-symbol {
-  font-size: 45px;
-  margin: 10px 0;
-  color: var(--gold);
+.tarot::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(221,194,133,.55);
 }
 
-.card-name {
+.tarot-number {
+  position: absolute;
+  top: 18px;
+  color: rgba(255,255,255,.7);
+  font-size: 10px;
+  letter-spacing: .15em;
+}
+
+.tarot-symbol {
+  position: relative;
+  z-index: 2;
+  color: #dec27d;
   font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: 20px;
-  letter-spacing: .1em;
+  font-size: 44px;
+  margin-bottom: 15px;
 }
 
-.card-message {
-  background: var(--paper);
+.tarot-name {
+  position: relative;
+  z-index: 2;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 18px;
+  letter-spacing: .15em;
+}
+
+.orientation {
+  color: var(--rose);
+  font-size: 12px;
+  letter-spacing: .15em;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.message {
+  padding: 22px;
+  background: var(--paper-light);
   border: 1px solid var(--line);
-  padding: 20px;
+  color: var(--muted);
   text-align: left;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
   font-size: 14px;
-  line-height: 1.9;
+  line-height: 2.1;
   white-space: pre-line;
-  margin-top: 15px;
   border-radius: 4px;
 }
 
-/* その他の共通コンポーネント */
-.library-concept {
-  background: var(--paper-deep);
-}
-.concept-box {
-  background: white;
-  padding: 40px;
-  border-radius: 8px;
-  border: 1px solid var(--line);
-  max-width: 700px;
-  margin: auto;
-  box-shadow: var(--shadow);
-}
-
-.simple-button {
-  padding: 12px 30px;
-  border: 1px solid var(--book-blue);
-  border-radius: 30px;
+.again-button {
+  margin-top: 25px;
+  padding: 11px 26px;
+  border: 1px solid var(--navy);
+  border-radius: 20px;
   background: transparent;
-  color: var(--book-blue);
-  font-size: 13px;
-  transition: .2s;
+  color: var(--navy);
+  font-size: 11px;
+  letter-spacing: .12em;
+  transition: .25s;
 }
-.simple-button:hover {
-  background: var(--book-blue);
+
+.again-button:hover {
+  background: var(--navy);
   color: white;
 }
 
-.library-footer {
-  background: var(--book-blue-dark);
-  color: white;
+/* =========================================================
+   FOOTNOTE & FOOTER
+   ========================================================= */
+.return-note {
+  max-width: 600px;
+  margin: 50px auto 0;
+  padding: 24px;
   text-align: center;
-  padding: 40px 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
   font-size: 12px;
 }
 
-@media(max-width: 600px) {
-  .guide-to-library-box {
-    flex-direction: column;
-    text-align: center;
-  }
+.return-note strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--navy);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.footer {
+  padding: 50px 20px;
+  background: var(--navy-deep);
+  color: rgba(255,255,255,.65);
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+.footer-title {
+  margin-bottom: 8px;
+  color: #dfc589;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 17px;
+  letter-spacing: .18em;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+@media (max-width: 700px) {
+  .header-inner { height: 60px; }
+  .nav { gap: 14px; }
+  .nav button { font-size: 10px; }
+  .section { padding: 75px 15px; }
+  .concept-layout { grid-template-columns: 1fr; gap: 40px; }
+  .book-decoration { width: 150px; height: 200px; }
+  .books { gap: 6px; }
+  .book { width: 38px; height: 160px !important; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ==================================================
-     ① TOP ENTRANCE
-================================================== -->
-<section id="entrance" class="screen active">
-  <div class="entrance-content">
-    <div class="entrance-image-wrap">
-      <img src="image.jpg" alt="結の札 イメージ画像">
+<!-- =========================================================
+     ENTRANCE
+     ========================================================= -->
+<section id="entrance" class="screen">
+  <div class="entrance-inner">
+    <div class="entrance-image">
+      <img src="image.jpg" alt="結の札の物語をイメージした本と栞">
     </div>
-    <div class="entrance-small">結の札 ― 物語への入口</div>
+    <div class="entrance-kicker">YUI NO FUDA</div>
     <h1 class="entrance-title">きょうは、<br>どんな物語かな</h1>
-    <p class="entrance-subtitle">タロットを一枚ひいて、<br>ちょっとだけ遊んでいく。</p>
-    <button class="entrance-button" id="enterLibrary">本棚の世界へ進む</button>
+    <p class="entrance-subtitle">本をひらくように、<br>今日の一枚をひらいてみる。</p>
+    <button class="enter-button" id="enterLibrary">本棚の世界へ</button>
     <div class="entrance-note">当たる・当たらないは、いったん置いておいて。</div>
   </div>
 </section>
 
-
-<!-- ==================================================
-     ② LIBRARY WORLD
-================================================== -->
+<!-- =========================================================
+     LIBRARY
+     ========================================================= -->
 <section id="library" class="screen">
 
   <!-- HEADER -->
   <header class="library-header">
-    <div class="library-header-inner">
-      <button class="library-logo" id="libraryHome">結の札</button>
-      <nav class="library-nav">
-        <button data-scroll="libraryConcept">ここについて</button>
-        <button data-scroll="libraryCard">円環の札ひき</button>
+    <div class="header-inner">
+      <button class="logo" id="libraryHome">
+        結の札
+        <small>YUI NO FUDA</small>
+      </button>
+      <nav class="nav">
+        <button data-scroll="concept">この場所について</button>
+        <button data-scroll="draw">円環の札ひき</button>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <div class="library-hero">
-    <div class="inner">
-      <div style="color: var(--gold); font-size: 12px; letter-spacing: .2em; margin-bottom: 10px;">✦ TALE & TAROT ✦</div>
-      <h1>結の札</h1>
-      <p style="color: var(--sub); font-size: 15px; margin-top: 15px;">本をひらくように、今日の一枚をひらいてみる。</p>
+  <section class="library-hero">
+    <div class="hero-content fade">
+      <div class="hero-label">TALE & TAROT</div>
+      <h1 class="hero-title">結の札</h1>
+      <div class="hero-rule"></div>
+      <p class="hero-copy">ここには、いくつかの物語があります。<br>今日はその中から、一枚だけ。</p>
     </div>
-  </div>
+  </section>
 
   <!-- CONCEPT -->
-  <section class="library-section library-concept" id="libraryConcept">
-    <div class="inner">
-      <div class="heading">
-        <small>ABOUT</small>
-        <h2>物語のめぐり方</h2>
+  <section class="section concept-section" id="concept">
+    <div class="container">
+      <div class="section-heading">
+        <small>ABOUT THE LIBRARY</small>
+        <h2>物語の棚</h2>
       </div>
-      <div class="concept-box">
-        <p style="font-family:'Hiragino Mincho ProN',serif; font-size:18px; color:var(--book-blue); margin-bottom:20px; text-align:center;">
-          一枚の札から、小さな物語へ。
-        </p>
-        <p style="color: var(--sub); font-size:14px; margin-bottom:15px;">
-          結の札は、タロットと物語を組み合わせて遊ぶアンティークな空間です。カードを一枚選んで、そこからちょっとした心の寄り道を楽しめます。
-        </p>
-        <p style="color: var(--sub); font-size:14px; margin:0;">
-          難しいルールはありません。気の向くままに、本をめくるようにどうぞ。
-        </p>
+      <div class="concept-layout">
+        <div class="book-decoration"></div>
+        <div class="concept-text">
+          <p class="concept-lead">一枚の札から、<br>小さな物語へ。</p>
+          <p>結の札は、タロットを入口にして、自分の中にある物語を少しだけ眺めてみる場所です。</p>
+          <p>答えを決めるためのものではありません。カードに描かれたものを眺めたり、言葉を読んだり、「今日はこれが気になるな」と思ってみたり。</p>
+          <p>本屋で偶然手に取った一冊のように。あるいは、ずっと忘れていた栞を本の中から見つけるように。</p>
+          <p>少しだけ遊んで、少しだけ遠くへ行って、またここへ戻ってきてください。</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CIRCULAR CARD SECTION (円環構造) -->
-  <section class="library-section card-section" id="libraryCard">
-    <div class="inner">
-      <div class="heading">
+  <!-- BOOKSHELF -->
+  <section class="section shelf-section">
+    <div class="container">
+      <div class="section-heading">
+        <small>THE SHELF</small>
+        <h2>物語の本棚</h2>
+      </div>
+      <div class="shelf">
+        <div class="books">
+          <div class="book" style="height: 180px;"><span>はじまり</span></div>
+          <div class="book" style="height: 215px;"><span>旅の途中</span></div>
+          <div class="book" style="height: 195px;"><span>ひみつ</span></div>
+          <div class="book" style="height: 230px;"><span>昼と夜</span></div>
+          <div class="book" style="height: 185px;"><span>遠い記憶</span></div>
+          <div class="book" style="height: 210px;"><span>小さな光</span></div>
+          <div class="book" style="height: 175px;"><span>つづき</span></div>
+        </div>
+      </div>
+      <p class="shelf-caption">どの本を選んでも、きっと違う景色が見えてきます。</p>
+    </div>
+  </section>
+
+  <!-- DRAW (円環構造エリア) -->
+  <section class="section draw-section" id="draw">
+    <div class="container">
+      <div class="section-heading">
         <small>CIRCLE OF CARDS</small>
         <h2>円環の札ひき</h2>
       </div>
 
-      <p style="color: var(--sub); font-size: 14px; margin-bottom: 20px;">
-        円を描く運命の札から、今日の1枚を選びます。
+      <p class="draw-intro">
+        円を描く運命の札から、今日の1枚を選びます。<br>
+        中央の本をひらいて、ページの間に残されたカードをそっと拾ってみましょう。
       </p>
 
-      <!-- 円環状のビジュアルエリア -->
-      <div class="circle-draw-container">
+      <!-- 円環構造ステージ -->
+      <div class="circle-draw-stage">
         <div class="orbit-item">🗝️</div>
         <div class="orbit-item">⭐</div>
         <div class="orbit-item">🌙</div>
         <div class="orbit-item">✉️</div>
 
-        <button id="drawButton" class="circle-center-btn">
+        <button class="circle-draw-btn" id="drawButton">
           <span>✦ 札を</span>
           <span>ひらく ✦</span>
         </button>
       </div>
 
-      <!-- 結果表示エリア -->
-      <div id="cardResult" class="card-result">
-        <div style="color: var(--gold); font-size: 11px; letter-spacing: .2em; margin-bottom: 15px;">YOUR DRAWN CARD</div>
-        <div class="tarot-card">
-          <div id="cardNumber" style="font-size: 12px; margin-top: 8px;"></div>
-          <div id="cardSymbol" class="card-symbol"></div>
-          <div id="cardName" class="card-name"></div>
+      <!-- RESULT -->
+      <div class="result" id="cardResult">
+        <div class="result-label">A PAGE FROM YOUR STORY</div>
+        <div class="tarot">
+          <div class="tarot-number" id="cardNumber"></div>
+          <div class="tarot-symbol" id="cardSymbol"></div>
+          <div class="tarot-name" id="cardName"></div>
         </div>
-        <div id="orientation" style="color: var(--accent-red); font-size: 13px; font-weight: bold; margin-bottom: 10px;"></div>
-        <div id="cardMessage" class="card-message"></div>
-        <button id="againButton" class="simple-button" style="margin-top: 25px;">もう一度ひく</button>
+        <div class="orientation" id="orientation"></div>
+        <div class="message" id="cardMessage"></div>
+        <button class="again-button" id="againButton">もう一枚、ひらく</button>
       </div>
 
-      <!-- ▼ 説明から、他のセクション（図書館イメージの別空間など）へ飛べるリンク導線 -->
-      <div class="guide-to-library-box">
-        <div>
-          <strong>図書館の奥へ進む</strong>
-          <p>物語の棚や、札に隠された背景についてもっと覗いてみますか？</p>
-        </div>
-        <button class="jump-link-btn" data-scroll="libraryConcept">概念の棚へ移動</button>
+      <div class="return-note">
+        <strong>本は、いつでも閉じて大丈夫。</strong>
+        今日の一枚を持って帰るもよし。<br>何も持たずに、本棚へ戻るもよし。
       </div>
-
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="library-footer">
-    <div style="font-family:'Hiragino Mincho ProN',serif; font-size:18px; letter-spacing:.15em; margin-bottom:8px;">結の札</div>
-    <div>一枚の札から、少しだけ遠くへ。そして、また帰ってくる。</div>
+  <footer class="footer">
+    <div class="footer-title">結の札</div>
+    <div>一枚の札から、少しだけ遠くへ。<br>そして、また帰ってくる。</div>
   </footer>
 
 </section>
 
-
 <script>
-/* ==================================================
+/* =========================================================
    TAROT DATA
-================================================== */
+   ========================================================= */
 const tarotCards = [
-  { number: "0", name: "愚者", symbol: "🎴", message: "まだ名前のついていない旅です。\n\nどこへ行くか決めてから歩く必要はないのかもしれません。\n\n今日は、ちょっとだけ先へ。" },
-  { number: "Ⅰ", name: "魔術師", symbol: "🗝️", message: "机の上には、思ったよりいろいろあります。\n\n道具も、材料も、きっかけも。\n\n物語を始めるなら、もう十分なのかもしれません。" },
-  { number: "Ⅹ", name: "運命の輪", symbol: "⭐", message: "ページをめくったら、場面が変わっていました。\n\n物語には、そういうことがあります。\n\n今日は流れが変わる瞬間を楽しんでみましょう。" },
-  { number: "ⅩⅨ", name: "太陽", symbol: "☀️", message: "明るい光がページを照らします。\n\n理由もなく、なんだか少し嬉しくなる時間です。\n\n今日はそのままで、十分に楽しめそうです。" },
-  { number: "ⅩⅩⅠ", name: "世界", symbol: "🌍", message: "ひとつの物語が、きれいに丸くなりました。\n\nどこから読んでもよくて、どこで閉じてもいい。\n\nあなたの旅は、ここで完成します。" }
+  {
+    number: "0",
+    name: "愚者",
+    symbol: "🎴",
+    upright: "まだ名前のついていない旅です。\n\nどこへ行くか決めてから歩く必要はないのかもしれません。\n\n今日は、ちょっとだけ先へ。",
+    reversed: "行き先を決める前に、少し立ち止まってみる日です。\n\n急いでページをめくらなくても、物語は逃げません。\n\n今日は、余白も一緒に楽しんで。"
+  },
+  {
+    number: "Ⅰ",
+    name: "魔術師",
+    symbol: "🗝️",
+    upright: "机の上には、思ったよりいろいろあります。\n\n道具も、材料も、きっかけも。\n\n物語を始めるなら、もう十分なのかもしれません。",
+    reversed: "材料は揃っているのに、まだページを開いていないようです。\n\n完璧な準備を待つより、小さく始めてみるのもよ사そうです。"
+  },
+  {
+    number: "Ⅹ",
+    name: "運命の輪",
+    symbol: "⭐",
+    upright: "ページをめくったら、場面が変わっていました。\n\n物語には、そういうことがあります。\n\n今日は流れが変わる瞬間を楽しんでみましょう。",
+    reversed: "同じページを何度か読み返しているようです。\n\nまだ見落としている一文があるのかもしれません。\n\n少し角度を変えて眺めてみてください。"
+  },
+  {
+    number: "ⅩⅨ",
+    name: "太陽",
+    symbol: "☀️",
+    upright: "明るい光がページを照らします。\n\n理由もなく、なんだか少し嬉しくなる時間です。\n\n今日はそのままで、十分に楽しめそうです。",
+    reversed: "カーテンの向こうには、ちゃんと光があります。\n\n今日は少し眩しく感じるだけなのかもしれません。\n\n無理に明るくしなくても大丈夫です。"
+  },
+  {
+    number: "ⅩⅩⅠ",
+    name: "世界",
+    symbol: "🌍",
+    upright: "ひとつの物語が、きれいに丸くなりました。\n\nどこから読んでもよくて、どこで閉じてもいい。\n\n今日は一度、ここまでで十分です。",
+    reversed: "物語はまだ最後のページまで届いていません。\n\nでも、未完成だからこそ残っているページがあります。\n\n続きを急がなくても大丈夫です。"
+  }
 ];
 
-/* ==================================================
-   SCREEN TRANSITION
-================================================== */
-function switchScreen(targetId) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  
-  if (targetId === 'library') {
-    const lib = document.getElementById('library');
-    lib.style.display = 'block';
-    lib.classList.add('active');
-  } else {
-    document.getElementById('library').style.display = 'none';
-    const target = document.getElementById(targetId);
-    if (target) target.classList.add('active');
-  }
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+/* =========================================================
+   SCREEN CONTROL
+   ========================================================= */
+function showLibrary() {
+  const entrance = document.getElementById("entrance");
+  const library = document.getElementById("library");
+
+  entrance.style.display = "none";
+  library.style.display = "block";
+  library.classList.add("active");
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-/* ==================================================
-   DRAW LOGIC
-================================================== */
+/* =========================================================
+   CARD DRAW
+   ========================================================= */
 function drawTarotCard() {
-  const resultArea = document.getElementById('cardResult');
-  const selectedCard = tarotCards[Math.floor(Math.random() * tarotCards.length)];
-  const isReversed = Math.random() < 0.5;
+  const card = tarotCards[Math.floor(Math.random() * tarotCards.length)];
+  const reversed = Math.random() < 0.5;
 
-  document.getElementById('cardNumber').textContent = selectedCard.number;
-  document.getElementById('cardSymbol').textContent = selectedCard.symbol;
-  document.getElementById('cardName').textContent = selectedCard.name;
-  document.getElementById('orientation').textContent = isReversed ? "【逆位置】" : "【正位置】";
-  document.getElementById('cardMessage').textContent = selectedCard.message;
+  document.getElementById("cardNumber").textContent = card.number;
+  document.getElementById("cardSymbol").textContent = card.symbol;
+  document.getElementById("cardName").textContent = card.name;
+  document.getElementById("orientation").textContent = reversed ? "REVERSED · 逆位置" : "UPRIGHT · 正位置";
+  document.getElementById("cardMessage").textContent = reversed ? card.reversed : card.upright;
 
-  resultArea.style.display = "block";
-  resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  const result = document.getElementById("cardResult");
+  result.style.display = "block";
+
+  setTimeout(() => {
+    result.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, 100);
 }
 
-/* ==================================================
-   LISTENERS
-================================================== */
-document.addEventListener('DOMContentLoaded', () => {
-  const enterBtn = document.getElementById('enterLibrary');
-  if (enterBtn) enterBtn.addEventListener('click', () => switchScreen('library'));
+/* =========================================================
+   NAVIGATION LISTENERS
+   ========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const enter = document.getElementById("enterLibrary");
+  if (enter) enter.addEventListener("click", showLibrary);
 
-  // スムーズスクロール＆ライブラリ表示切り替え
-  document.querySelectorAll('[data-scroll]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.getAttribute('data-scroll');
-      const libScreen = document.getElementById('library');
-      if (!libScreen.classList.contains('active')) {
-        switchScreen('library');
+  document.querySelectorAll("[data-scroll]").forEach(button => {
+    button.addEventListener("click", () => {
+      const targetId = button.getAttribute("data-scroll");
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
       }
-      const targetEl = document.getElementById(targetId);
-      if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
     });
   });
 
-  const drawBtn = document.getElementById('drawButton');
-  if (drawBtn) drawBtn.addEventListener('click', drawTarotCard);
+  const drawBtn = document.getElementById("drawButton");
+  if (drawBtn) drawBtn.addEventListener("click", drawTarotCard);
 
-  const againBtn = document.getElementById('againButton');
-  if (againBtn) againBtn.addEventListener('click', drawTarotCard);
+  const againBtn = document.getElementById("againButton");
+  if (againBtn) againBtn.addEventListener("click", drawTarotCard);
 
-  const logo = document.getElementById('libraryHome');
-  if (logo) logo.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  const homeBtn = document.getElementById("libraryHome");
+  if (homeBtn) {
+    homeBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 });
 </script>
+
 </body>
 </html>
