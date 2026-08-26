@@ -66,7 +66,7 @@
             transform: translateY(0);
         }
 
-        /* --- ① トップ画面（入口 / 帰還後の日常） --- */
+        /* --- ① トップ画面（図書館の佇まいを想起させる空間） --- */
         .top-message {
             font-size: 1.1rem;
             color: var(--text-sub);
@@ -121,13 +121,15 @@
             50% { opacity: 1; }
         }
 
-        /* --- 新たな層：小さな図書館の気配（本棚・引き出しのイメージ） --- */
+        /* 図書館の気配を漂わせるパーツ */
         .library-shelf {
             display: flex;
             gap: 16px;
             margin-top: 24px;
             width: 100%;
             justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .shelf-item {
@@ -137,6 +139,24 @@
             padding: 6px 14px;
             border-radius: 4px;
             border-bottom: 2px solid var(--accent-wood);
+        }
+
+        /* 趣旨ページへ飛ぶための小さな引き出し風リンク */
+        .about-link-btn {
+            background: none;
+            border: none;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .about-link-btn:hover {
+            color: var(--accent-warm);
         }
 
         /* --- ② ③ ④ ⑤ 札・旅の空間 --- */
@@ -265,12 +285,48 @@
             color: var(--text-sub);
         }
 
+        /* --- ⑦ サイトの趣旨を書いたページ（しおり・静かな案内書） --- */
+        .about-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px 32px;
+            border-radius: 12px;
+            width: 100%;
+            box-shadow: var(--shadow);
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .about-box h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+            text-align: center;
+            color: var(--text-main);
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .about-box p {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .about-box p:last-child {
+            margin-bottom: 0;
+        }
+
         /* アクションボタン */
         .action-area {
             display: flex;
             gap: 16px;
             justify-content: center;
             width: 100%;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -318,7 +374,7 @@
                 width: 210px;
                 height: 320px;
             }
-            .ticket-box, .return-message-box {
+            .ticket-box, .return-message-box, .about-box {
                 padding: 36px 20px;
             }
         }
@@ -328,7 +384,7 @@
 
     <div class="container">
 
-        <!-- ① 入口（トップページ：図書館の木漏れ日や静かな書架の気配をプラス） -->
+        <!-- ① 入口（トップページ：静かな書架を想起させる空間） -->
         <div id="screen-top" class="screen active">
             <p class="top-message" id="top-greeting">今日は、どんな札かな。</p>
             <div class="ticket-box" id="start-btn">
@@ -336,11 +392,14 @@
                 <p id="top-subtitle">ちょっと見ていく？</p>
                 <div class="hint-badge" id="top-badge">一枚引いてみる</div>
             </div>
+            
             <div class="library-shelf">
-                <span class="shelf-item">小さな本棚</span>
-                <span class="shelf-item">分類番号 00-21</span>
-                <span class="shelf-item">しおりの挟まったページ</span>
+                <span class="shelf-item">静かな書架の隅</span>
+                <span class="shelf-item">分類番号 03-21</span>
+                <span class="shelf-item">木彫りのカウンター</span>
             </div>
+
+            <button class="about-link-btn" id="to-about-btn">この場所について</button>
         </div>
 
         <!-- ② ③ ④ ⑤ 札を引く・見る・物語を歩く -->
@@ -389,10 +448,24 @@
         <div id="screen-return" class="screen">
             <div class="return-message-box">
                 <p>「じゃあ、そろそろ帰ろう。」</p>
-                <p class="return-message-sub">本をそっと閉じ、元の棚に戻すように。</p>
+                <p class="return-message-sub">扉をそっと閉めて、日常の足取りへ。</p>
             </div>
             <div class="action-area">
                 <button class="btn" id="go-home-btn">結の札へ</button>
+            </div>
+        </div>
+
+        <!-- ⑦ サイトの趣旨を書いたページ -->
+        <div id="screen-about" class="screen">
+            <div class="about-box">
+                <h2>この場所について</h2>
+                <p>ここは、未来を占ったり、大きな答えを見つけたりするための場所ではありません。</p>
+                <p>日常のすき間に、ふと手にとった一枚の小さな紙片。そこに描かれた情景や言葉をきっかけにして、自分の物語の中へほんの少しだけ足を踏み入れてみる。</p>
+                <p>少し寄り道をしたり、何も見つからずに通り過ぎたり。そして最後には、ちゃんと自分の日常へと帰っていく。</p>
+                <p>そんな、静かな往復の時間を楽しむための小さな停留所です。</p>
+            </div>
+            <div class="action-area">
+                <button class="btn" id="back-from-about-btn">もどる</button>
             </div>
         </div>
 
@@ -445,12 +518,15 @@
         const screenTop = document.getElementById('screen-top');
         const screenCard = document.getElementById('screen-card');
         const screenReturn = document.getElementById('screen-return');
+        const screenAbout = document.getElementById('screen-about');
         
         const cardElement = document.getElementById('card-element');
         const openBtn = document.getElementById('open-btn');
         const backHome1 = document.getElementById('back-home-1');
         const toReturnBtn = document.getElementById('to-return-btn');
         const goHomeBtn = document.getElementById('go-home-btn');
+        const toAboutBtn = document.getElementById('to-about-btn');
+        const backFromAboutBtn = document.getElementById('back-from-about-btn');
         
         const actionBeforeOpen = document.getElementById('action-before-open');
         const actionAfterOpen = document.getElementById('action-after-open');
@@ -532,10 +608,18 @@
 
         goHomeBtn.addEventListener('click', () => {
             topGreeting.textContent = "おかえりなさい。";
-            topSubtitle.textContent = "またいつでも、本をひらくように。";
+            topSubtitle.textContent = "またいつでも、どうぞ。";
             topBadge.textContent = "もう一度引いてみる";
             
             switchScreen(screenReturn, screenTop);
+        });
+
+        toAboutBtn.addEventListener('click', () => {
+            switchScreen(screenTop, screenAbout);
+        });
+
+        backFromAboutBtn.addEventListener('click', () => {
+            switchScreen(screenAbout, screenTop);
         });
     </script>
 </body>
