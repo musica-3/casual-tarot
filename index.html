@@ -6,7 +6,7 @@
 <title>結の札｜きょうは、どんな物語かな</title>
 <style>
 /* =========================================================
-   YUI NO FUDA - STORY LIBRARY (GRAND EDITION)
+   YUI NO FUDA - GRAND LIBRARY EDITION
    ========================================================= */
 :root {
   --navy: #253d5e;
@@ -253,7 +253,7 @@ img {
 
 .nav {
   display: flex;
-  gap: 24px;
+  gap: 20px;
 }
 
 .nav button {
@@ -407,7 +407,7 @@ img {
 }
 
 /* =========================================================
-   DRAW SECTION (円環構造の札ひき)
+   DRAW SECTION (円環構造のタロット札ひき)
    ========================================================= */
 .draw-section {
   background: var(--paper-dark);
@@ -422,7 +422,6 @@ img {
   line-height: 2;
 }
 
-/* 円環構造レイアウト */
 .circle-draw-stage {
   position: relative;
   width: min(360px, 90vw);
@@ -477,7 +476,69 @@ img {
 }
 
 /* =========================================================
-   RESULT
+   TALE SECTION (追加：17種類の物語占いセクション)
+   ========================================================= */
+.tale-section {
+  background: var(--paper-light);
+  text-align: center;
+}
+
+.tale-box {
+  width: min(620px, 100%);
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 40px 30px;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+}
+
+.tale-emblem {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.tale-title {
+  color: var(--navy);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 20px;
+  letter-spacing: .15em;
+  margin-bottom: 20px;
+}
+
+.tale-story-body {
+  background: var(--paper-light);
+  border: 1px solid var(--line);
+  padding: 24px;
+  color: var(--muted);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 14px;
+  line-height: 2.2;
+  text-align: left;
+  white-space: pre-line;
+  border-radius: 4px;
+  margin-bottom: 25px;
+}
+
+.tale-button {
+  padding: 13px 30px;
+  border: 1px solid var(--gold);
+  border-radius: 25px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: .15em;
+  transition: .3s;
+}
+
+.tale-button:hover {
+  background: transparent;
+  color: var(--navy);
+}
+
+/* =========================================================
+   RESULT (共通カード結果用)
    ========================================================= */
 .result {
   display: none;
@@ -595,7 +656,7 @@ img {
    ABOUT OVERVIEW (一番下へ配置)
    ========================================================= */
 .about-section {
-  background: var(--paper-light);
+  background: var(--paper-dark);
   border-top: 1px solid var(--line);
   text-align: center;
 }
@@ -644,7 +705,7 @@ img {
    ========================================================= */
 @media (max-width: 700px) {
   .header-inner { height: 60px; }
-  .nav { gap: 14px; }
+  .nav { gap: 10px; }
   .nav button { font-size: 10px; }
   .section { padding: 75px 15px; }
   .bookshelf-container { grid-template-columns: repeat(2, 1fr); }
@@ -683,9 +744,10 @@ img {
         <small>YUI NO FUDA</small>
       </button>
       <nav class="nav">
-        <button data-scroll="shelf">物語の小部屋</button>
-        <button data-scroll="draw">円環の札ひき</button>
-        <button data-scroll="about">この場所について</button>
+        <button data-scroll="shelf">小部屋</button>
+        <button data-scroll="draw">タロット札</button>
+        <button data-scroll="tale">17の物語</button>
+        <button data-scroll="about">この場所</button>
       </nav>
     </div>
   </header>
@@ -700,7 +762,7 @@ img {
     </div>
   </section>
 
-  <!-- BOOKSHELF EXPLORATION (探検できるボリューム感) -->
+  <!-- BOOKSHELF EXPLORATION -->
   <section class="section shelf-section" id="shelf">
     <div class="container">
       <div class="section-heading">
@@ -736,12 +798,12 @@ img {
     </div>
   </section>
 
-  <!-- DRAW SECTION (円環構造の札ひき - 22枚正逆対応) -->
+  <!-- DRAW SECTION (円環構造のタロット札ひき) -->
   <section class="section draw-section" id="draw">
     <div class="container">
       <div class="section-heading">
         <small>CIRCLE OF CARDS</small>
-        <h2>円環の札ひき</h2>
+        <h2>円環の札ひき（タロット）</h2>
       </div>
 
       <p class="draw-intro">
@@ -763,7 +825,7 @@ img {
 
       <!-- RESULT -->
       <div class="result" id="cardResult">
-        <div class="result-label">A PAGE FROM YOUR STORY</div>
+        <div class="result-label">A PAGE FROM YOUR TAROT</div>
         <div class="tarot">
           <div class="tarot-number" id="cardNumber"></div>
           <div class="tarot-symbol" id="cardSymbol"></div>
@@ -776,7 +838,28 @@ img {
     </div>
   </section>
 
-  <!-- ABOUT SECTION (ご要望の通り、概要を一番下に配置) -->
+  <!-- TALE SECTION (追加：17種類の物語占いセクション・正柄あり) -->
+  <section class="section tale-section" id="tale">
+    <div class="container">
+      <div class="section-heading">
+        <small>17 TALES OF ENCHANTMENT</small>
+        <h2>17の物語占い</h2>
+      </div>
+      <p class="draw-intro">
+        タロットとはまた違う、17の異なる世界観を持つショートストーリーです。<br>
+        今のあなたにそっと寄り添う、お気に入りの物語を引いてみてください。
+      </p>
+
+      <div class="tale-box">
+        <div class="tale-emblem" id="taleEmblem">📖</div>
+        <div class="tale-title" id="taleTitle">ボタンを押して、物語をひらく</div>
+        <div class="tale-story-body" id="taleBody">ここには、17篇の短いお話が眠っています。<br>下のボタンにタッチすると、今日あなたに巡り合う物語のページがランダムでめくられます。</div>
+        <button class="tale-button" id="taleButton">物語のページをめくる</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION (一番下に配置) -->
   <section class="section about-section" id="about">
     <div class="container">
       <div class="section-heading">
@@ -785,8 +868,8 @@ img {
       </div>
       <div class="about-content">
         <p class="about-lead">一枚の札から、小さな物語へ。</p>
-        <p>「結の札」は、タロットカードの持つ美しい象徴を入口にして、日々の忙しさから少しだけ離れ、ご自身の中にある物語を静かに眺めるための場所です。</p>
-        <p>未来を決めつけたり、正解を導くためのものではありません。カードの絵柄を眺めたり、メッセージを読んで「今日はこういう気分だな」とご自身を労るための、ちいさな隠れ家です。</p>
+        <p>「結の札」は、タロットカードや小さな物語の持つ美しい世界を入口にして、日々の忙しさから少しだけ離れ、ご自身の中にある物語を静かに眺めるための場所です。</p>
+        <p>未来を決めつけたり、正解を導くためのものではありません。絵柄や言葉を眺めて「今日はこういう気分だな」とご自身を労るための、ちいさな隠れ家です。</p>
         <p>本屋さんで偶然お気に入りの一冊に出会うように、どうぞ心ゆくまでお楽しみください。</p>
       </div>
     </div>
@@ -808,7 +891,7 @@ const tarotCards = [
   { number: "0", name: "愚者", symbol: "🃏", upright: "まだ名前のついていない、まっさらな旅の始まりです。\n\nどこへ行くか決めてから歩く必要はありません。\n\n今日は、心の向くままに少しだけ先へ。", reversed: "行き先を決める前に、一度立ち止まってみる日です。\n\n急いでページをめくらなくても物語は逃げません。\n\n今日は、足元の余白も一緒に楽しんで。" },
   { number: "Ⅰ", name: "魔術師", symbol: "🗝️", upright: "机の上には、思った以上にいろいろな道具が揃っています。\n\n材料も、きっかけも、もう十分です。\n\n物語を始める準備は整っています。", reversed: "材料はあるのに、まだページを開くのをためらっているようです。\n\n完璧なタイミングを待つより、まずは小さく始めてみて。" },
   { number: "Ⅱ", name: "女教皇", symbol: "📜", upright: "静寂の中にこそ、大切な答えが隠されています。\n\n外の音を少し遠ざけて、ご自身の声に耳を澄ませてみましょう。", reversed: "考えすぎて頭の中が少しおしゃべりになりすぎています。\n\n今日は難しい理屈を手放して、ゆっくり深呼吸を。" },
-  { number: "Ⅲ", name: "女帝", symbol: "🌸", upright: "豊かさと優しさに包まれる穏やかな時間です。\n\nあなたが心地よいと感じるものを、今日は存分に味わってあげてください。", reversed: "誰かのために頑張りすぎて、ご自身のケアを忘れていませんか？\n\nまずはをご自身の心を満たしてあげましょう。" },
+  { number: "Ⅲ", name: "女帝", symbol: "🌸", upright: "豊かさと優しさに包まれる穏やかな時間です。\n\nあなたが心地よいと感じるものを、今日は存分に味わってあげてください。", reversed: "誰かのために頑張りすぎて、ご自身のケアを忘れていませんか？\n\nまずはご自身の心を満たしてあげましょう。" },
   { number: "Ⅳ", name: "皇帝", symbol: "🏛️", upright: "しっかりと地に足をつけて、物事を形にしていくタイミングです。\n\nご自身の選択に自信を持って進んで大丈夫です。", reversed: "少し肩に力が入りすぎて、ルールに縛られすぎているかも。\n\nたまには肩の力を抜いて、柔軟にいってみましょう。" },
   { number: "Ⅴ", name: "法王", symbol: "🔔", upright: "信頼できる教えや、心強いアドバイスに出会えるときです。\n\n誰かの温かい言葉に、そっと心を預けてみてください。", reversed: "まわりの意見に合わせすぎて、自分の本音が見えなくなっていませんか？\n\nあなたの基準を大切にしていいのです。" },
   { number: "Ⅵ", name: "恋人たち", symbol: "🍎", upright: "心がときめく選択や、嬉しい調和の訪れです。\n\nあなたが「好き」と感じる直感を大切に選んでみましょう。", reversed: "選択肢の前で少し迷子になっているようです。\n\n頭で損得を考えるより、心が温かくなる方を選んでみて。" },
@@ -824,9 +907,32 @@ const tarotCards = [
   { number: "ⅩⅥ", name: "塔", symbol: "⚡", upright: "予期せぬひらめきや、固定観念がパッと崩れるような瞬間。\n\nそれは古くなった殻を脱ぎ捨てるための、優しい雷です。", reversed: "変化に対する恐れや、不安が少し大きくなっているかも。\n\n起きたことはすべて、より良い方へ向かうための通過点です。" },
   { number: "ⅩⅦ", name: "星", symbol: "✨", upright: "遠くの空に希望の星がまたたく、希望に満ちた時間。\n\n未来の夢を描きながら、静かなロマンに浸ってみて。", reversed: "少し自信をなくして、夜空の星が見えづらくなっている日。\n\nあなたの内側にも、ちゃんと光る星はあります。" },
   { number: "ⅩⅧ", name: "月", symbol: "🌙", upright: "霧のかかった夜道のように、ロマンチックで少しミステリアスな日。\n\n直感を信じて、自分の内なる想像力を楽しんでみましょう。", reversed: "不安やモヤモヤした霧が、少しずつ晴れていく兆し。\n\n見えなかった輪郭が、ゆっくりと見えてきます。" },
-  { number: "ⅩⅨ", name: "太陽", symbol: "☀️", upright: "まぶしいほどの陽光が、あなたのページを温かく照らします。\n\n理由もなく純粋に楽しく、笑顔になれる一日です。", reversed: "少しエネルギーが曇りがちで、元気がが出にくいかも。\n\n無理して笑わなくて大丈夫。今日はゆっくり休んで。" },
-  { number: "ⅩⅩ", name: "審判", symbol: "🎺", upright: "ずっと忘れていた大切な気持ちや、答えがよみがえる日。\n\n過去の経験が、美しい宝物として結実します。", reversed: "過去の選択にこだわりすぎて、前に進めなくなっていませんか？\n\n過去は過去として、今のあなたを認めあげて。" },
-  { number: "ⅩⅩⅠ", name: "世界", symbol: "🌍", upright: "ひとつの物語が美しく完結し、完全な調和を迎えるとき。\n\nすべてが上手くいっている感覚を、ただ味わって。", sequels: "", reversed: "あともう一歩のところで、最後の仕上げを迎えている途中。\n\n焦らず、今あるプロセスそのものを愛してあげて。" }
+  { number: "ⅩⅨ", name: "太陽", symbol: "☀️", upright: "まぶしいほどの陽光が、あなたのページを温かく照らします。\n\n理由もなく純粋に楽しく、笑顔になれる一日です。", reversed: "少しエネルギーが曇りがちで、元気が出にくいかも。\n\n無理して笑わなくて大丈夫。今日はゆっくり休んで。" },
+  { number: "ⅩⅩ", name: "審判", symbol: "🎺", upright: "ずっと忘れていた大切な気持ちや、答えがよみがえる日。\n\n過去の経験が、美しい宝物として結実します。", reversed: "過去の選択にこだわりすぎて、前に進めなくなっていませんか？\n\n過去は過去として、今のあなたを認めてあげて。" },
+  { number: "ⅩⅩⅠ", name: "世界", symbol: "🌍", upright: "ひとつの物語が美しく完結し、完全な調和を迎えるとき。\n\nすべてが上手くいっている感覚を、ただ味わって。", reversed: "あともう一歩のところで、最後の仕上げを迎えている途中。\n\n焦らず、今あるプロセスそのものを愛してあげて。" }
+];
+
+/* =========================================================
+   17 TALES DATA (17種類の物語・正柄あり)
+   ========================================================= */
+const seventeenTales = [
+  { emblem: "☕", title: "第1章：夜の続く喫茶店", text: "時計の針がずっと真夜中を指したままの、小さな喫茶店。\nそこでは、今日言えなかった言葉が、温かい湯気になってカップから立ち上ります。\n今日は無理に答えを出さず、ただ香ばしいコーヒーの余韻に浸っていていい日です。" },
+  { emblem: "🖋️", title: "第2章：インク壺の小舟", text: "青いインクがたっぷり入ったガラス瓶は、小さな冒険者にとって海そのものです。\nペン先の小舟に乗って、まだ誰も書いたことのない行間へ漕ぎ出しましょう。\nあなたの選ぶ一文字が、今日の世界を新しく彩ります。" },
+  { emblem: "🕰️", title: "第3章：時計塔の忘れ物", text: "街の真ん中の古い時計塔で、歯車たちがひと休みをしています。\n時間はいつでもあなたを急かすためにあるのではなく、美しいリズムを刻むためにあります。\n少しだけ歩幅を落として、自分の心音と歩調を合わせてみましょう。" },
+  { emblem: "📚", title: "第4章：栞を挟んだままの午後", text: "読みかけの本に挟まれた、ドライフラワーの栞。\n忘れていた過去の約束や、優しい記憶がふとページの間から香ります。\n昔のあなたが残してくれた温もりが、今のあなたをそっと守ってくれるでしょう。" },
+  { emblem: "🌙", title: "第5章：月影の仕立て屋", text: "夜空の布地をハサミでチョキチョキと切って、新しい明日のお洋服を作る仕立て屋さん。\n完璧じゃなくても、あなたが手づくりした選択はどれも世界に一つだけの宝物。\n自分だけの心地よさを、丁寧に縫い合わせていきましょう。" },
+  { emblem: "✉️", title: "第6章：宛先のない手紙", text: "どこへ届くとも知れない手紙を、紙ヒコーキにして風に乗せる夜。\n願い事は空に放った瞬間から、もう未来のどこかで芽生え始めています。\n結果を焦らず、風が運ぶ気まぐれなサプライズを待ってみて。" },
+  { emblem: "🗝️", title: "第7章：開かずの引き出しの鍵", text: "ずっと昔の秘密を閉じ込めていた鍵が、思いがけない場所で見つかります。\n開けるのが少し怖くても、もう今のあなたなら優しく向き合えるはず。\n蓋を開けた先には、ほこりをかぶった懐かしい夢が待っています。" },
+  { emblem: "🌿", title: "第8章：窓辺のハーブガーデン", text: "小さな植木鉢の土が、雨上がりの匂いをふんわりと漂わせています。\n何も生まれていないように見える土の下でも、根っこは着実に広がっている。\n焦る必要はありません。あなたの内側も、静かに力を蓄えています。" },
+  { emblem: "🕯️", title: "第9章：旅人のランプ", text: "足元を優しく照らすだけの、小さなオイルランプの灯り。\n遠くの景色は見えなくても、一歩先を照らす光があればそれで十分です。\n今日という夜を、あたたかな光の中で安心して過ごしてください。" },
+  { emblem: "🎻", title: "第10章：音のない音楽会", text: "楽器を演奏する代わりに、ただ風の音や木の葉のざわめきに耳を澄ます音楽会。\n耳を澄ますことで、日常の中に隠れていた美しいメロディが聴こえてきます。\n今日は、静けさこそが最高のエンターテインメントです。" },
+  { emblem: "🍵", title: "第11章：白磁のティーカップ", text: "透き通るような白いカップに注がれた、琥珀色の温かいお茶。\n両手で包み込むだけで、こわばっていた肩の力がふっと抜けていきます。\nあなたの中の温もりを、どうか今日は枯渇させないであげて。" },
+  { emblem: "🧭", title: "第12章：北極星のコンパス", text: "針がくるくると回り、どこを指していいか迷っている古いコンパス。\nそんなときは無理に方角を決めず、星空を仰いでみましょう。\nあなたの直感こそが、一番狂わない確かな羅針盤です。" },
+  { emblem: "🪞", title: "第13章：アンティークの鏡", text: "少し曇ったガラスの鏡に映る自分に、今日は優しい魔法の言葉をかけてあげましょう。\n「よく頑張っているね」その一言だけで、鏡の向こうの表情がふっと和らぎます。\nあなたの一番の味方は、いつでもあなた自身です。" },
+  { emblem: "🍞", title: "第14章：焼きたてパンの匂い", text: "朝の冷たい空気に乗って、香ばしいパンの匂いがどこからか漂ってきます。\nお腹を満たすだけでなく、心までほっこりと満たしてくれる魔法の香り。\n今日は、ささやかな日常の幸せを五感でたっぷりと味わい尽くして。" },
+  { emblem: "🧵", title: "第15章：ほころびを繕う針", text: "お気に入りのセーターのほころびを、色の違う可愛い糸でダーニングする午後。\n傷や失敗も、隠すのではなく、むしろ個性として新しく縫い直せばいい。\nあなたのこれまでの軌跡は、すべて美しい模様に変わります。" },
+  { emblem: "🪄", title: "第16章：使いかけの魔法の杖", text: "大きな奇跡を起こせなくても、目の前の日常をちょっと楽しくする魔法なら使えます。\nお気に入りのカップを使う、好きな音楽をかける、それだけで十分。\n日常の中に、あなただけの小さな奇跡をたくさん散りばめて。" },
+  { emblem: "🌌", title: "第17章：星屑の図書館の片隅", text: "果てしない星空の下、世界中の物語が眠る図書館のいちばん静かな片隅。\nあなたの人生という本も、今この瞬間も美しいページを書き続けています。\nどんな結末が待っているかはまだ秘密。ページをめくるわくわくを楽しんで。" }
 ];
 
 /* =========================================================
@@ -844,7 +950,7 @@ function showLibrary() {
 }
 
 /* =========================================================
-   CARD DRAW (正逆対応)
+   TAROT CARD DRAW (正逆対応)
    ========================================================= */
 function drawTarotCard() {
   const card = tarotCards[Math.floor(Math.random() * tarotCards.length)];
@@ -862,6 +968,22 @@ function drawTarotCard() {
   setTimeout(() => {
     result.scrollIntoView({ behavior: "smooth", block: "center" });
   }, 100);
+}
+
+/* =========================================================
+   17 TALES DRAW (17種類の物語・正柄引き)
+   ========================================================= */
+function drawTale() {
+  const tale = seventeenTales[Math.floor(Math.random() * seventeenTales.length)];
+
+  document.getElementById("taleEmblem").textContent = tale.emblem;
+  document.getElementById("taleTitle").textContent = tale.title;
+  document.getElementById("taleBody").textContent = tale.text;
+
+  const taleBox = document.getElementById("tale");
+  if(taleBox) {
+    taleBox.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 }
 
 /* =========================================================
@@ -886,6 +1008,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const againBtn = document.getElementById("againButton");
   if (againBtn) againBtn.addEventListener("click", drawTarotCard);
+
+  const taleBtn = document.getElementById("taleButton");
+  if (taleBtn) taleBtn.addEventListener("click", drawTale);
 
   const homeBtn = document.getElementById("libraryHome");
   if (homeBtn) {
