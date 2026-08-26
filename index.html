@@ -11,6 +11,7 @@
             --text-main: #3a3835;
             --text-sub: #7a756f;
             --accent-warm: #d4836f;
+            --accent-wood: #8c7355;
             --border-color: #e3ded6;
             --shadow: 0 10px 30px rgba(58, 56, 53, 0.05);
             --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -120,6 +121,24 @@
             50% { opacity: 1; }
         }
 
+        /* --- 新たな層：小さな図書館の気配（本棚・引き出しのイメージ） --- */
+        .library-shelf {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .shelf-item {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            background: #eeeae2;
+            padding: 6px 14px;
+            border-radius: 4px;
+            border-bottom: 2px solid var(--accent-wood);
+        }
+
         /* --- ② ③ ④ ⑤ 札・旅の空間 --- */
         .card-container {
             perspective: 1000px;
@@ -222,7 +241,7 @@
             padding-left: 12px;
         }
 
-        /* --- ⑥ 帰還フェーズ（「じゃあ、そろそろ帰ろう。」の画面） --- */
+        /* --- ⑥ 帰還フェーズ --- */
         .return-message-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -309,13 +328,18 @@
 
     <div class="container">
 
-        <!-- ① 入口（トップページ：通常時 or 帰還後変化版） -->
+        <!-- ① 入口（トップページ：図書館の木漏れ日や静かな書架の気配をプラス） -->
         <div id="screen-top" class="screen active">
             <p class="top-message" id="top-greeting">今日は、どんな札かな。</p>
             <div class="ticket-box" id="start-btn">
                 <h1 id="top-title">結の札</h1>
                 <p id="top-subtitle">ちょっと見ていく？</p>
                 <div class="hint-badge" id="top-badge">一枚引いてみる</div>
+            </div>
+            <div class="library-shelf">
+                <span class="shelf-item">小さな本棚</span>
+                <span class="shelf-item">分類番号 00-21</span>
+                <span class="shelf-item">しおりの挟まったページ</span>
             </div>
         </div>
 
@@ -355,7 +379,7 @@
                 <p id="c-thought">急がなくても、大丈夫。</p>
             </div>
 
-            <!-- 開いたあとの次への案内（すぐ帰還画面には行かず、物語を味わうステップ） -->
+            <!-- 開いたあとの次への案内 -->
             <div class="action-area" id="action-after-open" style="display: none;">
                 <button class="btn" id="to-return-btn">じゃあ、そろそろ帰ろう。</button>
             </div>
@@ -365,7 +389,7 @@
         <div id="screen-return" class="screen">
             <div class="return-message-box">
                 <p>「じゃあ、そろそろ帰ろう。」</p>
-                <p class="return-message-sub">あ、もうこんな時間か。</p>
+                <p class="return-message-sub">本をそっと閉じ、元の棚に戻すように。</p>
             </div>
             <div class="action-area">
                 <button class="btn" id="go-home-btn">結の札へ</button>
@@ -445,7 +469,6 @@
 
         let currentCard = null;
         let isFlipped = false;
-        let hasVisitedBefore = false; // 旅を終えて帰ってきたかどうかのフラグ
 
         function setupRandomCard() {
             const randomIndex = Math.floor(Math.random() * cardsData.length);
@@ -465,7 +488,6 @@
             promptText.textContent = "このカード、なんか気になる。";
         }
 
-        // 画面遷移のヘルパー
         function switchScreen(fromScreen, toScreen) {
             fromScreen.classList.remove('active');
             setTimeout(() => {
@@ -477,7 +499,6 @@
             }, 600);
         }
 
-        // トップから札を引く画面へ
         startBtn.addEventListener('click', () => {
             setupRandomCard();
             switchScreen(screenTop, screenCard);
@@ -501,22 +522,17 @@
             if (!isFlipped) flipCard();
         });
 
-        // 途中でやめる場合
         backHome1.addEventListener('click', () => {
             switchScreen(screenCard, screenTop);
         });
 
-        // 「じゃあ、そろそろ帰ろう。」の帰還画面へ進む
         toReturnBtn.addEventListener('click', () => {
             switchScreen(screenCard, screenReturn);
         });
 
-        // 帰還画面から日常（トップ）へ戻る（ここで少しだけ変化をつける）
         goHomeBtn.addEventListener('click', () => {
-            hasVisitedBefore = true;
-            // 帰ってきた後の日常の微小な変化
             topGreeting.textContent = "おかえりなさい。";
-            topSubtitle.textCont = "またいつでも、どうぞ。";
+            topSubtitle.textContent = "またいつでも、本をひらくように。";
             topBadge.textContent = "もう一度引いてみる";
             
             switchScreen(screenReturn, screenTop);
