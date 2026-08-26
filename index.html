@@ -1,1127 +1,2541 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>結の札</title>
-    <style>
-        :root {
-            --bg-color: #f7f5f0;
-            --card-bg: #fffdf9;
-            --text-main: #3a3835;
-            --text-sub: #7a756f;
-            --accent-warm: #d4836f;
-            --accent-wood: #8c7355;
-            --border-color: #e3ded6;
-            --shadow: 0 10px 30px rgba(58, 56, 53, 0.05);
-            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>結の札｜きょうは、どんな物語かな</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.8;
-            letter-spacing: 0.05em;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+/* ==================================================
+   BASE
+================================================== */
 
-        .container {
-            width: 100%;
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 40px 24px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+:root {
+  --paper: #fffdf7;
+  --paper-deep: #f4eee4;
+  --paper-light: #fffaf0;
 
-        .screen {
-            display: none;
-            width: 100%;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: var(--transition-smooth);
-            text-align: center;
-        }
+  --ink: #332d2a;
+  --sub: #746c65;
 
-        .screen.active {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            opacity: 1;
-            transform: translateY(0);
-        }
+  --brown: #725849;
+  --brown-dark: #493a32;
 
-        /* --- ① トップ画面 --- */
+  --red: #bd6269;
+  --red-light: #f5e4e3;
 
-        .top-message {
-            font-size: 1.1rem;
-            color: var(--text-sub);
-            margin-bottom: 32px;
-            font-weight: 300;
-        }
+  --blue: #c4dfe2;
+  --yellow: #ead27b;
+  --green: #c8d8c2;
 
-        .ticket-box {
-            background: var(--card-bg);
-            border: 1px dashed var(--border-color);
-            padding: 48px 32px;
-            border-radius: 12px;
-            width: 100%;
-            box-shadow: var(--shadow);
-            position: relative;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
+  --line: #ded4c7;
 
-        .ticket-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(58, 56, 53, 0.08);
-            border-color: var(--accent-warm);
-        }
+  --shadow:
+    0 8px 25px rgba(60,45,35,.07);
 
-        .ticket-box h1 {
-            font-size: 1.8rem;
-            font-weight: 400;
-            letter-spacing: 0.1em;
-            margin-bottom: 16px;
-            color: var(--text-main);
-        }
+  --transition:
+    .55s cubic-bezier(.16,1,.3,1);
+}
 
-        .ticket-box p {
-            font-size: 0.95rem;
-            color: var(--text-sub);
-        }
+* {
+  box-sizing: border-box;
+}
 
-        .hint-badge {
-            display: inline-block;
-            margin-top: 32px;
-            font-size: 0.85rem;
-            color: var(--accent-warm);
-            background: rgba(212, 131, 111, 0.08);
-            padding: 6px 16px;
-            border-radius: 20px;
-            animation: pulse 2s infinite ease-in-out;
-        }
+html {
+  scroll-behavior: smooth;
+}
 
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 0.6;
-            }
+body {
+  margin: 0;
 
-            50% {
-                opacity: 1;
-            }
-        }
+  color: var(--ink);
+  background: var(--paper);
 
-        /* --- 図書館の気配 --- */
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    "Noto Sans JP",
+    sans-serif;
 
-        .library-shelf {
-            display: flex;
-            gap: 16px;
-            margin-top: 24px;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+  line-height: 1.8;
+  letter-spacing: .03em;
+}
 
-        .shelf-item {
-            font-size: 0.8rem;
-            color: var(--text-sub);
-            background: #eeeae2;
-            padding: 6px 14px;
-            border-radius: 4px;
-            border-bottom: 2px solid var(--accent-wood);
-        }
+button,
+a {
+  font: inherit;
+}
 
-        /* --- 趣旨ページリンク --- */
+button {
+  cursor: pointer;
+}
 
-        .about-link-btn {
-            background: none;
-            border: none;
-            font-size: 0.85rem;
-            color: var(--text-sub);
-            cursor: pointer;
-            margin-top: 20px;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            letter-spacing: 0.05em;
-            transition: color 0.3s ease;
-        }
 
-        .about-link-btn:hover {
-            color: var(--accent-warm);
-        }
+/* ==================================================
+   SCREEN SYSTEM
+================================================== */
 
-        /* --- ② ③ ④ ⑤ 札・旅の空間 --- */
+.screen {
+  display: none;
 
-        .card-container {
-            perspective: 1000px;
-            width: 240px;
-            height: 360px;
-            margin: 0 auto 32px auto;
-            cursor: pointer;
-        }
+  min-height: 100vh;
 
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-style: preserve-3d;
-            box-shadow: var(--shadow);
-            border-radius: 8px;
-        }
+  padding:
+    70px 20px;
 
-        .card-container.flipped .card-inner {
-            transform: rotateY(180deg);
-        }
+  animation: fadeIn .55s ease;
+}
 
-        .card-face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 24px;
-            border-radius: 8px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-        }
+.screen.active {
+  display: flex;
 
-        .card-back {
-            background: #e8e4dc;
-            color: var(--text-sub);
-            justify-content: center;
-            align-items: center;
-            border: 1px dashed var(--border-color);
-        }
+  flex-direction: column;
 
-        .card-front {
-            transform: rotateY(180deg);
-            text-align: left;
-            border-top: 4px solid var(--accent-warm);
-        }
+  align-items: center;
+}
 
-        .card-number {
-            font-size: 0.75rem;
-            color: var(--text-sub);
-            letter-spacing: 0.2em;
-        }
+@keyframes fadeIn {
 
-        .card-title {
-            font-size: 1.3rem;
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
 
-        .card-scene {
-            font-size: 0.9rem;
-            color: var(--text-main);
-            line-height: 1.7;
-            font-weight: 300;
-        }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-        .card-footer-note {
-            font-size: 0.75rem;
-            color: var(--text-sub);
-            text-align: right;
-        }
+}
 
-        .reflection-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 32px;
-            border-radius: 8px;
-            margin-bottom: 32px;
-            width: 100%;
-            text-align: left;
-            box-shadow: var(--shadow);
-        }
 
-        .reflection-box p {
-            font-size: 0.95rem;
-            color: var(--text-main);
-            margin-bottom: 16px;
-        }
+/* ==================================================
+   COMMON
+================================================== */
 
-        .reflection-box p:last-child {
-            margin-bottom: 0;
-            color: var(--text-sub);
-            font-size: 0.9rem;
-            border-left: 2px solid var(--accent-warm);
-            padding-left: 12px;
-        }
+.inner {
+  width: min(900px, 100%);
+  margin: auto;
+}
 
-        /* --- ⑥ 帰還フェーズ --- */
+.heading {
+  margin-bottom: 40px;
+}
 
-        .return-message-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 48px 32px;
-            border-radius: 12px;
-            width: 100%;
-            box-shadow: var(--shadow);
-            text-align: center;
-            margin-bottom: 32px;
-        }
+.heading small {
+  display: block;
 
-        .return-message-box p {
-            font-size: 1.1rem;
-            color: var(--text-main);
-            margin-bottom: 8px;
-            font-weight: 300;
-        }
+  color: var(--brown);
 
-        .return-message-sub {
-            font-size: 0.85rem;
-            color: var(--text-sub);
-        }
+  font-size: 10px;
 
-        /* --- ⑦ この場所について --- */
+  letter-spacing: .18em;
 
-        .about-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 40px 32px;
-            border-radius: 12px;
-            width: 100%;
-            box-shadow: var(--shadow);
-            text-align: left;
-            margin-bottom: 32px;
-        }
+  margin-bottom: 7px;
+}
 
-        .about-box h2 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin-bottom: 20px;
-            letter-spacing: 0.1em;
-            text-align: center;
-            color: var(--text-main);
-            border-bottom: 1px dashed var(--border-color);
-            padding-bottom: 12px;
-        }
+.heading h2 {
+  margin: 0;
 
-        .about-box p {
-            font-size: 0.9rem;
-            color: var(--text-main);
-            margin-bottom: 16px;
-            line-height: 1.9;
-            font-weight: 300;
-        }
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
 
-        .about-box p:last-child {
-            margin-bottom: 0;
-        }
+  font-size:
+    clamp(28px, 6vw, 42px);
 
-        /* --- 元の結の札サイトへの導線 --- */
+  font-weight: 400;
+}
 
-        .about-original-link {
-            margin-top: 32px;
-            padding-top: 28px;
-            border-top: 1px dashed var(--border-color);
-            text-align: center;
-        }
 
-        .about-link-lead {
-            color: var(--text-sub) !important;
-            font-size: 0.85rem !important;
-            margin-bottom: 16px !important;
-        }
+/* ==================================================
+   ① CASUAL ENTRANCE
+================================================== */
 
-        .original-site-btn {
-            display: inline-block;
-            padding: 11px 24px;
-            border: 1px solid var(--accent-warm);
-            border-radius: 30px;
-            color: var(--accent-warm);
-            background: transparent;
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-            transition: var(--transition-smooth);
-        }
+#entrance {
+  justify-content: center;
 
-        .original-site-btn:hover {
-            background: var(--accent-warm);
-            color: white;
-            transform: translateY(-2px);
-        }
+  background:
+    linear-gradient(
+      180deg,
+      #fffdf7,
+      #fffaf0
+    );
 
-        /* --- アクションボタン --- */
+  text-align: center;
+}
 
-        .action-area {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            width: 100%;
-            flex-wrap: wrap;
-        }
+.entrance-content {
+  width: min(620px, 100%);
+}
 
-        .btn {
-            background: transparent;
-            border: 1px solid var(--text-main);
-            color: var(--text-main);
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            letter-spacing: 0.05em;
-        }
+/* トップ画面の画像スタイル */
+.entrance-image-wrap {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 25px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(60,45,35,0.1);
+  border: 1px solid var(--line);
+}
 
-        .btn:hover {
-            background: var(--text-main);
-            color: var(--card-bg);
-        }
+.entrance-image-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-        .btn-sub {
-            border-color: var(--border-color);
-            color: var(--text-sub);
-        }
+.entrance-small {
+  color: var(--sub);
 
-        .btn-sub:hover {
-            border-color: var(--text-sub);
-            background: transparent;
-            color: var(--text-main);
-        }
+  font-size: 13px;
 
-        /* --- フッター --- */
+  margin-bottom: 15px;
+}
 
-        footer {
-            padding: 24px;
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-sub);
-            letter-spacing: 0.1em;
-        }
+.entrance-title {
+  margin: 0;
 
-        /* --- スマホ --- */
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 24px 16px;
-            }
+  font-size:
+    clamp(35px, 9vw, 65px);
 
-            .card-container {
-                width: 210px;
-                height: 320px;
-            }
+  font-weight: 400;
 
-            .ticket-box,
-            .return-message-box,
-            .about-box {
-                padding: 36px 20px;
-            }
-        }
-    </style>
+  letter-spacing: .12em;
+}
+
+.entrance-subtitle {
+  margin:
+    18px 0 35px;
+
+  color: var(--sub);
+
+  font-size: 14px;
+}
+
+.entrance-button {
+  display: inline-block;
+
+  padding:
+    14px 34px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background: var(--red);
+
+  color: white;
+
+  font-size: 14px;
+
+  transition: .25s;
+}
+
+.entrance-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 18px rgba(100,60,50,.15);
+}
+
+.entrance-note {
+  margin-top: 35px;
+
+  color: #9a9189;
+
+  font-size: 11px;
+}
+
+
+/* ==================================================
+   ② CASUAL ABOUT
+================================================== */
+
+#casual-about {
+  justify-content: center;
+
+  background: var(--paper);
+}
+
+.casual-about-box {
+  width: min(620px, 100%);
+
+  padding:
+    45px 30px;
+
+  background: white;
+
+  border:
+    1px solid var(--line);
+
+  box-shadow: var(--shadow);
+
+  text-align: left;
+}
+
+.casual-about-box h2 {
+  margin:
+    0 0 25px;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 25px;
+
+  font-weight: 400;
+
+  text-align: center;
+}
+
+.casual-about-box p {
+  margin:
+    0 0 18px;
+
+  color: var(--sub);
+
+  font-size: 14px;
+}
+
+.casual-about-box p:last-child {
+  margin-bottom: 0;
+}
+
+.about-actions {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 30px;
+
+  flex-wrap: wrap;
+}
+
+.simple-button {
+  padding:
+    11px 25px;
+
+  border:
+    1px solid var(--brown);
+
+  border-radius: 30px;
+
+  background: transparent;
+
+  color: var(--brown);
+
+  font-size: 13px;
+
+  transition: .2s;
+}
+
+.simple-button:hover {
+  background: var(--brown);
+
+  color: white;
+}
+
+.simple-button.sub {
+  border-color: var(--line);
+
+  color: var(--sub);
+}
+
+
+/* ==================================================
+   ③ LIBRARY MAIN
+================================================== */
+
+#library {
+  display: none;
+
+  padding: 0;
+
+  background: var(--paper);
+
+  animation: none;
+}
+
+#library.active {
+  display: block;
+}
+
+
+/* HEADER */
+
+.library-header {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 100;
+
+  background:
+    rgba(255,253,247,.96);
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.library-header-inner {
+  width: min(960px, 92%);
+
+  height: 64px;
+
+  margin: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+.library-logo {
+  border: none;
+
+  background: none;
+
+  color: var(--ink);
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 20px;
+
+  letter-spacing: .14em;
+}
+
+.library-nav {
+  display: flex;
+
+  gap: 20px;
+}
+
+.library-nav button {
+  border: none;
+
+  background: none;
+
+  color: var(--sub);
+
+  font-size: 11px;
+}
+
+.library-nav button:hover {
+  color: var(--red);
+}
+
+
+/* ==================================================
+   LIBRARY HERO
+================================================== */
+
+.library-hero {
+  min-height: 620px;
+
+  padding:
+    75px 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffdf7,
+      #fffaf0
+    );
+}
+
+.library-hero-content {
+  width: min(900px, 100%);
+}
+
+.book-label {
+  display: inline-block;
+
+  padding:
+    6px 13px;
+
+  border:
+    1px solid var(--brown);
+
+  color: var(--brown);
+
+  background: white;
+
+  font-size: 10px;
+
+  letter-spacing: .16em;
+
+  margin-bottom: 25px;
+}
+
+
+/* BOOKSHELF */
+
+.bookshelf {
+  width: min(600px, 92%);
+
+  height: 175px;
+
+  margin:
+    0 auto 35px;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  position: relative;
+}
+
+.bookshelf::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: 0;
+
+  left: 0;
+  right: 0;
+
+  height: 10px;
+
+  background: var(--brown);
+
+  border-radius: 2px;
+}
+
+.book {
+  width: 60px;
+
+  position: relative;
+
+  border-radius:
+    4px 4px 0 0;
+
+  box-shadow:
+    2px 2px 0 rgba(70,50,40,.08);
+}
+
+.book:nth-child(1) {
+  height: 120px;
+
+  background: var(--blue);
+}
+
+.book:nth-child(2) {
+  height: 155px;
+
+  background: var(--red);
+}
+
+.book:nth-child(3) {
+  height: 138px;
+
+  background: var(--yellow);
+}
+
+.book:nth-child(4) {
+  height: 168px;
+
+  background: var(--green);
+}
+
+.book:nth-child(5) {
+  height: 128px;
+
+  background: #d9b8a8;
+}
+
+.book:nth-child(6) {
+  height: 150px;
+
+  background: #a9c6d0;
+}
+
+.book::after {
+  content: "";
+
+  position: absolute;
+
+  top: 18px;
+  bottom: 18px;
+
+  left: 12px;
+  right: 12px;
+
+  border-top:
+    1px solid rgba(255,255,255,.55);
+
+  border-bottom:
+    1px solid rgba(255,255,255,.55);
+}
+
+
+/* BOOKMARK */
+
+.bookmark {
+  position: absolute;
+
+  z-index: 5;
+
+  top: -25px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  width: 35px;
+
+  height: 125px;
+
+  background: var(--red);
+
+  box-shadow:
+    2px 3px 5px rgba(50,40,30,.12);
+}
+
+.bookmark::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: -1px;
+
+  left: 0;
+
+  border-left:
+    17.5px solid transparent;
+
+  border-right:
+    17.5px solid transparent;
+
+  border-bottom:
+    13px solid var(--paper-light);
+}
+
+.bookmark-text {
+  writing-mode: vertical-rl;
+
+  color: white;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 14px;
+
+  letter-spacing: .12em;
+
+  padding-top: 13px;
+}
+
+.library-hero h1 {
+  margin: 0;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-weight: 400;
+
+  font-size:
+    clamp(52px, 13vw, 95px);
+
+  letter-spacing: .16em;
+}
+
+.library-hero-subtitle {
+  margin:
+    12px 0 15px;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size:
+    clamp(20px, 4vw, 27px);
+}
+
+.library-hero-text {
+  color: var(--sub);
+
+  font-size: 14px;
+
+  margin-bottom: 30px;
+}
+
+
+/* ==================================================
+   LIBRARY CONCEPT
+================================================== */
+
+.library-section {
+  padding:
+    85px 20px;
+}
+
+.library-concept {
+  background: var(--paper-deep);
+}
+
+.library-concept-inner {
+  width: min(700px, 100%);
+
+  margin: auto;
+}
+
+.concept-lead {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size:
+    clamp(21px, 4vw, 27px);
+
+  line-height: 1.9;
+
+  margin-bottom: 30px;
+}
+
+.library-concept p {
+  color: var(--sub);
+
+  font-size: 14px;
+}
+
+
+/* ==================================================
+   SHELF
+================================================== */
+
+.shelf-section {
+  background: white;
+}
+
+.shelf {
+  width: min(760px, 100%);
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 14px;
+
+  align-items: end;
+
+  padding-bottom: 12px;
+
+  border-bottom:
+    10px solid var(--brown);
+}
+
+.shelf-book {
+  min-height: 180px;
+
+  padding:
+    20px 12px;
+
+  border-radius:
+    5px 5px 0 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  position: relative;
+}
+
+.shelf-book:nth-child(1) {
+  background: var(--red-light);
+}
+
+.shelf-book:nth-child(2) {
+  background: #e8f2ef;
+}
+
+.shelf-book:nth-child(3) {
+  background: #fff2c8;
+}
+
+.shelf-book:nth-child(4) {
+  background: #e5edf4;
+}
+
+.shelf-book::before {
+  content: "";
+
+  position: absolute;
+
+  top: 14px;
+
+  left: 10px;
+  right: 10px;
+
+  height: 1px;
+
+  background:
+    rgba(80,60,50,.18);
+}
+
+.shelf-book span {
+  font-size: 18px;
+
+  writing-mode: vertical-rl;
+
+  letter-spacing: .1em;
+}
+
+.shelf-note {
+  width: min(760px, 100%);
+
+  margin:
+    28px auto 0;
+
+  text-align: center;
+
+  color: var(--sub);
+
+  font-size: 13px;
+}
+
+
+/* ==================================================
+   CARD SECTION
+================================================== */
+
+.card-section {
+  background: var(--paper-light);
+
+  text-align: center;
+}
+
+.card-intro {
+  width: min(620px, 100%);
+
+  margin:
+    0 auto 35px;
+}
+
+.card-intro p {
+  color: var(--sub);
+
+  font-size: 14px;
+}
+
+.card-question {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size:
+    clamp(20px, 4vw, 27px);
+}
+
+.draw-button {
+  border: none;
+
+  background: var(--brown-dark);
+
+  color: white;
+
+  padding:
+    14px 35px;
+
+  border-radius: 5px;
+
+  font-size: 14px;
+
+  transition: .2s;
+}
+
+.draw-button:hover {
+  background: var(--red);
+
+  transform: translateY(-2px);
+}
+
+.draw-button:disabled {
+  opacity: .6;
+
+  cursor: default;
+
+  transform: none;
+}
+
+
+/* ==================================================
+   RESULT
+================================================== */
+
+.card-result {
+  display: none;
+
+  width: min(650px, 100%);
+
+  margin:
+    55px auto 0;
+
+  animation:
+    pageOpen .6s ease;
+}
+
+@keyframes pageOpen {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(15px)
+      rotateX(-5deg);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      rotateX(0);
+  }
+
+}
+
+.result-label {
+  color: var(--brown);
+
+  font-size: 10px;
+
+  letter-spacing: .18em;
+
+  margin-bottom: 20px;
+}
+
+
+/* TAROT */
+
+.tarot-card {
+  width: 215px;
+
+  height: 325px;
+
+  margin:
+    0 auto 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #c9767c,
+      #a95560
+    );
+
+  border:
+    7px solid white;
+
+  outline:
+    1px solid #c68a90;
+
+  border-radius: 7px;
+
+  color: white;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  position: relative;
+
+  box-shadow:
+    0 12px 30px
+    rgba(60,45,35,.16);
+}
+
+.tarot-card::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 13px;
+
+  border:
+    1px solid rgba(255,255,255,.45);
+
+  border-radius: 3px;
+}
+
+.card-number {
+  font-size: 12px;
+
+  margin-bottom: 18px;
+
+  position: relative;
+}
+
+.card-symbol {
+  font-family: serif;
+
+  font-size: 60px;
+
+  line-height: 1;
+
+  margin-bottom: 22px;
+
+  position: relative;
+}
+
+.card-name {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 23px;
+
+  letter-spacing: .1em;
+
+  position: relative;
+}
+
+.orientation {
+  color: var(--brown);
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  margin-bottom: 15px;
+}
+
+.card-message {
+  background: white;
+
+  border:
+    1px solid var(--line);
+
+  padding: 24px;
+
+  text-align: left;
+
+  font-size: 14px;
+
+  line-height: 2;
+
+  white-space: pre-line;
+}
+
+.card-info {
+  margin-top: 40px;
+
+  padding: 25px;
+
+  background: white;
+
+  border:
+    1px solid var(--line);
+
+  text-align: left;
+
+  position: relative;
+}
+
+.card-info::before {
+  content: "";
+
+  position: absolute;
+
+  left: 20px;
+  top: -8px;
+
+  width: 50px;
+
+  height: 15px;
+
+  background: var(--yellow);
+
+  opacity: .7;
+
+  transform: rotate(-2deg);
+}
+
+.card-info-title {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 18px;
+
+  margin-bottom: 12px;
+}
+
+.card-info p {
+  margin: 0;
+
+  color: var(--sub);
+
+  font-size: 13px;
+}
+
+
+/* ==================================================
+   STORY FLOW
+================================================== */
+
+.story-flow {
+  background: white;
+}
+
+.flow {
+  width: min(760px, 100%);
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 0;
+
+  position: relative;
+}
+
+.flow::before {
+  content: "";
+
+  position: absolute;
+
+  top: 42px;
+
+  left: 14%;
+  right: 14%;
+
+  border-top:
+    1px dashed var(--line);
+
+  z-index: 0;
+}
+
+.flow-item {
+  text-align: center;
+
+  position: relative;
+
+  z-index: 1;
+}
+
+.flow-icon {
+  width: 82px;
+  height: 82px;
+
+  margin:
+    0 auto 17px;
+
+  border-radius: 50%;
+
+  background: var(--paper-light);
+
+  border:
+    1px solid var(--line);
+
+  display: grid;
+
+  place-items: center;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 24px;
+}
+
+.flow-item:nth-child(2)
+.flow-icon {
+  background: var(--red-light);
+}
+
+.flow-item:nth-child(3)
+.flow-icon {
+  background: #e7f0e9;
+}
+
+.flow-item h3 {
+  margin:
+    0 0 6px;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-weight: 400;
+
+  font-size: 20px;
+}
+
+.flow-item p {
+  margin: 0;
+
+  color: var(--sub);
+
+  font-size: 12px;
+}
+
+
+/* ==================================================
+   STORY
+================================================== */
+
+.story {
+  background: var(--paper-deep);
+}
+
+.story-content {
+  width: min(700px, 100%);
+
+  margin: auto;
+}
+
+.story-page {
+  padding:
+    35px 30px;
+
+  background: #fffdf8;
+
+  border:
+    1px solid var(--line);
+
+  box-shadow:
+    0 4px 18px
+    rgba(60,45,35,.06);
+
+  position: relative;
+}
+
+.story-page::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: 18px;
+
+  border-left:
+    1px solid #eee4d6;
+}
+
+.story-page p {
+  margin:
+    0 0 22px;
+
+  color: var(--sub);
+
+  font-size: 14px;
+}
+
+.story-page p:last-child {
+  margin-bottom: 0;
+}
+
+.story-highlight {
+  padding:
+    22px 25px;
+
+  margin:
+    25px 0;
+
+  background: var(--paper-light);
+
+  border-left:
+    3px solid var(--red);
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size:
+    clamp(18px, 4vw, 24px);
+
+  line-height: 2;
+}
+
+
+/* ==================================================
+   BOOKMARK
+================================================== */
+
+.bookmark-section {
+  background: white;
+
+  text-align: center;
+}
+
+.bookmark-card {
+  width: min(500px, 100%);
+
+  margin: auto;
+
+  padding:
+    30px 30px 35px;
+
+  background: var(--paper-light);
+
+  border:
+    1px solid var(--line);
+
+  position: relative;
+
+  box-shadow:
+    0 5px 15px
+    rgba(60,45,35,.06);
+}
+
+.bookmark-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: -12px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%)
+    rotate(-2deg);
+
+  width: 70px;
+
+  height: 24px;
+
+  background: var(--yellow);
+
+  opacity: .75;
+}
+
+.bookmark-symbol {
+  width: 42px;
+
+  height: 75px;
+
+  margin:
+    0 auto 18px;
+
+  background: var(--red);
+
+  position: relative;
+
+  color: white;
+
+  display: flex;
+
+  justify-content: center;
+
+  padding-top: 10px;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 18px;
+}
+
+.bookmark-symbol::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: -1px;
+
+  left: 0;
+
+  border-left:
+    21px solid transparent;
+
+  border-right:
+    21px solid transparent;
+
+  border-bottom:
+    15px solid var(--paper-light);
+}
+
+.bookmark-card h3 {
+  margin:
+    0 0 10px;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 23px;
+
+  font-weight: 400;
+}
+
+.bookmark-card p {
+  margin: 0;
+
+  color: var(--sub);
+
+  font-size: 13px;
+}
+
+
+/* ==================================================
+   RETURN
+================================================== */
+
+.return-section {
+  background: var(--paper);
+
+  text-align: center;
+
+  padding:
+    110px 20px;
+}
+
+.return-box {
+  width: min(600px, 100%);
+
+  margin: auto;
+}
+
+.return-box h2 {
+  margin:
+    0 0 20px;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size:
+    clamp(28px, 7vw, 44px);
+
+  font-weight: 400;
+}
+
+.return-box p {
+  color: var(--sub);
+
+  font-size: 13px;
+
+  margin-bottom: 30px;
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+.library-footer {
+  background: var(--brown-dark);
+
+  color: white;
+
+  text-align: center;
+
+  padding:
+    45px 20px;
+}
+
+.footer-logo {
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 25px;
+
+  letter-spacing: .14em;
+
+  margin-bottom: 7px;
+}
+
+.footer-text {
+  font-size: 11px;
+
+  opacity: .7;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 700px) {
+
+  .screen {
+    padding:
+      55px 16px;
+  }
+
+  .library-header-inner {
+    height: 58px;
+  }
+
+  .library-nav {
+    gap: 10px;
+  }
+
+  .library-nav button {
+    font-size: 9px;
+  }
+
+  .library-section {
+    padding:
+      65px 20px;
+  }
+
+  .library-hero {
+    min-height: 600px;
+
+    padding:
+      70px 20px 80px;
+  }
+
+  .bookshelf {
+    height: 145px;
+
+    gap: 5px;
+  }
+
+  .book {
+    width: 43px;
+  }
+
+  .book:nth-child(1) {
+    height: 100px;
+  }
+
+  .book:nth-child(2) {
+    height: 125px;
+  }
+
+  .book:nth-child(3) {
+    height: 110px;
+  }
+
+  .book:nth-child(4) {
+    height: 135px;
+  }
+
+  .book:nth-child(5) {
+    height: 105px;
+  }
+
+  .book:nth-child(6) {
+    height: 120px;
+  }
+
+  .bookmark {
+    width: 28px;
+
+    height: 100px;
+  }
+
+  .bookmark::after {
+    border-left-width: 14px;
+
+    border-right-width: 14px;
+
+    border-bottom-width: 10px;
+  }
+
+  .bookmark-text {
+    font-size: 11px;
+     }
+
+  .shelf {
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 10px;
+  }
+
+  .shelf-book {
+    min-height: 150px;
+  }
+
+  .flow {
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+  }
+
+  .flow::before {
+    display: none;
+  }
+
+  .story-page {
+    padding:
+      28px 25px 28px 38px;
+  }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <div class="container">
 
-        <!-- ① 入口 -->
+<!-- ==================================================
+     ① CASUAL ENTRANCE
+================================================== -->
 
-        <div id="screen-top" class="screen active">
+<section
+  id="entrance"
+  class="screen active">
 
-            <p class="top-message" id="top-greeting">
-                きょうは、どんな物語かな
-            </p>
+  <div class="entrance-content">
 
-            <div class="ticket-box" id="start-btn">
+    <!-- ▼ 画像ファイル名を image.jpg に指定 -->
+    <div class="entrance-image-wrap">
+      <img src="image.jpg" alt="結の札 イメージ画像">
+    </div>
 
-                <h1 id="top-title">
-                    結の札
-                </h1>
+    <div class="entrance-small">
+      結の札
+    </div>
 
-                <p id="top-subtitle">
-                    ちょっと見ていく？
-                </p>
+    <h1 class="entrance-title">
+      きょうは、<br>
+      どんな物語かな
+    </h1>
 
-                <div class="hint-badge" id="top-badge">
-                    一枚引いてみる
-                </div>
+    <p class="entrance-subtitle">
+      タロットを一枚ひいて、<br>
+      ちょっとだけ遊んでいく。
+    </p>
 
-            </div>
+    <button
+      class="entrance-button"
+      id="enterLibrary">
 
-            <div class="library-shelf">
+      ちょっと見ていく
 
-                <span class="shelf-item">
-                    静かな書架の隅
-                </span>
+    </button>
 
-                <span class="shelf-item">
-                    分類番号 03-21
-                </span>
+    <div class="entrance-note">
+      当たる・当たらないは、いったん置いておいて。
+    </div>
 
-                <span class="shelf-item">
-                    木彫りのカウンター
-                </span>
+  </div>
 
-            </div>
+</section>
 
-            <button
-                class="about-link-btn"
-                id="to-about-btn">
-                この場所について
-            </button>
 
-        </div>
 
+<!-- ==================================================
+     ② CASUAL ABOUT
+================================================== -->
 
-        <!-- ② 札を引く -->
+<section
+  id="casual-about"
+  class="screen">
 
-        <div id="screen-card" class="screen">
+  <div class="casual-about-box">
 
-            <p class="top-message" id="prompt-text">
-                このカード、なんか気になる。
-            </p>
+    <h2>
+      結の札って？
+    </h2>
 
-            <div
-                class="card-container"
-                id="card-element">
+    <p>
+      タロットを一枚ひいて、そこから小さな物語を読む遊びです。
+    </p>
 
-                <div class="card-inner">
+    <p>
+      カードの意味を答えにしなくても大丈夫。
+      「このカード、なんか好き」
+      くらいの気持ちでも十分です。
+    </p>
 
-                    <!-- 裏面 -->
+    <p>
+      少し読んで、少し考えて、
+      気が向いたらまた戻ってくる。
+    </p>
 
-                    <div class="card-face card-back">
+    <p>
+      そんな小さな寄り道を用意しています。
+    </p>
 
-                        <span>✦</span>
+    <div class="about-actions">
 
-                        <p style="font-size: 0.85rem; letter-spacing: 0.2em;">
-                            結
-                        </p>
+      <button
+        class="simple-button"
+        id="aboutEnter">
 
-                        <span>✦</span>
+        本棚を見てみる
 
-                    </div>
+      </button>
 
+      <button
+        class="simple-button sub"
+        id="aboutBack">
 
-                    <!-- 表面 -->
+        もどる
 
-                    <div class="card-face card-front">
-
-                        <div>
-
-                            <div
-                                class="card-number"
-                                id="c-num">
-                                No. 01
-                            </div>
-
-                            <div
-                                class="card-title"
-                                id="c-title">
-                                タイトル
-                            </div>
-
-                        </div>
-
-
-                        <div
-                            class="card-scene"
-                            id="c-scene">
-                            情景がここに浮かびます。
-                        </div>
-
-
-                        <div class="card-footer-note">
-                            少し寄り道。
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div
-                class="action-area"
-                id="action-before-open">
-
-                <button
-                    class="btn"
-                    id="open-btn">
-                    札をめくる
-                </button>
-
-                <button
-                    class="btn btn-sub"
-                    id="back-home-1">
-                    やめる
-                </button>
-
-            </div>
-
-
-            <div
-                class="reflection-box"
-                id="reflection-box"
-                style="display: none;">
-
-                <p id="c-reflection">
-                    ここに問いかけが入ります。
-                </p>
-
-                <p id="c-thought">
-                    急がなくても、大丈夫。
-                </p>
-
-            </div>
-
-
-            <div
-                class="action-area"
-                id="action-after-open"
-                style="display: none;">
-
-                <button
-                    class="btn"
-                    id="to-return-btn">
-                    じゃあ、そろそろ帰ろう。
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- ③ 帰還 -->
-
-        <div id="screen-return" class="screen">
-
-            <div class="return-message-box">
-
-                <p>
-                    「じゃあ、そろそろ帰ろう。」
-                </p>
-
-                <p class="return-message-sub">
-                    扉をそっと閉めて、日常の足取りへ。
-                </p>
-
-            </div>
-
-
-            <div class="action-area">
-
-                <button
-                    class="btn"
-                    id="go-home-btn">
-                    結の札へ
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- ④ この場所について -->
-
-        <div id="screen-about" class="screen">
-
-            <div class="about-box">
-
-                <h2>
-                    この場所について
-                </h2>
-
-                <p>
-                    ここは、未来を占ったり、
-                    大きな答えを見つけたりするための場所ではありません。
-                </p>
-
-                <p>
-                    日常のすき間に、
-                    ふと手にとった一枚の小さな紙片。
-                    そこに描かれた情景や言葉をきっかけにして、
-                    自分の物語の中へほんの少しだけ足を踏み入れてみる。
-                </p>
-
-                <p>
-                    少し寄り道をしたり、
-                    何も見つからずに通り過ぎたり。
-                    そして最後には、
-                    ちゃんと自分の日常へと帰っていく。
-                </p>
-
-                <p>
-                    そんな、静かな往復の時間を楽しむための
-                    小さな停留所です。
-                </p>
-
-
-                <!-- 元の結の札サイトへのリンク -->
-
-                <div class="about-original-link">
-
-                    <p class="about-link-lead">
-                        もう少し、この場所を歩いてみたい方へ。
-                    </p>
-
-                    <a
-                        href="https://musica-3.github.io/fuda/"
-                        class="original-site-btn"
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        結の札をもう少し読む
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="action-area">
-
-                <button
-                    class="btn"
-                    id="back-from-about-btn">
-                    もどる
-                </button>
-
-            </div>
-
-        </div>
+      </button>
 
     </div>
 
+  </div>
 
-    <footer>
+</section>
+
+
+
+<!-- ==================================================
+     ③ LIBRARY WORLD
+================================================== -->
+
+<section
+  id="library"
+  class="screen">
+
+
+  <!-- HEADER -->
+
+  <header class="library-header">
+
+    <div class="library-header-inner">
+
+      <button
+        class="library-logo"
+        id="libraryHome">
+
         結の札
-    </footer>
-
-
-    <script>
-
-        /* ==========================================
-           カードデータ
-        ========================================== */
-
-        const cardsData = [
-
-            {
-                num: "No. 03",
-                title: "遠くの鐘",
-                scene:
-                    "どこからか、夕方の鐘の音が聞こえる。風が少しだけ冷たくなって、上着のポケットに手を入れた。",
-                reflection:
-                    "最近、ひとつのことに夢中になりすぎて、まわりの景色が見えなくなっていませんでしたか。",
-                thought:
-                    "たまには足を止めて、深呼吸をひとつ。"
-            },
-
-            {
-                num: "No. 07",
-                title: "水たまりの空",
-                scene:
-                    "雨上がりのアスファルト。足元をふと見下ろすと、そこには現実とは違う、静かな青空が広がっていた。",
-                reflection:
-                    "見慣れた日常のなかに、小さな別世界が隠れていることに気づく瞬間があります。",
-                thought:
-                    "今日はいつもと違う道を歩いてみるのもいいかも。"
-            },
 
-            {
-                num: "No. 12",
-                title: "古い切符",
-                scene:
-                    "引き出しの奥から、いつどこで買ったかも忘れてしまった、小さな電車の切符が出てきた。",
-                reflection:
-                    "忘れていた昔の約束や、昔の自分が大切にしていた気持ちを、ふと思い出す日。",
-                thought:
-                    "過去の自分に、ちょっと挨拶をしてみる。"
-            },
+      </button>
 
-            {
-                num: "No. 15",
-                title: "重たいコート",
-                scene:
-                    "ずっと着続けていたコートを脱いだら、体が驚くほど軽くなった。春はもうすぐそこまで来ている。",
-                reflection:
-                    "そろそろ手放してもいい荷物を、ずっと抱えていませんでしたか。",
-                thought:
-                    "軽くなった肩で、明日へ。"
-            },
 
-            {
-                num: "No. 21",
-                title: "夜の窓辺",
-                scene:
-                    "静まり返った部屋。マグカップから立ち上る湯気を眺めながら、今日一日の出来事をゆっくりと整理する。",
-                reflection:
-                    "今日もよく頑張りました。うまくできたことも、できなかったことも、すべて今日という物語のひとコマ。",
-                thought:
-                    "あたたかい飲み物を飲んで、眠りにつこう。"
-            }
+      <nav class="library-nav">
 
-        ];
+        <button data-scroll="libraryConcept">
+          ここについて
+        </button>
 
+        <button data-scroll="libraryCard">
+          一枚ひく
+        </button>
 
-        /* ==========================================
-           DOM
-        ========================================== */
+        <button data-scroll="libraryStory">
+          物語
+        </button>
 
-        const startBtn =
-            document.getElementById('start-btn');
+      </nav>
 
-        const screenTop =
-            document.getElementById('screen-top');
+    </div>
 
-        const screenCard =
-            document.getElementById('screen-card');
+  </header>
 
-        const screenReturn =
-            document.getElementById('screen-return');
 
-        const screenAbout =
-            document.getElementById('screen-about');
 
+  <!-- HERO -->
 
-        const cardElement =
-            document.getElementById('card-element');
+  <div class="library-hero">
 
-        const openBtn =
-            document.getElementById('open-btn');
+    <div class="library-hero-content">
 
-        const backHome1 =
-            document.getElementById('back-home-1');
+      <div class="book-label">
+        CARD & STORY
+      </div>
 
-        const toReturnBtn =
-            document.getElementById('to-return-btn');
 
-        const goHomeBtn =
-            document.getElementById('go-home-btn');
+      <div class="bookshelf">
 
-        const toAboutBtn =
-            document.getElementById('to-about-btn');
+        <div class="book"></div>
 
-        const backFromAboutBtn =
-            document.getElementById('back-from-about-btn');
+        <div class="book">
 
+          <div class="bookmark">
 
-        const actionBeforeOpen =
-            document.getElementById('action-before-open');
+            <div class="bookmark-text">
+              結の札
+            </div>
 
-        const actionAfterOpen =
-            document.getElementById('action-after-open');
+          </div>
 
-        const reflectionBox =
-            document.getElementById('reflection-box');
+        </div>
 
-        const promptText =
-            document.getElementById('prompt-text');
+        <div class="book"></div>
 
+        <div class="book"></div>
 
-        const cNum =
-            document.getElementById('c-num');
+        <div class="book"></div>
 
-        const cTitle =
-            document.getElementById('c-title');
+        <div class="book"></div>
 
-        const cScene =
-            document.getElementById('c-scene');
+      </div>
 
-        const cReflection =
-            document.getElementById('c-reflection');
 
-        const cThought =
-            document.getElementById('c-thought');
+      <h1>
+        結の札
+      </h1>
 
 
-        const topGreeting =
-            document.getElementById('top-greeting');
+      <div class="library-hero-subtitle">
+        一枚の札から、少しだけ。
+      </div>
 
-        const topSubtitle =
-            document.getElementById('top-subtitle');
 
-        const topBadge =
-            document.getElementById('top-badge');
+      <p class="library-hero-text">
 
+        本をひらくように、<br>
+        今日の一枚をひらいてみる。
 
-        let currentCard = null;
+      </p>
 
-        let isFlipped = false;
 
+      <button
+        class="draw-button"
+        data-scroll="libraryCard">
 
-        /* ==========================================
-           ランダムカード
-        ========================================== */
+        札をひらく
 
-        function setupRandomCard() {
+      </button>
 
-            const randomIndex =
-                Math.floor(
-                    Math.random() *
-                    cardsData.length
-                );
+    </div>
 
-            currentCard =
-                cardsData[randomIndex];
+  </div>
 
 
-            cNum.textContent =
-                currentCard.num;
 
-            cTitle.textContent =
-                currentCard.title;
+  <!-- CONCEPT -->
 
-            cScene.textContent =
-                currentCard.scene;
+  <section
+    class="library-section library-concept"
+    id="libraryConcept">
 
-            cReflection.textContent =
-                currentCard.reflection;
+    <div class="inner">
 
-            cThought.textContent =
-                currentCard.thought;
+      <div class="heading">
 
+        <small>
+          ABOUT
+        </small>
 
-            cardElement.classList.remove(
-                'flipped'
-            );
+        <h2>
+          ここでは、少し遊びます。
+        </h2>
 
-            isFlipped = false;
+      </div>
 
 
-            reflectionBox.style.display =
-                'none';
+      <div class="library-concept-inner">
 
-            actionBeforeOpen.style.display =
-                'flex';
+        <div class="concept-lead">
 
-            actionAfterOpen.style.display =
-                'none';
+          本をひらくように、<br>
+          一枚の札をひらいてみる。
 
+        </div>
 
-            promptText.textContent =
-                "このカード、なんか気になる。";
-        }
 
+        <p>
+          結の札は、タロットと物語を
+          組み合わせて遊ぶ場所です。
+        </p>
 
-        /* ==========================================
-           画面切り替え
-        ========================================== */
+        <p>
+          カードを一枚選んで、
+          そこから小さな物語へ。
+        </p>
 
-        function switchScreen(
-            fromScreen,
-            toScreen
-        ) {
+        <p>
+          ちょっと寄り道して、
+          少し考えて、
+          またこちらへ戻ってきます。
+        </p>
 
-            fromScreen.classList.remove(
-                'active'
-            );
+        <p>
+          難しいことはありません。
+          <br><br>
+          本を読むときみたいに、
+          気になったところからどうぞ。
+        </p>
 
+      </div>
 
-            setTimeout(() => {
+  </div>
 
-                fromScreen.style.display =
-                    'none';
+  </section>
 
-                toScreen.style.display =
-                    'flex';
 
 
-                setTimeout(() => {
+  <!-- SHELF -->
 
-                    toScreen.classList.add(
-                        'active'
-                    );
+  <section class="library-section shelf-section">
 
-                }, 50);
+    <div class="inner">
 
-            }, 600);
+      <div class="heading">
 
-        }
+        <small>
+          BOOKS
+        </small>
 
+        <h2>
+          物語は、棚の中。
+        </h2>
 
-        /* ==========================================
-           スタート
-        ========================================== */
+      </div>
 
-        startBtn.addEventListener(
-            'click',
-            () => {
 
-                setupRandomCard();
+      <div class="shelf">
 
-                switchScreen(
-                    screenTop,
-                    screenCard
-                );
+        <div class="shelf-book">
+          <span>はじまり</span>
+        </div>
 
-            }
-        );
+        <div class="shelf-book">
+          <span>旅</span>
+        </div>
 
+        <div class="shelf-book">
+          <span>出会い</span>
+        </div>
 
-        /* ==========================================
-           カードをめくる
-        ========================================== */
+        <div class="shelf-book">
+          <span>帰り道</span>
+        </div>
 
-        function flipCard() {
+      </div>
 
-            if (isFlipped) return;
 
+      <div class="shelf-note">
 
-            cardElement.classList.add(
-                'flipped'
-            );
+        どれを読むかは、その日の気分で。
 
-            isFlipped = true;
+      </div>
 
+  </div>
 
-            promptText.textContent =
-                "物語の中へ、少しだけ入ってみる。";
+  </section>
 
 
-            setTimeout(() => {
 
-                reflectionBox.style.display =
-                    'block';
+  <!-- CARD -->
 
-                actionBeforeOpen.style.display =
-                    'none';
+  <section
+    class="library-section card-section"
+    id="libraryCard">
 
-                actionAfterOpen.style.display =
-                    'flex';
+    <div class="inner">
 
-            }, 600);
+      <div class="heading">
 
-        }
+        <small>
+          OPEN A CARD
+        </small>
 
+        <h2>
+          まず、一枚。
+        </h2>
 
-        openBtn.addEventListener(
-            'click',
-            flipCard
-        );
+      </div>
 
 
-        cardElement.addEventListener(
-            'click',
-            () => {
+      <div class="card-intro">
 
-                if (!isFlipped) {
-                    flipCard();
-                }
+        <div class="card-question">
+          今日の入口を選びます。
+        </div>
 
-            }
-        );
+        <p>
+          深く考えなくて大丈夫。<br>
+          なんとなく、でどうぞ。
+        </p>
 
+      </div>
 
-        /* ==========================================
-           やめる
-        ========================================== */
 
-        backHome1.addEventListener(
-            'click',
-            () => {
+      <button
+        id="drawButton"
+        class="draw-button">
 
-                switchScreen(
-                    screenCard,
-                    screenTop
-                );
+        札をひらく
 
-            }
-        );
+      </button>
 
 
-        /* ==========================================
-           帰還
-        ========================================== */
+      <!-- RESULT -->
 
-        toReturnBtn.addEventListener(
-            'click',
-            () => {
+      <div
+        id="cardResult"
+        class="card-result">
 
-                switchScreen(
-                    screenCard,
-                    screenReturn
-                );
+        <div class="result-label">
+          YOUR CARD
+        </div>
 
-            }
-        );
 
+        <div class="tarot-card">
 
-        /* ==========================================
-           帰還後、トップへ
-        ========================================== */
+          <div
+            id="cardNumber"
+            class="card-number">
+          </div>
 
-        goHomeBtn.addEventListener(
-            'click',
-            () => {
+          <div
+            id="cardSymbol"
+            class="card-symbol">
+          </div>
 
-                topGreeting.textContent =
-                    "おかえりなさい。";
+          <div
+            id="cardName"
+            class="card-name">
+          </div>
 
-                topSubtitle.textContent =
-                    "またいつでも、どうぞ。";
+        </div>
 
-                topBadge.textContent =
-                    "もう一度引いてみる";
 
+        <div
+          id="orientation"
+          class="orientation">
+        </div>
 
-                switchScreen(
-                    screenReturn,
-                    screenTop
-                );
 
-            }
-        );
+        <div
+          id="cardMessage"
+          class="card-message">
+        </div>
 
 
-        /* ==========================================
-           この場所について
-        ========================================== */
+        <div class="card-info">
 
-        toAboutBtn.addEventListener(
-            'click',
-            () => {
+          <div class="card-info-title">
+            この札から、少しだけ。
+          </div>
 
-                switchScreen(
-                    screenTop,
-                    screenAbout
-                );
+          <p>
+            カードの意味を答えにしなくても大丈夫です。
+            気になったところを、ひとつ拾ってみてください。
+          </p>
 
-            }
-        );
+      </div>
 
 
-        /* ==========================================
-           説明ページから戻る
-        ========================================== */
+      <button
+        id="againButton"
+        class="draw-button"
+        style="margin-top:25px;">
 
-        backFromAboutBtn.addEventListener(
-            'click',
-            () => {
+        もう一枚ひらく
 
-                switchScreen(
-                    screenAbout,
-                    screenTop
-                );
+      </button>
 
-            }
-        );
+    </div>
 
-    </script>
+  </div>
 
+  </section>
+
+
+
+  <!-- STORY FLOW -->
+
+  <section class="library-section story-flow">
+
+    <div class="inner">
+
+      <div class="heading">
+
+        <small>
+          THE JOURNEY
+        </small>
+
+        <h2>
+          行って、帰ってくる。
+        </h2>
+
+      </div>
+
+
+      <div class="flow">
+
+        <div class="flow-item">
+
+          <div class="flow-icon">
+            札
+          </div>
+
+          <h3>
+            ひらく
+          </h3>
+
+          <p>
+            一枚のカードが、<br>
+            今日の入口。
+          </p>
+
+        </div>
+
+
+        <div class="flow-item">
+
+          <div class="flow-icon">
+            本
+          </div>
+
+          <h3>
+            行く
+          </h3>
+
+          <p>
+            カードから、<br>
+            小さな物語へ。
+          </p>
+
+        </div>
+
+
+        <div class="flow-item">
+
+          <div class="flow-icon">
+            戻
+          </div>
+
+          <h3>
+            帰る
+          </h3>
+
+          <p>
+            本を閉じて、<br>
+            いつもの場所へ。
+          </p>
+
+        </div>
+
+  </div>
+
+  </div>
+
+  </section>
+
+
+
+  <!-- STORY -->
+
+  <section
+    class="library-section story"
+    id="libraryStory">
+
+    <div class="inner">
+
+      <div class="heading">
+
+        <small>
+          YOUR STORY
+        </small>
+
+        <h2>
+          物語の中で、少しだけ。
+        </h2>
+
+      </div>
+
+
+      <div class="story-content">
+
+        <div class="story-page">
+
+          <p>
+            カードを一枚ひらきます。
+          </p>
+
+
+          <div class="story-highlight">
+
+            「さて、今日は<br>
+            どんな話にしよう？」
+
+          </div>
+
+
+          <p>
+            出てきたカードを眺めて、
+            絵を見たり、
+            意味を読んだり。
+          </p>
+
+
+          <p>
+            そこから、
+            ひとつの物語を歩いてみます。
+          </p>
+
+
+          <p>
+            もしかしたら、
+            自分のことを思い出すかもしれない。
+            <br><br>
+            何も思いつかないかもしれない。
+          </p>
+
+
+          <p>
+            それでも大丈夫。
+          </p>
+
+
+          <p>
+            しばらくしたら、
+            本を閉じます。
+          </p>
+
+
+          <p>
+            そして、またいつもの場所へ。
+          </p>
+
+        </div>
+
+  </div>
+
+  </div>
+
+  </section>
+
+
+
+  <!-- BOOKMARK -->
+
+  <section class="library-section bookmark-section">
+
+    <div class="inner">
+
+      <div class="heading">
+
+        <small>
+          YUI NO FUDA
+        </small>
+
+        <h2>
+          結の札。
+        </h2>
+
+      </div>
+
+
+      <div class="bookmark-card">
+
+        <div class="bookmark-symbol">
+          結
+        </div>
+
+        <h3>
+          本にはさむ、一枚の札。
+        </h3>
+
+        <p>
+          今日読んだところを覚えておく栞。<br>
+          また戻ってくる場所を知らせる札。
+        </p>
+
+      </div>
+
+  </div>
+
+  </section>
+
+
+
+  <!-- RETURN -->
+
+  <section class="return-section">
+
+    <div class="return-box">
+
+      <h2>
+        じゃあ、そろそろ帰ろう。
+      </h2>
+
+      <p>
+        本をそっと閉じて、<br>
+        いつもの日常へ。
+      </p>
+
+
+      <button
+        class="simple-button"
+        id="returnEntrance">
+
+        結の札の入口へ
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FOOTER -->
+
+  <footer class="library-footer">
+
+    <div class="footer-logo">
+      結の札
+    </div>
+
+    <div>
+      タロット × 物語
+    </div>
+
+    <div class="footer-text">
+      一枚の札から、少しだけ遠くへ。<br>
+      そして、また帰ってくる。
+    </div>
+
+  </footer>
+
+
+</section>
+
+
+
+<script>
+
+/* ==================================================
+   TAROT DATA
+================================================== */
+
+const tarotCards = [
+
+  {
+    number: "0",
+    name: "愚者",
+    symbol: "0",
+    message:
+      "まだ名前のついていない旅です。\n\nどこへ行くか決めてから歩く必要はないのかもしれません。\n\n今日は、ちょっとだけ先へ。"
+  },
+
+  {
+    number: "Ⅰ",
+    name: "魔術師",
+    symbol: "Ⅰ",
+    message:
+      "机の上には、思ったよりいろいろあります。\n\n道具も、材料も、きっかけも。\n\n物語を始めるなら、もう十分なのかもしれません。"
+  },
+
+  {
+    number: "Ⅱ",
+    name: "女教皇",
+    symbol: "Ⅱ",
+    message:
+      "静かな部屋に入ります。\n\nすぐに答えを出さず、少し眺めてみましょう。\n\n言葉になる前の何かが、見つかるかもしれません。"
+  },
+
+  {
+    number: "Ⅲ",
+    name: "女帝",
+    symbol: "Ⅲ",
+    message:
+      "小さなものを育てています。\n\nまだ途中だからこそ、面白いのかもしれません。\n\n今日は、急がずに眺めてみましょう。"
+  },
+
+  {
+    number: "Ⅳ",
+    name: "皇帝",
+    symbol: "Ⅳ",
+    message:
+      "ここには、動かしたくないものがあります。\n\n自分にとって大事なものを、ひとつ思い出してみましょう。\n\n物語の柱になるかもしれません。"
+  },
+
+  {
+    number: "Ⅴ",
+    name: "教皇",
+    symbol: "Ⅴ",
+    message:
+      "古い本を開きます。\n\n誰かから受け取った言葉や知恵が、ページの中に残っています。\n\n読むことと、そのまま信じることは別の話です。"
+  },
+
+  {
+    number: "Ⅵ",
+    name: "恋人たち",
+    symbol: "Ⅵ",
+    message:
+      "道が二つに分かれています。\n\nどちらが正しいかではなく、どちらへ行ってみたいか。\n\n今日はそんな選び方もありそうです。"
+  },
+
+  {
+    number: "Ⅶ",
+    name: "戦車",
+    symbol: "Ⅶ",
+    message:
+      "車輪が回り始めました。\n\n準備が全部終わるのを待たずに、出発してみてもよさそうです。\n\n行き先は途中で変わっても構いません。"
+  },
+
+  {
+    number: "Ⅷ",
+    name: "力",
+    symbol: "Ⅷ",
+    message:
+      "大きなものを、静かに扱っています。\n\n力いっぱい動かすだけが方法ではありません。\n\n丁寧に向き合うことも、ひとつの強さです。"
+  },
+
+  {
+    number: "Ⅸ",
+    name: "隠者",
+    symbol: "Ⅸ",
+    message:
+      "少し暗い道を、一人で歩きます。\n\n遠くまで行く必要はありません。\n\n自分の足元が見えるくらいの明かりがあれば十分です。"
+  },
+
+  {
+    number: "Ⅹ",
+    name: "運命の輪",
+    symbol: "Ⅹ",
+    message:
+      "ページをめくったら、場面が変わっていました。\n\n物語には、そういうことがあります。\n\n今日は流れが変わる瞬間を楽しんでみましょう。"
+  },
+
+  {
+    number: "Ⅺ",
+    name: "正義",
+    symbol: "Ⅺ",
+    message:
+      "二つのものを、机の上に並べます。\n\nどちらが正しいかだけではなく、自分が納得できる場所を探してみましょう。"
+  },
+
+  {
+    number: "Ⅻ",
+    name: "吊るされた男",
+    symbol: "Ⅻ",
+    message:
+      "物語の途中で、立ち止まります。\n\n動かないことで見えてくるものもあります。\n\nいつもと違う向きから、ページを眺めてみましょう。"
+  },
+
+  {
+    number: "ⅩⅢ",
+    name: "死神",
+    symbol: "ⅩⅢ",
+    message:
+      "ひとつの章が終わります。\n\n少し寂しいかもしれません。\n\nでも、本を閉じるからこそ、次の本を開くことができます。"
+  },
+
+  {
+    number: "ⅩⅣ",
+    name: "節制",
+    symbol: "ⅩⅣ",
+    message:
+      "二つのものを、少しずつ混ぜています。\n\n急いで答えを決めなくても大丈夫。\n\nちょうどいいところは、途中で見つかるかもしれません。"
+  },
+
+  {
+    number: "ⅩⅤ",
+    name: "悪魔",
+    symbol: "ⅩⅤ",
+    message:
+      "どうしても気になる本があります。\n\nつい手に取ってしまう。\n\nそんな自分を、少し面白がって眺めてみてもよさそうです。"
+  },
+
+  {
+    number: "ⅩⅥ",
+    name: "塔",
+    symbol: "ⅩⅥ",
+    message:
+      "積み上げていたものが、突然崩れます。\n\nびっくりする場面です。\n\nでも、何もなくなった場所には、新しいページを置くことができます。"
+  },
+
+  {
+    number: "ⅩⅦ",
+    name: "星",
+    symbol: "ⅩⅦ",
+    message:
+      "遠くに小さな明かりがあります。\n\nまだ近くにはありません。\n\nそれでも、次に進む方向くらいは教えてくれそうです。"
+  },
+
+  {
+    number: "ⅩⅧ",
+    name: "月",
+    symbol: "ⅩⅧ",
+    message:
+      "夜のページです。\n\n見えるものが少なくて、少し不安かもしれません。\n\n分からないものを、今日はそのままにしておくのもありです。"
+  },
+
+  {
+    number: "ⅩⅨ",
+    name: "太陽",
+    symbol: "ⅩⅨ",
+    message:
+      "カーテンを開けます。\n\n明るい場所では、今まで気づかなかったものも見えてきます。\n\n今日は好きなものを、素直に楽しんでみましょう。"
+  },
+
+  {
+    number: "ⅩⅩ",
+    name: "審判",
+    symbol: "ⅩⅩ",
+    message:
+      "前に読んだページを、もう一度開きます。\n\n同じ文章なのに、今読むと違って見えるかもしれません。\n\nもう一度見てみる価値がありそうです。"
+  },
+
+  {
+    number: "ⅩⅩⅠ",
+    name: "世界",
+    symbol: "ⅩⅩⅠ",
+    message:
+      "物語が、一冊ぶん終わりました。\n\n本を閉じる前に、少しだけ振り返ってみましょう。\n\nそして、いつもの場所へ"
+  }
+
+];
+
+</script>
 </body>
 </html>
