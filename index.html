@@ -1,0 +1,2265 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>結の札｜ちいさなタロット屋さん</title>
+
+<meta
+name="description"
+content="結の札。タロットを一枚引いて、今の自分をちょっと眺めてみる、小さなタロット屋さんです。">
+
+
+<style>
+
+/* ==================================================
+   COLORS
+================================================== */
+
+:root {
+
+  --cream: #fffaf2;
+
+  --paper: #fffdf8;
+
+  --pink: #e9a9b8;
+
+  --pink-dark: #b96f83;
+
+  --yellow: #f3d77b;
+
+  --blue: #a9d8df;
+
+  --green: #b9d7bd;
+
+  --brown: #55463f;
+
+  --gray: #81756e;
+
+  --card: #f8eee5;
+
+}
+
+
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+
+  margin: 0;
+
+  background: var(--cream);
+
+  color: var(--brown);
+
+  font-family:
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Noto Sans JP",
+    sans-serif;
+
+  line-height: 1.8;
+
+  letter-spacing: .04em;
+
+}
+
+button,
+a {
+
+  font-family: inherit;
+
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+header {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 100;
+
+  background:
+    rgba(255,250,242,.94);
+
+  backdrop-filter:
+    blur(8px);
+
+  border-bottom:
+    1px solid #eadfd3;
+
+}
+
+.nav {
+
+  width: min(1000px, 92%);
+
+  margin: auto;
+
+  height: 64px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.nav-logo {
+
+  font-size: 20px;
+
+  font-weight: bold;
+
+  color: var(--pink-dark);
+
+  letter-spacing: .12em;
+
+}
+
+.nav-links {
+
+  display: flex;
+
+  gap: 22px;
+
+  font-size: 12px;
+
+}
+
+.nav-links a {
+
+  text-decoration: none;
+
+  color: var(--gray);
+
+}
+
+.nav-links a:hover {
+
+  color: var(--pink-dark);
+
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero {
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding:
+    85px 20px 100px;
+
+  text-align: center;
+
+  background:
+
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(233,169,184,.28),
+      transparent 18%
+    ),
+
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(169,216,223,.3),
+      transparent 20%
+    ),
+
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(243,215,123,.28),
+      transparent 30%
+    ),
+
+    var(--cream);
+
+}
+
+
+/* ふわふわ丸 */
+
+.hero::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 170px;
+
+  height: 170px;
+
+  border-radius: 50%;
+
+  background: var(--pink);
+
+  opacity: .13;
+
+  top: 40px;
+
+  left: -60px;
+
+}
+
+.hero::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 130px;
+
+  height: 130px;
+
+  border-radius: 50%;
+
+  background: var(--blue);
+
+  opacity: .16;
+
+  right: -40px;
+
+  bottom: 80px;
+
+}
+
+
+.hero-inner {
+
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 760px;
+
+  margin: auto;
+
+}
+
+
+/* 小さな店名 */
+
+.shop-label {
+
+  display: inline-block;
+
+  background: white;
+
+  border:
+    1px solid #eadfd3;
+
+  border-radius: 30px;
+
+  padding: 6px 16px;
+
+  font-size: 12px;
+
+  color: var(--pink-dark);
+
+  margin-bottom: 25px;
+
+}
+
+
+/* ロゴ */
+
+.logo {
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: clamp(65px,17vw,115px);
+
+  font-weight: normal;
+
+  color: var(--pink-dark);
+
+  letter-spacing: .14em;
+
+  margin-left: .14em;
+
+  line-height: 1.2;
+
+}
+
+
+/* コピー */
+
+.hero h1 {
+
+  margin: 0;
+
+  font-size: 0;
+
+}
+
+.hero-copy {
+
+  font-size:
+    clamp(20px,4.5vw,29px);
+
+  font-weight: bold;
+
+  line-height: 1.8;
+
+  margin: 25px 0 12px;
+
+}
+
+
+/* 説明 */
+
+.hero-description {
+
+  color: var(--gray);
+
+  font-size: 14px;
+
+  line-height: 2;
+
+  margin-bottom: 35px;
+
+}
+
+
+/* ボタン */
+
+.main-button {
+
+  display: inline-block;
+
+  background: var(--pink);
+
+  color: white;
+
+  text-decoration: none;
+
+  padding: 15px 35px;
+
+  border-radius: 40px;
+
+  font-weight: bold;
+
+  box-shadow:
+    0 5px 0 #cf8b9b;
+
+  transition: .2s;
+
+}
+
+.main-button:hover {
+
+  transform:
+    translateY(2px);
+
+  box-shadow:
+    0 3px 0 #cf8b9b;
+
+}
+
+
+/* ==================================================
+   SECTION COMMON
+================================================== */
+
+section {
+
+  padding:
+    80px 20px;
+
+}
+
+.inner {
+
+  width:
+    min(900px, 100%);
+
+  margin: auto;
+
+}
+
+.section-title {
+
+  text-align: center;
+
+  margin-bottom: 45px;
+
+}
+
+.section-title .small {
+
+  font-size: 11px;
+
+  color: var(--pink-dark);
+
+  letter-spacing: .2em;
+
+  font-weight: bold;
+
+}
+
+.section-title h2 {
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size:
+    clamp(28px,6vw,42px);
+
+  font-weight: normal;
+
+  margin: 8px 0 0;
+
+}
+
+
+/* ==================================================
+   ABOUT
+================================================== */
+
+.about {
+
+  background: white;
+
+}
+
+.about-box {
+
+  max-width: 700px;
+
+  margin: auto;
+
+  text-align: center;
+
+}
+
+.about-box p {
+
+  color: var(--gray);
+
+  font-size: 16px;
+
+}
+
+.about-note {
+
+  display: inline-block;
+
+  background: #fff6d9;
+
+  padding: 8px 15px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+
+  color: #876f35;
+
+  margin-top: 15px;
+
+}
+
+
+/* ==================================================
+   TAROT DRAW
+================================================== */
+
+.draw {
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #fff8ed,
+      #f7f1e9
+    );
+
+}
+
+.draw-area {
+
+  text-align: center;
+
+  max-width: 650px;
+
+  margin: auto;
+
+}
+
+.draw-question {
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size:
+    clamp(20px,4vw,26px);
+
+  margin-bottom: 10px;
+
+}
+
+.draw-hint {
+
+  color: var(--gray);
+
+  font-size: 13px;
+
+  margin-bottom: 30px;
+
+}
+
+
+/* 札を引くボタン */
+
+.draw-button {
+
+  border: none;
+
+  background: var(--pink-dark);
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  letter-spacing: .08em;
+
+  padding: 16px 42px;
+
+  border-radius: 40px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 0 #925566;
+
+  transition: .2s;
+
+}
+
+.draw-button:hover {
+
+  transform:
+    translateY(2px);
+
+  box-shadow:
+    0 3px 0 #925566;
+
+}
+
+.draw-button:disabled {
+
+  opacity: .7;
+
+  cursor: default;
+
+}
+
+
+/* ==================================================
+   CARD RESULT
+================================================== */
+
+.card-result {
+
+  display: none;
+
+  margin-top: 55px;
+
+  animation:
+    resultAppear .7s ease;
+
+}
+
+@keyframes resultAppear {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(20px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+/* カード */
+
+.tarot-card {
+
+  width: 220px;
+
+  height: 335px;
+
+  margin: 0 auto 25px;
+
+  background:
+
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(255,255,255,.9),
+      transparent 20%
+    ),
+
+    linear-gradient(
+      145deg,
+      #e9b7c3,
+      #d49aaa
+    );
+
+  border:
+    7px solid white;
+
+  outline:
+    2px solid #d19aaa;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 12px 30px rgba(90,60,50,.15);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  position: relative;
+
+  color: white;
+
+}
+
+
+/* カード模様 */
+
+.tarot-card::before {
+
+  content: "✦";
+
+  position: absolute;
+
+  top: 15px;
+
+  left: 18px;
+
+  font-size: 17px;
+
+  opacity: .6;
+
+}
+
+.tarot-card::after {
+
+  content: "✦";
+
+  position: absolute;
+
+  bottom: 15px;
+
+  right: 18px;
+
+  font-size: 17px;
+
+  opacity: .6;
+
+}
+
+
+.card-number {
+
+  font-size: 13px;
+
+  margin-bottom: 20px;
+
+  opacity: .9;
+
+}
+
+.card-symbol {
+
+  font-family: serif;
+
+  font-size: 65px;
+
+  line-height: 1;
+
+  margin-bottom: 25px;
+
+}
+
+.card-name {
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 24px;
+
+  letter-spacing: .12em;
+
+}
+
+
+/* 正逆 */
+
+.orientation {
+
+  font-size: 13px;
+
+  color: var(--pink-dark);
+
+  font-weight: bold;
+
+  margin-bottom: 15px;
+
+}
+
+
+/* メッセージ */
+
+.card-message {
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 23px;
+
+  text-align: left;
+
+  color: var(--brown);
+
+  font-size: 14px;
+
+  line-height: 2;
+
+  box-shadow:
+    0 5px 18px rgba(80,60,50,.07);
+
+}
+
+
+/* ==================================================
+   SHOP CHARACTERS
+================================================== */
+
+.characters {
+
+  background: white;
+
+}
+
+.character-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap: 20px;
+
+}
+
+.character {
+
+  padding: 30px 22px;
+
+  border-radius: 18px;
+
+  text-align: center;
+
+}
+
+.character:nth-child(1) {
+
+  background: #fff0f3;
+
+}
+
+.character:nth-child(2) {
+
+  background: #edf8f9;
+
+}
+
+.character:nth-child(3) {
+
+  background: #fff8df;
+
+}
+
+
+.character-icon {
+
+  font-size: 38px;
+
+  margin-bottom: 10px;
+
+}
+
+.character h3 {
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-weight: normal;
+
+  font-size: 22px;
+
+  margin: 5px 0 15px;
+
+}
+
+.character p {
+
+  font-size: 13px;
+
+  color: var(--gray);
+
+  margin: 0;
+
+}
+
+
+/* ==================================================
+   STORY
+================================================== */
+
+.story {
+
+  background: #f5eee7;
+
+}
+
+.story-box {
+
+  max-width: 720px;
+
+  margin: auto;
+
+  text-align: center;
+
+}
+
+.story-box p {
+
+  color: var(--gray);
+
+}
+
+.story-highlight {
+
+  margin:
+    35px auto;
+
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 25px;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size:
+    clamp(18px,4vw,24px);
+
+  color: var(--pink-dark);
+
+}
+
+
+/* ==================================================
+   HOW TO
+================================================== */
+
+.howto {
+
+  background: white;
+
+}
+
+.steps {
+
+  max-width: 720px;
+
+  margin: auto;
+
+}
+
+.step {
+
+  display: flex;
+
+  gap: 20px;
+
+  align-items: flex-start;
+
+  padding: 20px 0;
+
+  border-bottom:
+    1px dashed #ded2c7;
+
+}
+
+.step:last-child {
+
+  border-bottom: none;
+
+}
+
+.step-number {
+
+  flex:
+    0 0 42px;
+
+  width: 42px;
+
+  height: 42px;
+
+  border-radius: 50%;
+
+  background: var(--pink);
+
+  color: white;
+
+  display: grid;
+
+  place-items: center;
+
+  font-weight: bold;
+
+}
+
+.step h3 {
+
+  margin: 0 0 3px;
+
+  font-size: 18px;
+
+}
+
+.step p {
+
+  margin: 0;
+
+  font-size: 13px;
+
+  color: var(--gray);
+
+}
+
+
+/* ==================================================
+   GUIDE
+================================================== */
+
+.guide {
+
+  background: #edf7f7;
+
+  text-align: center;
+
+}
+
+.guide-box {
+
+  max-width: 650px;
+
+  margin: auto;
+
+}
+
+.guide-face {
+
+  width: 75px;
+
+  height: 75px;
+
+  margin: auto auto 20px;
+
+  border-radius: 50%;
+
+  background: var(--yellow);
+
+  display: grid;
+
+  place-items: center;
+
+  font-size: 34px;
+
+}
+
+.guide-box p {
+
+  color: var(--gray);
+
+}
+
+.guide-message {
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size:
+    clamp(18px,4vw,24px);
+
+  color: var(--brown);
+
+  margin:
+    30px 0;
+
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+footer {
+
+  background: var(--brown);
+
+  color: #fff8ef;
+
+  text-align: center;
+
+  padding: 45px 20px;
+
+}
+
+.footer-logo {
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+
+  font-size: 25px;
+
+  margin-bottom: 10px;
+
+  letter-spacing: .15em;
+
+}
+
+.footer-small {
+
+  font-size: 11px;
+
+  opacity: .7;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width:700px) {
+
+  .nav-links {
+
+    display: none;
+
+  }
+
+  .hero {
+
+    padding:
+      70px 20px 85px;
+
+  }
+
+  section {
+
+    padding:
+      65px 20px;
+
+  }
+
+  .character-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .tarot-card {
+
+    width: 205px;
+
+    height: 315px;
+
+  }
+
+  .step {
+
+    gap: 15px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     NAVIGATION
+================================================== -->
+
+<header>
+
+  <nav class="nav">
+
+    <a
+      href="#top"
+      class="nav-logo">
+
+      結の札
+
+    </a>
+
+    <div class="nav-links">
+
+      <a href="#draw">
+        札を引く
+      </a>
+
+      <a href="#about">
+        結の札って？
+      </a>
+
+      <a href="#howto">
+        楽しみ方
+      </a>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+
+<!-- ==================================================
+     HERO
+================================================== -->
+
+<header
+  id="top"
+  class="hero">
+
+  <div class="hero-inner">
+
+    <div class="shop-label">
+
+      🃏 小さなタロット屋さん
+
+    </div>
+
+
+    <h1>
+
+      <span class="logo">
+        結の札
+      </span>
+
+    </h1>
+
+
+    <p class="hero-copy">
+
+      今日は、どんな札かな？
+
+    </p>
+
+
+    <p class="hero-description">
+
+      タロットを一枚引いて、<br>
+
+      今の自分をちょっと眺めてみる。<br>
+
+      そんな小さな時間を楽しむお店です。
+
+    </p>
+
+
+    <a
+      href="#draw"
+      class="main-button">
+
+      🃏 一枚引いてみる
+
+    </a>
+
+  </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- ==================================================
+     ABOUT
+================================================== -->
+
+<section
+  id="about"
+  class="about">
+
+  <div class="inner">
+
+    <div class="section-title">
+
+      <div class="small">
+        ABOUT
+      </div>
+
+      <h2>
+        結の札って？
+      </h2>
+
+    </div>
+
+
+    <div class="about-box">
+
+      <p>
+
+        結の札は、
+        タロットをきっかけに
+        自分の心を眺めてみる
+        小さな店です。
+
+      </p>
+
+
+      <p>
+
+        「占いってちょっと気になる」
+
+        <br>
+
+        「今日の自分に一枚引いてみたい」
+
+        <br>
+
+        「なんとなく面白そう」
+
+      </p>
+
+
+      <p>
+
+        そんな気持ちで、
+        ふらっと遊びに来てもらえたら
+        うれしいです。
+
+      </p>
+
+
+      <div class="about-note">
+
+        🌷 占いが初めてでも大丈夫
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     DRAW
+================================================== -->
+
+<section
+  id="draw"
+  class="draw">
+
+  <div class="inner">
+
+    <div class="section-title">
+
+      <div class="small">
+        ONE CARD
+      </div>
+
+      <h2>
+        まずは一枚。
+      </h2>
+
+    </div>
+
+
+    <div class="draw-area">
+
+      <div class="draw-question">
+
+        今日のあなたは、どんな札？
+
+      </div>
+
+
+      <div class="draw-hint">
+
+        深く考えなくてOK。<br>
+        気になったら、そのまま引いてみてください。
+
+      </div>
+
+
+      <button
+        id="drawButton"
+        class="draw-button"
+        type="button">
+
+        札を引く ✨
+
+      </button>
+
+
+      <!-- RESULT -->
+
+      <div
+        id="cardResult"
+        class="card-result">
+
+
+        <div class="section-title">
+
+          <div class="small">
+            TODAY'S CARD
+          </div>
+
+          <h2>
+            今日の一枚
+          </h2>
+
+        </div>
+
+
+        <div class="tarot-card">
+
+          <div
+            id="cardNumber"
+            class="card-number">
+          </div>
+
+          <div
+            id="cardSymbol"
+            class="card-symbol">
+          </div>
+
+          <div
+            id="cardName"
+            class="card-name">
+          </div>
+
+        </div>
+
+
+        <div
+          id="orientation"
+          class="orientation">
+        </div>
+
+
+        <div
+          id="cardMessage"
+          class="card-message">
+        </div>
+
+
+        <button
+          id="againButton"
+          class="draw-button"
+          type="button"
+          style="margin-top:25px;">
+
+          もう一枚引く 🔮
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     CHARACTERS
+================================================== -->
+
+<section class="characters">
+
+  <div class="inner">
+
+    <div class="section-title">
+
+      <div class="small">
+        THE SHOP
+      </div>
+
+      <h2>
+        この店にいる人たち
+      </h2>
+
+    </div>
+
+
+    <div class="character-grid">
+
+
+      <article class="character">
+
+        <div class="character-icon">
+          🏠
+        </div>
+
+        <h3>
+          結の札
+        </h3>
+
+        <p>
+
+          ちょっと変わった
+          小さなタロット屋さん。
+
+          <br><br>
+
+          札と一緒に、
+          あなたの物語を眺める時間を
+          用意しています。
+
+        </p>
+
+      </article>
+
+
+      <article class="character">
+
+        <div class="character-icon">
+          🧭
+        </div>
+
+        <h3>
+          案内人
+        </h3>
+
+        <p>
+
+          札の意味を一緒に眺めたり、
+          お話を聞いたりする人。
+
+          <br><br>
+
+          答えを押しつけるのではなく、
+          「こんな見方もあるよ」と
+          道案内します。
+
+        </p>
+
+      </article>
+
+
+      <article class="character">
+
+        <div class="character-icon">
+          🌷
+        </div>
+
+        <h3>
+          お客さん
+        </h3>
+
+        <p>
+
+          この店に遊びに来てくれた
+          あなた。
+
+          <br><br>
+
+          札をどう受け取るかは
+          あなた次第です。
+
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     STORY
+================================================== -->
+
+<section class="story">
+
+  <div class="inner">
+
+    <div class="section-title">
+
+      <div class="small">
+        YOUR STORY
+      </div>
+
+      <h2>
+        札を見て、何を思う？
+      </h2>
+
+    </div>
+
+
+    <div class="story-box">
+
+      <p>
+
+        タロットには、
+        いろいろな絵が描かれています。
+
+      </p>
+
+
+      <div class="story-highlight">
+
+        「なんか、今の自分っぽい」
+
+        <br>
+
+        「この部分だけ気になる」
+
+        <br>
+
+        「これは全然ピンとこない！」
+
+      </div>
+
+
+      <p>
+
+        どんな感想でも大丈夫。
+
+        <br><br>
+
+        結の札で大切にしたいのは、
+        札の「正解」を当てることよりも、
+
+        <br>
+
+        一枚の札をきっかけに
+        自分のことを少し考えてみること。
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     HOW TO
+================================================== -->
+
+<section
+  id="howto"
+  class="howto">
+
+  <div class="inner">
+
+    <div class="section-title">
+
+      <div class="small">
+        HOW TO ENJOY
+      </div>
+
+      <h2>
+        結の札の楽しみ方
+      </h2>
+
+    </div>
+
+
+    <div class="steps">
+
+
+      <div class="step">
+
+        <div class="step-number">
+          1
+        </div>
+
+        <div>
+
+          <h3>
+            ふらっと来る
+          </h3>
+
+          <p>
+            特別な準備はいりません。
+            「ちょっと見てみよう」でOK。
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          2
+        </div>
+
+        <div>
+
+          <h3>
+            札を一枚引く
+          </h3>
+
+          <p>
+            今日の物語の入口を、
+            一枚の札にしてみます。
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          3
+        </div>
+
+        <div>
+
+          <h3>
+            眺めてみる
+          </h3>
+
+          <p>
+            絵や言葉を眺めながら、
+            思いついたことを楽しみます。
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          4
+        </div>
+
+        <div>
+
+          <h3>
+            持ち帰る
+          </h3>
+
+          <p>
+            気づきでも、疑問でも、
+            「なんか面白かった」でも。
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     GUIDE
+================================================== -->
+
+<section class="guide">
+
+  <div class="inner">
+
+    <div class="guide-box">
+
+      <div class="guide-face">
+        ☺
+      </div>
+
+
+      <div class="section-title">
+
+        <div class="small">
+          GUIDE
+        </div>
+
+        <h2>
+          案内人からひとこと
+        </h2>
+
+      </div>
+
+
+      <p class="guide-message">
+
+        「答えを当てなくても大丈夫。<br>
+        今日はこの札と遊んでいきましょう。」
+
+      </p>
+
+
+      <p>
+
+        タロットは、
+        あなたの代わりに答えを決めるものではありません。
+
+        <br><br>
+
+        札を眺めて、
+        話して、
+        考えて。
+
+        <br>
+
+        最後に何を持ち帰るかは、
+        あなたが決めればいいのです。
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     RETURN
+================================================== -->
+
+<section class="about">
+
+  <div class="inner">
+
+    <div class="about-box">
+
+      <div class="section-title">
+
+        <div class="small">
+          SEE YOU
+        </div>
+
+        <h2>
+          また遊びに来てください。
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        一枚引いて、
+
+        <br>
+
+        少し考えて、
+
+        <br>
+
+        「じゃあ、またね」
+
+        <br><br>
+
+        それくらいの気軽さで。
+
+      </p>
+
+
+      <a
+        href="#draw"
+        class="main-button">
+
+        🃏 もう一枚引いてみる
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer>
+
+  <div class="footer-logo">
+    結の札
+  </div>
+
+  <div>
+    小さなタロット屋さん
+  </div>
+
+  <div class="footer-small">
+
+    一枚の札から、自分の物語を眺める。
+
+  </div>
+
+</footer>
+
+
+
+<!-- ==================================================
+     JAVASCRIPT
+================================================== -->
+
+<script>
+
+
+/* ==================================================
+   TAROT
+================================================== */
+
+const tarotCards = [
+
+  {
+    number: "0",
+    name: "愚者",
+    symbol: "0",
+
+    message:
+      "まだ名前のついていない旅が、あなたの前にあります。\n\n正解を知ってから歩くのではなく、歩きながら物語を見つけていく時です。"
+  },
+
+  {
+    number: "Ⅰ",
+    name: "魔術師",
+    symbol: "Ⅰ",
+
+    message:
+      "あなたの手元には、すでに物語を動かす道具があります。\n\n足りないものを探す前に、今持っているものを見つめてみてください。"
+  },
+
+  {
+    number: "Ⅱ",
+    name: "女教皇",
+    symbol: "Ⅱ",
+
+    message:
+      "言葉にならない感覚に、静かに耳を澄ませる時です。\n\n答えは外から来るとは限りません。"
+  },
+
+  {
+    number: "Ⅲ",
+    name: "女帝",
+    symbol: "Ⅲ",
+
+    message:
+      "育てているものがあります。\n\nすぐに結果を求めず、今あるものに水を与えるような時間を大切にしてください。"
+  },
+
+  {
+    number: "Ⅳ",
+    name: "皇帝",
+    symbol: "Ⅳ",
+
+    message:
+      "あなたの物語に、一本の柱を立てる時です。\n\n守りたいもの、譲れないものを知ることで、足元が定まります。"
+  },
+
+  {
+    number: "Ⅴ",
+    name: "教皇",
+    symbol: "Ⅴ",
+
+    message:
+      "誰かから受け取った言葉や知恵が、今のあなたを支えるかもしれません。\n\n受け継ぐことと、そのまま従うことは同じではありません。"
+  },
+
+  {
+    number: "Ⅵ",
+    name: "恋人たち",
+    symbol: "Ⅵ",
+
+    message:
+      "あなたは何を選びたいのでしょう。\n\n誰かに選ばれることだけではなく、自分自身が選ぶことにも目を向けてください。"
+  },
+
+  {
+    number: "Ⅶ",
+    name: "戦車",
+    symbol: "Ⅶ",
+
+    message:
+      "物語を前へ進める力があります。\n\nすべてを完璧に整えるより、まず自分の行きたい方向を見定めてください。"
+  },
+
+  {
+    number: "Ⅷ",
+    name: "力",
+    symbol: "Ⅷ",
+
+    message:
+      "強さとは、押し切ることだけではありません。\n\n自分の中にあるものを、乱暴に扱わず導いていく強さがあります。"
+  },
+
+  {
+    number: "Ⅸ",
+    name: "隠者",
+    symbol: "Ⅸ",
+
+    message:
+      "少し静かな場所へ。\n\n人の答えから離れることで、自分にしか聞こえない声が見えてくるかもしれません。"
+  },
+
+  {
+    number: "Ⅹ",
+    name: "運命の輪",
+    symbol: "Ⅹ",
+
+    message:
+      "物語は止まったままではありません。\n\n思いがけない巡り合わせが、景色を変えることがあります。"
+  },
+
+  {
+    number: "Ⅺ",
+    name: "正義",
+    symbol: "Ⅺ",
+
+    message:
+      "今のあなたにとって、本当に大切なものは何でしょう。\n\n感情だけでも理屈だけでもない、自分なりの釣り合いを探してください。"
+  },
+
+  {
+    number: "Ⅻ",
+    name: "吊るされた男",
+    symbol: "Ⅻ",
+
+    message:
+      "動かない時間にも意味があります。\n\n視点を逆さまにしてみると、今まで見えなかったものが見えてくるかもしれません。"
+  },
+
+  {
+    number: "ⅩⅢ",
+    name: "死神",
+    symbol: "ⅩⅢ",
+
+    message:
+      "終わりは、物語が消えることではありません。\n\n古い形を手放すことで、次の章が始まることがあります。"
+  },
+
+  {
+    number: "ⅩⅣ",
+    name: "節制",
+    symbol: "ⅩⅣ",
+
+    message:
+      "異なるものを混ぜ合わせることで、新しい調和が生まれます。\n\n急がず、少しずつ自分の中のものを馴染ませていきましょう。"
+  },
+
+  {
+    number: "ⅩⅤ",
+    name: "悪魔",
+    symbol: "ⅩⅤ",
+
+    message:
+      "あなたを縛っているものは、本当に外から与えられた鎖でしょうか。\n\n自分が握っているものに気づくことから、物語は変わり始めます。"
+  },
+
+  {
+    number: "ⅩⅥ",
+    name: "塔",
+    symbol: "ⅩⅥ",
+
+    message:
+      "崩れることでしか見えない景色があります。\n\n失ったものだけではなく、その後に現れる空間にも目を向けてみてください。"
+  },
+
+  {
+    number: "ⅩⅦ",
+    name: "星",
+    symbol: "ⅩⅦ",
+
+    message:
+      "まだ遠くに見えるものを、心の中で灯しておきましょう。\n\n小さな希望でも、暗い道では十分に目印になります。"
+  },
+
+  {
+    number: "ⅩⅧ",
+    name: "月",
+    symbol: "ⅩⅧ",
+
+    message:
+      "見えているものがすべてとは限りません。\n\n不安や想像の中にも、自分の心が伝えようとしているものがあります。"
+  },
+
+  {
+    number: "ⅩⅨ",
+    name: "太陽",
+    symbol: "ⅩⅨ",
+
+    message:
+      "あなたの物語には、光の当たる場所があります。\n\n隠していたものを少しだけ外へ出してみることで、世界との距離が変わるかもしれません。"
+  },
+
+  {
+    number: "ⅩⅩ",
+    name: "審判",
+    symbol: "ⅩⅩ",
+
+    message:
+      "過去から届く呼び声があります。\n\nそれは後悔だけではなく、まだ終わっていない物語からの合図かもしれません。"
+  },
+
+  {
+    number: "ⅩⅩⅠ",
+    name: "世界",
+    symbol: "ⅩⅩⅠ",
+
+    message:
+      "ひとつの物語が、ひとまず結ばれようとしています。\n\nここまで歩いてきた自分自身を、静かに振り返ってみてください。"
+  }
+
+];
+
+
+/* ==================================================
+   DRAW FUNCTION
+================================================== */
+
+function drawCard() {
+
+
+  const button =
+    document.getElementById("drawButton");
+
+  const result =
+    document.getElementById("cardResult");
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "札を選んでいます…";
+
+
+  setTimeout(function() {
+
+
+    /* ランダム */
+
+    const index =
+      Math.floor(
+        Math.random() *
+        tarotCards.length
+      );
+
+
+    const card =
+      tarotCards[index];
+
+
+    /* 正位置 / 逆位置 */
+
+    const reversed =
+      Math.random() < 0.5;
+
+
+    /* 表示 */
+
+    document.getElementById(
+      "cardNumber"
+    ).textContent =
+      card.number;
+
+
+    document.getElementById(
+      "cardSymbol"
+    ).textContent =
+      card.symbol;
+
+
+    document.getElementById(
+      "cardName"
+    ).textContent =
+      card.name;
+
+
+    document.getElementById(
+      "orientation"
+    ).textContent =
+      reversed
+        ? "逆位置"
+        : "正位置";
+
+
+    let message =
+      card.message;
+
+
+    if (reversed) {
+
+      message =
+        "今日は、少しだけ反対側から眺めてみましょう。\n\n"
+        +
+        message;
+
+    }
+
+
+    document.getElementById(
+      "cardMessage"
+    ).textContent =
+      message;
+
+
+    /* 表示 */
+
+    result.style.display =
+      "block";
+
+
+    /* ボタン */
+
+    button.disabled = false;
+
+    button.textContent =
+      "札を引き直す ✨";
+
+
+    /* 結果へスクロール */
+
+    result.scrollIntoView({
+
+      behavior: "smooth",
+
+      block: "center"
+
+    });
+
+
+  }, 600);
+
+}
+
+
+/* ==================================================
+   BUTTONS
+================================================== */
+
+document
+  .getElementById("drawButton")
+  .addEventListener(
+    "click",
+    drawCard
+  );
+
+
+document
+  .getElementById("againButton")
+  .addEventListener(
+    "click",
+    drawCard
+  );
+
+
+</script>
+
+
+</body>
+
+</html>
