@@ -3,23 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>体験型カード解析謎解き『結の札』｜リアル体験イベント</title>
 
-<!-- 重厚感と怪しさのある大人向けフォント -->
+<title>結の札｜物語の世界へ</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho:wght@500;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
-  --gold: #d4af37;
-  --gold-dark: #aa820a;
-  --bg-dark: #0d0f12;
-  --panel-bg: rgba(22, 26, 33, 0.85);
-  --accent-red: #8b0000;
-  --text-main: #e6e6e6;
-  --text-muted: #9a9eab;
-  --border-gold: rgba(212, 175, 55, 0.4);
+  --gold:#d4af37;
+  --gold-dark:#aa820a;
+  --bg-dark:#0d0f12;
+  --panel-bg:rgba(22,26,33,.88);
+  --accent-red:#8b0000;
+  --text-main:#e6e6e6;
+  --text-muted:#9a9eab;
+  --border-gold:rgba(212,175,55,.4);
 }
 
 *{
@@ -33,13 +34,24 @@ html{
 body{
   margin:0;
   color:var(--text-main);
-  background-color: var(--bg-dark);
-  background-image: 
-    radial-gradient(circle at 50% 20%, rgba(20, 25, 35, 0.8), #07080a 90%),
-    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.2) 2px, rgba(0,0,0,0.2) 4px);
-  font-family: "Shippori Mincho", serif;
+  background:#07080a;
+  background-image:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(20,25,35,.8),
+      #07080a 90%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,.2) 2px,
+      rgba(0,0,0,.2) 4px
+    );
+
+  font-family:"Shippori Mincho",serif;
   line-height:1.8;
-  overflow-x: hidden;
+  overflow-x:hidden;
 }
 
 a{
@@ -52,385 +64,637 @@ button{
 }
 
 .container{
-  width:min(1000px, 92%);
+  width:min(1000px,92%);
   margin:auto;
 }
 
 /* =========================
-   HEADER / HERO
+   HERO
 ========================= */
 
 .hero{
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  border-bottom: 2px solid var(--gold-dark);
-  background: 
-    linear-gradient(180deg, rgba(13,15,18,0.4) 0%, rgba(13,15,18,0.95) 100%),
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+
+  position:relative;
+  overflow:hidden;
+
+  border-bottom:2px solid var(--gold-dark);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(13,15,18,.35) 0%,
+      rgba(13,15,18,.95) 100%
+    ),
     url("image.jpg") center/cover no-repeat;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  box-shadow: inset 0 0 100px #000;
-  pointer-events: none;
+.hero::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  box-shadow:
+    inset 0 0 100px #000;
+
+  pointer-events:none;
 }
 
 .hero-content{
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  width: 100%;
-  padding: 80px 20px;
+  position:relative;
+  z-index:2;
+
+  text-align:center;
+
+  width:100%;
+
+  padding:80px 20px;
 }
 
 .event-tag{
-  display: inline-block;
-  font-family: 'Cinzel', serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.3em;
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  padding: 4px 18px;
-  margin-bottom: 25px;
-  background: rgba(0, 0, 0, 0.6);
+  display:inline-block;
+
+  font-family:"Cinzel",serif;
+
+  font-size:.85rem;
+
+  letter-spacing:.3em;
+
+  color:var(--gold);
+
+  border:1px solid var(--gold);
+
+  padding:4px 18px;
+
+  margin-bottom:25px;
+
+  background:rgba(0,0,0,.6);
 }
 
 .hero h1{
-  font-size: clamp(2rem, 6vw, 4.2rem);
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  color: #fff;
-  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px #000;
-  margin: 0 0 20px;
-  line-height: 1.3;
+  font-size:clamp(2rem,6vw,4.2rem);
+
+  font-weight:800;
+
+  letter-spacing:.15em;
+
+  color:#fff;
+
+  text-shadow:
+    0 0 20px rgba(212,175,55,.5),
+    0 0 40px #000;
+
+  margin:0 0 20px;
+
+  line-height:1.3;
 }
 
 .hero-lead{
-  font-size: clamp(0.95rem, 2vw, 1.2rem);
-  color: var(--text-muted);
-  letter-spacing: 0.1em;
-  margin-bottom: 40px;
+  font-size:clamp(.95rem,2vw,1.2rem);
+
+  color:var(--text-muted);
+
+  letter-spacing:.1em;
+
+  margin-bottom:40px;
 }
 
-.event-info-strip {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  max-width: 700px;
-  margin: 0 auto 40px;
-  padding: 15px;
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px dashed var(--border-gold);
-  font-size: 0.85rem;
-  color: var(--gold);
+.event-info-strip{
+  display:flex;
+
+  justify-content:center;
+
+  gap:20px;
+
+  flex-wrap:wrap;
+
+  max-width:700px;
+
+  margin:0 auto 40px;
+
+  padding:15px;
+
+  background:rgba(0,0,0,.7);
+
+  border:1px dashed var(--border-gold);
+
+  font-size:.85rem;
+
+  color:var(--gold);
 }
 
 .hero-button{
-  display: inline-block;
-  padding: 18px 50px;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  font-weight: 700;
-  letter-spacing: 0.25em;
-  background: rgba(13, 15, 18, 0.8);
-  position: relative;
-  transition: 0.4s;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  display:inline-block;
+
+  padding:18px 50px;
+
+  border:1px solid var(--gold);
+
+  color:var(--gold);
+
+  font-weight:700;
+
+  letter-spacing:.25em;
+
+  background:rgba(13,15,18,.8);
+
+  transition:.4s;
+
+  box-shadow:
+    0 0 15px rgba(212,175,55,.2);
 }
 
 .hero-button:hover{
-  background: var(--gold);
-  color: #000;
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
-}
+  background:var(--gold);
 
-/* 小さな冒険者向け（キッズ・初心者）バナー */
-.kids-link-wrapper {
-  margin-top: 30px;
-}
+  color:#000;
 
-.kids-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: #aed8f2;
-  text-decoration: underline;
-  transition: 0.3s;
-}
-
-.kids-link:hover {
-  color: #fff;
-  text-shadow: 0 0 8px rgba(174, 216, 242, 0.8);
+  box-shadow:
+    0 0 30px rgba(212,175,55,.6);
 }
 
 /* =========================
-   COMMON & SECTIONS
+   RPG LINK
+========================= */
+
+.kids-link-wrapper{
+  margin-top:30px;
+}
+
+.kids-link{
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  font-size:.85rem;
+
+  color:#aed8f2;
+
+  text-decoration:underline;
+
+  transition:.3s;
+}
+
+.kids-link:hover{
+  color:#fff;
+
+  text-shadow:
+    0 0 8px rgba(174,216,242,.8);
+}
+
+/* =========================
+   COMMON
 ========================= */
 
 section{
-  padding: 100px 0;
-  position: relative;
+  padding:100px 0;
+
+  position:relative;
 }
 
 .section-title{
-  text-align: center;
-  margin-bottom: 60px;
+  text-align:center;
+
+  margin-bottom:60px;
 }
 
 .section-title .en{
-  font-family: 'Cinzel', serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.4em;
-  color: var(--gold);
-  margin-bottom: 8px;
+  font-family:"Cinzel",serif;
+
+  font-size:.8rem;
+
+  letter-spacing:.4em;
+
+  color:var(--gold);
+
+  margin-bottom:8px;
 }
 
 .section-title h2{
-  margin: 0;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  color: #fff;
+  margin:0;
+
+  font-weight:700;
+
+  letter-spacing:.15em;
+
+  font-size:clamp(1.8rem,4vw,2.5rem);
+
+  color:#fff;
 }
 
 .section-title p{
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-top: 10px;
+  color:var(--text-muted);
+
+  font-size:.9rem;
+
+  margin-top:10px;
 }
 
 /* =========================
-   CARD DRAW (謎解析)
+   DRAW
 ========================= */
 
 .draw-area{
-  text-align: center;
+  text-align:center;
 }
 
 .card{
-  width: min(260px, 70vw);
-  height: min(390px, 105vw);
-  margin: 0 auto 35px;
-  perspective: 1000px;
-  cursor: pointer;
+  width:min(260px,70vw);
+
+  height:min(390px,105vw);
+
+  margin:0 auto 35px;
+
+  perspective:1000px;
+
+  cursor:pointer;
 }
 
 .card-inner{
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.15, 0.85, 0.35, 1.2);
+  width:100%;
+  height:100%;
+
+  position:relative;
+
+  transform-style:preserve-3d;
+
+  transition:
+    transform .8s cubic-bezier(.15,.85,.35,1.2);
 }
 
 .card.flipped .card-inner{
-  transform: rotateY(180deg);
+  transform:rotateY(180deg);
 }
 
 .card-face{
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  border-radius: 4px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+  position:absolute;
+
+  inset:0;
+
+  backface-visibility:hidden;
+
+  border-radius:4px;
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.8);
 }
 
 .card-back{
-  background: #11151c;
-  border: 2px solid var(--gold);
-  outline: 6px solid #000;
-  outline-offset: -10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background:#11151c;
+
+  border:2px solid var(--gold);
+
+  outline:6px solid #000;
+
+  outline-offset:-10px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
 }
 
 .card-back span{
-  color: var(--gold);
-  font-family: 'Cinzel', serif;
-  font-size: 2.5rem;
-  border: 1px solid var(--border-gold);
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.5);
+  color:var(--gold);
+
+  font-family:"Cinzel",serif;
+
+  font-size:2.5rem;
+
+  border:1px solid var(--border-gold);
+
+  width:90px;
+  height:90px;
+
+  border-radius:50%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:rgba(0,0,0,.5);
 }
 
 .card-front{
-  transform: rotateY(180deg);
-  background: #181c24;
-  border: 2px solid var(--gold);
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  transform:rotateY(180deg);
+
+  background:#181c24;
+
+  border:2px solid var(--gold);
+
+  padding:25px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  text-align:center;
 }
 
 .card-number{
-  font-family: 'Cinzel', serif;
-  color: var(--gold);
-  font-size: 1rem;
+  font-family:"Cinzel",serif;
+
+  color:var(--gold);
+
+  font-size:1rem;
 }
 
 .card-name{
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin: 10px 0 15px;
-  color: #fff;
-  border-bottom: 1px solid var(--border-gold);
-  padding-bottom: 8px;
+  font-size:1.6rem;
+
+  font-weight:700;
+
+  margin:10px 0 15px;
+
+  color:#fff;
+
+  border-bottom:
+    1px solid var(--border-gold);
+
+  padding-bottom:8px;
 }
 
 .card-message{
-  font-size: 0.9rem;
-  color: var(--text-main);
-  text-align: left;
+  font-size:.9rem;
+
+  color:var(--text-main);
+
+  text-align:left;
 }
 
 .draw-button{
-  border: 1px solid var(--gold);
-  background: rgba(13, 15, 18, 0.9);
-  color: var(--gold);
-  padding: 15px 40px;
-  cursor: pointer;
-  letter-spacing: 0.2em;
-  font-weight: 700;
-  transition: 0.3s;
+  border:1px solid var(--gold);
+
+  background:rgba(13,15,18,.9);
+
+  color:var(--gold);
+
+  padding:15px 40px;
+
+  cursor:pointer;
+
+  letter-spacing:.2em;
+
+  font-weight:700;
+
+  transition:.3s;
 }
 
 .draw-button:hover{
-  background: var(--gold);
-  color: #000;
+  background:var(--gold);
+
+  color:#000;
 }
 
+/* =========================
+   RESULT
+========================= */
+
 .result{
-  max-width: 600px;
-  margin: 40px auto 0;
-  padding: 25px;
-  background: var(--panel-bg);
-  border: 1px solid var(--border-gold);
-  animation: fadeUp 0.6s ease;
+  max-width:650px;
+
+  margin:40px auto 0;
+
+  padding:25px;
+
+  background:var(--panel-bg);
+
+  border:1px solid var(--border-gold);
+
+  animation:fadeUp .6s ease;
 }
 
 .result h3{
-  color: var(--gold);
-  margin-top: 0;
-  font-size: 1.2rem;
-  letter-spacing: 0.1em;
-}
+  color:var(--gold);
 
-@keyframes fadeUp{
-  from{ opacity:0; transform:translateY(20px); }
-  to{ opacity:1; transform:none; }
+  margin-top:0;
+
+  font-size:1.2rem;
+
+  letter-spacing:.1em;
 }
 
 /* =========================
-   STORY / RPG MODE
+   SECOND CARD
 ========================= */
 
-.rpg-section{
-  background: rgba(10, 12, 15, 0.9);
-  border-top: 1px solid var(--border-gold);
-  border-bottom: 1px solid var(--border-gold);
+.second-card-area{
+  max-width:700px;
+
+  margin:70px auto 0;
+
+  padding:45px 25px;
+
+  background:var(--panel-bg);
+
+  border:
+    1px solid var(--border-gold);
+
+  text-align:center;
+
+  box-shadow:
+    0 0 30px rgba(0,0,0,.7);
 }
 
-.rpg-box{
-  max-width: 700px;
-  margin: auto;
-  text-align: center;
-  border: 1px solid var(--border-gold);
-  padding: 50px 30px;
-  background: var(--panel-bg);
-  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+.second-card-area h3{
+  color:#fff;
+
+  font-size:1.5rem;
+
+  margin-top:0;
 }
 
-.rpg-box h3{
-  font-size: 1.5rem;
-  color: #fff;
-  margin-bottom: 20px;
+.second-card{
+  width:min(220px,65vw);
+
+  min-height:310px;
+
+  margin:30px auto;
+
+  background:#181c24;
+
+  border:2px solid var(--gold);
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  padding:25px;
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.8);
+
+  animation:fadeUp .7s ease;
 }
 
-.rpg-button{
-  display: inline-block;
-  margin-top: 20px;
-  padding: 15px 35px;
-  border: 1px solid var(--accent-red);
-  color: #fff;
-  background: var(--accent-red);
-  cursor: pointer;
-  letter-spacing: 0.15em;
-  font-weight: 700;
-  transition: 0.3s;
-  box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
+.second-number{
+  font-family:"Cinzel",serif;
+
+  color:var(--gold);
+
+  font-size:1rem;
 }
 
-.rpg-button:hover{
-  background: #b30000;
-  box-shadow: 0 0 25px rgba(139, 0, 0, 0.8);
+.second-name{
+  color:#fff;
+
+  font-size:1.6rem;
+
+  font-weight:700;
+
+  margin:10px 0;
+
+  border-bottom:
+    1px solid var(--border-gold);
+
+  padding-bottom:10px;
 }
 
-.ending{
-  margin-top: 40px;
-  padding-top: 30px;
-  border-top: 1px dashed var(--border-gold);
-}
+.second-meaning{
+  font-size:.9rem;
 
-.ending-title{
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
-  color: var(--gold);
-  margin-bottom: 15px;
+  color:var(--text-main);
 }
 
 /* =========================
-   SYSTEM / MENU
+   FINAL
+========================= */
+
+.final-result{
+  max-width:800px;
+
+  margin:70px auto 0;
+
+  padding:55px 30px;
+
+  text-align:center;
+
+  border:
+    1px solid var(--gold);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(30,30,25,.9),
+      rgba(10,10,12,.95)
+    );
+
+  box-shadow:
+    0 0 40px rgba(212,175,55,.12);
+}
+
+.final-label{
+  font-family:"Cinzel",serif;
+
+  color:var(--gold);
+
+  letter-spacing:.35em;
+
+  font-size:.8rem;
+
+  margin-bottom:20px;
+}
+
+.final-title{
+  font-size:clamp(1.8rem,5vw,3rem);
+
+  color:#fff;
+
+  margin-bottom:25px;
+
+  font-weight:800;
+}
+
+.final-text{
+  max-width:620px;
+
+  margin:auto;
+
+  color:var(--text-main);
+
+  font-size:1rem;
+}
+
+.final-advice{
+  margin-top:30px;
+
+  padding-top:25px;
+
+  border-top:
+    1px dashed var(--border-gold);
+
+  color:var(--gold);
+
+  font-weight:700;
+}
+
+/* =========================
+   MENU
 ========================= */
 
 .menu-grid{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:25px;
 }
 
 .menu-card{
-  background: var(--panel-bg);
-  border: 1px solid var(--border-gold);
-  padding: 35px 20px;
-  text-align: center;
-  transition: 0.3s;
+  background:var(--panel-bg);
+
+  border:
+    1px solid var(--border-gold);
+
+  padding:35px 20px;
+
+  text-align:center;
+
+  transition:.3s;
 }
 
 .menu-card:hover{
-  border-color: var(--gold);
-  transform: translateY(-5px);
+  border-color:var(--gold);
+
+  transform:translateY(-5px);
 }
 
 .menu-card .icon{
-  font-size: 2rem;
-  color: var(--gold);
-  margin-bottom: 15px;
+  font-size:2rem;
+
+  color:var(--gold);
+
+  margin-bottom:15px;
 }
 
 .menu-card h3{
-  color: #fff;
-  font-size: 1.1rem;
-  letter-spacing: 0.1em;
-  margin-bottom: 10px;
+  color:#fff;
+
+  font-size:1.1rem;
+
+  letter-spacing:.1em;
+
+  margin-bottom:10px;
 }
 
 .menu-card p{
-  color: var(--text-muted);
-  font-size: 0.85rem;
+  color:var(--text-muted);
+
+  font-size:.85rem;
 }
 
 /* =========================
@@ -438,31 +702,71 @@ section{
 ========================= */
 
 footer{
-  background: #050608;
-  color: var(--text-muted);
-  text-align: center;
-  padding: 60px 20px;
-  border-top: 1px solid var(--border-gold);
+  background:#050608;
+
+  color:var(--text-muted);
+
+  text-align:center;
+
+  padding:60px 20px;
+
+  border-top:
+    1px solid var(--border-gold);
 }
 
 footer h2{
-  color: #fff;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  font-size: 1.2rem;
+  color:#fff;
+
+  font-weight:500;
+
+  letter-spacing:.2em;
+
+  font-size:1.2rem;
 }
 
-.hidden{ display: none !important; }
+.hidden{
+  display:none !important;
+}
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+
+    transform:none;
+  }
+
+}
 
 @media(max-width:760px){
-  section{ padding: 70px 0; }
-  .menu-grid{ grid-template-columns: 1fr; }
-  .event-info-strip { flex-direction: column; gap: 8px; }
+
+  section{
+    padding:70px 0;
+  }
+
+  .menu-grid{
+    grid-template-columns:1fr;
+  }
+
+  .event-info-strip{
+    flex-direction:column;
+
+    gap:8px;
+  }
+
 }
+
 </style>
 </head>
 
 <body>
+
 
 <!-- =========================
      HERO
@@ -473,31 +777,44 @@ footer h2{
   <div class="hero-content">
 
     <div class="event-tag">
-      REAL MYSTERY EVENT
+      MUSUBI NO FUDA
     </div>
 
-    <h1>体験型カード解析ゲーム<br>『結の札』</h1>
+    <h1>
+      今日は、あなたが主役。
+    </h1>
 
     <p class="hero-lead">
-      提示された一枚の札が示すのは、真実か、それとも罠か。<br>
-      暗号を解き明かし、あなた自身の『結末』を選択せよ。
+      一枚の札が、あなたを物語の中へ導く。<br>
+      ここから先は、あなた自身が主人公です。
     </p>
 
     <div class="event-info-strip">
-      <span>📍 開催地：暗夜の館（オンライン/現地）</span>
-      <span>⏱ 所要時間：約15分〜</span>
-      <span>難易度：★★★☆☆</span>
+
+      <span>🎴 22枚の運命札</span>
+
+      <span>⏱ 約15分</span>
+
+      <span>📖 分岐する物語</span>
+
     </div>
 
-    <a href="#draw" class="hero-button">
-      手掛かりを解析する［試プレイ］
+    <a
+      href="#draw"
+      class="hero-button"
+    >
+      物語をはじめる
     </a>
 
-    <!-- 小さな冒険者向け 外部リンクの組み込み -->
     <div class="kids-link-wrapper">
-      <a href="https://musica-3.github.io/RPG-mode/#draw" target="_blank" rel="noopener noreferrer" class="kids-link">
-        🛡️ 小さな冒険者・初心者の方はこちら（イージーモード） ↗
+
+      <a
+        href="https://musica-3.github.io/RPG-mode/#draw"
+        class="kids-link"
+      >
+        🛡️ 小さな冒険者・初心者はこちら
       </a>
+
     </div>
 
   </div>
@@ -506,7 +823,7 @@ footer h2{
 
 
 <!-- =========================
-     CARD DRAW
+     FIRST CARD
 ========================= -->
 
 <section id="draw">
@@ -514,78 +831,198 @@ footer h2{
   <div class="container">
 
     <div class="section-title">
-      <div class="en">PHASE 01 : ANALYZE</div>
-      <h2>運命札の解読</h2>
+
+      <div class="en">
+        PHASE 01 : DESTINY
+      </div>
+
+      <h2>
+        最初の札
+      </h2>
+
       <p>
-        配給された22枚の大アルカナから1枚を引き、提示されたメッセージを解析してください。
+        22枚の札から一枚を引いてください。<br>
+        この札が、あなたの物語の最初の手掛かりになります。
       </p>
+
     </div>
+
 
     <div class="draw-area">
 
-      <div class="card" id="card">
+      <div
+        class="card"
+        id="card"
+      >
+
         <div class="card-inner">
+
           <div class="card-face card-back">
-            <span>結</span>
+
+            <span>
+              結
+            </span>
+
           </div>
+
+
           <div class="card-face card-front">
-            <div class="card-number" id="cardNumber">0</div>
-            <div class="card-name" id="cardName">—</div>
-            <div class="card-message" id="cardMessage">—</div>
+
+            <div
+              class="card-number"
+              id="cardNumber"
+            >
+              0
+            </div>
+
+            <div
+              class="card-name"
+              id="cardName"
+            >
+              —
+            </div>
+
+            <div
+              class="card-message"
+              id="cardMessage"
+            >
+              —
+            </div>
+
           </div>
+
         </div>
+
       </div>
 
-      <button class="draw-button" id="drawButton" onclick="drawCard()">
+
+      <button
+        class="draw-button"
+        id="drawButton"
+        onclick="drawCard()"
+      >
         札を引き抜く
       </button>
 
-      <div class="result hidden" id="result">
-        <h3>［解析完了］提示された手掛かり</h3>
-        <p id="resultText">
-          この札が示す言葉は、あなたの現在の状況を暗示しています。カードの指し示す謎を記憶してください。
-        </p>
+
+      <div
+        class="result hidden"
+        id="result"
+      >
+
+        <h3>
+          ［第一の手掛かり］
+        </h3>
+
+        <p id="resultText"></p>
+
       </div>
 
     </div>
 
-  </div>
 
-</section>
+    <!-- =========================
+         SECOND CARD
+    ========================= -->
 
+    <div
+      id="secondArea"
+      class="second-card-area hidden"
+    >
 
-<!-- =========================
-     RPG / STORY
-========================= -->
-
-<section class="rpg-section">
-
-  <div class="container">
-
-    <div class="section-title">
-      <div class="en">PHASE 02 : BRANCHING STORY</div>
-      <h2>分岐する世界線</h2>
-      <p>
-        さらにもう一枚の札を重ね合わせることで、物語の最終結末（エンディング）が分岐します。
-      </p>
-    </div>
-
-    <div class="rpg-box">
-
-      <h3>二重の選択が、世界の運命を決する</h3>
+      <h3>
+        もう一枚、札を引く
+      </h3>
 
       <p>
-        1枚目の解析結果と、これから引く2枚目の重なり合いにより<br>
-        「世界の救済」か「破滅」かの分岐フラグが起動します。
+        一枚目の札だけでは、まだ結末は決まりません。<br>
+        二枚目の札を重ねることで、物語の世界線が動き出します。
       </p>
 
-      <button class="rpg-button" onclick="rpgStart()">
-        2枚目を引き、結末を観測する
+      <button
+        class="draw-button"
+        onclick="drawSecondCard()"
+        id="secondButton"
+      >
+        第二の札を引く
       </button>
 
-      <div id="ending" class="ending hidden">
-        <div id="endingTitle" class="ending-title"></div>
-        <p id="endingText" class="ending-text"></p>
+
+      <div
+        id="secondResult"
+        class="hidden"
+      >
+
+        <div
+          class="second-card"
+        >
+
+          <div
+            class="second-number"
+            id="secondNumber"
+          >
+          </div>
+
+          <div
+            class="second-name"
+            id="secondName"
+          >
+          </div>
+
+          <div
+            class="second-meaning"
+            id="secondMeaning"
+          >
+          </div>
+
+        </div>
+
+        <p>
+          二枚の札が重なりました。<br>
+          物語の結末を観測します。
+        </p>
+
+        <button
+          class="draw-button"
+          onclick="showFinalResult()"
+        >
+          結末を観測する
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         FINAL RESULT
+    ========================= -->
+
+    <div
+      id="finalResult"
+      class="final-result hidden"
+    >
+
+      <div class="final-label">
+        FINAL DESTINATION
+      </div>
+
+      <div
+        class="final-title"
+        id="finalTitle"
+      >
+      </div>
+
+      <div
+        class="final-text"
+        id="finalText"
+      >
+      </div>
+
+      <div
+        class="final-advice"
+        id="finalAdvice"
+      >
       </div>
 
     </div>
@@ -596,7 +1033,7 @@ footer h2{
 
 
 <!-- =========================
-     SYSTEM / MENU
+     SYSTEM
 ========================= -->
 
 <section>
@@ -604,29 +1041,76 @@ footer h2{
   <div class="container">
 
     <div class="section-title">
-      <div class="en">GAME SYSTEM</div>
-      <h2>体験コース一覧</h2>
-      <p>あなたのスタイルに合わせて挑戦ルートを選択できます。</p>
+
+      <div class="en">
+        GAME SYSTEM
+      </div>
+
+      <h2>
+        結の札の遊び方
+      </h2>
+
+      <p>
+        占いでもあり、物語でもある。<br>
+        あなたの引いた札が、今日だけの物語を作ります。
+      </p>
+
     </div>
+
 
     <div class="menu-grid">
 
       <div class="menu-card">
-        <div class="icon">🔍</div>
-        <h3>シングル解析ルート</h3>
-        <p>1枚の札から今のあなたを取り巻く状況を解読する基本セッション（所要時間：約15分）。</p>
+
+        <div class="icon">
+          🎴
+        </div>
+
+        <h3>
+          FIRST CARD
+        </h3>
+
+        <p>
+          最初の札を一枚引きます。<br>
+          今のあなたに重なる言葉を見つけます。
+        </p>
+
       </div>
 
-      <div class="menu-card">
-        <div class="icon">📜</div>
-        <h3>脱出・分岐ミッション</h3>
-        <p>2枚の札を組み合わせ、仕掛けられた世界の謎とストーリーの結末を解き明かす上級ミッション。</p>
-      </div>
 
       <div class="menu-card">
-        <div class="icon">🗝️</div>
-        <h3>ゲームマスターおまかせ</h3>
-        <p>進行役（GM）があなたの状態に合わせて即興でシナリオを構築する特別ルート。</p>
+
+        <div class="icon">
+          🌙
+        </div>
+
+        <h3>
+          SECOND CARD
+        </h3>
+
+        <p>
+          もう一枚の札を重ねます。<br>
+          二つの意味から物語の方向が変化します。
+        </p>
+
+      </div>
+
+
+      <div class="menu-card">
+
+        <div class="icon">
+          🌍
+        </div>
+
+        <h3>
+          FINAL DESTINATION
+        </h3>
+
+        <p>
+          世界は救われるのか。<br>
+          それとも、別の結末を迎えるのか。
+        </p>
+
       </div>
 
     </div>
@@ -636,20 +1120,18 @@ footer h2{
 </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
-
 <footer>
 
-  <h2>体験型カード解析謎解き『結の札』</h2>
+  <h2>
+    結の札
+  </h2>
 
-  <p style="margin-top: 15px;">
-    主催：結の札 制作委員会 / リアル体験型ミッション
+  <p>
+    今日は、あなたが主役。
   </p>
 
-  <p style="font-size: 0.75rem; color: #555; margin-top: 20px;">
-    ※このイベントは体験型謎解きエンターテインメントです。
+  <p style="font-size:.75rem;color:#555;">
+    これは物語として楽しむ体験型コンテンツです。
   </p>
 
 </footer>
@@ -657,76 +1139,625 @@ footer h2{
 
 <script>
 
+/* ==================================================
+   22 MAJOR ARCANA
+================================================== */
+
 const cards = [
-  { number:"0", name:"愚者", message:"【原点】まだ道なき領域へ。既存のルールを捨て、踏み出す者にのみ道は開かれる。" },
-  { number:"I", name:"魔術師", message:"【着手】手元にある全ての道具を点検せよ。必要な要素はすでに揃っている。" },
-  { number:"II", name:"女教皇", message:"【沈黙】静寂の中にのみ真実が潜む。軽率な行動を控え、観察に徹せよ。" },
-  { number:"III", name:"女帝", message:"【受容】育む時間が必要である。今手の中にある資源を正しく味わい、蓄えよ。" },
-  { number:"IV", name:"皇帝", message:"【支配】己の領域を定義せよ。揺るぎない意思こそが突破口となる。" },
-  { number:"V", name:"法王", message:"【伝承】過去の手記や先人の言葉を解読せよ。そこに暗号の鍵が隠されている。" },
-  { number:"VI", name:"恋人たち", message:"【選択】選択肢は二つ。一方を選ぶことは、もう一方を永久に失うことを意味する。" },
-  { number:"VII", name:"戦車", message:"【突入】躊躇は敗北を意味する。勢いを殺さずに障壁を突き破れ。" },
-  { number:"VIII", name:"力", message:"【制御】力で抑え込むのではなく、優しさと理知で対象をコントロールせよ。" },
-  { number:"IX", name:"隠者", message:"【探求】一度群れから離れよ。孤独な思考の果てにのみ、真相が浮かび上がる。" },
-  { number:"X", name:"運命の輪", message:"【転換】仕掛けが動き出した。この周期の波に乗り遅れてはならない。" },
-  { number:"XI", name:"正義", message:"【均衡】感情を排除し、事実のみを秤にかけよ。客観性こそが真の解答である。" },
-  { number:"XII", name:"吊るされた男", message:"【反転】視点を180度変えよ。行き詰まりに見える状態こそが最大のチャンスである。" },
-  { number:"XIII", name:"死神", message:"【断絶】終焉を受け入れよ。古い構造を壊さなければ、次の部屋の扉は開かない。" },
-  { number:"XIV", name:"節制", message:"【調合】相反する二つの要素を正しく調和させよ。極端な選択は破滅を招く。" },
-  { number:"XV", name:"悪魔", message:"【執着】あなたを拘束しているのは仕掛けではなく、あなた自身の欲望である。" },
-  { number:"XVI", name:"塔", message:"【崩壊】予期せぬ衝撃に備えよ。前提が崩れ去った瞬間から真の試練が始まる。" },
-  { number:"XVII", name:"星", message:"【微光】暗闇の中でかすかに光る標識を見落とすな。それが唯一の生存ルートである。" },
-  { number:"XVIII", name:"月", message:"【幻影】見えているものを過信することなかれ。不安が作り出した幻影を恐れるな。" },
-  { number:"XIX", name:"太陽", message:"【白日】隠された仕掛けが全て露わになる。迷わず光の指す方向へ進め。" },
-  { number:"XX", name:"審判", message:"【覚醒】過去に切り捨てた手掛かりを思い出せ。途絶えた物語に再び息吹が宿る。" },
-  { number:"XXI", name:"世界", message:"【完結】全てのパズルが組み合わさった。次のフェーズへの扉が開く。" }
+
+  {
+    number:"0",
+    name:"愚者",
+    keyword:"旅立ち",
+    message:"まだ名前のない道へ。正解を決める前に、一歩踏み出す者だけが見られる景色がある。"
+  },
+
+  {
+    number:"I",
+    name:"魔術師",
+    keyword:"始動",
+    message:"必要な道具はすでに手元にある。足りないものを探すより、今あるものを使え。"
+  },
+
+  {
+    number:"II",
+    name:"女教皇",
+    keyword:"秘密",
+    message:"答えは静寂の中にある。急いで動くより、見えないものを観察せよ。"
+  },
+
+  {
+    number:"III",
+    name:"女帝",
+    keyword:"育成",
+    message:"何かを育てる時間。すぐに結果を求めず、今あるものを大切にせよ。"
+  },
+
+  {
+    number:"IV",
+    name:"皇帝",
+    keyword:"秩序",
+    message:"自分の立つ場所を定めよ。揺るがない意思が、混乱した世界に道を作る。"
+  },
+
+  {
+    number:"V",
+    name:"法王",
+    keyword:"伝承",
+    message:"過去の言葉に耳を傾けよ。先人が残した知恵が、閉ざされた扉を開く鍵になる。"
+  },
+
+  {
+    number:"VI",
+    name:"恋人たち",
+    keyword:"選択",
+    message:"二つの道がある。どちらかを選ぶことは、もう一方を手放すことでもある。"
+  },
+
+  {
+    number:"VII",
+    name:"戦車",
+    keyword:"突破",
+    message:"迷いながらでも進め。止まった瞬間、世界はあなたを置き去りにする。"
+  },
+
+  {
+    number:"VIII",
+    name:"力",
+    keyword:"制御",
+    message:"本当の力は押さえつけることではない。理解し、扱う力こそが扉を開く。"
+  },
+
+  {
+    number:"IX",
+    name:"隠者",
+    keyword:"探索",
+    message:"一度、群れから離れよ。静かな場所でしか見つからない答えがある。"
+  },
+
+  {
+    number:"X",
+    name:"運命の輪",
+    keyword:"転換",
+    message:"世界が動き始めた。偶然に見える出来事を見逃してはいけない。"
+  },
+
+  {
+    number:"XI",
+    name:"正義",
+    keyword:"判断",
+    message:"感情ではなく事実を見ること。正しい答えは、都合のよい答えとは限らない。"
+  },
+
+  {
+    number:"XII",
+    name:"吊るされた男",
+    keyword:"反転",
+    message:"視点を変えよ。行き止まりに見える場所に、別の入口が隠されている。"
+  },
+
+  {
+    number:"XIII",
+    name:"死神",
+    keyword:"終焉",
+    message:"終わることを恐れるな。古いものを手放したとき、次の物語が始まる。"
+  },
+
+  {
+    number:"XIV",
+    name:"節制",
+    keyword:"調和",
+    message:"異なるものを混ぜ合わせよ。極端ではなく、ちょうどよい場所に答えがある。"
+  },
+
+  {
+    number:"XV",
+    name:"悪魔",
+    keyword:"執着",
+    message:"あなたを縛っているものは何か。鎖の正体を知れば、それを外す方法も見えてくる。"
+  },
+
+  {
+    number:"XVI",
+    name:"塔",
+    keyword:"崩壊",
+    message:"信じていた前提が崩れる。しかし、その崩壊のあとにしか見えない景色がある。"
+  },
+
+  {
+    number:"XVII",
+    name:"星",
+    keyword:"希望",
+    message:"暗闇の中に、小さな光が残っている。完全な希望ではなくても、それを見失うな。"
+  },
+
+  {
+    number:"XVIII",
+    name:"月",
+    keyword:"幻惑",
+    message:"見えているものが真実とは限らない。不安が作った影に惑わされないこと。"
+  },
+
+  {
+    number:"XIX",
+    name:"太陽",
+    keyword:"真実",
+    message:"隠されていたものが明らかになる。光の下では、もう何も隠すことはできない。"
+  },
+
+  {
+    number:"XX",
+    name:"審判",
+    keyword:"再生",
+    message:"終わったと思っていた物語が再び動き出す。もう一度だけ、過去を振り返れ。"
+  },
+
+  {
+    number:"XXI",
+    name:"世界",
+    keyword:"完結",
+    message:"長い旅が一つの形になる。終わりは同時に、新しい物語の入口でもある。"
+  }
+
 ];
+
+
+/* ==================================================
+   STATE
+================================================== */
 
 let firstCard = null;
 
+let secondCard = null;
+
+
+/* ==================================================
+   FIRST CARD
+================================================== */
+
 function drawCard(){
-  const index = Math.floor(Math.random() * cards.length);
+
+  const index =
+    Math.floor(
+      Math.random() * cards.length
+    );
+
   firstCard = cards[index];
 
-  document.getElementById("cardNumber").textContent = firstCard.number;
-  document.getElementById("cardName").textContent = firstCard.name;
-  document.getElementById("cardMessage").textContent = firstCard.message;
+  document
+    .getElementById("cardNumber")
+    .textContent =
+      firstCard.number;
 
-  document.getElementById("card").classList.add("flipped");
-  document.getElementById("result").classList.remove("hidden");
-  document.getElementById("drawButton").textContent = "再解析を実行する";
+  document
+    .getElementById("cardName")
+    .textContent =
+      firstCard.name;
+
+  document
+    .getElementById("cardMessage")
+    .textContent =
+      "【" +
+      firstCard.keyword +
+      "】" +
+      firstCard.message;
+
+  document
+    .getElementById("card")
+    .classList.add("flipped");
+
+
+  document
+    .getElementById("resultText")
+    .textContent =
+      firstCard.message;
+
+
+  document
+    .getElementById("result")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("secondArea")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("drawButton")
+    .textContent =
+      "もう一度引く";
+
+
+  document
+    .getElementById("secondArea")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
 }
 
-function rpgStart(){
+
+/* ==================================================
+   SECOND CARD
+================================================== */
+
+function drawSecondCard(){
+
   if(!firstCard){
-    alert("【警告】先に『PHASE 01』で1枚目のカードを解析してください。");
-    document.getElementById("draw").scrollIntoView({behavior:"smooth"});
+
+    alert(
+      "先に一枚目の札を引いてください。"
+    );
+
     return;
   }
 
-  let secondCard;
-  do{
-    secondCard = cards[Math.floor(Math.random()*cards.length)];
-  }while(secondCard === firstCard);
 
-  const endings = [
-    {
-      title:"【MISSION CLEAR】世界の修復に成功",
-      text: "あなたが選んだ二つの解法が見事に噛み合った。崩壊の危機に瀕していた世界線は安定を取り戻し、脱出の扉が開かれた。あなたの冷静な観察力と決断力が、このゲームの勝利を引き寄せたのだ。"
-    },
-    {
-      title:"【MISSION FAILED】世界線の途絶",
-      text: "重なり合った二つの運命は暴走し、世界は崩壊を迎えた……。しかし、諦める必要はない。この失敗もまた大切な手掛かりである。思考をリセットし、再び挑戦せよ。"
-    }
+  do{
+
+    const index =
+      Math.floor(
+        Math.random() * cards.length
+      );
+
+    secondCard = cards[index];
+
+  }while(
+    secondCard === firstCard
+  );
+
+
+  document
+    .getElementById("secondNumber")
+    .textContent =
+      secondCard.number;
+
+
+  document
+    .getElementById("secondName")
+    .textContent =
+      secondCard.name;
+
+
+  document
+    .getElementById("secondMeaning")
+    .textContent =
+      "【" +
+      secondCard.keyword +
+      "】" +
+      secondCard.message;
+
+
+  document
+    .getElementById("secondResult")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("secondButton")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("secondResult")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+}
+
+
+/* ==================================================
+   FINAL RESULT
+================================================== */
+
+function showFinalResult(){
+
+  if(!firstCard || !secondCard){
+
+    alert(
+      "二枚の札を引いてください。"
+    );
+
+    return;
+  }
+
+
+  const result =
+    determineEnding(
+      firstCard,
+      secondCard
+    );
+
+
+  document
+    .getElementById("finalTitle")
+    .textContent =
+      result.title;
+
+
+  document
+    .getElementById("finalText")
+    .textContent =
+      result.text;
+
+
+  document
+    .getElementById("finalAdvice")
+    .textContent =
+      result.advice;
+
+
+  document
+    .getElementById("finalResult")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("finalResult")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+}
+
+
+/* ==================================================
+   ENDING LOGIC
+==================================================
+
+   「悪いカード＝滅亡」ではありません。
+
+   2枚のカードの関係性を見て、
+   世界線が救済へ向かうか、
+   崩壊へ向かうかを決定します。
+
+================================================== */
+
+function determineEnding(first, second){
+
+  const rescueCards = [
+    "愚者",
+    "魔術師",
+    "女帝",
+    "法王",
+    "恋人たち",
+    "力",
+    "運命の輪",
+    "節制",
+    "星",
+    "太陽",
+    "審判",
+    "世界"
   ];
 
-  const sum = firstCard.number.length + secondCard.number.length;
-  const ending = sum % 2 === 0 ? endings[0] : endings[1];
 
-  document.getElementById("endingTitle").textContent = ending.title;
-  document.getElementById("endingText").textContent = ending.text;
-  document.getElementById("ending").classList.remove("hidden");
+  const dangerCards = [
+    "悪魔",
+    "塔",
+    "月",
+    "死神"
+  ];
+
+
+  const firstRescue =
+    rescueCards.includes(first.name);
+
+  const secondRescue =
+    rescueCards.includes(second.name);
+
+  const firstDanger =
+    dangerCards.includes(first.name);
+
+  const secondDanger =
+    dangerCards.includes(second.name);
+
+
+  /*
+    特別な組み合わせ
+  */
+
+  if(
+    first.name === "星" &&
+    second.name === "太陽"
+  ){
+
+    return {
+
+      title:
+        "【MISSION CLEAR】世界は救われた",
+
+      text:
+        "崩壊寸前だった世界に、二つの光が重なった。あなたが見つけた小さな希望は、やがて世界を照らす光になった。",
+
+      advice:
+        "希望は、最初から大きな光でなくてもいい。"
+
+    };
+
+  }
+
+
+  if(
+    first.name === "塔" &&
+    second.name === "星"
+  ){
+
+    return {
+
+      title:
+        "【SECRET END】崩壊のあとに残った光",
+
+      text:
+        "世界は一度崩れた。しかし完全には失われなかった。瓦礫の中に残った小さな光を、あなたは見つけた。",
+
+      advice:
+        "壊れたあとに残るものにも、物語は宿る。"
+
+    };
+
+  }
+
+
+  if(
+    first.name === "死神" &&
+    second.name === "世界"
+  ){
+
+    return {
+
+      title:
+        "【TRUE END】古い世界の終わり",
+
+      text:
+        "世界は終わった。しかしそれは敗北ではなかった。古い物語が完結し、新しい世界へ続く扉が開いた。",
+
+      advice:
+        "終わりは、必ずしも失敗ではない。"
+
+    };
+
+  }
+
+
+  if(
+    first.name === "悪魔" &&
+    second.name === "力"
+  ){
+
+    return {
+
+      title:
+        "【BREAK THROUGH】鎖を断ち切った",
+
+      text:
+        "あなたを縛っていたものの正体が明らかになった。そしてあなたは、それを力ずくではなく、自分自身の意思で手放した。",
+
+      advice:
+        "自分を縛るものに名前をつけることから、自由は始まる。"
+
+    };
+
+  }
+
+
+  /*
+    両方とも救済系
+  */
+
+  if(
+    firstRescue &&
+    secondRescue
+  ){
+
+    return {
+
+      title:
+        "【MISSION CLEAR】世界は救われた",
+
+      text:
+        "二つの札が示した道は、同じ方向を指していた。あなたは迷いながらも一歩を選び、その選択によって世界の崩壊を食い止めた。",
+
+      advice:
+        "完璧な答えより、自分で選んだ一歩を大切に。"
+
+    };
+
+  }
+
+
+  /*
+    危険カードが2枚
+  */
+
+  if(
+    firstDanger &&
+    secondDanger
+  ){
+
+    return {
+
+      title:
+        "【MISSION FAILED】世界線の途絶",
+
+      text:
+        "二つの危険な力が重なり、世界の均衡は崩れた。あなたのいた世界線は、静かに終わりを迎えた。",
+
+      advice:
+        "けれど、物語はここで終わらない。別の選択をすれば、別の世界線がある。"
+
+    };
+
+  }
+
+
+  /*
+    危険＋救済
+  */
+
+  if(
+    (firstDanger && secondRescue) ||
+    (secondDanger && firstRescue)
+  ){
+
+    return {
+
+      title:
+        "【LAST CHANCE】世界はかろうじて救われた",
+
+      text:
+        "崩壊の力と、それに抗う力がぶつかった。世界は傷ついた。それでも最後に残った選択が、完全な破滅を食い止めた。",
+
+      advice:
+        "状況が悪くても、最後の一手まで物語は決まらない。"
+
+    };
+
+  }
+
+
+  /*
+    その他
+  */
+
+  const combined =
+    first.keyword +
+    "と" +
+    second.keyword;
+
+
+  return {
+
+    title:
+      "【WORLD SHIFT】世界線が変化した",
+
+    text:
+      "「" +
+      first.name +
+      "」と「" +
+      second.name +
+      "」の二つの力が重なり、世界は予想もしなかった方向へ動き始めた。あなたの物語は、まだ終わっていない。",
+
+    advice:
+      combined +
+      "という二つのテーマを、今日の自分への問いとして持ち帰ってください。"
+
+  };
+
 }
+
+
+/* ==================================================
+   INITIAL MESSAGE
+================================================== */
+
+console.log(
+  "結の札 RPG-mode loaded."
+);
 
 </script>
 
