@@ -310,7 +310,7 @@ header {
 }
 
 /* =========================================
-   1. 札をひく（円環＋月の満ち欠けアニメーション）
+   1. 札をひく（円環＋ワンクッション付き）
 ========================================= */
 .oracle-box {
   background: var(--paper-card);
@@ -322,12 +322,11 @@ header {
   box-shadow: 0 10px 30px rgba(44,38,33,.03);
 }
 
-/* 月の満ち欠けのようなゆったりとした円環エフェクト */
 .circle-stage {
   position: relative;
   width: 220px;
   height: 220px;
-  margin: 0 auto 40px;
+  margin: 0 auto 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -364,7 +363,6 @@ header {
   background: var(--gold);
 }
 
-/* 押したときの沈み込むエフェクト */
 .circle-center-btn:active {
   transform: scale(0.92) translateY(3px);
   box-shadow: 0 2px 8px rgba(27,38,49,.3);
@@ -387,16 +385,25 @@ header {
 .sym-left { left: 12px; top: 50%; transform: translateY(-50%); }
 .sym-right { right: 12px; top: 50%; transform: translateY(-50%); }
 
+/* ワンクッション（準備中）のメッセージ表示 */
+#oracleStageMsg {
+  font-size: 13px;
+  color: var(--muted);
+  min-height: 30px;
+  margin-bottom: 10px;
+  transition: opacity .4s ease;
+}
+
 .oracle-result-area {
   display: none;
-  margin-top: 30px;
+  margin-top: 20px;
   text-align: left;
   border-top: 1px solid var(--line);
   padding-top: 30px;
 }
 
 /* =========================================
-   2. 小部屋（おまじないリスト）
+   2. 小部屋（現実的でお洒落なおまじない16選）
 ========================================= */
 .rooms-list {
   display: flex;
@@ -439,7 +446,6 @@ header {
   opacity: 1;
 }
 
-/* 押したときのクリックフィードバック */
 .room-row:active {
   transform: scale(0.99) translateX(2px);
 }
@@ -598,7 +604,7 @@ footer {
     </div>
   </section>
 
-  <!-- 札をひくセクション（小部屋の上へ移動、円環アニメーション付き） -->
+  <!-- 札をひくセクション（ワンクッション＋円環） -->
   <section id="oracle-section" class="section">
     <div class="container">
       <div class="section-head">
@@ -607,9 +613,7 @@ footer {
       </div>
 
       <div class="oracle-box">
-        <p style="font-size: 13px; color: var(--muted); margin-top: 0; margin-bottom: 30px;">
-          心を静めて、今のあなたに響く一枚をひきます。
-        </p>
+        <div id="oracleStageMsg">心を静めて、今のあなたに響く一枚をひきます。</div>
 
         <!-- 月の満ち欠けのようなゆったりとした円環ステージ -->
         <div class="circle-stage">
@@ -617,7 +621,7 @@ footer {
           <div class="orbit-symbol sym-bottom">☾</div>
           <div class="orbit-symbol sym-left">🍃</div>
           <div class="orbit-symbol sym-right">🗝</div>
-          <button class="circle-center-btn" onclick="drawOracleCard()">札をひく</button>
+          <button class="circle-center-btn" id="oracleBtn" onclick="startOracleProcess()">札をひく</button>
         </div>
 
         <div id="oracleResult" class="oracle-result-area fade">
@@ -629,7 +633,7 @@ footer {
     </div>
   </section>
 
-  <!-- 小部屋セクション（本にまつわるおまじない各4種・計16種） -->
+  <!-- 小部屋セクション（現実的で美しいおまじない各4種・計16種） -->
   <section id="rooms-section" class="section" style="border-bottom: none;">
     <div class="container">
       <div class="section-head">
@@ -704,78 +708,78 @@ footer {
      JavaScript
 ========================================= -->
 <script>
-// 各部屋4種類×全4部屋＝計16種類のおまじないデータ
+// 現実的で情緒のあるおまじないデータ（各4種×4部屋＝16種）
 const roomSpells = {
   quiet: [
     {
-      title: "白紙のページのおまじない",
-      body: "読書ノートの最初のページに、今日の自分の呼吸の回数をそっと書き留めてみましょう。雑音が消え、心が白い紙のようにフラットに戻っていきます。"
+      title: "本棚の一冊を整えるおまじない",
+      body: "手元にある本の中から、一番背表紙が好きな一冊だけを手前に真っ直ぐ並べ直してみましょう。視界の端が整うと、心の中のざわめきも自然と静まってゆきます。"
     },
     {
-      title: "栞を挟むていねいなおまじない",
-      body: "お気に入りの本の真ん中あたりを開き、ドライフラワーや小さな紙片を挟み直します。本を閉じるその瞬間に、今日という日の静けさが固定されます。"
+      title: "栞を新しくするおまじない",
+      body: "手帳や愛読書に、お気に入りのカードや綺麗な紙片を新しい栞として挟んでみます。本をぱたんと閉じるその余白が、今日を穏やかに区切ってくれます。"
     },
     {
-      title: "窓辺のインクのおまじない",
-      body: "夕暮れ時、閉じた本の背表紙を優しく手のひらでなでてみてください。今日溜まった思考の埃がすーっと溶けていくような、静かな時間が訪れます。"
+      title: "お茶の湯気を眺めるおまじない",
+      body: "温かい飲み物を淹れて、カップから立ち上る湯気が消えていく様子をただ一分間だけ眺めてみましょう。慌ただしい思考がゆっくりとクリアになっていきます。"
     },
     {
-      title: "重なる背表紙のおまじない",
-      body: "手元にある本を二冊、綺麗に重ね合わせてみましょう。その重なり合う安定感のように、あなたの心にも揺るぎない静けさと落ち着きが戻ってきます。"
+      title: "机の上の余白をつくるおまじない",
+      body: "目の前にある不要なものをほんの少しだけ脇に避け、手のひらサイズのスペースだけ綺麗に片づけてみましょう。その小さな空白が、そのまま心の余裕になります。"
     }
   ],
   star: [
     {
-      title: "星屑のしおりのおまじない",
-      body: "夜空を見上げるように、暗めのページを開いて小さな紙の星を挟みます。明日のあなたが扉を開けたとき、一番最初に目に入る希望の目印になります。"
+      title: "窓辺の明かりを落とすおまじない",
+      body: "部屋の照明をひとつだけ消すか、間接照明の柔らかな光に切り替えてみましょう。夜の気配が深まると、日中は見過ごしていた小さなひらめきが輪郭を持ち始めます。"
     },
     {
-      title: "月明かりの表紙のおまじない",
-      body: "月の光が当たる場所に本をしばらく置いておきます。夜の気配を含んだその表紙に触れるとき、あなたの心にある小さな迷いも優しく照らされます。"
+      title: "お気に入りの一行を思い出すおまじない",
+      body: "これまでに読んだ本の中で、心に残っているお気に入りのセリフや一節を頭の中でそっと復唱してみましょう。自分だけの小さな灯火が心にともります。"
     },
     {
-      title: "夜更けのページめくりのおまじない",
-      body: "眠る前に、お気に入りの詩集をランダムに一ページだけ開いてみましょう。そこに書かれた最初の単語が、今夜のあなたを護る小さなお守りになります。"
+      title: "夜の手帖に一言記すおまじない",
+      body: "今日起きたことではなく、「今日見つけた小さな美しさ」をノートの片隅に一行だけ書き残してみましょう。夜の本棚に一筋の光が差し込むような感覚になります。"
     },
     {
-      title: "星座を結ぶ活字のおまじない",
-      body: "ページの中にある文字をいくつか繋ぎ合わせて、自分だけの秘密の合言葉を心の中で唱えてみましょう。夜の暗闇が心地よい味方に変わります。"
+      title: "静かな音楽を小さく流すおまじない",
+      body: "歌詞のないアンビエントや環境音を、部屋の空気が揺れないほどの音量で小さく流してみましょう。夜の静けさに心地よいリズムが重なります。"
     }
   ],
   wind: [
     {
-      title: "風を通す製本のおまじない",
-      body: "本を少しだけ斜めに立て掛け、ページの隙間に新しい風を通します。淀んでいた空気が入れ替わり、新しい一歩を踏み出す軽やかな勇気が湧いてきます。"
+      title: "窓を数センチだけ開けるおまじない",
+      body: "部屋の窓をほんの少しだけ開けて、外の新鮮な空気を室内に呼び込んでみましょう。澱んでいた空気が入れ替わり、新しいページをめくるような軽やかな気分が戻ります。"
     },
     {
-      title: "未踏のページのおまじない",
-      body: "まだ読んでいない本の最後のページを、そっと指先でなぞってみてください。まだ見ぬ未来のストーリーが、あなたを静かに待っている予感を感じられます。"
+      title: "未読のページをパラパラと送るおまじない",
+      body: "積読になっていた本や、まだ開いていないノートのページを端から軽くめくってみてください。紙の擦れる乾いた音が、凝り固まった気分を心地よくほぐしてくれます。"
     },
     {
-      title: "表紙を裏返すおまじない",
-      body: "新しいノートや本の帯を外し、まっさらな状態から自分の手でページをめくり直すイメージを持ちましょう。いつでもゼロからやり直せる軽やかさが生まれます。"
+      title: "ペンを新しいものに持ち替えるおまじない",
+      body: "いつもと違う色や、お気に入りの書き心地のペンを手に取ってみましょう。それだけで、次に書く文字や選ぶ言葉に新しい風が吹き込みます。"
     },
     {
-      title: "風のインクのおまじない",
-      body: "窓を開けて、外の風の匂いを感じながら本をめくります。外の世界の新しいエネルギーが、あなたの新しいチャプターをそっと後押ししてくれます。"
+      title: "積読の並び順を組み替えるおまじない",
+      body: "部屋に積んである本の一番上の本を入れ替えて、次に読む順番をちょっとだけ変えてみましょう。未来の選択肢が新しく更新される小さなワクワクが生まれます。"
     }
   ],
   memory: [
     {
-      title: "挟み込まれた記憶のおまじない",
-      body: "昔の本の間に挟まれていた古いレシートや切符を見つけたら、それをそっと宝物のように扱ってみてください。過去の時間が今のあなたを温かく包み込みます。"
+      title: "古いメモを読み返すおまじない",
+      body: "ポケットや手帳の奥から、昔メモした古い切れ端やチケットを見つけたら、当時の思い出に少しだけ浸ってみましょう。過去の時間が今のあなたを優しく支えてくれます。"
     },
     {
-      title: "古書の香りの記憶のおまじない",
-      body: "古びた本のページをめくり、特有のインクの匂いを深く吸い込んでみましょう。忘れていた大切な記憶や、幼い頃の純粋なワクワク感が蘇ります。"
+      title: "懐かしい表紙をなでるおまじない",
+      body: "長く本棚に眠っている古い文庫本や図鑑の表紙を、乾いた布でそっと拭いてあげてください。あなたが重ねてきた時間の重みが、温かい誇りへと変わります。"
     },
     {
-      title: "折り目のついたページのおまじない",
-      body: "昔、思わず折り目をつけたページをもう一度開き直してみましょう。あの頃の自分が悩んでいた答えが、今のあなたなら優しく解きほぐせるはずです。"
+      title: "折り目のついたページを開き直すおまじない",
+      body: "昔、共感して折り目を残したページを久しぶりに開いてみましょう。「あの頃の自分」と同じ場所に立ち、今の自分の成長を静かに感じ取ることができます。"
     },
     {
-      title: "表紙の擦れを愛でるおまじない",
-      body: "大切に読み込んだ本の擦り切れた角を、指先でそっと撫でてあげてください。あなたが歩んできた歴史そのものが、美しい物語の勲章となっています。"
+      title: "お気に入りの香りに触れるおまじない",
+      body: "お気に入りのハンドクリームや香水をほんの少しだけ纏い、自分の手の香りをそっと嗅いでみましょう。忘れていた安心感や記憶の扉が静かに開きます。"
     }
   ]
 };
@@ -820,11 +824,50 @@ function scrollToId(id) {
   }
 }
 
+// ワンクッションを挟んで札をひく処理
+function startOracleProcess() {
+  const msgEl = document.getElementById("oracleStageMsg");
+  const btnEl = document.getElementById("oracleBtn");
+  const resultArea = document.getElementById("oracleResult");
+
+  // ボタンを一時無効化
+  btnEl.disabled = true;
+  resultArea.style.display = "none";
+
+  // ワンクッションのステップ1
+  msgEl.style.opacity = "0";
+  setTimeout(() => {
+    msgEl.textContent = "本棚の奥から、今日の一枚を選んでいます…";
+    msgEl.style.opacity = "1";
+  }, 400);
+
+  // ワンクッションのステップ2を経て結果を表示
+  setTimeout(() => {
+    msgEl.style.opacity = "0";
+    setTimeout(() => {
+      msgEl.textContent = "心を静めて、今のあなたに響く一枚をひきます。";
+      msgEl.style.opacity = "1";
+    }, 400);
+
+    const rand = Math.floor(Math.random() * oracleCards.length);
+    const chosen = oracleCards[rand];
+
+    document.getElementById("oracleName").textContent = chosen.name;
+    document.getElementById("oracleStory").textContent = chosen.story;
+
+    resultArea.style.display = "block";
+    resultArea.classList.remove("fade");
+    void resultArea.offsetWidth;
+    resultArea.classList.add("fade");
+
+    btnEl.disabled = false;
+  }, 2200);
+}
+
 function openRoom(type) {
   const list = roomSpells[type];
   if (!list) return;
 
-  // 4種類の中から毎回ランダムで1つ選出
   const randomIndex = Math.floor(Math.random() * list.length);
   const chosen = list[randomIndex];
 
@@ -848,20 +891,6 @@ function openRoom(type) {
   setTimeout(() => {
     box.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, 50);
-}
-
-function drawOracleCard() {
-  const rand = Math.floor(Math.random() * oracleCards.length);
-  const chosen = oracleCards[rand];
-
-  document.getElementById("oracleName").textContent = chosen.name;
-  document.getElementById("oracleStory").textContent = chosen.story;
-
-  const area = document.getElementById("oracleResult");
-  area.style.display = "block";
-  area.classList.remove("fade");
-  void area.offsetWidth;
-  area.classList.add("fade");
 }
 </script>
 
