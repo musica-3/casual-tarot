@@ -6,22 +6,23 @@
 <title>結の札｜アルカナ奇譚</title>
 <style>
 :root {
-  --bg: #f9f6ef;
-  --bg-card: #ffffff;
-  --bg-dark: #1e2832;
-  
-  --text-main: #332d29;
-  --text-muted: #7d7367;
-  --text-light: #b5a99a;
+  --navy: #243447;
+  --navy-deep: #172331;
+  --navy-soft: #50657a;
 
-  --accent-gold: #b39451;
-  --accent-gold-soft: #f4efdc;
-  --accent-rose: #c7827b;
-  
-  --border-line: #e6dfd1;
-  
-  --shadow-subtle: 0 10px 30px rgba(51, 45, 41, 0.04);
-  --shadow-hover: 0 16px 40px rgba(51, 45, 41, 0.08);
+  --paper: #faf7ef;
+  --paper-light: #fffdf7;
+  --paper-dark: #eee8da;
+
+  --ink: #3f3a34;
+  --muted: #81786d;
+
+  --gold: #b49652;
+  --gold-light: #dfd1ad;
+  --line: #ddd3c2;
+
+  --shadow: 0 12px 35px rgba(36,52,71,.09);
+  --shadow-deep: 0 20px 55px rgba(36,52,71,.15);
 
   --serif: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
   --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
@@ -37,11 +38,11 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text-main);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--serif);
-  line-height: 2.3;
-  letter-spacing: .06em;
+  line-height: 2.2;
+  letter-spacing: .05em;
 }
 
 button {
@@ -49,7 +50,7 @@ button {
   cursor: pointer;
   border: none;
   background: none;
-  padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 img {
@@ -58,7 +59,7 @@ img {
 }
 
 .container {
-  width: min(880px, calc(100% - 48px));
+  width: min(920px, calc(100% - 40px));
   margin: 0 auto;
 }
 
@@ -70,350 +71,483 @@ img {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================================
-   オープニング（入口）
+   入口（image.jpg を使った円環デザイン）
 ========================================= */
 #entrance {
   min-height: 100svh;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #24303c 0%, #151b22 100%);
-  color: #fff;
-  position: relative;
   overflow: hidden;
+  color: white;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(223,209,173,.16), transparent 55%),
+    linear-gradient(160deg, #354b60 0%, #1c2a39 100%);
+}
+
+#entrance::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.4) 1px, transparent 1px);
+  background-size: 38px 38px;
+  opacity: .12;
+  pointer-events: none;
+}
+
+.entrance-inner {
+  position: relative;
+  z-index: 2;
+  width: min(620px, calc(100% - 40px));
+  padding: 40px 0;
   text-align: center;
 }
 
-.entrance-box {
-  width: min(520px, calc(100% - 40px));
-  padding: 40px 20px;
-  z-index: 2;
+.entrance-image {
+  width: min(260px, 68vw);
+  margin: 0 auto 34px;
+  position: relative;
+  filter: drop-shadow(0 18px 35px rgba(0,0,0,.28));
 }
 
-.entrance-badge {
-  display: inline-block;
+.entrance-image::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border: 1px solid rgba(223,209,173,.5);
+  border-radius: 50%;
+}
+
+.entrance-image img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,.9);
+}
+
+.entrance-kicker {
+  margin-bottom: 12px;
+  color: #dfcf9b;
   font-family: var(--sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: .35em;
-  color: var(--accent-gold);
-  margin-bottom: 16px;
-  border-bottom: 1px solid rgba(179,148,81,.3);
-  padding-bottom: 4px;
 }
 
 .entrance-title {
-  font-size: clamp(36px, 8vw, 56px);
+  margin: 0;
+  font-size: clamp(34px, 8vw, 52px);
   font-weight: 400;
-  letter-spacing: .2em;
-  margin: 0 0 16px 0;
+  letter-spacing: .18em;
+  text-shadow: 0 3px 15px rgba(0,0,0,.3);
 }
 
-.entrance-desc {
+.entrance-subtitle {
+  margin: 22px 0 36px;
+  color: rgba(255,255,255,.82);
   font-size: 14px;
-  color: rgba(255,255,255,.75);
-  line-height: 2.4;
-  margin-bottom: 36px;
+  line-height: 2.2;
 }
 
-.btn-primary {
-  display: inline-block;
-  background: var(--accent-gold);
-  color: #151b22;
+.enter-button {
+  border: 1px solid rgba(223,209,173,.9);
+  border-radius: 999px;
+  padding: 14px 38px;
+  background: #d4c28f;
+  color: #1d2a37;
   font-family: var(--sans);
   font-size: 13px;
-  font-weight: 500;
-  letter-spacing: .2em;
-  padding: 16px 48px;
-  border-radius: 999px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.2);
-  transition: transform .3s ease, background .3s ease;
+  letter-spacing: .14em;
+  box-shadow: 0 10px 25px rgba(0,0,0,.16);
+  transition: transform .3s ease, background .3s ease, box-shadow .3s ease;
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  background: #c5a45b;
+.enter-button:hover {
+  transform: translateY(-3px);
+  background: #e1d3a9;
+  box-shadow: 0 15px 30px rgba(0,0,0,.22);
+}
+
+.entrance-note {
+  margin-top: 26px;
+  color: rgba(255,255,255,.42);
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: .12em;
 }
 
 /* =========================================
-   メインサイト
+   図書館本体（リンク先：統一感を持たせたデザイン）
 ========================================= */
-#main-site {
+#library {
   display: none;
+  background: var(--paper);
 }
-#main-site.active {
+
+#library.active {
   display: block;
 }
 
 /* ヘッダー */
-header {
+.library-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(249,246,239,.88);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-line);
+  background: rgba(250,247,239,.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
 }
 
 .header-inner {
-  width: min(880px, calc(100% - 48px));
-  height: 70px;
-  margin: 0 auto;
+  width: min(920px, calc(100% - 40px));
+  height: 66px;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.site-logo {
+.logo {
+  color: var(--navy);
+  font-family: var(--serif);
   font-size: 18px;
-  letter-spacing: .15em;
-  color: var(--text-main);
+  letter-spacing: .14em;
   text-align: left;
 }
 
-.site-logo small {
+.logo small {
   display: block;
+  margin-top: -2px;
+  color: var(--gold);
   font-family: var(--sans);
   font-size: 7px;
-  letter-spacing: .3em;
-  color: var(--accent-gold);
+  letter-spacing: .25em;
 }
 
-.global-nav {
+.nav {
   display: flex;
-  gap: 24px;
+  gap: 22px;
 }
 
-.global-nav button {
+.nav button {
+  color: var(--muted);
   font-family: var(--sans);
   font-size: 12px;
-  color: var(--text-muted);
-  letter-spacing: .1em;
-  transition: color .2s;
+  transition: color .25s ease;
 }
 
-.global-nav button:hover {
-  color: var(--accent-gold);
+.nav button:hover {
+  color: var(--gold);
 }
 
-/* ヒーローセクション */
-.hero {
-  padding: 90px 0 60px;
+/* ヒーロー（ここで image2.jpg / lmg2.jpg を効果的に配置） */
+.library-hero {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--navy-deep);
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .32;
+  filter: saturate(.8) sepia(.1);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(36,52,71,.4), rgba(36,52,71,.85));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(600px, calc(100% - 40px));
+  padding: 60px 0;
   text-align: center;
+  color: white;
 }
 
-.hero h1 {
-  font-size: clamp(28px, 5vw, 42px);
+.hero-label {
+  margin-bottom: 14px;
+  color: var(--gold-light);
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: .35em;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: clamp(30px, 6vw, 48px);
   font-weight: 400;
-  letter-spacing: .15em;
-  margin: 0 0 20px;
+  letter-spacing: .16em;
 }
 
-.hero p {
-  color: var(--text-muted);
-  font-size: 14px;
-  max-width: 480px;
-  margin: 0 auto;
+.hero-rule {
+  width: 42px;
+  height: 1px;
+  margin: 22px auto;
+  background: var(--gold-light);
+}
+
+.hero-copy {
+  margin: 0;
+  color: rgba(255,255,255,.8);
+  font-size: 13.5px;
+  line-height: 2.3;
 }
 
 /* セクション共通 */
-section {
-  padding: 60px 0;
-  border-top: 1px solid var(--border-line);
+.section {
+  padding: 76px 20px;
 }
 
-.section-title {
+.section-heading {
+  margin-bottom: 42px;
   text-align: center;
-  margin-bottom: 40px;
 }
 
-.section-title span {
+.section-heading small {
   display: block;
+  margin-bottom: 10px;
+  color: var(--gold);
   font-family: var(--sans);
   font-size: 9px;
   letter-spacing: .35em;
-  color: var(--accent-gold);
-  margin-bottom: 8px;
   text-transform: uppercase;
 }
 
-.section-title h2 {
-  font-size: 22px;
-  font-weight: 400;
-  letter-spacing: .12em;
+.section-heading h2 {
+  position: relative;
+  display: inline-block;
   margin: 0;
-}
-
-/* =========================================
-   1. 引く機能（オラクル）
-========================================= */
-.draw-card-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border-line);
-  border-radius: 16px;
-  padding: 48px 32px;
-  text-align: center;
-  box-shadow: var(--shadow-subtle);
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.draw-trigger-btn {
-  background: var(--bg-dark);
-  color: #fff;
-  font-family: var(--sans);
-  font-size: 13px;
-  letter-spacing: .18em;
-  padding: 16px 40px;
-  border-radius: 999px;
-  transition: background .3s, transform .3s;
-  box-shadow: 0 8px 20px rgba(30,40,50,.15);
-}
-
-.draw-trigger-btn:hover {
-  background: var(--accent-gold);
-  transform: translateY(-2px);
-}
-
-.draw-result-area {
-  display: none;
-  margin-top: 36px;
-  text-align: left;
-  border-top: 1px dashed var(--border-line);
-  padding-top: 32px;
-}
-
-.result-meta {
-  font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: .2em;
-  color: var(--accent-gold);
-  margin-bottom: 6px;
-}
-
-.result-card-name {
-  font-size: 24px;
+  color: var(--navy);
+  font-size: clamp(22px, 5vw, 30px);
   font-weight: 400;
-  letter-spacing: .1em;
-  margin: 0 0 16px;
+  letter-spacing: .14em;
 }
 
-.result-story {
+.section-heading h2::before,
+.section-heading h2::after {
+  content: "✧";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold);
   font-size: 14px;
-  color: var(--text-main);
-  line-height: 2.4;
-  background: var(--accent-gold-soft);
-  padding: 24px;
-  border-radius: 8px;
+}
+.section-heading h2::before { left: -30px; }
+.section-heading h2::after { right: -30px; }
+
+/* 小部屋（Bookshelf） */
+.shelf-section {
+  background: var(--paper-light);
 }
 
-/* =========================================
-   2. 小部屋（体験への導き）
-========================================= */
-.rooms-grid {
+.shelf-intro {
+  max-width: 520px;
+  margin: -10px auto 40px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 13px;
+  line-height: 2.1;
+}
+
+.bookshelf-container {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  gap: 22px;
+  max-width: 780px;
+  margin: auto;
 }
 
-.room-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-line);
+.shelf-card {
+  position: relative;
+  padding: 32px 24px;
+  border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 28px 24px;
-  cursor: pointer;
-  box-shadow: var(--shadow-subtle);
-  transition: transform .25s, border-color .25s, box-shadow .25s;
+  background: white;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
 }
 
-.room-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent-gold);
-  box-shadow: var(--shadow-hover);
+.shelf-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  box-shadow: var(--shadow-deep);
 }
 
-.room-icon {
-  font-size: 22px;
+.shelf-card-icon {
   margin-bottom: 12px;
+  font-size: 30px;
 }
 
-.room-name {
-  font-size: 16px;
-  letter-spacing: .08em;
-  margin-bottom: 6px;
+.shelf-card-title {
+  margin-bottom: 8px;
+  color: var(--navy);
+  font-size: 15.5px;
+  letter-spacing: .1em;
 }
 
-.room-desc {
-  font-size: 12px;
-  color: var(--text-muted);
+.shelf-card-desc {
+  color: var(--muted);
+  font-size: 11px;
   line-height: 1.9;
 }
 
-/* =========================================
-   3. 全ての札と物語の状態（一覧）
-========================================= */
-.fuda-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.fuda-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border-line);
-  border-radius: 8px;
-  padding: 20px 16px;
+/* 結末・結果表示カード */
+.result-card {
+  width: min(680px, 100%);
+  margin: auto;
+  padding: 40px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: white;
+  box-shadow: var(--shadow-deep);
   text-align: center;
 }
 
-.fuda-name {
-  font-size: 15px;
-  letter-spacing: .08em;
-  margin-bottom: 4px;
-}
-
-.fuda-state {
+.result-tag {
   display: inline-block;
+  margin-bottom: 14px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--paper-dark);
+  color: var(--gold);
   font-family: var(--sans);
-  font-size: 9px;
-  letter-spacing: .1em;
-  padding: 2px 8px;
-  border-radius: 4px;
+  font-size: 10px;
+  letter-spacing: .12em;
 }
 
-.state-complete {
-  background: var(--accent-gold-soft);
-  color: var(--accent-gold);
+.result-tarot-name {
+  margin: 0 0 20px;
+  color: var(--navy);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: .08em;
 }
 
-.state-progress {
-  background: #f0f0f0;
-  color: var(--text-muted);
+.result-story-text {
+  padding: 26px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  background: var(--paper-light);
+  color: var(--ink);
+  font-size: 13.5px;
+  line-height: 2.3;
+  text-align: left;
+}
+
+/* 札をひくエリア */
+.draw-section {
+  background: var(--paper-dark);
+  text-align: center;
+}
+
+.draw-intro {
+  max-width: 500px;
+  margin: -10px auto 32px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 2.1;
+}
+
+.circle-draw-stage {
+  position: relative;
+  width: min(300px, 76vw);
+  height: min(300px, 76vw);
+  margin: 35px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--gold);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(223,209,173,.4), rgba(255,253,247,.9) 75%);
+  box-shadow: var(--shadow);
+}
+
+.draw-center-btn {
+  position: relative;
+  z-index: 5;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: white;
+  font-size: 13.5px;
+  letter-spacing: .12em;
+  box-shadow: 0 10px 25px rgba(36,52,71,.25);
+  transition: transform .3s ease, background .3s ease;
+}
+
+.draw-center-btn:hover {
+  transform: scale(1.05);
+  background: var(--gold);
+}
+
+.orbit-item {
+  position: absolute;
+  font-size: 20px;
+  color: var(--gold);
+  animation: floatItem 4s ease-in-out infinite;
+}
+
+@keyframes floatItem {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.orbit-top { top: 16px; left: 50%; transform: translateX(-50%); }
+.orbit-bottom { bottom: 16px; left: 50%; transform: translateX(-50%); }
+.orbit-left { left: 16px; top: 50%; transform: translateY(-50%); }
+.orbit-right { right: 16px; top: 50%; transform: translateY(-50%); }
+
+#draw-result-container {
+  display: none;
+  margin-top: 40px;
 }
 
 /* フッター */
-footer {
-  background: var(--bg-dark);
+.library-footer {
+  padding: 36px 20px;
+  background: var(--navy-deep);
   color: rgba(255,255,255,.5);
-  text-align: center;
-  padding: 40px 20px;
   font-family: var(--sans);
   font-size: 10px;
-  letter-spacing: .2em;
+  letter-spacing: .1em;
+  text-align: center;
 }
 
 /* スマホ対応 */
-@media (max-width: 640px) {
-  .rooms-grid, .fuda-grid {
-    grid-template-columns: 1fr;
-  }
-  .draw-card-box {
-    padding: 32px 20px;
-  }
+@media (max-width: 600px) {
+  .container { width: min(100% - 28px, 920px); }
+  .header-inner { width: calc(100% - 28px); }
+  .nav { gap: 14px; }
+  .nav button { font-size: 11px; }
+  .library-hero { min-height: 400px; }
+  .section { padding: 60px 14px; }
+  .bookshelf-container { grid-template-columns: 1fr; }
+  .result-card { padding: 26px 18px; }
+  .result-story-text { padding: 20px 16px; }
 }
 </style>
 </head>
@@ -421,177 +555,171 @@ footer {
 <body>
 
 <!-- =========================================
-     オープニング
+     入口（image.jpg を使ったおなじみの円環ビュー）
 ========================================= -->
 <section id="entrance">
-  <div class="entrance-box fade">
-    <div class="entrance-badge">ALCANA Kitan</div>
+  <div class="entrance-inner fade">
+    <div class="entrance-image">
+      <img src="image.jpg" alt="結の札">
+    </div>
+    <div class="entrance-kicker">A QUIET LIBRARY</div>
     <h1 class="entrance-title">結の札</h1>
-    <p class="entrance-desc">
-      タロットから、あなたの物語へ。<br>
-      静かな図書館の奥へようこそ。
-    </p>
-    <button class="btn-primary" onclick="enterSite()">扉をひらく</button>
+    <p class="entrance-subtitle">静かな図書館の奥へ。<br>本をひらくように、今日の物語を。</p>
+    <button class="enter-button" onclick="enterLibrary()">扉をひらく</button>
+    <div class="entrance-note">books · stories · cards</div>
   </div>
 </section>
 
+
 <!-- =========================================
-     メインサイト
+     図書館本体（扉の先）
 ========================================= -->
-<div id="main-site">
+<div id="library">
 
   <!-- ヘッダー -->
-  <header>
+  <header class="library-header">
     <div class="header-inner">
-      <div class="site-logo">
+      <button class="logo" onclick="goTop()">
         結の札
         <small>YUI NO FUDA</small>
-      </div>
-      <nav class="global-nav">
-        <button onclick="scrollToId('draw-section')">札をひく</button>
-        <button onclick="scrollToId('rooms-section')">小部屋</button>
-        <button onclick="scrollToId('fuda-section')">全ての札</button>
+      </button>
+      <nav class="nav">
+        <button onclick="scrollToSection('shelf-section')">小部屋</button>
+        <button onclick="scrollToSection('draw-section')">札をひく</button>
       </nav>
     </div>
   </header>
 
-  <!-- ヒーロー -->
-  <div class="container">
-    <div class="hero fade">
-      <h1>物語のめぐり</h1>
-      <p>古い本棚の間を歩くように、今日という時間のページをそっとめくる。</p>
+  <!-- ヒーロー（ここで image2.jpg / lmg2.jpg を効果的に演出） -->
+  <section class="library-hero">
+    <div class="hero-image">
+      <img src="lmg2.jpg" alt="図書館のイメージ">
     </div>
-  </div>
-
-  <!-- 今日の札をひく -->
-  <section id="draw-section">
-    <div class="container">
-      <div class="section-title">
-        <span>Oracle Card</span>
-        <h2>今日の札をひく</h2>
-      </div>
-
-      <div class="draw-card-box">
-        <p style="font-size: 13px; color: var(--text-muted); margin-top: 0; margin-bottom: 24px;">
-          心を静めて、今のあなたに響く一枚を引きます。
-        </p>
-        <button class="draw-trigger-btn" onclick="drawRandomCard()">札をひいてみる</button>
-
-        <div id="drawResult" class="draw-result-area fade">
-          <div class="result-meta">YOUR CARD</div>
-          <h3 id="resName" class="result-card-name">---</h3>
-          <div id="resStory" class="result-story">---</div>
-        </div>
-      </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content fade">
+      <div class="hero-label">WELCOME TO THE LIBRARY</div>
+      <h2 class="hero-title">物語のめぐり</h2>
+      <div class="hero-rule"></div>
+      <p class="hero-copy">古い本棚のあいだを歩くように。<br>気になるページを、気になるときに。</p>
     </div>
   </section>
 
-  <!-- 小部屋 -->
-  <section id="rooms-section">
+  <!-- 小部屋セクション -->
+  <section id="shelf-section" class="section shelf-section">
     <div class="container">
-      <div class="section-title">
-        <span>Bookshelf</span>
+      <div class="section-heading">
+        <small>BOOKSHELF</small>
         <h2>物語の小部屋</h2>
       </div>
+      <p class="shelf-intro">本棚から気になる一冊を選ぶように。<br>その日の気分で、好きな部屋を覗いてみてください。</p>
 
-      <div class="rooms-grid">
-        <div class="room-card" onclick="alert('「静寂の部屋」へ。静かな時間を過ごすためのページです。')">
-          <div class="room-icon">☕</div>
-          <div class="room-name">静寂の部屋</div>
-          <div class="room-desc">何か答えを見つけなくても大丈夫。ただゆっくり過ごすための一頁。</div>
+      <div class="bookshelf-container">
+        <div class="shelf-card" onclick="openRoom('quiet')">
+          <div class="shelf-card-icon">☕</div>
+          <div class="shelf-card-title">静寂の部屋</div>
+          <div class="shelf-card-desc">少し立ち止まって、<br>ゆっくりページをめくる部屋。</div>
         </div>
-        <div class="room-card" onclick="alert('「星影の部屋」へ。夜の気配を感じるページです。')">
-          <div class="room-icon">✦</div>
-          <div class="room-name">星影の部屋</div>
-          <div class="room-desc">夜の本棚から、小さな願いや明かりを探す静かな時間。</div>
+
+        <div class="shelf-card" onclick="openRoom('star')">
+          <div class="shelf-card-icon">✦</div>
+          <div class="shelf-card-title">星影の部屋</div>
+          <div class="shelf-card-desc">夜の本棚から、<br>小さな願いを探す部屋。</div>
         </div>
-        <div class="room-card" onclick="alert('「微風の部屋」へ。新しい一歩を誘うページです。')">
-          <div class="room-icon">🍃</div>
-          <div class="room-name">微風の部屋</div>
-          <div class="room-desc">まだタイトルの決まっていない本を開くように、知らないページへ。</div>
+
+        <div class="shelf-card" onclick="openRoom('wind')">
+          <div class="shelf-card-icon">🍃</div>
+          <div class="shelf-card-title">微風の部屋</div>
+          <div class="shelf-card-desc">新しいページを、<br>そっと開いてみる部屋。</div>
         </div>
-        <div class="room-card" onclick="alert('「記憶の小箱」へ。懐かしい時間をめぐるページです。')">
-          <div class="room-icon">🗝</div>
-          <div class="room-name">記憶の小箱</div>
-          <div class="room-desc">本のあいだに挟まれた、大切にしていた時間や栞の記憶。</div>
+
+        <div class="shelf-card" onclick="openRoom('memory')">
+          <div class="shelf-card-icon">🗝</div>
+          <div class="shelf-card-title">記憶の小箱</div>
+          <div class="shelf-card-desc">本のあいだに残された、<br>懐かしいものを探す部屋。</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 全ての札（完成／未完成の共存） -->
-  <section id="fuda-section">
+  <!-- 小部屋の結果表示エリア -->
+  <section id="room-result" class="section" style="display:none;">
     <div class="container">
-      <div class="section-title">
-        <span>All Cards</span>
-        <h2>札の物語一覧</h2>
+      <div class="result-card fade">
+        <span class="result-tag" id="res-tag">小部屋の記録</span>
+        <h3 class="result-tarot-name" id="res-tarot">札</h3>
+        <div class="result-story-text" id="res-story">物語がここに現れます。</div>
+        <div style="margin-top:30px;">
+          <button class="enter-button" style="background:var(--navy); color:white; border-color:var(--navy);" onclick="scrollToSection('shelf-section')">本棚へ戻る</button>
+        </div>
       </div>
-      <p style="text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 30px;">
-        物語が生まれるまでの過程も、ひとつの時間としてここに佇んでいます。
-      </p>
+    </div>
+  </section>
 
-      <div class="fuda-grid">
-        <div class="fuda-item">
-          <div class="fuda-name">愚者</div>
-          <span class="fuda-state state-progress">物語は、まだ生まれていません</span>
-        </div>
-        <div class="fuda-item">
-          <div class="fuda-name">魔術師</div>
-          <span class="fuda-state state-complete">物語が公開されています</span>
-        </div>
-        <div class="fuda-item">
-          <div class="fuda-name">女教皇</div>
-          <span class="fuda-state state-progress">物語を創造中...</span>
-        </div>
-        <div class="fuda-item">
-          <div class="fuda-name">女帝</div>
-          <span class="fuda-state state-complete">物語が公開されています</span>
-        </div>
-        <div class="fuda-item">
-          <div class="fuda-name">皇帝</div>
-          <span class="fuda-state state-progress">物語をチャージ中</span>
-        </div>
-        <div class="fuda-item">
-          <div class="fuda-name">月</div>
-          <span class="fuda-state state-complete">物語が公開されています</span>
+  <!-- 今日の札をひくエリア -->
+  <section id="draw-section" class="section draw-section">
+    <div class="container">
+      <div class="section-heading">
+        <small>ORACLE CARD</small>
+        <h2>今日の札をひく</h2>
+      </div>
+      <p class="draw-intro">中央の札をひいてみましょう。<br>今日のページを一枚、めくります。</p>
+
+      <div class="circle-draw-stage">
+        <div class="orbit-item orbit-top">✦</div>
+        <div class="orbit-item orbit-bottom">☾</div>
+        <div class="orbit-item orbit-left">🍃</div>
+        <div class="orbit-item orbit-right">🗝</div>
+        <button class="draw-center-btn" onclick="drawCard()">札をひく</button>
+      </div>
+
+      <div id="draw-result-container">
+        <div class="result-card fade" style="background:var(--paper-light);">
+          <span class="result-tag">今日の一枚</span>
+          <h3 class="result-tarot-name" id="draw-tarot-name">札</h3>
+          <div class="result-story-text" id="draw-story-text">今日の物語。</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- フッター -->
-  <footer>
-    <p>© 結の札 / アルカナ奇譚</p>
+  <footer class="library-footer">
+    <p>© 結の札</p>
   </footer>
 
 </div>
 
+<!-- =========================================
+     JavaScript
+========================================= -->
 <script>
-function enterSite() {
-  const entrance = document.getElementById("entrance");
-  const mainSite = document.getElementById("main-site");
-  
-  entrance.style.transition = "opacity .6s ease";
-  entrance.style.opacity = "0";
-  
-  setTimeout(() => {
-    entrance.style.display = "none";
-    mainSite.classList.add("active");
-    window.scrollTo(0, 0);
-  }, 600);
-}
-
-function scrollToId(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+const roomData = {
+  quiet: {
+    tag: "静寂の部屋",
+    tarot: "隠者",
+    story: "本を一冊選んで、窓辺の椅子に座る。ページをめくる音だけが聞こえる時間です。何か答えを見つけなくても大丈夫。今日はただ、ゆっくり過ごすための一頁です。"
+  },
+  star: {
+    tag: "星影の部屋",
+    tarot: "星",
+    story: "夜の本棚には、昼間には気づかなかった小さな光があります。大きな予定や遠い未来ではなく、明日ちょっと楽しみにしていることをひとつ思い出してみてください。それだけでも、次のページは少し明るくなります。"
+  },
+  wind: {
+    tag: "微風の部屋",
+    tarot: "愚者",
+    story: "まだタイトルの決まっていない本を開くように、知らないページへ進んでみる日。完璧な準備ができていなくても、最初の一行を書き始めることはできます。小さな一歩から、新しい章が始まります。"
+  },
+  memory: {
+    tag: "記憶の小箱",
+    tarot: "運命の輪",
+    story: "古い本を開いたとき、昔挟んだ栞がふいに見つかることがあります。忘れていた好きなものや、大切にしていた時間。過去のページは閉じたままでも、そこにあったものは今のあなたの中に残っています。"
   }
-}
+};
 
-const sampleCards = [
+const randomDraws = [
   {
     name: "女帝",
-    story: "今日は少しだけ、自分の好きなものを優先してみる日。美味しいもの、好きな音楽、読みたかった本。小さな楽しみをひとつ選んでみてください。"
+    story: "今日は少しだけ、自分の好きなものを優先してみる日。美味しいもの、好きな音楽、読みたかった本。小さな楽しみをひとつ選んでください。"
   },
   {
     name: "魔術師",
@@ -607,18 +735,66 @@ const sampleCards = [
   }
 ];
 
-function drawRandomCard() {
-  const rand = Math.floor(Math.random() * sampleCards.length);
-  const chosen = sampleCards[rand];
+function enterLibrary() {
+  const entrance = document.getElementById("entrance");
+  const library = document.getElementById("library");
+  entrance.style.transition = "opacity .7s ease";
+  entrance.style.opacity = "0";
+  setTimeout(function() {
+    entrance.style.display = "none";
+    library.classList.add("active");
+    window.scrollTo(0, 0);
+  }, 700);
+}
 
-  document.getElementById("resName").textContent = chosen.name;
-  document.getElementById("resStory").textContent = chosen.story;
+function scrollToSection(id) {
+  const element = document.getElementById(id);
+  if (!element) return;
+  element.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
-  const resultArea = document.getElementById("drawResult");
-  resultArea.style.display = "block";
-  resultArea.classList.remove("fade");
-  void resultArea.offsetWidth;
-  resultArea.classList.add("fade");
+function goTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function openRoom(type) {
+  const data = roomData[type];
+  if (!data) return;
+  document.getElementById("res-tag").textContent = data.tag;
+  document.getElementById("res-tarot").textContent = data.tarot;
+  document.getElementById("res-story").textContent = data.story;
+
+  const result = document.getElementById("room-result");
+  result.style.display = "block";
+
+  const card = result.querySelector(".result-card");
+  card.classList.remove("fade");
+  void card.offsetWidth;
+  card.classList.add("fade");
+
+  setTimeout(function() {
+    scrollToSection("room-result");
+  }, 50);
+}
+
+function drawCard() {
+  const index = Math.floor(Math.random() * randomDraws.length);
+  const chosen = randomDraws[index];
+
+  document.getElementById("draw-tarot-name").textContent = chosen.name;
+  document.getElementById("draw-story-text").textContent = chosen.story;
+
+  const container = document.getElementById("draw-result-container");
+  container.style.display = "block";
+
+  const card = container.querySelector(".result-card");
+  card.classList.remove("fade");
+  void card.offsetWidth;
+  card.classList.add("fade");
+
+  setTimeout(function() {
+    scrollToSection("draw-result-container");
+  }, 50);
 }
 </script>
 
