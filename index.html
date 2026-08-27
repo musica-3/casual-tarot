@@ -66,7 +66,7 @@ img {
 }
 
 /* =========================================
-   トップページ（円環の美）
+   トップページ（円環イメージ）
 ========================================= */
 #entrance {
   min-height: 100svh;
@@ -157,7 +157,7 @@ img {
 }
 
 /* =========================================
-   図書館本体（エディトリアル・リデザイン）
+   図書館本体
 ========================================= */
 #library {
   display: none;
@@ -215,7 +215,7 @@ header {
   color: var(--gold);
 }
 
-/* ヒーロー（image2.jpgを使った誌面のような大空間） */
+/* ヒーロー */
 .lib-hero {
   position: relative;
   height: 60vh;
@@ -281,7 +281,7 @@ header {
   line-height: 2.2;
 }
 
-/* セクション共通レイアウト（エディトリアル風） */
+/* セクション共通レイアウト */
 .section {
   padding: 100px 0;
   border-bottom: 1px solid var(--line);
@@ -309,7 +309,95 @@ header {
   color: var(--navy);
 }
 
-/* 1. 小部屋のリスト型エディトリアル表現（グリッドを捨てて美しい縦の連なりに） */
+/* =========================================
+   1. 札をひく（円環＋月の満ち欠けアニメーション）
+========================================= */
+.oracle-box {
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  padding: 60px 40px;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(44,38,33,.03);
+}
+
+/* 月の満ち欠けのようなゆったりとした円環エフェクト */
+.circle-stage {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--gold);
+  border-radius: 50%;
+  animation: moonPhaseGlow 8s ease-in-out infinite;
+}
+
+@keyframes moonPhaseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(166,137,70,0.1), inset 0 0 15px rgba(166,137,70,0.1);
+    border-color: rgba(166,137,70,0.4);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(166,137,70,0.3), inset 0 0 25px rgba(166,137,70,0.25);
+    border-color: rgba(166,137,70,0.8);
+  }
+}
+
+.circle-center-btn {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: white;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: .2em;
+  box-shadow: 0 8px 20px rgba(27,38,49,.2);
+  transition: transform .2s ease, background .3s ease, box-shadow .2s ease;
+}
+
+.circle-center-btn:hover {
+  background: var(--gold);
+}
+
+/* 押したときの沈み込むエフェクト */
+.circle-center-btn:active {
+  transform: scale(0.92) translateY(3px);
+  box-shadow: 0 2px 8px rgba(27,38,49,.3);
+}
+
+.orbit-symbol {
+  position: absolute;
+  font-size: 14px;
+  color: var(--gold);
+  opacity: .7;
+  animation: floatSymbol 6s ease-in-out infinite;
+}
+@keyframes floatSymbol {
+  0%, 100% { transform: scale(1); opacity: .5; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+.sym-top { top: 10px; left: 50%; transform: translateX(-50%); }
+.sym-bottom { bottom: 10px; left: 50%; transform: translateX(-50%); }
+.sym-left { left: 12px; top: 50%; transform: translateY(-50%); }
+.sym-right { right: 12px; top: 50%; transform: translateY(-50%); }
+
+.oracle-result-area {
+  display: none;
+  margin-top: 30px;
+  text-align: left;
+  border-top: 1px solid var(--line);
+  padding-top: 30px;
+}
+
+/* =========================================
+   2. 小部屋（おまじないリスト）
+========================================= */
 .rooms-list {
   display: flex;
   flex-direction: column;
@@ -351,6 +439,11 @@ header {
   opacity: 1;
 }
 
+/* 押したときのクリックフィードバック */
+.room-row:active {
+  transform: scale(0.99) translateX(2px);
+}
+
 .room-info-left {
   display: flex;
   align-items: baseline;
@@ -388,7 +481,6 @@ header {
   transform: translateX(4px);
 }
 
-/* 小部屋の結果モーダル/カード */
 .story-card-box {
   display: none;
   background: var(--paper-card);
@@ -397,7 +489,6 @@ header {
   max-width: 680px;
   margin: 40px auto 0;
   box-shadow: 0 15px 40px rgba(44,38,33,.06);
-  position: relative;
 }
 
 .story-card-tag {
@@ -422,40 +513,6 @@ header {
   line-height: 2.6;
   border-top: 1px dashed var(--line);
   padding-top: 24px;
-}
-
-/* 2. オラクル（札をひく）ー 本のページをめくるような演出 */
-.oracle-box {
-  background: var(--paper-card);
-  border: 1px solid var(--line);
-  padding: 60px 40px;
-  text-align: center;
-  max-width: 680px;
-  margin: 0 auto;
-  box-shadow: 0 10px 30px rgba(44,38,33,.03);
-}
-
-.oracle-trigger {
-  font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: .2em;
-  background: var(--navy);
-  color: white;
-  padding: 16px 44px;
-  border-radius: 999px;
-  transition: all .3s;
-}
-
-.oracle-trigger:hover {
-  background: var(--gold);
-}
-
-.oracle-result-area {
-  display: none;
-  margin-top: 40px;
-  text-align: left;
-  border-top: 1px solid var(--line);
-  padding-top: 40px;
 }
 
 /* フッター */
@@ -509,7 +566,7 @@ footer {
 
 
 <!-- =========================================
-     図書館本体（抜本リニューアル・エディトリアル風）
+     図書館本体
 ========================================= -->
 <div id="library">
 
@@ -521,13 +578,13 @@ footer {
         <span>YUI NO FUDA</span>
       </button>
       <nav class="header-nav">
-        <button onclick="scrollToId('rooms-section')">小部屋</button>
         <button onclick="scrollToId('oracle-section')">札をひく</button>
+        <button onclick="scrollToId('rooms-section')">小部屋</button>
       </nav>
     </div>
   </header>
 
-  <!-- ヒーロー (image2.jpg を圧倒的にお洒落に配置) -->
+  <!-- ヒーロー (image2.jpg) -->
   <section class="lib-hero">
     <div class="lib-hero-bg">
       <img src="image2.jpg" alt="図書館のイメージ" onerror="this.style.display='none'">
@@ -541,8 +598,39 @@ footer {
     </div>
   </section>
 
-  <!-- 小部屋セクション（縦型エディトリアルリスト） -->
-  <section id="rooms-section" class="section">
+  <!-- 札をひくセクション（小部屋の上へ移動、円環アニメーション付き） -->
+  <section id="oracle-section" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span>ORACLE CARD</span>
+        <h2>今日の札をひく</h2>
+      </div>
+
+      <div class="oracle-box">
+        <p style="font-size: 13px; color: var(--muted); margin-top: 0; margin-bottom: 30px;">
+          心を静めて、今のあなたに響く一枚をひきます。
+        </p>
+
+        <!-- 月の満ち欠けのようなゆったりとした円環ステージ -->
+        <div class="circle-stage">
+          <div class="orbit-symbol sym-top">✦</div>
+          <div class="orbit-symbol sym-bottom">☾</div>
+          <div class="orbit-symbol sym-left">🍃</div>
+          <div class="orbit-symbol sym-right">🗝</div>
+          <button class="circle-center-btn" onclick="drawOracleCard()">札をひく</button>
+        </div>
+
+        <div id="oracleResult" class="oracle-result-area fade">
+          <div class="story-card-tag">TODAY'S CARD</div>
+          <h3 id="oracleName" class="story-card-title" style="margin-bottom: 16px;">---</h3>
+          <div id="oracleStory" class="story-card-body" style="border-top: none; padding-top: 0;">---</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 小部屋セクション（本にまつわるおまじない各4種・計16種） -->
+  <section id="rooms-section" class="section" style="border-bottom: none;">
     <div class="container">
       <div class="section-head">
         <span>BOOKSHELF</span>
@@ -605,30 +693,6 @@ footer {
     </div>
   </section>
 
-  <!-- 札をひくセクション -->
-  <section id="oracle-section" class="section" style="border-bottom: none;">
-    <div class="container">
-      <div class="section-head">
-        <span>ORACLE CARD</span>
-        <h2>今日の札をひく</h2>
-      </div>
-
-      <div class="oracle-box">
-        <p style="font-size: 13px; color: var(--muted); margin-top: 0; margin-bottom: 30px;">
-          心を静めて、今のあなたに響く一枚をひきます。
-        </p>
-        <button class="oracle-trigger" onclick="drawOracleCard()">今日の札をめくる</button>
-
-        <div id="oracleResult" class="oracle-result-area fade">
-          <div class="story-card-tag">TODAY'S CARD</div>
-          <h3 id="oracleName" class="story-card-title" style="margin-bottom: 16px;">---</h3>
-          <div id="oracleStory" class="story-card-body" style="border-top: none; padding-top: 0;">---</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
   <!-- フッター -->
   <footer>
     <p>© 結の札 / アルカナ奇譚</p>
@@ -640,27 +704,80 @@ footer {
      JavaScript
 ========================================= -->
 <script>
-const roomContents = {
-  quiet: {
-    tag: "ROOM 01 : 静寂の部屋",
-    title: "隠者の時間",
-    body: "本を一冊選んで、窓辺の椅子に座る。ページをめくる音だけが聞こえる時間です。何か答えを見つけなくても大丈夫。今日はただ、ゆっくり過ごすための一頁です。"
-  },
-  star: {
-    tag: "ROOM 02 : 星影の部屋",
-    title: "星の導き",
-    body: "夜の本棚には、昼間には気づかなかった小さな光があります。大きな予定や遠い未来ではなく、明日ちょっと楽しみにしていることをひとつ思い出してみてください。それだけでも、次のページは少し明るくなります。"
-  },
-  wind: {
-    tag: "ROOM 03 : 微風の部屋",
-    title: "愚者の足音",
-    body: "まだタイトルの決まっていない本を開くように、知らないページへ進んでみる日。完璧な準備ができていなくても、最初の一行を書き始めることはできます。小さな一歩から、新しい章が始まります。"
-  },
-  memory: {
-    tag: "ROOM 04 : 記憶の小箱",
-    title: "運命の輪",
-    body: "古い本を開いたとき、昔挟んだ栞がふいに見つかることがあります。忘れていた好きなものや、大切にしていた時間。過去のページは閉じたままでも、そこにあったものは今のあなたの中に残っています。"
-  }
+// 各部屋4種類×全4部屋＝計16種類のおまじないデータ
+const roomSpells = {
+  quiet: [
+    {
+      title: "白紙のページのおまじない",
+      body: "読書ノートの最初のページに、今日の自分の呼吸の回数をそっと書き留めてみましょう。雑音が消え、心が白い紙のようにフラットに戻っていきます。"
+    },
+    {
+      title: "栞を挟むていねいなおまじない",
+      body: "お気に入りの本の真ん中あたりを開き、ドライフラワーや小さな紙片を挟み直します。本を閉じるその瞬間に、今日という日の静けさが固定されます。"
+    },
+    {
+      title: "窓辺のインクのおまじない",
+      body: "夕暮れ時、閉じた本の背表紙を優しく手のひらでなでてみてください。今日溜まった思考の埃がすーっと溶けていくような、静かな時間が訪れます。"
+    },
+    {
+      title: "重なる背表紙のおまじない",
+      body: "手元にある本を二冊、綺麗に重ね合わせてみましょう。その重なり合う安定感のように、あなたの心にも揺るぎない静けさと落ち着きが戻ってきます。"
+    }
+  ],
+  star: [
+    {
+      title: "星屑のしおりのおまじない",
+      body: "夜空を見上げるように、暗めのページを開いて小さな紙の星を挟みます。明日のあなたが扉を開けたとき、一番最初に目に入る希望の目印になります。"
+    },
+    {
+      title: "月明かりの表紙のおまじない",
+      body: "月の光が当たる場所に本をしばらく置いておきます。夜の気配を含んだその表紙に触れるとき、あなたの心にある小さな迷いも優しく照らされます。"
+    },
+    {
+      title: "夜更けのページめくりのおまじない",
+      body: "眠る前に、お気に入りの詩集をランダムに一ページだけ開いてみましょう。そこに書かれた最初の単語が、今夜のあなたを護る小さなお守りになります。"
+    },
+    {
+      title: "星座を結ぶ活字のおまじない",
+      body: "ページの中にある文字をいくつか繋ぎ合わせて、自分だけの秘密の合言葉を心の中で唱えてみましょう。夜の暗闇が心地よい味方に変わります。"
+    }
+  ],
+  wind: [
+    {
+      title: "風を通す製本のおまじない",
+      body: "本を少しだけ斜めに立て掛け、ページの隙間に新しい風を通します。淀んでいた空気が入れ替わり、新しい一歩を踏み出す軽やかな勇気が湧いてきます。"
+    },
+    {
+      title: "未踏のページのおまじない",
+      body: "まだ読んでいない本の最後のページを、そっと指先でなぞってみてください。まだ見ぬ未来のストーリーが、あなたを静かに待っている予感を感じられます。"
+    },
+    {
+      title: "表紙を裏返すおまじない",
+      body: "新しいノートや本の帯を外し、まっさらな状態から自分の手でページをめくり直すイメージを持ちましょう。いつでもゼロからやり直せる軽やかさが生まれます。"
+    },
+    {
+      title: "風のインクのおまじない",
+      body: "窓を開けて、外の風の匂いを感じながら本をめくります。外の世界の新しいエネルギーが、あなたの新しいチャプターをそっと後押ししてくれます。"
+    }
+  ],
+  memory: [
+    {
+      title: "挟み込まれた記憶のおまじない",
+      body: "昔の本の間に挟まれていた古いレシートや切符を見つけたら、それをそっと宝物のように扱ってみてください。過去の時間が今のあなたを温かく包み込みます。"
+    },
+    {
+      title: "古書の香りの記憶のおまじない",
+      body: "古びた本のページをめくり、特有のインクの匂いを深く吸い込んでみましょう。忘れていた大切な記憶や、幼い頃の純粋なワクワク感が蘇ります。"
+    },
+    {
+      title: "折り目のついたページのおまじない",
+      body: "昔、思わず折り目をつけたページをもう一度開き直してみましょう。あの頃の自分が悩んでいた答えが、今のあなたなら優しく解きほぐせるはずです。"
+    },
+    {
+      title: "表紙の擦れを愛でるおまじない",
+      body: "大切に読み込んだ本の擦り切れた角を、指先でそっと撫でてあげてください。あなたが歩んできた歴史そのものが、美しい物語の勲章となっています。"
+    }
+  ]
 };
 
 const oracleCards = [
@@ -704,12 +821,23 @@ function scrollToId(id) {
 }
 
 function openRoom(type) {
-  const data = roomContents[type];
-  if (!data) return;
+  const list = roomSpells[type];
+  if (!list) return;
 
-  document.getElementById("resTag").textContent = data.tag;
-  document.getElementById("resTitle").textContent = data.title;
-  document.getElementById("resBody").textContent = data.body;
+  // 4種類の中から毎回ランダムで1つ選出
+  const randomIndex = Math.floor(Math.random() * list.length);
+  const chosen = list[randomIndex];
+
+  const roomNames = {
+    quiet: "ROOM 01 : 静寂の部屋",
+    star: "ROOM 02 : 星影の部屋",
+    wind: "ROOM 03 : 微風の部屋",
+    memory: "ROOM 04 : 記憶の小箱"
+  };
+
+  document.getElementById("resTag").textContent = roomNames[type];
+  document.getElementById("resTitle").textContent = chosen.title;
+  document.getElementById("resBody").textContent = chosen.body;
 
   const box = document.getElementById("roomResultBox");
   box.style.display = "block";
