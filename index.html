@@ -4,1761 +4,918 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>結の札｜物語の世界へ</title>
+<title>結の札｜物語と出会う特別な本屋</title>
 
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;600&family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-
-:root{
-  --gold:#d4af37;
-  --gold-dark:#aa820a;
-  --bg-dark:#0d0f12;
-  --panel-bg:rgba(22,26,33,.88);
-  --accent-red:#8b0000;
-  --text-main:#e6e6e6;
-  --text-muted:#9a9eab;
-  --border-gold:rgba(212,175,55,.4);
+/* =========================================
+   DESIGN SYSTEM & VARIABLES
+========================================= */
+:root {
+  --bg-main: #0f141d;
+  --bg-card: #18202c;
+  --bg-panel: rgba(26, 35, 48, 0.75);
+  
+  --accent-gold: #e2c08d;
+  --accent-gold-light: #f4e3c9;
+  --accent-rose: #d89a9e;
+  --accent-navy: #243042;
+  
+  --text-primary: #f0f2f5;
+  --text-secondary: #a3b0c2;
+  --text-muted: #6c7d93;
+  
+  --border-gold: rgba(226, 192, 141, 0.3);
+  --border-light: rgba(255, 255, 255, 0.08);
+  
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.35);
+  --shadow-glow: 0 0 25px rgba(226, 192, 141, 0.18);
+  
+  --radius-s: 8px;
+  --radius-m: 16px;
+  --radius-l: 24px;
 }
 
-*{
-  box-sizing:border-box;
+* {
+  box-sizing: border-box;
 }
 
-html{
-  scroll-behavior:smooth;
+html {
+  scroll-behavior: smooth;
 }
 
-body{
-  margin:0;
-  color:var(--text-main);
-  background:#07080a;
-  background-image:
-    radial-gradient(
-      circle at 50% 20%,
-      rgba(20,25,35,.8),
-      #07080a 90%
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,.2) 2px,
-      rgba(0,0,0,.2) 4px
-    );
-
-  font-family:"Shippori Mincho",serif;
-  line-height:1.8;
-  overflow-x:hidden;
+body {
+  margin: 0;
+  color: var(--text-primary);
+  background: var(--bg-main);
+  background-image: 
+    radial-gradient(circle at 50% 0%, #1a2536 0%, transparent 75%),
+    radial-gradient(circle at 80% 50%, rgba(216, 154, 158, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(226, 192, 141, 0.05) 0%, transparent 50%);
+  font-family: "Shippori Mincho", Georgia, serif;
+  line-height: 1.8;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button{
-  font:inherit;
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
 
-.container{
-  width:min(1000px,92%);
-  margin:auto;
+.container {
+  width: min(900px, 90%);
+  margin: auto;
 }
 
-/* =========================
-   HERO
-========================= */
-
-.hero{
-  min-height:100vh;
-
-  display:flex;
-  align-items:center;
-
-  position:relative;
-  overflow:hidden;
-
-  border-bottom:2px solid var(--gold-dark);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(13,15,18,.35) 0%,
-      rgba(13,15,18,.95) 100%
-    ),
-    url("image.jpg") center/cover no-repeat;
+.en-title {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.25em;
+  color: var(--accent-gold);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
-.hero::before{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  box-shadow:
-    inset 0 0 100px #000;
-
-  pointer-events:none;
+/* =========================================
+   HERO SECTION
+========================================= */
+.hero {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 60px 0;
+  background: radial-gradient(circle at center, rgba(24, 32, 44, 0.6) 0%, var(--bg-main) 100%);
 }
 
-.hero-content{
-  position:relative;
-  z-index:2;
-
-  text-align:center;
-
-  width:100%;
-
-  padding:80px 20px;
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
 }
 
-.event-tag{
-  display:inline-block;
-
-  font-family:"Cinzel",serif;
-
-  font-size:.85rem;
-
-  letter-spacing:.3em;
-
-  color:var(--gold);
-
-  border:1px solid var(--gold);
-
-  padding:4px 18px;
-
-  margin-bottom:25px;
-
-  background:rgba(0,0,0,.6);
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 30px;
+  background: rgba(226, 192, 141, 0.1);
+  border: 1px solid var(--border-gold);
+  color: var(--accent-gold-light);
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
 }
 
-.hero h1{
-  font-size:clamp(2rem,6vw,4.2rem);
-
-  font-weight:800;
-
-  letter-spacing:.15em;
-
-  color:#fff;
-
-  text-shadow:
-    0 0 20px rgba(212,175,55,.5),
-    0 0 40px #000;
-
-  margin:0 0 20px;
-
-  line-height:1.3;
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  margin: 0 0 20px;
+  line-height: 1.35;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
-.hero-lead{
-  font-size:clamp(.95rem,2vw,1.2rem);
-
-  color:var(--text-muted);
-
-  letter-spacing:.1em;
-
-  margin-bottom:40px;
+.hero-lead {
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+  font-weight: 400;
 }
 
-.event-info-strip{
-  display:flex;
-
-  justify-content:center;
-
-  gap:20px;
-
-  flex-wrap:wrap;
-
-  max-width:700px;
-
-  margin:0 auto 40px;
-
-  padding:15px;
-
-  background:rgba(0,0,0,.7);
-
-  border:1px dashed var(--border-gold);
-
-  font-size:.85rem;
-
-  color:var(--gold);
+.hero-features {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 0 auto 40px;
 }
 
-.hero-button{
-  display:inline-block;
-
-  padding:18px 50px;
-
-  border:1px solid var(--gold);
-
-  color:var(--gold);
-
-  font-weight:700;
-
-  letter-spacing:.25em;
-
-  background:rgba(13,15,18,.8);
-
-  transition:.4s;
-
-  box-shadow:
-    0 0 15px rgba(212,175,55,.2);
+.feature-chip {
+  padding: 8px 16px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-s);
+  font-size: 0.85rem;
+  color: var(--accent-gold-light);
+  backdrop-filter: blur(10px);
 }
 
-.hero-button:hover{
-  background:var(--gold);
-
-  color:#000;
-
-  box-shadow:
-    0 0 30px rgba(212,175,55,.6);
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 42px;
+  border-radius: 40px;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, #c59f63 100%);
+  color: #0f141d;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(226, 192, 141, 0.3);
 }
 
-/* =========================
-   RPG LINK
-========================= */
-
-.kids-link-wrapper{
-  margin-top:30px;
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(226, 192, 141, 0.5);
+  background: linear-gradient(135deg, var(--accent-gold-light) 0%, var(--accent-gold) 100%);
 }
 
-.kids-link{
-  display:inline-flex;
-
-  align-items:center;
-
-  gap:8px;
-
-  font-size:.85rem;
-
-  color:#aed8f2;
-
-  text-decoration:underline;
-
-  transition:.3s;
+.kids-link-wrapper {
+  margin-top: 24px;
 }
 
-.kids-link:hover{
-  color:#fff;
-
-  text-shadow:
-    0 0 8px rgba(174,216,242,.8);
+.kids-link {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: color 0.3s;
+  border-bottom: 1px dashed var(--text-muted);
 }
 
-/* =========================
-   COMMON
-========================= */
-
-section{
-  padding:100px 0;
-
-  position:relative;
+.kids-link:hover {
+  color: var(--accent-gold-light);
+  border-color: var(--accent-gold-light);
 }
 
-.section-title{
-  text-align:center;
-
-  margin-bottom:60px;
+/* =========================================
+   PROGRESS BAR
+========================================= */
+.progress-container {
+  max-width: 400px;
+  margin: 0 auto 40px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
 }
 
-.section-title .en{
-  font-family:"Cinzel",serif;
-
-  font-size:.8rem;
-
-  letter-spacing:.4em;
-
-  color:var(--gold);
-
-  margin-bottom:8px;
+.progress-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border-light);
+  transform: translateY(-50%);
+  z-index: 1;
 }
 
-.section-title h2{
-  margin:0;
-
-  font-weight:700;
-
-  letter-spacing:.15em;
-
-  font-size:clamp(1.8rem,4vw,2.5rem);
-
-  color:#fff;
+.progress-step {
+  position: relative;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-main);
+  border: 2px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: all 0.4s ease;
 }
 
-.section-title p{
-  color:var(--text-muted);
-
-  font-size:.9rem;
-
-  margin-top:10px;
+.progress-step.active {
+  border-color: var(--accent-gold);
+  background: var(--accent-gold);
+  color: #0f141d;
+  font-weight: bold;
+  box-shadow: 0 0 12px rgba(226, 192, 141, 0.5);
 }
 
-/* =========================
-   DRAW
-========================= */
-
-.draw-area{
-  text-align:center;
+/* =========================================
+   MAIN GAME SECTION
+========================================= */
+section {
+  padding: 80px 0;
+  position: relative;
 }
 
-.card{
-  width:min(260px,70vw);
-
-  height:min(390px,105vw);
-
-  margin:0 auto 35px;
-
-  perspective:1000px;
-
-  cursor:pointer;
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
 }
 
-.card-inner{
-  width:100%;
-  height:100%;
-
-  position:relative;
-
-  transform-style:preserve-3d;
-
-  transition:
-    transform .8s cubic-bezier(.15,.85,.35,1.2);
+.section-title h2 {
+  margin: 8px 0 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  color: #ffffff;
 }
 
-.card.flipped .card-inner{
-  transform:rotateY(180deg);
+.section-title p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
 }
 
-.card-face{
-  position:absolute;
-
-  inset:0;
-
-  backface-visibility:hidden;
-
-  border-radius:4px;
-
-  box-shadow:
-    0 15px 35px rgba(0,0,0,.8);
+/* CARD UI */
+.draw-area {
+  text-align: center;
 }
 
-.card-back{
-  background:#11151c;
-
-  border:2px solid var(--gold);
-
-  outline:6px solid #000;
-
-  outline-offset:-10px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
+.card-container {
+  width: min(240px, 65vw);
+  height: min(370px, 100vw);
+  margin: 0 auto 30px;
+  perspective: 1000px;
+  cursor: pointer;
 }
 
-.card-back span{
-  color:var(--gold);
-
-  font-family:"Cinzel",serif;
-
-  font-size:2.5rem;
-
-  border:1px solid var(--border-gold);
-
-  width:90px;
-  height:90px;
-
-  border-radius:50%;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  background:rgba(0,0,0,.5);
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.card-front{
-  transform:rotateY(180deg);
-
-  background:#181c24;
-
-  border:2px solid var(--gold);
-
-  padding:25px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
-
-  text-align:center;
+.card-container.flipped .card-inner {
+  transform: rotateY(180deg);
 }
 
-.card-number{
-  font-family:"Cinzel",serif;
-
-  color:var(--gold);
-
-  font-size:1rem;
+.card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-gold);
+  overflow: hidden;
 }
 
-.card-name{
-  font-size:1.6rem;
-
-  font-weight:700;
-
-  margin:10px 0 15px;
-
-  color:#fff;
-
-  border-bottom:
-    1px solid var(--border-gold);
-
-  padding-bottom:8px;
+.card-back {
+  background: linear-gradient(145deg, #1e2836, #121824);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card-message{
-  font-size:.9rem;
-
-  color:var(--text-main);
-
-  text-align:left;
+.card-back-pattern {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(226, 192, 141, 0.05) 0%, transparent 70%);
 }
 
-.draw-button{
-  border:1px solid var(--gold);
-
-  background:rgba(13,15,18,.9);
-
-  color:var(--gold);
-
-  padding:15px 40px;
-
-  cursor:pointer;
-
-  letter-spacing:.2em;
-
-  font-weight:700;
-
-  transition:.3s;
+.card-back-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-gold);
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.5rem;
 }
 
-.draw-button:hover{
-  background:var(--gold);
-
-  color:#000;
+.card-front {
+  transform: rotateY(180deg);
+  background: linear-gradient(160deg, #1c2533 0%, #141a24 100%);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
 }
 
-/* =========================
-   RESULT
-========================= */
-
-.result{
-  max-width:650px;
-
-  margin:40px auto 0;
-
-  padding:25px;
-
-  background:var(--panel-bg);
-
-  border:1px solid var(--border-gold);
-
-  animation:fadeUp .6s ease;
+.card-header {
+  border-bottom: 1px solid var(--border-gold);
+  padding-bottom: 10px;
 }
 
-.result h3{
-  color:var(--gold);
-
-  margin-top:0;
-
-  font-size:1.2rem;
-
-  letter-spacing:.1em;
+.card-number {
+  font-family: 'Cinzel', serif;
+  color: var(--accent-gold);
+  font-size: 0.9rem;
 }
 
-/* =========================
-   SECOND CARD
-========================= */
-
-.second-card-area{
-  max-width:700px;
-
-  margin:70px auto 0;
-
-  padding:45px 25px;
-
-  background:var(--panel-bg);
-
-  border:
-    1px solid var(--border-gold);
-
-  text-align:center;
-
-  box-shadow:
-    0 0 30px rgba(0,0,0,.7);
+.card-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 4px 0 0;
+  color: #ffffff;
 }
 
-.second-card-area h3{
-  color:#fff;
-
-  font-size:1.5rem;
-
-  margin-top:0;
+.card-body {
+  margin: 15px 0;
 }
 
-.second-card{
-  width:min(220px,65vw);
-
-  min-height:310px;
-
-  margin:30px auto;
-
-  background:#181c24;
-
-  border:2px solid var(--gold);
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
-
-  padding:25px;
-
-  box-shadow:
-    0 15px 35px rgba(0,0,0,.8);
-
-  animation:fadeUp .7s ease;
+.card-keyword {
+  display: inline-block;
+  font-size: 0.8rem;
+  background: rgba(226, 192, 141, 0.15);
+  color: var(--accent-gold-light);
+  padding: 2px 12px;
+  border-radius: 12px;
+  margin-bottom: 10px;
 }
 
-.second-number{
-  font-family:"Cinzel",serif;
-
-  color:var(--gold);
-
-  font-size:1rem;
+.card-message {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-align: left;
+  line-height: 1.6;
 }
 
-.second-name{
-  color:#fff;
-
-  font-size:1.6rem;
-
-  font-weight:700;
-
-  margin:10px 0;
-
-  border-bottom:
-    1px solid var(--border-gold);
-
-  padding-bottom:10px;
+.action-btn {
+  padding: 14px 36px;
+  border-radius: 30px;
+  background: transparent;
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  transition: all 0.3s;
 }
 
-.second-meaning{
-  font-size:.9rem;
-
-  color:var(--text-main);
+.action-btn:hover {
+  background: var(--accent-gold);
+  color: #0f141d;
+  box-shadow: 0 0 15px rgba(226, 192, 141, 0.4);
 }
 
-/* =========================
-   FINAL
-========================= */
-
-.final-result{
-  max-width:800px;
-
-  margin:70px auto 0;
-
-  padding:55px 30px;
-
-  text-align:center;
-
-  border:
-    1px solid var(--gold);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(30,30,25,.9),
-      rgba(10,10,12,.95)
-    );
-
-  box-shadow:
-    0 0 40px rgba(212,175,55,.12);
+/* PANELS & RESULTS */
+.result-panel {
+  max-width: 600px;
+  margin: 30px auto 0;
+  padding: 24px 28px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-m);
+  backdrop-filter: blur(10px);
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.final-label{
-  font-family:"Cinzel",serif;
-
-  color:var(--gold);
-
-  letter-spacing:.35em;
-
-  font-size:.8rem;
-
-  margin-bottom:20px;
+.result-panel h3 {
+  color: var(--accent-gold);
+  margin-top: 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.final-title{
-  font-size:clamp(1.8rem,5vw,3rem);
-
-  color:#fff;
-
-  margin-bottom:25px;
-
-  font-weight:800;
+/* SECOND CARD AREA */
+.second-stage {
+  margin-top: 50px;
+  padding-top: 40px;
+  border-top: 1px dashed var(--border-light);
 }
 
-.final-text{
-  max-width:620px;
-
-  margin:auto;
-
-  color:var(--text-main);
-
-  font-size:1rem;
+/* FINAL RESULT */
+.final-result-card {
+  max-width: 700px;
+  margin: 40px auto 0;
+  padding: 40px 30px;
+  text-align: center;
+  border: 1px solid var(--accent-gold);
+  border-radius: var(--radius-l);
+  background: linear-gradient(180deg, rgba(30, 41, 56, 0.9) 0%, rgba(15, 20, 29, 0.95) 100%);
+  box-shadow: var(--shadow-glow);
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.final-advice{
-  margin-top:30px;
-
-  padding-top:25px;
-
-  border-top:
-    1px dashed var(--border-gold);
-
-  color:var(--gold);
-
-  font-weight:700;
+.final-badge {
+  font-family: 'Cinzel', serif;
+  color: var(--accent-gold);
+  letter-spacing: 0.25em;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
 }
 
-/* =========================
-   MENU
-========================= */
-
-.menu-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:25px;
+.final-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 800;
 }
 
-.menu-card{
-  background:var(--panel-bg);
-
-  border:
-    1px solid var(--border-gold);
-
-  padding:35px 20px;
-
-  text-align:center;
-
-  transition:.3s;
+.final-text {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  margin-bottom: 24px;
 }
 
-.menu-card:hover{
-  border-color:var(--gold);
-
-  transform:translateY(-5px);
+.final-advice {
+  padding: 18px 20px;
+  background: rgba(226, 192, 141, 0.08);
+  border-radius: var(--radius-s);
+  border-left: 3px solid var(--accent-gold);
+  color: var(--accent-gold-light);
+  font-size: 0.9rem;
+  text-align: left;
 }
 
-.menu-card .icon{
-  font-size:2rem;
-
-  color:var(--gold);
-
-  margin-bottom:15px;
+.button-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
 }
 
-.menu-card h3{
-  color:#fff;
-
-  font-size:1.1rem;
-
-  letter-spacing:.1em;
-
-  margin-bottom:10px;
+.btn-secondary {
+  padding: 12px 24px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  transition: 0.3s;
 }
 
-.menu-card p{
-  color:var(--text-muted);
-
-  font-size:.85rem;
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-  background:#050608;
-
-  color:var(--text-muted);
-
-  text-align:center;
-
-  padding:60px 20px;
-
-  border-top:
-    1px solid var(--border-gold);
+/* SYSTEM INFO */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-footer h2{
-  color:#fff;
-
-  font-weight:500;
-
-  letter-spacing:.2em;
-
-  font-size:1.2rem;
+.info-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-m);
+  padding: 28px 20px;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
 }
 
-.hidden{
-  display:none !important;
+.info-card:hover {
+  border-color: var(--border-gold);
+  transform: translateY(-4px);
 }
 
-@keyframes fadeUp{
+.info-card .icon {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
 
-  from{
-    opacity:0;
+.info-card h3 {
+  color: #fff;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
 
-    transform:translateY(20px);
+.info-card p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* FOOTER */
+footer {
+  background: #090c12;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 50px 20px;
+  border-top: 1px solid var(--border-light);
+}
+
+footer h2 {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
   }
-
-  to{
-    opacity:1;
-
-    transform:none;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-
 }
 
-@media(max-width:760px){
-
-  section{
-    padding:70px 0;
-  }
-
-  .menu-grid{
-    grid-template-columns:1fr;
-  }
-
-  .event-info-strip{
-    flex-direction:column;
-
-    gap:8px;
-  }
-
+@media (max-width: 768px) {
+  section { padding: 60px 0; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .hero-features { gap: 8px; }
+  .feature-chip { font-size: 0.8rem; padding: 6px 12px; }
 }
-
 </style>
 </head>
 
 <body>
 
-
-<!-- =========================
-     HERO
-========================= -->
-
+<!-- HERO -->
 <header class="hero">
-
   <div class="hero-content">
-
-    <div class="event-tag">
-      MUSUBI NO FUDA
+    <div class="hero-badge">
+      <span>📖 運命の短編小説と出会う私設図書館</span>
     </div>
-
-    <h1>
-      今日は、あなたが主役。
-    </h1>
-
+    
+    <h1>結の札</h1>
+    
     <p class="hero-lead">
-      一枚の札が、あなたを物語の中へ導く。<br>
-      ここから先は、あなた自身が主人公です。
+      一枚のタロットが結ぶ、あなただけの物語。<br>
+      今日を引き寄せる、心静かなひとときを。
     </p>
 
-    <div class="event-info-strip">
-
-      <span>🎴 22枚の運命札</span>
-
-      <span>⏱ 約15分</span>
-
-      <span>📖 分岐する物語</span>
-
+    <div class="hero-features">
+      <span class="feature-chip">🎴 22枚の大アルカナ</span>
+      <span class="feature-chip">⏱ 所要時間 約3分</span>
+      <span class="feature-chip">✨ 男女子共用・癒やしの体験</span>
     </div>
 
-    <a
-      href="#draw"
-      class="hero-button"
-    >
-      物語をはじめる
+    <a href="#game" class="cta-button">
+      物語の扉を開く
     </a>
 
     <div class="kids-link-wrapper">
-
-      <a
-        href="https://musica-3.github.io/RPG-mode/#draw"
-        class="kids-link"
-      >
-        🛡️ 小さな冒険者・初心者はこちら
+      <a href="https://musica-3.github.io/RPG-mode/#draw" class="kids-link">
+        🛡️ モード切替：カジュアル冒険版（RPG）はこちら
       </a>
-
     </div>
-
   </div>
-
 </header>
 
-
-<!-- =========================
-     FIRST CARD
-========================= -->
-
-<section id="draw">
-
+<!-- MAIN GAME -->
+<section id="game">
   <div class="container">
-
-    <div class="section-title">
-
-      <div class="en">
-        PHASE 01 : DESTINY
-      </div>
-
-      <h2>
-        最初の札
-      </h2>
-
-      <p>
-        22枚の札から一枚を引いてください。<br>
-        この札が、あなたの物語の最初の手掛かりになります。
-      </p>
-
+    
+    <!-- STEP PROGRESS -->
+    <div class="progress-container">
+      <div class="progress-step active" id="p-step-1">1</div>
+      <div class="progress-step" id="p-step-2">2</div>
+      <div class="progress-step" id="p-step-3">3</div>
     </div>
 
+    <div class="section-title">
+      <div class="en-title">Step 01 : First Card</div>
+      <h2>第一の札を引き抜く</h2>
+      <p>今のあなたの心に重なる、最初の手掛かりを見つけましょう。</p>
+    </div>
 
     <div class="draw-area">
-
-      <div
-        class="card"
-        id="card"
-      >
-
+      <!-- CARD 1 -->
+      <div class="card-container" id="card1" onclick="handleCard1Click()">
         <div class="card-inner">
-
           <div class="card-face card-back">
-
-            <span>
-              結
-            </span>
-
+            <div class="card-back-pattern">
+              <div class="card-back-icon">結</div>
+            </div>
           </div>
-
-
           <div class="card-face card-front">
-
-            <div
-              class="card-number"
-              id="cardNumber"
-            >
-              0
+            <div class="card-header">
+              <div class="card-number" id="card1-num">0</div>
+              <div class="card-name" id="card1-name">—</div>
             </div>
-
-            <div
-              class="card-name"
-              id="cardName"
-            >
-              —
+            <div class="card-body">
+              <span class="card-keyword" id="card1-key">—</span>
+              <div class="card-message" id="card1-msg">—</div>
             </div>
-
-            <div
-              class="card-message"
-              id="cardMessage"
-            >
-              —
-            </div>
-
           </div>
+        </div>
+      </div>
 
+      <button class="action-btn" id="btn-draw-1" onclick="drawCard1()">札を引く</button>
+
+      <!-- RESULT 1 -->
+      <div class="result-panel hidden" id="result-1">
+        <h3>✨ 第一の言葉</h3>
+        <p id="result-1-text" style="margin:0; font-size: 0.9rem; color: var(--text-secondary);"></p>
+      </div>
+
+      <!-- STEP 2 (SECOND CARD) -->
+      <div id="stage-2" class="second-stage hidden">
+        <div class="section-title">
+          <div class="en-title">Step 02 : Second Card</div>
+          <h2>第二の札を重ねる</h2>
+          <p>一枚目の意味に、新たな視点を重ね合わせます。</p>
         </div>
 
-      </div>
-
-
-      <button
-        class="draw-button"
-        id="drawButton"
-        onclick="drawCard()"
-      >
-        札を引き抜く
-      </button>
-
-
-      <div
-        class="result hidden"
-        id="result"
-      >
-
-        <h3>
-          ［第一の手掛かり］
-        </h3>
-
-        <p id="resultText"></p>
-
-      </div>
-
-    </div>
-
-
-    <!-- =========================
-         SECOND CARD
-    ========================= -->
-
-    <div
-      id="secondArea"
-      class="second-card-area hidden"
-    >
-
-      <h3>
-        もう一枚、札を引く
-      </h3>
-
-      <p>
-        一枚目の札だけでは、まだ結末は決まりません。<br>
-        二枚目の札を重ねることで、物語の世界線が動き出します。
-      </p>
-
-      <button
-        class="draw-button"
-        onclick="drawSecondCard()"
-        id="secondButton"
-      >
-        第二の札を引く
-      </button>
-
-
-      <div
-        id="secondResult"
-        class="hidden"
-      >
-
-        <div
-          class="second-card"
-        >
-
-          <div
-            class="second-number"
-            id="secondNumber"
-          >
+        <div class="card-container" id="card2" onclick="handleCard2Click()">
+          <div class="card-inner">
+            <div class="card-face card-back">
+              <div class="card-back-pattern">
+                <div class="card-back-icon">縁</div>
+              </div>
+            </div>
+            <div class="card-face card-front">
+              <div class="card-header">
+                <div class="card-number" id="card2-num">0</div>
+                <div class="card-name" id="card2-name">—</div>
+              </div>
+              <div class="card-body">
+                <span class="card-keyword" id="card2-key">—</span>
+                <div class="card-message" id="card2-msg">—</div>
+              </div>
+            </div>
           </div>
-
-          <div
-            class="second-name"
-            id="secondName"
-          >
-          </div>
-
-          <div
-            class="second-meaning"
-            id="secondMeaning"
-          >
-          </div>
-
         </div>
 
-        <p>
-          二枚の札が重なりました。<br>
-          物語の結末を観測します。
-        </p>
+        <button class="action-btn" id="btn-draw-2" onclick="drawCard2()">第二の札を引く</button>
 
-        <button
-          class="draw-button"
-          onclick="showFinalResult()"
-        >
-          結末を観測する
-        </button>
+        <div class="result-panel hidden" id="result-2">
+          <p style="margin:0 0 15px 0; font-size: 0.9rem; color: var(--text-secondary);">
+            二つの札が揃いました。あなたの物語の結末を読み解きます。
+          </p>
+          <button class="cta-button" onclick="showFinalResult()" style="padding: 12px 30px; font-size: 0.9rem;">
+            結末を観測する
+          </button>
+        </div>
+      </div>
 
+      <!-- STEP 3 (FINAL RESULT) -->
+      <div id="stage-final" class="hidden">
+        <div class="final-result-card">
+          <div class="final-badge">FINAL DESTINATION</div>
+          <div class="final-title" id="final-title"></div>
+          <div class="final-text" id="final-text"></div>
+          <div class="final-advice" id="final-advice"></div>
+
+          <div class="button-group">
+            <button class="action-btn" onclick="shareResult()">結果をシェア</button>
+            <button class="btn-secondary" onclick="resetGame()">最初からやり直す</button>
+          </div>
+        </div>
       </div>
 
     </div>
-
-
-    <!-- =========================
-         FINAL RESULT
-    ========================= -->
-
-    <div
-      id="finalResult"
-      class="final-result hidden"
-    >
-
-      <div class="final-label">
-        FINAL DESTINATION
-      </div>
-
-      <div
-        class="final-title"
-        id="finalTitle"
-      >
-      </div>
-
-      <div
-        class="final-text"
-        id="finalText"
-      >
-      </div>
-
-      <div
-        class="final-advice"
-        id="finalAdvice"
-      >
-      </div>
-
-    </div>
-
   </div>
-
 </section>
 
-
-<!-- =========================
-     SYSTEM
-========================= -->
-
-<section>
-
+<!-- SYSTEM GUIDE -->
+<section style="background: rgba(0,0,0,0.2);">
   <div class="container">
-
     <div class="section-title">
-
-      <div class="en">
-        GAME SYSTEM
-      </div>
-
-      <h2>
-        結の札の遊び方
-      </h2>
-
-      <p>
-        占いでもあり、物語でもある。<br>
-        あなたの引いた札が、今日だけの物語を作ります。
-      </p>
-
+      <div class="en-title">How to Play</div>
+      <h2>結の札のたのしみかた</h2>
     </div>
 
-
-    <div class="menu-grid">
-
-      <div class="menu-card">
-
-        <div class="icon">
-          🎴
-        </div>
-
-        <h3>
-          FIRST CARD
-        </h3>
-
-        <p>
-          最初の札を一枚引きます。<br>
-          今のあなたに重なる言葉を見つけます。
-        </p>
-
+    <div class="grid-3">
+      <div class="info-card">
+        <div class="icon">🎴</div>
+        <h3>1. 札を引く</h3>
+        <p>直感で最初の札を開き、今の自分の心境を静かに映し出します。</p>
       </div>
-
-
-      <div class="menu-card">
-
-        <div class="icon">
-          🌙
-        </div>
-
-        <h3>
-          SECOND CARD
-        </h3>
-
-        <p>
-          もう一枚の札を重ねます。<br>
-          二つの意味から物語の方向が変化します。
-        </p>
-
+      <div class="info-card">
+        <div class="icon">🌙</div>
+        <h3>2. 意味を重ねる</h3>
+        <p>二枚目の札を引くことで、物語に新しい変化と展開が生まれます。</p>
       </div>
-
-
-      <div class="menu-card">
-
-        <div class="icon">
-          🌍
-        </div>
-
-        <h3>
-          FINAL DESTINATION
-        </h3>
-
-        <p>
-          世界は救われるのか。<br>
-          それとも、別の結末を迎えるのか。
-        </p>
-
+      <div class="info-card">
+        <div class="icon">📖</div>
+        <h3>3. 物語に出会う</h3>
+        <p>導き出された結末から、今日あなたに必要なヒントを持ち帰りましょう。</p>
       </div>
-
     </div>
-
   </div>
-
 </section>
 
-
+<!-- FOOTER -->
 <footer>
-
-  <h2>
-    結の札
-  </h2>
-
-  <p>
-    今日は、あなたが主役。
+  <h2>結の札 — Musubi no Fuda</h2>
+  <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">
+    タロットの言葉と紡ぐ、小さなお店と物語の記録。
   </p>
-
-  <p style="font-size:.75rem;color:#555;">
-    これは物語として楽しむ体験型コンテンツです。
+  <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 20px;">
+    © 結の札 Project
   </p>
-
 </footer>
 
-
 <script>
-
-/* ==================================================
-   22 MAJOR ARCANA
-================================================== */
-
+/* DATA */
 const cards = [
-
-  {
-    number:"0",
-    name:"愚者",
-    keyword:"旅立ち",
-    message:"まだ名前のない道へ。正解を決める前に、一歩踏み出す者だけが見られる景色がある。"
-  },
-
-  {
-    number:"I",
-    name:"魔術師",
-    keyword:"始動",
-    message:"必要な道具はすでに手元にある。足りないものを探すより、今あるものを使え。"
-  },
-
-  {
-    number:"II",
-    name:"女教皇",
-    keyword:"秘密",
-    message:"答えは静寂の中にある。急いで動くより、見えないものを観察せよ。"
-  },
-
-  {
-    number:"III",
-    name:"女帝",
-    keyword:"育成",
-    message:"何かを育てる時間。すぐに結果を求めず、今あるものを大切にせよ。"
-  },
-
-  {
-    number:"IV",
-    name:"皇帝",
-    keyword:"秩序",
-    message:"自分の立つ場所を定めよ。揺るがない意思が、混乱した世界に道を作る。"
-  },
-
-  {
-    number:"V",
-    name:"法王",
-    keyword:"伝承",
-    message:"過去の言葉に耳を傾けよ。先人が残した知恵が、閉ざされた扉を開く鍵になる。"
-  },
-
-  {
-    number:"VI",
-    name:"恋人たち",
-    keyword:"選択",
-    message:"二つの道がある。どちらかを選ぶことは、もう一方を手放すことでもある。"
-  },
-
-  {
-    number:"VII",
-    name:"戦車",
-    keyword:"突破",
-    message:"迷いながらでも進め。止まった瞬間、世界はあなたを置き去りにする。"
-  },
-
-  {
-    number:"VIII",
-    name:"力",
-    keyword:"制御",
-    message:"本当の力は押さえつけることではない。理解し、扱う力こそが扉を開く。"
-  },
-
-  {
-    number:"IX",
-    name:"隠者",
-    keyword:"探索",
-    message:"一度、群れから離れよ。静かな場所でしか見つからない答えがある。"
-  },
-
-  {
-    number:"X",
-    name:"運命の輪",
-    keyword:"転換",
-    message:"世界が動き始めた。偶然に見える出来事を見逃してはいけない。"
-  },
-
-  {
-    number:"XI",
-    name:"正義",
-    keyword:"判断",
-    message:"感情ではなく事実を見ること。正しい答えは、都合のよい答えとは限らない。"
-  },
-
-  {
-    number:"XII",
-    name:"吊るされた男",
-    keyword:"反転",
-    message:"視点を変えよ。行き止まりに見える場所に、別の入口が隠されている。"
-  },
-
-  {
-    number:"XIII",
-    name:"死神",
-    keyword:"終焉",
-    message:"終わることを恐れるな。古いものを手放したとき、次の物語が始まる。"
-  },
-
-  {
-    number:"XIV",
-    name:"節制",
-    keyword:"調和",
-    message:"異なるものを混ぜ合わせよ。極端ではなく、ちょうどよい場所に答えがある。"
-  },
-
-  {
-    number:"XV",
-    name:"悪魔",
-    keyword:"執着",
-    message:"あなたを縛っているものは何か。鎖の正体を知れば、それを外す方法も見えてくる。"
-  },
-
-  {
-    number:"XVI",
-    name:"塔",
-    keyword:"崩壊",
-    message:"信じていた前提が崩れる。しかし、その崩壊のあとにしか見えない景色がある。"
-  },
-
-  {
-    number:"XVII",
-    name:"星",
-    keyword:"希望",
-    message:"暗闇の中に、小さな光が残っている。完全な希望ではなくても、それを見失うな。"
-  },
-
-  {
-    number:"XVIII",
-    name:"月",
-    keyword:"幻惑",
-    message:"見えているものが真実とは限らない。不安が作った影に惑わされないこと。"
-  },
-
-  {
-    number:"XIX",
-    name:"太陽",
-    keyword:"真実",
-    message:"隠されていたものが明らかになる。光の下では、もう何も隠すことはできない。"
-  },
-
-  {
-    number:"XX",
-    name:"審判",
-    keyword:"再生",
-    message:"終わったと思っていた物語が再び動き出す。もう一度だけ、過去を振り返れ。"
-  },
-
-  {
-    number:"XXI",
-    name:"世界",
-    keyword:"完結",
-    message:"長い旅が一つの形になる。終わりは同時に、新しい物語の入口でもある。"
-  }
-
+  { number:"0", name:"愚者", keyword:"旅立ち", message:"まだ名前のない道へ。正解を決める前に、一歩踏み出す者だけが見られる景色がある。" },
+  { number:"I", name:"魔術師", keyword:"始動", message:"必要な道具はすでに手元にある。足りないものを探すより、今あるものを活かそう。" },
+  { number:"II", name:"女教皇", keyword:"静寂", message:"答えは静けさの中にある。急いで動くより、見えない言葉に耳を澄ませて。" },
+  { number:"III", name:"女帝", keyword:"豊かさ", message:"何かを育てる時間。すぐに結果を求めず、芽生えた感情を大切に育もう。" },
+  { number:"IV", name:"皇帝", keyword:"意志", message:"自分の立つ場所を定めよう。揺るがない決意が、整った道をつくり出す。" },
+  { number:"V", name:"法王", keyword:"対話", message:"先人の知恵や人の言葉に耳を傾けよう。対話の中に開く鍵が隠されている。" },
+  { number:"VI", name:"恋人たち", keyword:"選択", message:"心がときめく方へ。選ぶことは、新しい物語を始めること。" },
+  { number:"VII", name:"戦車", keyword:"前進", message:"迷いながらでも進んでいく。動き出した情熱が世界を変えていく。" },
+  { number:"VIII", name:"力", keyword:"しなやかさ", message:"本当の強さは押し通すことではない。受け入れ、調和させる優しさを。" },
+  { number:"IX", name:"隠者", keyword:"探求", message:"少しだけ喧騒から離れよう。静かな時間の中でしか見つからない宝物がある。" },
+  { number:"X", name:"運命の輪", keyword:"タイミング", message:"風向きが変わる瞬間。偶然に見える出来事の波に、素直に乗ってみよう。" },
+  { number:"XI", name:"正義", keyword:"誠実", message:"客観的な目を持つこと。感情と事実を分け、自分に誠実な選択を。" },
+  { number:"XII", name:"吊るされた男", keyword:"視点", message:"物事を逆さまから眺めてみよう。行き詰まりに見える場所に別の入口がある。" },
+  { number:"XIII", name:"死神", keyword:"一区切り", message:"何かを手放すことを恐れないで。スペースを空けることで新しい物語が入ってくる。" },
+  { number:"XIV", name:"節制", keyword:"調和", message:"異なるものを混ぜ合わせよう。バランスの取れた場所に、心地よい答えがある。" },
+  { number:"XV", name:"悪魔", keyword:"こだわり", message:"自分を縛っている感情に気づくこと。思い込みに気づけば鎖は解ける。" },
+  { number:"XVI", name:"塔", keyword:"閃き", message:"思い込みが破られる瞬間。予想外の出来事こそが新しい気づきをくれる。" },
+  { number:"XVII", name:"星", keyword:"希望", message:"暗闇の中にともる小さな光。静かに自分を信じる心が未来を照らす。" },
+  { number:"XVIII", name:"月", keyword:"余白", message:"不確かなものを愛せるように。曖昧さの中にこそ、豊かな物語が隠れている。" },
+  { number:"XIX", name:"太陽", keyword:"素直さ", message:"ありのままの自分を表現しよう。無邪気な明るさが周囲をも温める。" },
+  { number:"XX", name:"審判", keyword:"再開", message:"忘れていた想いが再び動き出す。もう一度チャレンジするタイミング。" },
+  { number:"XXI", name:"世界", keyword:"成就", message:"巡り巡って一つの形になる。これまでの旅路を優しく包み込もう。" }
 ];
 
-
-/* ==================================================
-   STATE
-================================================== */
-
 let firstCard = null;
-
 let secondCard = null;
 
-
-/* ==================================================
-   FIRST CARD
-================================================== */
-
-function drawCard(){
-
-  const index =
-    Math.floor(
-      Math.random() * cards.length
-    );
-
+/* LOGIC */
+function drawCard1() {
+  const index = Math.floor(Math.random() * cards.length);
   firstCard = cards[index];
 
-  document
-    .getElementById("cardNumber")
-    .textContent =
-      firstCard.number;
+  document.getElementById("card1-num").textContent = firstCard.number;
+  document.getElementById("card1-name").textContent = firstCard.name;
+  document.getElementById("card1-key").textContent = firstCard.keyword;
+  document.getElementById("card1-msg").textContent = firstCard.message;
 
-  document
-    .getElementById("cardName")
-    .textContent =
-      firstCard.name;
+  document.getElementById("card1").classList.add("flipped");
+  document.getElementById("result-1-text").textContent = firstCard.message;
+  
+  document.getElementById("result-1").classList.remove("hidden");
+  document.getElementById("btn-draw-1").classList.add("hidden");
+  
+  document.getElementById("stage-2").classList.remove("hidden");
+  document.getElementById("p-step-2").classList.add("active");
 
-  document
-    .getElementById("cardMessage")
-    .textContent =
-      "【" +
-      firstCard.keyword +
-      "】" +
-      firstCard.message;
-
-  document
-    .getElementById("card")
-    .classList.add("flipped");
-
-
-  document
-    .getElementById("resultText")
-    .textContent =
-      firstCard.message;
-
-
-  document
-    .getElementById("result")
-    .classList.remove("hidden");
-
-
-  document
-    .getElementById("secondArea")
-    .classList.remove("hidden");
-
-
-  document
-    .getElementById("drawButton")
-    .textContent =
-      "もう一度引く";
-
-
-  document
-    .getElementById("secondArea")
-    .scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-
+  smoothScrollTo("stage-2");
 }
 
+function handleCard1Click() {
+  if (!firstCard) drawCard1();
+}
 
-/* ==================================================
-   SECOND CARD
-================================================== */
+function drawCard2() {
+  if (!firstCard) return;
 
-function drawSecondCard(){
-
-  if(!firstCard){
-
-    alert(
-      "先に一枚目の札を引いてください。"
-    );
-
-    return;
-  }
-
-
-  do{
-
-    const index =
-      Math.floor(
-        Math.random() * cards.length
-      );
-
+  do {
+    const index = Math.floor(Math.random() * cards.length);
     secondCard = cards[index];
+  } while (secondCard === firstCard);
 
-  }while(
-    secondCard === firstCard
-  );
+  document.getElementById("card2-num").textContent = secondCard.number;
+  document.getElementById("card2-name").textContent = secondCard.name;
+  document.getElementById("card2-key").textContent = secondCard.keyword;
+  document.getElementById("card2-msg").textContent = secondCard.message;
 
+  document.getElementById("card2").classList.add("flipped");
+  document.getElementById("result-2").classList.remove("hidden");
+  document.getElementById("btn-draw-2").classList.add("hidden");
 
-  document
-    .getElementById("secondNumber")
-    .textContent =
-      secondCard.number;
-
-
-  document
-    .getElementById("secondName")
-    .textContent =
-      secondCard.name;
-
-
-  document
-    .getElementById("secondMeaning")
-    .textContent =
-      "【" +
-      secondCard.keyword +
-      "】" +
-      secondCard.message;
-
-
-  document
-    .getElementById("secondResult")
-    .classList.remove("hidden");
-
-
-  document
-    .getElementById("secondButton")
-    .classList.add("hidden");
-
-
-  document
-    .getElementById("secondResult")
-    .scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-
+  smoothScrollTo("result-2");
 }
 
-
-/* ==================================================
-   FINAL RESULT
-================================================== */
-
-function showFinalResult(){
-
-  if(!firstCard || !secondCard){
-
-    alert(
-      "二枚の札を引いてください。"
-    );
-
-    return;
-  }
-
-
-  const result =
-    determineEnding(
-      firstCard,
-      secondCard
-    );
-
-
-  document
-    .getElementById("finalTitle")
-    .textContent =
-      result.title;
-
-
-  document
-    .getElementById("finalText")
-    .textContent =
-      result.text;
-
-
-  document
-    .getElementById("finalAdvice")
-    .textContent =
-      result.advice;
-
-
-  document
-    .getElementById("finalResult")
-    .classList.remove("hidden");
-
-
-  document
-    .getElementById("finalResult")
-    .scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-
+function handleCard2Click() {
+  if (firstCard && !secondCard) drawCard2();
 }
 
+function showFinalResult() {
+  if (!firstCard || !secondCard) return;
 
-/* ==================================================
-   ENDING LOGIC
-==================================================
+  const result = determineEnding(firstCard, secondCard);
 
-   「悪いカード＝滅亡」ではありません。
+  document.getElementById("final-title").textContent = result.title;
+  document.getElementById("final-text").textContent = result.text;
+  document.getElementById("final-advice").textContent = "💡 今日の問いかけ：" + result.advice;
 
-   2枚のカードの関係性を見て、
-   世界線が救済へ向かうか、
-   崩壊へ向かうかを決定します。
+  document.getElementById("stage-final").classList.remove("hidden");
+  document.getElementById("p-step-3").classList.add("active");
 
-================================================== */
+  smoothScrollTo("stage-final");
+}
 
-function determineEnding(first, second){
-
-  const rescueCards = [
-    "愚者",
-    "魔術師",
-    "女帝",
-    "法王",
-    "恋人たち",
-    "力",
-    "運命の輪",
-    "節制",
-    "星",
-    "太陽",
-    "審判",
-    "世界"
-  ];
-
-
-  const dangerCards = [
-    "悪魔",
-    "塔",
-    "月",
-    "死神"
-  ];
-
-
-  const firstRescue =
-    rescueCards.includes(first.name);
-
-  const secondRescue =
-    rescueCards.includes(second.name);
-
-  const firstDanger =
-    dangerCards.includes(first.name);
-
-  const secondDanger =
-    dangerCards.includes(second.name);
-
-
-  /*
-    特別な組み合わせ
-  */
-
-  if(
-    first.name === "星" &&
-    second.name === "太陽"
-  ){
-
+function determineEnding(first, second) {
+  const rescue = ["愚者", "魔術師", "女帝", "法王", "恋人たち", "力", "運命の輪", "節制", "星", "太陽", "審判", "世界"];
+  
+  if (first.name === "星" && second.name === "太陽") {
     return {
-
-      title:
-        "【MISSION CLEAR】世界は救われた",
-
-      text:
-        "崩壊寸前だった世界に、二つの光が重なった。あなたが見つけた小さな希望は、やがて世界を照らす光になった。",
-
-      advice:
-        "希望は、最初から大きな光でなくてもいい。"
-
+      title: "【満たされる光】穏やかな結びつき",
+      text: "心の中にともった小さな希望が、大きな温かさとなって周囲を照らす物語。あなたの選んだ道は、想像以上に豊かな時間へ続いています。",
+      advice: "小さなワクワクを素直に受け取り、大切な人と共有してみましょう。"
     };
-
   }
 
-
-  if(
-    first.name === "塔" &&
-    second.name === "星"
-  ){
-
+  if (rescue.includes(first.name) && rescue.includes(second.name)) {
     return {
-
-      title:
-        "【SECRET END】崩壊のあとに残った光",
-
-      text:
-        "世界は一度崩れた。しかし完全には失われなかった。瓦礫の中に残った小さな光を、あなたは見つけた。",
-
-      advice:
-        "壊れたあとに残るものにも、物語は宿る。"
-
+      title: "【心地よい調和】扉が開くとき",
+      text: "二つのポジティブな重なりが、しなやかな追い風を生み出しています。力むことなく、今の流れに身を委ねることで新しい景色が見えてきます。",
+      advice: "自分の感覚を信じて、軽やかに一歩を踏み出してみてください。"
     };
-
   }
-
-
-  if(
-    first.name === "死神" &&
-    second.name === "世界"
-  ){
-
-    return {
-
-      title:
-        "【TRUE END】古い世界の終わり",
-
-      text:
-        "世界は終わった。しかしそれは敗北ではなかった。古い物語が完結し、新しい世界へ続く扉が開いた。",
-
-      advice:
-        "終わりは、必ずしも失敗ではない。"
-
-    };
-
-  }
-
-
-  if(
-    first.name === "悪魔" &&
-    second.name === "力"
-  ){
-
-    return {
-
-      title:
-        "【BREAK THROUGH】鎖を断ち切った",
-
-      text:
-        "あなたを縛っていたものの正体が明らかになった。そしてあなたは、それを力ずくではなく、自分自身の意思で手放した。",
-
-      advice:
-        "自分を縛るものに名前をつけることから、自由は始まる。"
-
-    };
-
-  }
-
-
-  /*
-    両方とも救済系
-  */
-
-  if(
-    firstRescue &&
-    secondRescue
-  ){
-
-    return {
-
-      title:
-        "【MISSION CLEAR】世界は救われた",
-
-      text:
-        "二つの札が示した道は、同じ方向を指していた。あなたは迷いながらも一歩を選び、その選択によって世界の崩壊を食い止めた。",
-
-      advice:
-        "完璧な答えより、自分で選んだ一歩を大切に。"
-
-    };
-
-  }
-
-
-  /*
-    危険カードが2枚
-  */
-
-  if(
-    firstDanger &&
-    secondDanger
-  ){
-
-    return {
-
-      title:
-        "【MISSION FAILED】世界線の途絶",
-
-      text:
-        "二つの危険な力が重なり、世界の均衡は崩れた。あなたのいた世界線は、静かに終わりを迎えた。",
-
-      advice:
-        "けれど、物語はここで終わらない。別の選択をすれば、別の世界線がある。"
-
-    };
-
-  }
-
-
-  /*
-    危険＋救済
-  */
-
-  if(
-    (firstDanger && secondRescue) ||
-    (secondDanger && firstRescue)
-  ){
-
-    return {
-
-      title:
-        "【LAST CHANCE】世界はかろうじて救われた",
-
-      text:
-        "崩壊の力と、それに抗う力がぶつかった。世界は傷ついた。それでも最後に残った選択が、完全な破滅を食い止めた。",
-
-      advice:
-        "状況が悪くても、最後の一手まで物語は決まらない。"
-
-    };
-
-  }
-
-
-  /*
-    その他
-  */
-
-  const combined =
-    first.keyword +
-    "と" +
-    second.keyword;
-
 
   return {
-
-    title:
-      "【WORLD SHIFT】世界線が変化した",
-
-    text:
-      "「" +
-      first.name +
-      "」と「" +
-      second.name +
-      "」の二つの力が重なり、世界は予想もしなかった方向へ動き始めた。あなたの物語は、まだ終わっていない。",
-
-    advice:
-      combined +
-      "という二つのテーマを、今日の自分への問いとして持ち帰ってください。"
-
+    title: "【新章の予感】重なり合う物語",
+    text: `「${first.name}」の秘めた力と「${second.name}」の導きが交差しました。物事を少し違う角度から見つめ直すことで、思いがけない発見があるでしょう。`,
+    advice: `「${first.keyword}」と「${second.keyword}」というキーワードを意識して今日一日を過ごしてみてください。`
   };
-
 }
 
+function resetGame() {
+  firstCard = null;
+  secondCard = null;
 
-/* ==================================================
-   INITIAL MESSAGE
-================================================== */
+  document.querySelectorAll(".card-container").forEach(el => el.classList.remove("flipped"));
+  document.querySelectorAll(".progress-step").forEach((el, idx) => {
+    if (idx === 0) el.classList.add("active");
+    else el.classList.remove("active");
+  });
 
-console.log(
-  "結の札 RPG-mode loaded."
-);
+  document.getElementById("result-1").classList.add("hidden");
+  document.getElementById("result-2").classList.add("hidden");
+  document.getElementById("stage-2").classList.add("hidden");
+  document.getElementById("stage-final").classList.add("hidden");
 
+  document.getElementById("btn-draw-1").classList.remove("hidden");
+  document.getElementById("btn-draw-2").classList.remove("hidden");
+
+  smoothScrollTo("game");
+}
+
+function shareResult() {
+  const text = `【結の札】本日のカードは「${firstCard.name}」と「${secondCard.name}」でした。今日を紡ぐ物語の言葉と出会いました。`;
+  if (navigator.share) {
+    navigator.share({ title: "結の札", text: text, url: window.location.href });
+  } else {
+    navigator.clipboard.writeText(text + " " + window.location.href);
+    alert("結果をクリップボードにコピーしました！");
+  }
+}
+
+function smoothScrollTo(elementId) {
+  setTimeout(() => {
+    const el = document.getElementById(elementId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, 100);
+}
 </script>
 
 </body>
