@@ -3,903 +3,731 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>結の札｜アルカナ奇譚</title>
+<title>体験型カード解析謎解き『結の札』｜リアル体験イベント</title>
+
+<!-- 重厚感と怪しさのある大人向けフォント -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Shippori+Mincho:wght@500;700;800&display=swap" rel="stylesheet">
+
 <style>
-:root {
-  --navy: #1b2631;
-  --navy-deep: #111820;
-  --paper: #f4efe6;
-  --paper-card: #fdfbf7;
-  --ink: #2c2621;
-  --muted: #7a7063;
-  --gold: #a68946;
-  --gold-light: #e2d4b5;
-  --line: #dfd5c3;
-
-  --serif: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Baskerville", serif;
-  --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+:root{
+  --gold: #d4af37;
+  --gold-dark: #aa820a;
+  --bg-dark: #0d0f12;
+  --panel-bg: rgba(22, 26, 33, 0.85);
+  --accent-red: #8b0000;
+  --text-main: #e6e6e6;
+  --text-muted: #9a9eab;
+  --border-gold: rgba(212, 175, 55, 0.4);
 }
 
-* {
-  box-sizing: border-box;
+*{
+  box-sizing:border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+html{
+  scroll-behavior:smooth;
 }
 
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--serif);
-  line-height: 2.5;
-  letter-spacing: .08em;
+body{
+  margin:0;
+  color:var(--text-main);
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(20, 25, 35, 0.8), #07080a 90%),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.2) 2px, rgba(0,0,0,0.2) 4px);
+  font-family: "Shippori Mincho", serif;
+  line-height:1.8;
+  overflow-x: hidden;
 }
 
-button {
-  font: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-  -webkit-tap-highlight-color: transparent;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-img {
-  max-width: 100%;
-  display: block;
+button{
+  font:inherit;
 }
 
-.container {
-  width: min(840px, calc(100% - 48px));
-  margin: 0 auto;
+.container{
+  width:min(1000px, 92%);
+  margin:auto;
 }
 
-/* 共通アニメーション */
-.fade {
-  animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
+/* =========================
+   HEADER / HERO
+========================= */
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* =========================================
-   トップページ（円環イメージ）
-========================================= */
-#entrance {
-  min-height: 100svh;
-  position: relative;
+.hero{
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  position: relative;
   overflow: hidden;
-  color: white;
-  background: radial-gradient(circle at 50% 40%, #2c3e50 0%, #111820 100%);
+  border-bottom: 2px solid var(--gold-dark);
+  background: 
+    linear-gradient(180deg, rgba(13,15,18,0.4) 0%, rgba(13,15,18,0.95) 100%),
+    url("image.jpg") center/cover no-repeat;
 }
 
-.entrance-inner {
-  position: relative;
-  z-index: 2;
-  width: min(560px, calc(100% - 40px));
-  text-align: center;
-  padding: 40px 0;
-}
-
-.entrance-image {
-  width: 240px;
-  height: 240px;
-  margin: 0 auto 36px;
-  position: relative;
-}
-
-.entrance-image::before {
+.hero::before {
   content: "";
   position: absolute;
-  inset: -12px;
-  border: 1px solid rgba(226,212,181,.4);
-  border-radius: 50%;
-  animation: spin 30s linear infinite;
+  inset: 0;
+  box-shadow: inset 0 0 100px #000;
+  pointer-events: none;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-.entrance-image img {
+.hero-content{
+  position: relative;
+  z-index: 2;
+  text-align: center;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid rgba(255,255,255,.9);
-  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+  padding: 80px 20px;
 }
 
-.entrance-kicker {
-  font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: .4em;
-  color: var(--gold-light);
-  margin-bottom: 12px;
+.event-tag{
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 4px 18px;
+  margin-bottom: 25px;
+  background: rgba(0, 0, 0, 0.6);
 }
 
-.entrance-title {
-  font-size: clamp(36px, 8vw, 54px);
-  font-weight: 400;
-  letter-spacing: .25em;
-  margin: 0 0 16px;
+.hero h1{
+  font-size: clamp(2rem, 6vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px #000;
+  margin: 0 0 20px;
+  line-height: 1.3;
 }
 
-.entrance-subtitle {
-  font-size: 13.5px;
-  color: rgba(255,255,255,.75);
-  line-height: 2.4;
+.hero-lead{
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
   margin-bottom: 40px;
 }
 
-.enter-btn {
-  font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: .25em;
-  color: var(--navy-deep);
-  background: var(--gold-light);
-  padding: 16px 48px;
-  border-radius: 999px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.3);
-  transition: all .4s ease;
-  position: relative;
-}
-
-.enter-btn:hover {
-  background: white;
-  transform: translateY(-2px);
-  box-shadow: 0 15px 35px rgba(0,0,0,.4);
-}
-
-/* =========================================
-   図書館本体
-========================================= */
-#library {
-  display: none;
-}
-#library.active {
-  display: block;
-}
-
-/* ミニマル・ヘッダー */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(244,239,230,.88);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
-}
-
-.header-inner {
-  width: min(840px, calc(100% - 48px));
-  height: 70px;
-  margin: 0 auto;
+.event-info-strip {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo-btn {
-  font-size: 16px;
-  letter-spacing: .2em;
-  color: var(--navy);
-  text-align: left;
-}
-.logo-btn span {
-  display: block;
-  font-family: var(--sans);
-  font-size: 7px;
-  letter-spacing: .3em;
-  color: var(--gold);
-}
-
-.header-nav {
-  display: flex;
-  gap: 28px;
-}
-
-.header-nav button {
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: .15em;
-  color: var(--muted);
-  transition: color .2s;
-}
-.header-nav button:hover {
-  color: var(--gold);
-}
-
-/* ヒーロー */
-.lib-hero {
-  position: relative;
-  height: 60vh;
-  min-height: 420px;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  overflow: hidden;
-  background: var(--navy-deep);
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px dashed var(--border-gold);
+  font-size: 0.85rem;
+  color: var(--gold);
 }
 
-.lib-hero-bg {
-  position: absolute;
-  inset: 0;
-}
-.lib-hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: .35;
-  filter: sepia(.2) contrast(1.1);
-}
-
-.lib-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(17,24,32,.3), rgba(17,24,32,.85));
-}
-
-.lib-hero-content {
+.hero-button{
+  display: inline-block;
+  padding: 18px 50px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  background: rgba(13, 15, 18, 0.8);
   position: relative;
-  z-index: 2;
-  text-align: center;
-  color: white;
-  width: min(500px, calc(100% - 40px));
+  transition: 0.4s;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
 }
 
-.lib-hero-tag {
-  font-family: var(--sans);
-  font-size: 9px;
-  letter-spacing: .4em;
-  color: var(--gold-light);
-  margin-bottom: 14px;
+.hero-button:hover{
+  background: var(--gold);
+  color: #000;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
 }
 
-.lib-hero-title {
-  font-size: clamp(28px, 6vw, 42px);
-  font-weight: 400;
-  letter-spacing: .2em;
-  margin: 0 0 16px;
+/* 小さな冒険者向け（キッズ・初心者）バナー */
+.kids-link-wrapper {
+  margin-top: 30px;
 }
 
-.lib-hero-line {
-  width: 30px;
-  height: 1px;
-  background: var(--gold-light);
-  margin: 0 auto 16px;
+.kids-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #aed8f2;
+  text-decoration: underline;
+  transition: 0.3s;
 }
 
-.lib-hero-desc {
-  font-size: 13px;
-  color: rgba(255,255,255,.75);
-  line-height: 2.2;
+.kids-link:hover {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(174, 216, 242, 0.8);
 }
 
-/* セクション共通レイアウト */
-.section {
+/* =========================
+   COMMON & SECTIONS
+========================= */
+
+section{
   padding: 100px 0;
-  border-bottom: 1px solid var(--line);
+  position: relative;
 }
 
-.section-head {
+.section-title{
   text-align: center;
   margin-bottom: 60px;
 }
 
-.section-head span {
-  font-family: var(--sans);
-  font-size: 9px;
-  letter-spacing: .35em;
+.section-title .en{
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
   color: var(--gold);
-  display: block;
   margin-bottom: 8px;
 }
 
-.section-head h2 {
-  font-size: 22px;
-  font-weight: 400;
-  letter-spacing: .15em;
+.section-title h2{
   margin: 0;
-  color: var(--navy);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: #fff;
 }
 
-/* =========================================
-   1. 札をひく（微かに光る円環）
-========================================= */
-.oracle-box {
-  background: var(--paper-card);
-  border: 1px solid var(--line);
-  padding: 60px 40px;
+.section-title p{
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* =========================
+   CARD DRAW (謎解析)
+========================= */
+
+.draw-area{
   text-align: center;
-  max-width: 680px;
-  margin: 0 auto;
-  box-shadow: 0 10px 30px rgba(44,38,33,.03);
-  position: relative;
 }
 
-.circle-stage {
+.card{
+  width: min(260px, 70vw);
+  height: min(390px, 105vw);
+  margin: 0 auto 35px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner{
+  width: 100%;
+  height: 100%;
   position: relative;
-  width: 220px;
-  height: 220px;
-  margin: 0 auto 30px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.15, 0.85, 0.35, 1.2);
+}
+
+.card.flipped .card-inner{
+  transform: rotateY(180deg);
+}
+
+.card-face{
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 4px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+}
+
+.card-back{
+  background: #11151c;
+  border: 2px solid var(--gold);
+  outline: 6px solid #000;
+  outline-offset: -10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px dashed var(--gold);
-  border-radius: 50%;
-  animation: moonPhaseGlow 8s ease-in-out infinite;
 }
 
-@keyframes moonPhaseGlow {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(166,137,70,0.1), inset 0 0 15px rgba(166,137,70,0.1);
-    border-color: rgba(166,137,70,0.4);
-  }
-  50% {
-    box-shadow: 0 0 35px rgba(166,137,70,0.35), inset 0 0 25px rgba(166,137,70,0.25);
-    border-color: rgba(166,137,70,0.9);
-  }
-}
-
-.circle-center-btn {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: var(--navy);
-  color: white;
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: .2em;
-  box-shadow: 0 8px 20px rgba(27,38,49,.2);
-  transition: transform .2s ease, background .3s ease, box-shadow .2s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.circle-center-btn::after {
-  content: "✦";
-  position: absolute;
-  font-size: 8px;
-  top: 15px;
-  right: 18px;
-  color: var(--gold-light);
-  opacity: 0.8;
-}
-
-.circle-center-btn:hover {
-  background: var(--gold);
-}
-
-.circle-center-btn:active {
-  transform: scale(0.92) translateY(3px);
-  box-shadow: 0 2px 8px rgba(27,38,49,.3);
-}
-
-.orbit-symbol {
-  position: absolute;
-  font-size: 14px;
+.card-back span{
   color: var(--gold);
-  opacity: .7;
-  animation: floatSymbol 6s ease-in-out infinite;
-}
-@keyframes floatSymbol {
-  0%, 100% { transform: scale(1); opacity: .5; }
-  50% { transform: scale(1.15); opacity: 1; }
-}
-
-.sym-top { top: 10px; left: 50%; transform: translateX(-50%); }
-.sym-bottom { bottom: 10px; left: 50%; transform: translateX(-50%); }
-.sym-left { left: 12px; top: 50%; transform: translateY(-50%); }
-.sym-right { right: 12px; top: 50%; transform: translateY(-50%); }
-
-#oracleStageMsg {
-  font-size: 13px;
-  color: var(--muted);
-  min-height: 30px;
-  margin-bottom: 10px;
-  transition: opacity .4s ease;
-}
-
-.oracle-result-area {
-  display: none;
-  margin-top: 20px;
-  text-align: left;
-  border-top: 1px solid var(--line);
-  padding-top: 30px;
-}
-
-/* =========================================
-   2. 小部屋
-========================================= */
-.rooms-list {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.room-row {
-  background: var(--paper-card);
-  border: 1px solid var(--line);
-  padding: 32px 40px;
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  border: 1px solid var(--border-gold);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  transition: all .3s ease;
-  position: relative;
+  justify-content: center;
+  background: rgba(0,0,0,0.5);
 }
 
-.room-row::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--gold);
-  opacity: 0;
-  transition: opacity .3s ease;
-}
-
-.room-row:hover {
-  border-color: var(--gold);
-  transform: translateX(6px);
-  box-shadow: 0 10px 30px rgba(44,38,33,.04);
-}
-.room-row:hover::before {
-  opacity: 1;
-}
-
-.room-row:active {
-  transform: scale(0.99) translateX(2px);
-}
-
-.room-info-left {
+.card-front{
+  transform: rotateY(180deg);
+  background: #181c24;
+  border: 2px solid var(--gold);
+  padding: 25px;
   display: flex;
-  align-items: baseline;
-  gap: 24px;
-}
-
-.room-num {
-  font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: .2em;
-  color: var(--gold);
-}
-
-.room-name-area h3 {
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: .1em;
-  margin: 0 0 4px;
-  color: var(--navy);
-}
-
-.room-name-area p {
-  font-size: 12px;
-  color: var(--muted);
-  margin: 0;
-}
-
-.room-arrow {
-  font-family: var(--sans);
-  font-size: 14px;
-  color: var(--gold);
-  transition: transform .3s;
-}
-.room-row:hover .room-arrow {
-  transform: translateX(4px);
-}
-
-.story-card-box {
-  display: none;
-  background: var(--paper-card);
-  border: 1px solid var(--gold);
-  padding: 48px;
-  max-width: 680px;
-  margin: 40px auto 0;
-  box-shadow: 0 15px 40px rgba(44,38,33,.06);
-}
-
-.story-card-tag {
-  font-family: var(--sans);
-  font-size: 9px;
-  letter-spacing: .3em;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
-
-.story-card-title {
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: .12em;
-  margin: 0 0 24px;
-  color: var(--navy);
-}
-
-.story-card-body {
-  font-size: 13.5px;
-  color: var(--ink);
-  line-height: 2.6;
-  border-top: 1px dashed var(--line);
-  padding-top: 24px;
-}
-
-/* フッター */
-footer {
-  background: var(--navy-deep);
-  color: rgba(255,255,255,.4);
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-  padding: 50px 20px;
-  font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: .25em;
 }
 
-/* レスポンシブ対応 */
-@media (max-width: 640px) {
-  .room-row {
-    padding: 24px 20px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-  .room-arrow {
-    align-self: flex-end;
-  }
-  .oracle-box {
-    padding: 40px 20px;
-  }
-  .story-card-box {
-    padding: 32px 20px;
-  }
+.card-number{
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+  font-size: 1rem;
+}
+
+.card-name{
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 10px 0 15px;
+  color: #fff;
+  border-bottom: 1px solid var(--border-gold);
+  padding-bottom: 8px;
+}
+
+.card-message{
+  font-size: 0.9rem;
+  color: var(--text-main);
+  text-align: left;
+}
+
+.draw-button{
+  border: 1px solid var(--gold);
+  background: rgba(13, 15, 18, 0.9);
+  color: var(--gold);
+  padding: 15px 40px;
+  cursor: pointer;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.draw-button:hover{
+  background: var(--gold);
+  color: #000;
+}
+
+.result{
+  max-width: 600px;
+  margin: 40px auto 0;
+  padding: 25px;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-gold);
+  animation: fadeUp 0.6s ease;
+}
+
+.result h3{
+  color: var(--gold);
+  margin-top: 0;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+}
+
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(20px); }
+  to{ opacity:1; transform:none; }
+}
+
+/* =========================
+   STORY / RPG MODE
+========================= */
+
+.rpg-section{
+  background: rgba(10, 12, 15, 0.9);
+  border-top: 1px solid var(--border-gold);
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.rpg-box{
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  border: 1px solid var(--border-gold);
+  padding: 50px 30px;
+  background: var(--panel-bg);
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+}
+
+.rpg-box h3{
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.rpg-button{
+  display: inline-block;
+  margin-top: 20px;
+  padding: 15px 35px;
+  border: 1px solid var(--accent-red);
+  color: #fff;
+  background: var(--accent-red);
+  cursor: pointer;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
+}
+
+.rpg-button:hover{
+  background: #b30000;
+  box-shadow: 0 0 25px rgba(139, 0, 0, 0.8);
+}
+
+.ending{
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px dashed var(--border-gold);
+}
+
+.ending-title{
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  color: var(--gold);
+  margin-bottom: 15px;
+}
+
+/* =========================
+   SYSTEM / MENU
+========================= */
+
+.menu-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.menu-card{
+  background: var(--panel-bg);
+  border: 1px solid var(--border-gold);
+  padding: 35px 20px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.menu-card:hover{
+  border-color: var(--gold);
+  transform: translateY(-5px);
+}
+
+.menu-card .icon{
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 15px;
+}
+
+.menu-card h3{
+  color: #fff;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+
+.menu-card p{
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background: #050608;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 60px 20px;
+  border-top: 1px solid var(--border-gold);
+}
+
+footer h2{
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  font-size: 1.2rem;
+}
+
+.hidden{ display: none !important; }
+
+@media(max-width:760px){
+  section{ padding: 70px 0; }
+  .menu-grid{ grid-template-columns: 1fr; }
+  .event-info-strip { flex-direction: column; gap: 8px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================================
-     トップページ（円環イメージ）
-========================================= -->
-<section id="entrance">
-  <div class="entrance-inner fade">
-    <div class="entrance-image">
-      <img src="image.jpg" alt="結の札" onerror="this.style.display='none'">
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
+
+  <div class="hero-content">
+
+    <div class="event-tag">
+      REAL MYSTERY EVENT
     </div>
-    <div class="entrance-kicker">A SECRET ARCHIVE OF SPELLS</div>
-    <h1 class="entrance-title">結の札</h1>
-    <p class="entrance-subtitle">インクの香りと微かな魔法が眠る場所。<br>ページをめくるように、今日の物語をほどく。</p>
-    <button class="enter-btn" onclick="enterLibrary()">扉をひらく</button>
+
+    <h1>体験型カード解析ゲーム<br>『結の札』</h1>
+
+    <p class="hero-lead">
+      提示された一枚の札が示すのは、真実か、それとも罠か。<br>
+      暗号を解き明かし、あなた自身の『結末』を選択せよ。
+    </p>
+
+    <div class="event-info-strip">
+      <span>📍 開催地：暗夜の館（オンライン/現地）</span>
+      <span>⏱ 所要時間：約15分〜</span>
+      <span>難易度：★★★☆☆</span>
+    </div>
+
+    <a href="#draw" class="hero-button">
+      手掛かりを解析する［試プレイ］
+    </a>
+
+    <!-- 小さな冒険者向け 外部リンクの組み込み -->
+    <div class="kids-link-wrapper">
+      <a href="https://musica-3.github.io/RPG-mode/#draw" target="_blank" rel="noopener noreferrer" class="kids-link">
+        🛡️ 小さな冒険者・初心者の方はこちら（イージーモード） ↗
+      </a>
+    </div>
+
   </div>
+
+</header>
+
+
+<!-- =========================
+     CARD DRAW
+========================= -->
+
+<section id="draw">
+
+  <div class="container">
+
+    <div class="section-title">
+      <div class="en">PHASE 01 : ANALYZE</div>
+      <h2>運命札の解読</h2>
+      <p>
+        配給された22枚の大アルカナから1枚を引き、提示されたメッセージを解析してください。
+      </p>
+    </div>
+
+    <div class="draw-area">
+
+      <div class="card" id="card">
+        <div class="card-inner">
+          <div class="card-face card-back">
+            <span>結</span>
+          </div>
+          <div class="card-face card-front">
+            <div class="card-number" id="cardNumber">0</div>
+            <div class="card-name" id="cardName">—</div>
+            <div class="card-message" id="cardMessage">—</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="draw-button" id="drawButton" onclick="drawCard()">
+        札を引き抜く
+      </button>
+
+      <div class="result hidden" id="result">
+        <h3>［解析完了］提示された手掛かり</h3>
+        <p id="resultText">
+          この札が示す言葉は、あなたの現在の状況を暗示しています。カードの指し示す謎を記憶してください。
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
 
-<!-- =========================================
-     図書館本体
-========================================= -->
-<div id="library">
+<!-- =========================
+     RPG / STORY
+========================= -->
 
-  <!-- ヘッダー -->
-  <header>
-    <div class="header-inner">
-      <button class="logo-btn" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-        結の札
-        <span>YUI NO FUDA</span>
+<section class="rpg-section">
+
+  <div class="container">
+
+    <div class="section-title">
+      <div class="en">PHASE 02 : BRANCHING STORY</div>
+      <h2>分岐する世界線</h2>
+      <p>
+        さらにもう一枚の札を重ね合わせることで、物語の最終結末（エンディング）が分岐します。
+      </p>
+    </div>
+
+    <div class="rpg-box">
+
+      <h3>二重の選択が、世界の運命を決する</h3>
+
+      <p>
+        1枚目の解析結果と、これから引く2枚目の重なり合いにより<br>
+        「世界の救済」か「破滅」かの分岐フラグが起動します。
+      </p>
+
+      <button class="rpg-button" onclick="rpgStart()">
+        2枚目を引き、結末を観測する
       </button>
-      <nav class="header-nav">
-        <button onclick="scrollToId('oracle-section')">今日の札</button>
-        <button onclick="scrollToId('rooms-section')">小さな小部屋</button>
-      </nav>
-    </div>
-  </header>
 
-  <!-- ヒーロー (image2.jpg) -->
-  <section class="lib-hero">
-    <div class="lib-hero-bg">
-      <img src="image2.jpg" alt="アーカイブのイメージ" onerror="this.style.display='none'">
-    </div>
-    <div class="lib-hero-overlay"></div>
-    <div class="lib-hero-content fade">
-      <div class="lib-hero-tag">EDITION NO. 01</div>
-      <h2 class="lib-hero-title">物語のめぐり</h2>
-      <div class="lib-hero-line"></div>
-      <p class="lib-hero-desc">古い栞をたどるように、静けさと微かな気配に満ちた空間へ。</p>
-    </div>
-  </section>
-
-  <!-- 札をひくセクション -->
-  <section id="oracle-section" class="section">
-    <div class="container">
-      <div class="section-head">
-        <span>ORACLE CARD</span>
-        <h2>今日の札をひく</h2>
-      </div>
-
-      <div class="oracle-box">
-        <div id="oracleStageMsg">静かに息を整え、今のあなたに寄り添う一枚を導きます。</div>
-
-        <div class="circle-stage">
-          <div class="orbit-symbol sym-top">✦</div>
-          <div class="orbit-symbol sym-bottom">☾</div>
-          <div class="orbit-symbol sym-left">🌿</div>
-          <div class="orbit-symbol sym-right">🗝</div>
-          <button class="circle-center-btn" id="oracleBtn" onclick="startOracleProcess()">札をひく</button>
-        </div>
-
-        <div id="oracleResult" class="oracle-result-area fade">
-          <div class="story-card-tag">TODAY'S CARD</div>
-          <h3 id="oracleName" class="story-card-title" style="margin-bottom: 16px;">---</h3>
-          <div id="oracleStory" class="story-card-body" style="border-top: none; padding-top: 0;">---</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 小部屋セクション（合計16種・現実的で具体的な行動） -->
-  <section id="rooms-section" class="section" style="border-bottom: none;">
-    <div class="container">
-      <div class="section-head">
-        <span>WHISPER OF SPELLS</span>
-        <h2>小さな小部屋</h2>
-      </div>
-
-      <div class="rooms-list">
-        <div class="room-row" onclick="openRoom('quiet')">
-          <div class="room-info-left">
-            <span class="room-num">01</span>
-            <div class="room-name-area">
-              <h3>静謐の小部屋</h3>
-              <p>視界と呼吸をシンプルに整える場所。</p>
-            </div>
-          </div>
-          <div class="room-arrow">→</div>
-        </div>
-
-        <div class="room-row" onclick="openRoom('star')">
-          <div class="room-info-left">
-            <span class="room-num">02</span>
-            <div class="room-name-area">
-              <h3>星影の小部屋</h3>
-              <p>一日の終わりに小さな灯りをともす。</p>
-            </div>
-          </div>
-          <div class="room-arrow">→</div>
-        </div>
-
-        <div class="room-row" onclick="openRoom('wind')">
-          <div class="room-info-left">
-            <span class="room-num">03</span>
-            <div class="room-name-area">
-              <h3>微風の小部屋</h3>
-              <p>新しい行動のきっかけをひとつ選ぶ。</p>
-            </div>
-          </div>
-          <div class="room-arrow">→</div>
-        </div>
-
-        <div class="room-row" onclick="openRoom('memory')">
-          <div class="room-info-left">
-            <span class="room-num">04</span>
-            <div class="room-name-area">
-              <h3>記憶の小部屋</h3>
-              <p>懐かしい手ざわりや香りに触れる。</p>
-            </div>
-          </div>
-          <div class="room-arrow">→</div>
-        </div>
-      </div>
-
-      <!-- 小部屋の結果表示エリア -->
-      <div id="roomResultBox" class="story-card-box fade">
-        <div class="story-card-tag" id="resTag">ROOM LOG</div>
-        <h3 class="story-card-title" id="resTitle">---</h3>
-        <div class="story-card-body" id="resBody">---</div>
+      <div id="ending" class="ending hidden">
+        <div id="endingTitle" class="ending-title"></div>
+        <p id="endingText" class="ending-text"></p>
       </div>
 
     </div>
-  </section>
 
-  <!-- フッター -->
-  <footer>
-    <p>© 結の札 / アルカナ奇譚</p>
-  </footer>
+  </div>
 
-</div>
+</section>
 
-<!-- =========================================
-     JavaScript
-========================================= -->
+
+<!-- =========================
+     SYSTEM / MENU
+========================= -->
+
+<section>
+
+  <div class="container">
+
+    <div class="section-title">
+      <div class="en">GAME SYSTEM</div>
+      <h2>体験コース一覧</h2>
+      <p>あなたのスタイルに合わせて挑戦ルートを選択できます。</p>
+    </div>
+
+    <div class="menu-grid">
+
+      <div class="menu-card">
+        <div class="icon">🔍</div>
+        <h3>シングル解析ルート</h3>
+        <p>1枚の札から今のあなたを取り巻く状況を解読する基本セッション（所要時間：約15分）。</p>
+      </div>
+
+      <div class="menu-card">
+        <div class="icon">📜</div>
+        <h3>脱出・分岐ミッション</h3>
+        <p>2枚の札を組み合わせ、仕掛けられた世界の謎とストーリーの結末を解き明かす上級ミッション。</p>
+      </div>
+
+      <div class="menu-card">
+        <div class="icon">🗝️</div>
+        <h3>ゲームマスターおまかせ</h3>
+        <p>進行役（GM）があなたの状態に合わせて即興でシナリオを構築する特別ルート。</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <h2>体験型カード解析謎解き『結の札』</h2>
+
+  <p style="margin-top: 15px;">
+    主催：結の札 制作委員会 / リアル体験型ミッション
+  </p>
+
+  <p style="font-size: 0.75rem; color: #555; margin-top: 20px;">
+    ※このイベントは体験型謎解きエンターテインメントです。
+  </p>
+
+</footer>
+
+
 <script>
-// 現実的な行動ベースのおまじないデータ（各4種×4部屋＝16種）
-const roomSpells = {
-  quiet: [
-    {
-      title: "机の上を30秒だけ片づけるおまじない",
-      body: "目の前にあるものを一つだけ元の場所へ戻します。全部片づける必要はありません。30秒だけ、視界に入る場所を少し整えてみましょう。"
-    },
-    {
-      title: "スマートフォンを伏せて3分置くおまじない",
-      body: "手元の画面を裏返し、そのまま3分間だけ触らずに置いてみます。通知の波から少しだけ離れて、視線を別の場所へ移してみましょう。"
-    },
-    {
-      title: "温かい飲み物を一杯つくるおまじない",
-      body: "お湯を沸かして、お茶やコーヒーを一杯だけ淹れてみます。マグカップの両手から伝わる温もりを感じながら、ひと息つく時間をつくります。"
-    },
-    {
-      title: "窓の外を30秒眺めるおまじない",
-      body: "近くの窓辺に立ち、空の様子や遠くの景色を30秒だけ眺めてみます。パソコンや本から目を離し、遠くにピントを合わせるきっかけにしましょう。"
-    }
-  ],
-  star: [
-    {
-      title: "今日よかったことを一つ書き留めるおまじない",
-      body: "手元のノートやメモの端に、今日起きた小さな良かったことを一言だけ書き残してみましょう。一日の終わりに意識をポジティブな点に向ける習慣です。"
-    },
-    {
-      title: "明日の楽しみを一つ決めるおまじない",
-      body: "明日予定していることの中から、一番楽しみにしたい小さな予定を一つだけ心に決めます。「これを楽しみに起きよう」と思える目印をつくります。"
-    },
-    {
-      title: "好きな曲を一曲だけ聴くおまじない",
-      body: "お気に入りの音楽をプレイヤーから選び、イヤホンやスピーカーで一曲だけ通して聴いてみます。他の作業を止め、音楽だけに浸る時間を作ります。"
-    },
-    {
-      title: "夜の照明を少し落とすおまじない",
-      body: "部屋の明かりをひとつ消したり、間接照明やデスクライトだけに切り替えてみます。視界の明るさを落とすことで、自然と肩の力が抜けていきます。"
-    }
-  ],
-  wind: [
-    {
-      title: "いつもと違う安全な道を選ぶおまじない",
-      body: "通勤や買い物のとき、いつもの曲がり角をひとつ変えて別の道を歩いてみます。ほんの小さな変化が、凝り固まった気分をほぐしてくれます。"
-    },
-    {
-      title: "やりたかったことを5分だけやるおまじない",
-      body: "後回しにしていた小さなタスクや趣味を、タイマーを5分だけセットして始めてみます。短時間だけ手をつけてみることで、最初のハードルを越えやすくなります。"
-    },
-    {
-      title: "普段選ばないものを一つ試すおまじない",
-      body: "飲み物を買うときや本を選ぶとき、いつもと違う種類のものを選んでみます。小さな選択のマンネリを崩し、新鮮な感覚を楽しんでみましょう。"
-    },
-    {
-      title: "「次にやること」を一枚の紙に書くおまじない",
-      body: "頭の中で考えているタスクを、付箋やメモ用紙に一項目だけ書き出してみます。視覚化することで、次に動くべき一歩がクリアになります。"
-    }
-  ],
-  memory: [
-    {
-      title: "昔好きだった曲を一曲聴くおまじない",
-      body: "学生時代や昔によく聴いていたお気に入りの曲を検索して、久しぶりに一曲だけ聴いてみます。当時の記憶が鮮やかに蘇る小さな旅を楽しみましょう。"
-    },
-    {
-      title: "昔の写真を一枚だけ見返すおまじない",
-      body: "スマートフォンのアルバムを少しだけ遡り、お気に入りの景色や思い出の写真たった一枚に目を止めてみます。過去のあたたかな記憶に触れる時間です。"
-    },
-    {
-      title: "お気に入りの香りに触れるおまじない",
-      body: "手元にあるハンドクリームや、お気に入りのアロマ、香水をほんの少しだけ使ってみます。香りをきっかけに、リラックスするスイッチを入れましょう。"
-    },
-    {
-      title: "昔好きだったものを一つ思い出してみるおまじない",
-      body: "子どもの頃に夢中だった本、アニメ、食べ物などを頭の中で一つだけ思い出してみます。忘れていた趣味や興味の原点に、ふと想いを馳せてみましょう。"
-    }
-  ]
-};
 
-const oracleCards = [
-  {
-    name: "お気に入りを一つ選ぶ",
-    story: "今日、自分が好きなものや心地よいと感じるものを一つだけ選んでみましょう。お気に入りの飲み物でも、お気に入りの音楽でも構いません。自分の感覚を大切にする小さな目印です。"
-  },
-  {
-    name: "手元にあるもので始める",
-    story: "完璧な準備を待たず、今手元にある道具や環境を使って5分だけ何かを始めてみましょう。小さく一歩を踏み出すための現実的なきっかけを作ります。"
-  },
-  {
-    name: "今日は保留にする",
-    story: "すぐに答えを出せないことや、今悩んでも仕方ないことは、今日はあえて保留にして手帳や頭の隅に置いておきましょう。区切りをつけて休むための選択です。"
-  },
-  {
-    name: "ここまでできたことを振り返る",
-    story: "今日ここまでで自分がこなした小さな行動やタスクを一つだけ振り返ってみましょう。思っていたよりも前に進めている自分に気づくための時間です。"
-  }
+const cards = [
+  { number:"0", name:"愚者", message:"【原点】まだ道なき領域へ。既存のルールを捨て、踏み出す者にのみ道は開かれる。" },
+  { number:"I", name:"魔術師", message:"【着手】手元にある全ての道具を点検せよ。必要な要素はすでに揃っている。" },
+  { number:"II", name:"女教皇", message:"【沈黙】静寂の中にのみ真実が潜む。軽率な行動を控え、観察に徹せよ。" },
+  { number:"III", name:"女帝", message:"【受容】育む時間が必要である。今手の中にある資源を正しく味わい、蓄えよ。" },
+  { number:"IV", name:"皇帝", message:"【支配】己の領域を定義せよ。揺るぎない意思こそが突破口となる。" },
+  { number:"V", name:"法王", message:"【伝承】過去の手記や先人の言葉を解読せよ。そこに暗号の鍵が隠されている。" },
+  { number:"VI", name:"恋人たち", message:"【選択】選択肢は二つ。一方を選ぶことは、もう一方を永久に失うことを意味する。" },
+  { number:"VII", name:"戦車", message:"【突入】躊躇は敗北を意味する。勢いを殺さずに障壁を突き破れ。" },
+  { number:"VIII", name:"力", message:"【制御】力で抑え込むのではなく、優しさと理知で対象をコントロールせよ。" },
+  { number:"IX", name:"隠者", message:"【探求】一度群れから離れよ。孤独な思考の果てにのみ、真相が浮かび上がる。" },
+  { number:"X", name:"運命の輪", message:"【転換】仕掛けが動き出した。この周期の波に乗り遅れてはならない。" },
+  { number:"XI", name:"正義", message:"【均衡】感情を排除し、事実のみを秤にかけよ。客観性こそが真の解答である。" },
+  { number:"XII", name:"吊るされた男", message:"【反転】視点を180度変えよ。行き詰まりに見える状態こそが最大のチャンスである。" },
+  { number:"XIII", name:"死神", message:"【断絶】終焉を受け入れよ。古い構造を壊さなければ、次の部屋の扉は開かない。" },
+  { number:"XIV", name:"節制", message:"【調合】相反する二つの要素を正しく調和させよ。極端な選択は破滅を招く。" },
+  { number:"XV", name:"悪魔", message:"【執着】あなたを拘束しているのは仕掛けではなく、あなた自身の欲望である。" },
+  { number:"XVI", name:"塔", message:"【崩壊】予期せぬ衝撃に備えよ。前提が崩れ去った瞬間から真の試練が始まる。" },
+  { number:"XVII", name:"星", message:"【微光】暗闇の中でかすかに光る標識を見落とすな。それが唯一の生存ルートである。" },
+  { number:"XVIII", name:"月", message:"【幻影】見えているものを過信することなかれ。不安が作り出した幻影を恐れるな。" },
+  { number:"XIX", name:"太陽", message:"【白日】隠された仕掛けが全て露わになる。迷わず光の指す方向へ進め。" },
+  { number:"XX", name:"審判", message:"【覚醒】過去に切り捨てた手掛かりを思い出せ。途絶えた物語に再び息吹が宿る。" },
+  { number:"XXI", name:"世界", message:"【完結】全てのパズルが組み合わさった。次のフェーズへの扉が開く。" }
 ];
 
-function enterLibrary() {
-  const entrance = document.getElementById("entrance");
-  const library = document.getElementById("library");
-  
-  entrance.style.transition = "opacity .8s ease";
-  entrance.style.opacity = "0";
-  
-  setTimeout(() => {
-    entrance.style.display = "none";
-    library.classList.add("active");
-    window.scrollTo(0, 0);
-  }, 800);
+let firstCard = null;
+
+function drawCard(){
+  const index = Math.floor(Math.random() * cards.length);
+  firstCard = cards[index];
+
+  document.getElementById("cardNumber").textContent = firstCard.number;
+  document.getElementById("cardName").textContent = firstCard.name;
+  document.getElementById("cardMessage").textContent = firstCard.message;
+
+  document.getElementById("card").classList.add("flipped");
+  document.getElementById("result").classList.remove("hidden");
+  document.getElementById("drawButton").textContent = "再解析を実行する";
 }
 
-function scrollToId(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+function rpgStart(){
+  if(!firstCard){
+    alert("【警告】先に『PHASE 01』で1枚目のカードを解析してください。");
+    document.getElementById("draw").scrollIntoView({behavior:"smooth"});
+    return;
   }
+
+  let secondCard;
+  do{
+    secondCard = cards[Math.floor(Math.random()*cards.length)];
+  }while(secondCard === firstCard);
+
+  const endings = [
+    {
+      title:"【MISSION CLEAR】世界の修復に成功",
+      text: "あなたが選んだ二つの解法が見事に噛み合った。崩壊の危機に瀕していた世界線は安定を取り戻し、脱出の扉が開かれた。あなたの冷静な観察力と決断力が、このゲームの勝利を引き寄せたのだ。"
+    },
+    {
+      title:"【MISSION FAILED】世界線の途絶",
+      text: "重なり合った二つの運命は暴走し、世界は崩壊を迎えた……。しかし、諦める必要はない。この失敗もまた大切な手掛かりである。思考をリセットし、再び挑戦せよ。"
+    }
+  ];
+
+  const sum = firstCard.number.length + secondCard.number.length;
+  const ending = sum % 2 === 0 ? endings[0] : endings[1];
+
+  document.getElementById("endingTitle").textContent = ending.title;
+  document.getElementById("endingText").textContent = ending.text;
+  document.getElementById("ending").classList.remove("hidden");
 }
 
-function startOracleProcess() {
-  const msgEl = document.getElementById("oracleStageMsg");
-  const btnEl = document.getElementById("oracleBtn");
-  const resultArea = document.getElementById("oracleResult");
-
-  btnEl.disabled = true;
-  resultArea.style.display = "none";
-
-  msgEl.style.opacity = "0";
-  setTimeout(() => {
-    msgEl.textContent = "今日のカードを選んでいます…";
-    msgEl.style.opacity = "1";
-  }, 400);
-
-  setTimeout(() => {
-    msgEl.style.opacity = "0";
-    setTimeout(() => {
-      msgEl.textContent = "静かに息を整え、今のあなたに寄り添う一枚を導きます。";
-      msgEl.style.opacity = "1";
-    }, 400);
-
-    const rand = Math.floor(Math.random() * oracleCards.length);
-    const chosen = oracleCards[rand];
-
-    document.getElementById("oracleName").textContent = chosen.name;
-    document.getElementById("oracleStory").textContent = chosen.story;
-
-    resultArea.style.display = "block";
-    resultArea.classList.remove("fade");
-    void resultArea.offsetWidth;
-    resultArea.classList.add("fade");
-
-    btnEl.disabled = false;
-  }, 2200);
-}
-
-function openRoom(type) {
-  const list = roomSpells[type];
-  if (!list) return;
-
-  const randomIndex = Math.floor(Math.random() * list.length);
-  const chosen = list[randomIndex];
-
-  const roomNames = {
-    quiet: "ROOM 01 : 静謐の小部屋",
-    star: "ROOM 02 : 星影の小部屋",
-    wind: "ROOM 03 : 微風の小部屋",
-    memory: "ROOM 04 : 記憶の小部屋"
-  };
-
-  document.getElementById("resTag").textContent = roomNames[type];
-  document.getElementById("resTitle").textContent = chosen.title;
-  document.getElementById("resBody").textContent = chosen.body;
-
-  const box = document.getElementById("roomResultBox");
-  box.style.display = "block";
-  box.classList.remove("fade");
-  void box.offsetWidth;
-  box.classList.add("fade");
-
-  setTimeout(() => {
-    box.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }, 50);
-}
 </script>
 
 </body>
